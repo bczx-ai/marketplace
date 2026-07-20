@@ -1,0 +1,45 @@
+{
+  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
+  "schemaVersion": 1,
+  "publisherId": "zainfo",
+  "releaseNotes": "DevCube 首次以 Brain Plugin 形式发布，CLI 直接从公共 PATH 调用。",
+  "compatibility": { "brain": ">=1.0.16" },
+  "components": {
+    "skills": [
+      { "key": "devcube", "requires": ["cli:cubelet"] },
+      { "key": "mantis-artifact-task", "requires": ["cli:cubelet"] },
+      { "key": "mantis-code-task", "requires": ["cli:cubelet"] },
+      { "key": "mantis-test-case-library", "requires": ["cli:cubelet"] },
+      { "key": "monitor-health", "requires": ["cli:cubelet"] },
+      { "key": "monitor-jvm", "requires": ["cli:cubelet"] },
+      { "key": "monitor-log", "requires": ["cli:cubelet"] },
+      { "key": "monitor-node", "requires": ["cli:cubelet"] },
+      { "key": "monitor-pod", "requires": ["cli:cubelet"] },
+      { "key": "monitor-trace", "requires": ["cli:cubelet"] },
+      { "key": "recipe-ship-publish-with-config", "requires": ["cli:cubelet"] },
+      { "key": "recipe-ship-quick-publish", "requires": ["cli:cubelet"] },
+      { "key": "recipe-ship-troubleshoot-publish", "requires": ["cli:cubelet"] },
+      { "key": "ship-config", "requires": ["cli:cubelet"] },
+      { "key": "ship-container", "requires": ["cli:cubelet"] },
+      { "key": "ship-publish", "requires": ["cli:cubelet"] },
+      { "key": "ship-vmapp", "requires": ["cli:cubelet"] },
+      { "key": "ship-workflow", "requires": ["cli:cubelet"] },
+      { "key": "team-issue", "requires": ["cli:cubelet"] },
+      { "key": "team-iteration", "requires": ["cli:cubelet"] },
+      { "key": "team-kanban", "requires": ["cli:cubelet"] },
+      { "key": "team-project", "requires": ["cli:cubelet"] }
+    ],
+    "assets": ["detail.html"],
+    "cli": [
+      {
+        "key": "cubelet",
+        "command": "cubelet",
+        "targets": {
+          "darwin-arm64": { "file": "cubelet", "sha256": "b9e288929cce17d1c5a9ff1bf09d8a0c1c1f0169fca95386e65b9a8788aa7db2" },
+          "darwin-x64": { "file": "cubelet", "sha256": "a91b108aed3c5a4f9e1f940e5c345eb5a4b135d63726ca4b32b0a52d5ef216bb" },
+          "win32-x64": { "file": "cubelet.exe", "sha256": "327a1e996908b8f318fee58e537cab35ae571d2d15c1a7f63b3bb2785064ae7e" }
+        }
+      }
+    ]
+  }
+}

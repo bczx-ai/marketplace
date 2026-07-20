@@ -1,0 +1,12 @@
+{
+  "name": "brain-official",
+  "interface": { "displayName": "Brain 官方市场" },
+  "plugins": [
+    {
+      "name": "devcube",
+      "source": { "source": "local", "path": "./plugins/devcube" },
+      "category": "研发效能",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    }
+  ]
+}

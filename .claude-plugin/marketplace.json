@@ -1,0 +1,9 @@
+{
+  "name": "brain-official",
+  "plugins": [
+    {
+      "name": "devcube",
+      "source": { "source": "local", "path": "./plugins/devcube" }
+    }
+  ]
+}
