@@ -1,3 +1,0 @@
-plugins/*/cli/darwin-arm64/* filter=lfs diff=lfs merge=lfs -text
-plugins/*/cli/darwin-x64/* filter=lfs diff=lfs merge=lfs -text
-plugins/*/cli/win32-x64/* filter=lfs diff=lfs merge=lfs -text

@@ -1,28 +1,479 @@
 <main class="devcube-detail">
-  <header>
-    <p class="eyebrow">研发效能工作台</p>
-    <h1>DevCube</h1>
-    <p class="intro">在 Brain 对话中完成发布、运行状态检查、监控排障、测试管理和安全扫描。</p>
+  <header class="overview">
+    <div class="overview-copy">
+      <p class="eyebrow">DEV CUBE 研发效能</p>
+      <h1>从发布到排障，一处完成</h1>
+      <p class="intro">在 Brain 对话中调用 DevCube，覆盖应用交付、运行监控、质量保障和团队协作，让查询、分析与执行保持在同一条工作流里。</p>
+    </div>
+    <div class="operation-legend" aria-label="操作边界">
+      <span class="legend-item legend-query"><i aria-hidden="true"></i>查询类能力可直接执行</span>
+      <span class="legend-item legend-confirm"><i aria-hidden="true"></i>写操作执行前确认</span>
+    </div>
   </header>
-  <section>
-    <h2>从交付到排障</h2>
-    <div class="capabilities">
-      <article><h3>发布与配置</h3><p>创建发布单、预览变更、推进流程并管理多环境配置版本。</p></article>
-      <article><h3>运行状态</h3><p>查看容器、虚拟机和 Pod 实例，读取访问地址与最新日志。</p></article>
-      <article><h3>可观测性</h3><p>联合查询健康、JVM、节点、日志、调用链和慢查询指标。</p></article>
-      <article><h3>质量保障</h3><p>管理测试用例库，并执行代码与制品扫描任务。</p></article>
+
+  <section class="detail-section">
+    <div class="section-heading">
+      <div>
+        <p class="section-index">01</p>
+        <h2>可用能力</h2>
+      </div>
+      <p>22 个内置 Skill 连接 cubelet，按研发工作流组合常用操作。</p>
+    </div>
+
+    <div class="capability-grid">
+      <article class="capability-card">
+        <span class="capability-icon icon-blue" aria-hidden="true">发</span>
+        <div class="capability-content">
+          <h3>应用发布与流程</h3>
+          <p>预览发布参数、创建或快速执行发布，跟踪发布状态并读取流程日志。</p>
+          <div class="tag-list"><span>发布预览</span><span>快速发布</span><span>状态跟踪</span></div>
+        </div>
+      </article>
+
+      <article class="capability-card">
+        <span class="capability-icon icon-violet" aria-hidden="true">配</span>
+        <div class="capability-content">
+          <h3>配置与运行</h3>
+          <p>维护应用配置版本，查看容器或虚拟机实例、访问地址和最新运行日志。</p>
+          <div class="tag-list"><span>配置版本</span><span>容器服务</span><span>虚拟机</span></div>
+        </div>
+      </article>
+
+      <article class="capability-card">
+        <span class="capability-icon icon-green" aria-hidden="true">诊</span>
+        <div class="capability-content">
+          <h3>运行监控与排障</h3>
+          <p>联合健康、节点、Pod、JVM、系统日志和调用链数据，定位运行异常。</p>
+          <div class="tag-list"><span>健康检查</span><span>Pod 与 JVM</span><span>日志与 Trace</span></div>
+        </div>
+      </article>
+
+      <article class="capability-card">
+        <span class="capability-icon icon-amber" aria-hidden="true">测</span>
+        <div class="capability-content">
+          <h3>测试资产管理</h3>
+          <p>创建用例库和目录，批量维护用例、关联需求，并导入 Excel 或 XMind 文件。</p>
+          <div class="tag-list"><span>用例库</span><span>需求关联</span><span>文件导入</span></div>
+        </div>
+      </article>
+
+      <article class="capability-card">
+        <span class="capability-icon icon-rose" aria-hidden="true">扫</span>
+        <div class="capability-content">
+          <h3>代码与制品质量</h3>
+          <p>发起代码或制品扫描，跟踪任务状态并查看结果、问题详情和执行日志。</p>
+          <div class="tag-list"><span>代码扫描</span><span>制品扫描</span><span>任务结果</span></div>
+        </div>
+      </article>
+
+      <article class="capability-card">
+        <span class="capability-icon icon-cyan" aria-hidden="true">协</span>
+        <div class="capability-content">
+          <h3>团队项目协作</h3>
+          <p>查询当前可见项目和迭代，查看事项详情、看板泳道、状态与卡片数据。</p>
+          <div class="tag-list"><span>项目与迭代</span><span>事项详情</span><span>看板数据</span></div>
+        </div>
+      </article>
     </div>
   </section>
-  <section>
-    <h2>常用场景</h2>
-    <ul>
-      <li>发布应用到指定环境，并持续跟踪到终态。</li>
-      <li>从失败阶段、流程日志和容器日志逐层定位发布问题。</li>
-      <li>按时间范围关联系统日志、调用链和 Pod 指标。</li>
-      <li>查询团队项目、迭代、事项和看板进度。</li>
-    </ul>
+
+  <section class="detail-section scenarios">
+    <div class="section-heading">
+      <div>
+        <p class="section-index">02</p>
+        <h2>使用场景</h2>
+      </div>
+      <p>在 Brain 对话中直接描述目标；涉及发布、配置、测试或扫描写操作时，Agent 会在执行前请求确认。</p>
+    </div>
+
+    <div class="scenario-grid">
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-blue" aria-hidden="true">发</span>
+          <h3>快速发布应用</h3>
+          <span class="status status-confirm">执行前确认</span>
+        </div>
+        <p class="scenario-description">先预览发布参数，再创建或快速执行发布，并持续跟踪到终态。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>把 demo-service 发布到测试环境，先预览参数，确认后再执行。</blockquote>
+        <div class="tag-list"><span>发布预览</span><span>快速发布</span><span>状态跟踪</span></div>
+      </article>
+
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-amber" aria-hidden="true">查</span>
+          <h3>排查发布失败</h3>
+          <span class="status status-query">可直接查询</span>
+        </div>
+        <p class="scenario-description">联合发布状态、流程日志和容器或虚拟机日志，定位失败阶段与直接原因。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>排查 demo-service 在测试环境最近一次发布失败的原因，并给出处理建议。</blockquote>
+        <div class="tag-list"><span>发布状态</span><span>流程日志</span><span>运行日志</span></div>
+      </article>
+
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-green" aria-hidden="true">诊</span>
+          <h3>定位运行异常</h3>
+          <span class="status status-query">可直接查询</span>
+        </div>
+        <p class="scenario-description">结合健康检查、Pod、JVM、错误日志和调用链，缩小服务异常范围。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>分析 demo-service 最近 30 分钟的异常，重点检查 Pod、ERROR 日志和慢调用。</blockquote>
+        <div class="tag-list"><span>健康检查</span><span>Pod 与 JVM</span><span>日志与 Trace</span></div>
+      </article>
+
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-violet" aria-hidden="true">配</span>
+          <h3>配置随应用发布</h3>
+          <span class="status status-confirm">执行前确认</span>
+        </div>
+        <p class="scenario-description">创建配置版本并关联应用发布，执行前清晰展示配置和发布变更。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>使用 config/test.yaml 为 demo-service 创建配置版本并发布到测试环境，执行前列出变更。</blockquote>
+        <div class="tag-list"><span>配置版本</span><span>关联发布</span><span>变更确认</span></div>
+      </article>
+
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-rose" aria-hidden="true">扫</span>
+          <h3>执行质量扫描</h3>
+          <span class="status status-confirm">执行前确认</span>
+        </div>
+        <p class="scenario-description">发起代码或制品扫描，跟踪任务状态，并汇总高风险问题和扫描结果。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>为 demo-service 发起一次代码扫描，完成后汇总高风险问题；执行前先确认。</blockquote>
+        <div class="tag-list"><span>代码扫描</span><span>制品扫描</span><span>结果汇总</span></div>
+      </article>
+
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-orange" aria-hidden="true">测</span>
+          <h3>维护测试用例</h3>
+          <span class="status status-confirm">执行前确认</span>
+        </div>
+        <p class="scenario-description">创建用例库或目录、关联需求，并从项目内的 Excel 或 XMind 文件导入用例。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>在退款需求下创建用例目录并导入 tests/refund-cases.xlsx，执行前展示导入计划。</blockquote>
+        <div class="tag-list"><span>用例目录</span><span>需求关联</span><span>文件导入</span></div>
+      </article>
+    </div>
+
+    <aside class="more-capability">
+      <span aria-hidden="true">协</span>
+      <p><strong>跟进团队工作也可以直接问。</strong> 查询当前可见项目、迭代计划、事项详情或指定看板的泳道与卡片数据。</p>
+    </aside>
   </section>
 </main>
+
 <style>
-  :root{color-scheme:light dark}.devcube-detail{font-family:system-ui,sans-serif;color:CanvasText}.devcube-detail header{padding:28px 0 22px;border-bottom:1px solid color-mix(in srgb,CanvasText 14%,transparent)}.eyebrow{margin:0 0 8px;color:#0f766e;font-size:12px;font-weight:700}.devcube-detail h1{margin:0;font-size:32px;letter-spacing:0}.intro{max-width:680px;margin:10px 0 0;color:color-mix(in srgb,CanvasText 72%,transparent);font-size:16px}.devcube-detail section{padding:24px 0}.devcube-detail h2{margin:0 0 14px;font-size:18px}.capabilities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.capabilities article{padding:16px;border:1px solid color-mix(in srgb,CanvasText 14%,transparent);border-radius:6px}.capabilities h3{margin:0 0 6px;font-size:14px}.capabilities p,.devcube-detail li{color:color-mix(in srgb,CanvasText 72%,transparent);line-height:1.65}.capabilities p{margin:0}.devcube-detail ul{margin:0;padding-left:20px}@media(max-width:560px){.capabilities{grid-template-columns:1fr}}
+  :root {
+    color-scheme: light dark;
+    --text: #18181b;
+    --muted: #62646a;
+    --line: #e4e4e7;
+    --surface: #fafafa;
+    --surface-strong: #ffffff;
+    --tag: #f4f4f5;
+    --blue: #0369a1;
+    --blue-bg: #e0f2fe;
+    --green: #047857;
+    --green-bg: #dff7ec;
+    --amber: #b45309;
+    --amber-bg: #fef3c7;
+    --violet: #6d28d9;
+    --violet-bg: #ede9fe;
+    --rose: #be123c;
+    --rose-bg: #ffe4e6;
+    --cyan: #0e7490;
+    --cyan-bg: #cffafe;
+    --orange: #c2410c;
+    --orange-bg: #ffedd5;
+  }
+
+  * { box-sizing: border-box; }
+
+  .devcube-detail {
+    width: 100%;
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: end;
+    padding: 6px 0 26px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .overview-copy { max-width: 680px; }
+  .eyebrow, .section-index {
+    margin: 0 0 7px;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1;
+  }
+
+  .overview h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 720;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .intro {
+    margin: 11px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .operation-legend {
+    display: grid;
+    gap: 8px;
+    min-width: 190px;
+    padding-bottom: 2px;
+  }
+
+  .legend-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .legend-item i {
+    width: 7px;
+    height: 7px;
+    flex: none;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .legend-query { color: var(--green); }
+  .legend-confirm { color: var(--amber); }
+  .detail-section { padding: 28px 0 0; }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.65fr) minmax(0, 1.35fr);
+    gap: 24px;
+    align-items: end;
+    margin-bottom: 15px;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .section-heading > p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .capability-grid, .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .capability-card, .scenario-card {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  .capability-card {
+    display: flex;
+    gap: 13px;
+    min-height: 148px;
+    padding: 16px;
+  }
+
+  .capability-icon, .scenario-icon, .more-capability > span {
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 750;
+    line-height: 1;
+  }
+
+  .capability-content {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .capability-card h3, .scenario-card h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: 0;
+  }
+
+  .capability-card p {
+    margin: 5px 0 12px;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .tag-list span {
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface-strong);
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  .scenarios {
+    margin-top: 30px;
+    border-top: 1px solid var(--line);
+  }
+
+  .scenario-card {
+    display: flex;
+    min-height: 244px;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .scenario-title {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    gap: 11px;
+    align-items: center;
+  }
+
+  .status {
+    padding: 3px 7px;
+    border: 1px solid;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 650;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .status-query { border-color: #a7e4ca; background: #edf9f4; color: var(--green); }
+  .status-confirm { border-color: #f4cf8a; background: #fff8e8; color: var(--amber); }
+
+  .scenario-description {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  .prompt-label {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 650;
+  }
+
+  blockquote {
+    margin: 7px 0 14px;
+    padding: 1px 0 1px 11px;
+    border-left: 2px solid var(--line);
+    color: var(--text);
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  .more-capability {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  .more-capability > span { color: var(--cyan); background: var(--cyan-bg); }
+  .more-capability p { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.65; }
+  .more-capability strong { color: var(--text); }
+  .icon-blue { color: var(--blue); background: var(--blue-bg); }
+  .icon-green { color: var(--green); background: var(--green-bg); }
+  .icon-amber { color: var(--amber); background: var(--amber-bg); }
+  .icon-violet { color: var(--violet); background: var(--violet-bg); }
+  .icon-rose { color: var(--rose); background: var(--rose-bg); }
+  .icon-cyan { color: var(--cyan); background: var(--cyan-bg); }
+  .icon-orange { color: var(--orange); background: var(--orange-bg); }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --line: #343439;
+      --surface: #202023;
+      --surface-strong: #27272a;
+      --tag: #27272a;
+      --blue: #7dd3fc;
+      --blue-bg: #0c3b52;
+      --green: #6ee7b7;
+      --green-bg: #123d31;
+      --amber: #fcd34d;
+      --amber-bg: #493315;
+      --violet: #c4b5fd;
+      --violet-bg: #34275a;
+      --rose: #fda4af;
+      --rose-bg: #52202e;
+      --cyan: #67e8f9;
+      --cyan-bg: #164451;
+      --orange: #fdba74;
+      --orange-bg: #512d1b;
+    }
+
+    .status-query { border-color: #255d49; background: #183d32; }
+    .status-confirm { border-color: #6a4b1f; background: #423116; }
+  }
+
+  @media (max-width: 560px) {
+    .overview { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+    .operation-legend { display: flex; min-width: 0; flex-wrap: wrap; gap: 8px 18px; }
+    .section-heading { grid-template-columns: 1fr; gap: 6px; align-items: start; }
+    .capability-grid, .scenario-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 420px) {
+    .overview h1 { font-size: 23px; }
+    .capability-card { min-height: 0; }
+    .scenario-card { min-height: 0; }
+    .scenario-title { grid-template-columns: 38px minmax(0, 1fr); }
+    .scenario-title .status { grid-column: 2; justify-self: start; }
+  }
 </style>

@@ -35,9 +35,24 @@
         "key": "cubelet",
         "command": "cubelet",
         "targets": {
-          "darwin-arm64": { "file": "cubelet", "sha256": "b9e288929cce17d1c5a9ff1bf09d8a0c1c1f0169fca95386e65b9a8788aa7db2" },
-          "darwin-x64": { "file": "cubelet", "sha256": "a91b108aed3c5a4f9e1f940e5c345eb5a4b135d63726ca4b32b0a52d5ef216bb" },
-          "win32-x64": { "file": "cubelet.exe", "sha256": "327a1e996908b8f318fee58e537cab35ae571d2d15c1a7f63b3bb2785064ae7e" }
+          "darwin-arm64": {
+            "file": "cubelet",
+            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.0.0/darwin-arm64/cubelet",
+            "size": 30108674,
+            "sha256": "b9e288929cce17d1c5a9ff1bf09d8a0c1c1f0169fca95386e65b9a8788aa7db2"
+          },
+          "darwin-x64": {
+            "file": "cubelet",
+            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.0.0/darwin-x64/cubelet",
+            "size": 31309024,
+            "sha256": "a91b108aed3c5a4f9e1f940e5c345eb5a4b135d63726ca4b32b0a52d5ef216bb"
+          },
+          "win32-x64": {
+            "file": "cubelet.exe",
+            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.0.0/win32-x64/cubelet.exe",
+            "size": 31258112,
+            "sha256": "327a1e996908b8f318fee58e537cab35ae571d2d15c1a7f63b3bb2785064ae7e"
+          }
         }
       }
     ]
