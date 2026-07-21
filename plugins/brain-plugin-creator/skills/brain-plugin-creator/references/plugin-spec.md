@@ -1,0 +1,144 @@
+# Brain Plugin 发布规范
+
+本参考描述 Brain 1.0.16 起的原生 Plugin 公共约束。Brain 主仓库的 `docs/design-docs/plugin-market.md` 和 runtime validator 是最终真源；两者与本文冲突时，以当前代码为准。
+
+## 目录
+
+- [真源与目录](#真源与目录)
+- [Plugin manifest](#plugin-manifest)
+- [Brain manifest](#brain-manifest)
+- [组件映射](#组件映射)
+- [Marketplace catalog](#marketplace-catalog)
+- [安全与版本](#安全与版本)
+- [发布检查](#发布检查)
+
+## 真源与目录
+
+Brain 官方 Marketplace 固定使用 Git 仓库。一个原生 Plugin 的最小结构为：
+
+```text
+plugins/<plugin-name>/
+  .codex-plugin/plugin.json
+  .claude-plugin/plugin.json
+  brain.json
+```
+
+十类组件目录都可选，只创建实际使用的目录：
+
+```text
+agents/           skills/           commands/
+apps/             app-templates/    assets/
+hooks/            rules/            mcp/
+```
+
+CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 SHA-256，Brain 只下载当前平台 target。
+
+`.codex-plugin/plugin.json` 与 `brain.json` 是 canonical metadata；`.claude-plugin/plugin.json` 是兼容投影。共享字段冲突会导致 Plugin 被拒绝。
+
+## Plugin manifest
+
+官方 Plugin 必须提供稳定小写 slug 和 SemVer：
+
+```json
+{
+  "name": "sample-plugin",
+  "version": "1.0.0",
+  "description": "插件用途。",
+  "author": { "name": "发布者" },
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Sample Plugin",
+    "shortDescription": "用于市场卡片的简短描述",
+    "longDescription": "用于详情页的完整描述。",
+    "developerName": "发布者",
+    "category": "开发工具",
+    "capabilities": ["Skills"]
+  }
+}
+```
+
+仅在对应配置真实存在时声明 `skills`、`hooks`、`mcpServers` 或其它路径。图标使用 `interface.logo`，回退 `composerIcon`；第三方插件只能使用包内不超过 1 MiB 的 PNG、JPEG 或 WebP，经过审查的 Brain 内置插件可使用 SVG。
+
+## Brain manifest
+
+`brain.json` 只描述原生 manifest 无法表达的组件和安全约束：
+
+```json
+{
+  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
+  "schemaVersion": 1,
+  "publisherId": "publisher",
+  "compatibility": { "brain": ">=1.0.16" },
+  "components": {
+    "skills": [
+      { "key": "sample", "requires": ["cli:sample"] }
+    ]
+  }
+}
+```
+
+`publisherId` 必须稳定且使用 slug。`schemaVersion` 不代替 Plugin version。`requires` 只能引用同包组件，不支持跨 Plugin 依赖。Schema 是闭合的，不要添加未定义字段。
+
+## 组件映射
+
+| `brain.json.components` | 包内位置 | 说明 |
+| --- | --- | --- |
+| `agents[].key` | `agents/<key>.md` 或 `agents/<key>/AGENT.md` | 由宿主原生发现 |
+| `skills[].key` | `skills/<key>/SKILL.md` | 保留其 references/scripts/assets 子树 |
+| `commands[].key` | `commands/<key>.md` 或 `.toml` | 由宿主原生发现 |
+| `apps[].key` | `apps/<key>/app.json` | 可声明 `templates` 和同包依赖 |
+| `appTemplates[]` | `app-templates/<key>/template.json` | 认证仅支持 Brain 定义的公共类型 |
+| `assets[]` | `assets/<relative-path>` | `detail.html` 只能使用安全静态 HTML |
+| `hooks[].key` | `hooks/<key>.json` | manifest 还需声明 Hook 配置 |
+| `rules[].key` | `rules/<key>.mdc` 或 `.md` | 由宿主原生发现 |
+| `mcp[]` | manifest `mcpServers` 配置 | 只支持安全的 stdio 与 streamable-http |
+| `cli[]` | `brain.json` target metadata | 不提交二进制 |
+
+不要创建 LSP、lifecycle/install script 或其它未知自动发现目录。Brain 安装器只保留经过校验的受支持内容。
+
+CLI target 只支持 `darwin-arm64`、`darwin-x64`、`win32-x64`。每个 target 必须包含 `file`、无凭据且无 fragment 的 HTTPS `url`、正整数 `size` 和 64 位小写十六进制 `sha256`；Windows 文件扩展名只能是 `.exe`、`.cmd` 或 `.bat`。
+
+## Marketplace catalog
+
+官方市场以 `.agents/plugins/marketplace.json` 为 canonical catalog：
+
+```json
+{
+  "name": "brain-official",
+  "interface": { "displayName": "Brain 官方市场" },
+  "plugins": [
+    {
+      "name": "sample-plugin",
+      "source": { "source": "local", "path": "./plugins/sample-plugin" },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    }
+  ]
+}
+```
+
+`.claude-plugin/marketplace.json` 保留同名、同 source 的兼容条目。`source.path` 相对 Marketplace 根目录、以 `./` 开头且不能越界。新条目追加到现有列表，除非仓库明确规定排序。
+
+## 安全与版本
+
+- 禁止 symlink、hardlink、特殊文件、绝对路径、`..` 和越出 Plugin 根目录的引用。
+- manifest 和组件文件不得包含 access token、private key、用户 credential 或带凭据 URL。
+- Hook 安装时不执行；新增或改变 Hook、MCP、CLI、network scope、OAuth scope 都属于权限变化。
+- stdio MCP 使用 executable token 与参数数组，不使用 shell command string。
+- 远程 MCP 和 CLI 使用固定、安全的 URL；App secret 只进入 Brain server secret store。
+- Plugin 内容变化必须递增 SemVer。相同 version 但内容摘要变化会被视为可变重发并拒绝自动更新。
+- `requires` 缺少当前平台 target 时，只禁用依赖组件，不伪装为可用。
+
+## 发布检查
+
+1. 检查仓库说明、工作树和目标分支，避免覆盖他人改动。
+2. 确认 name、目录名、catalog entry 和两个 manifest 一致。
+3. 确认 SemVer 已按变更递增，`publisherId` 未变化。
+4. 确认每个 `brain.json.components` 声明都有包内实现，且没有空目录。
+5. 确认 Codex catalog 的 category 和 policy 完整，Claude catalog source 一致。
+6. 搜索 credential、私钥和带凭据 URL；检查 CLI size/SHA-256 与不可变 URL。
+7. 运行 `brain_plugin.py validate`、各 Skill 校验和仓库测试。
+8. review staged diff 后再提交；只有用户明确要求时 push、创建 MR 或 release。
