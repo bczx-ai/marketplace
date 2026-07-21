@@ -10,17 +10,17 @@
     "userinfoEndpointField": "userinfo_endpoint",
     "clientIdField": "client_id",
     "clientSecretField": "client_secret",
-    "scopes": ["read", "profile"]
+    "scopes": ["email", "openid", "profile"]
   },
   "networkScope": "private",
-  "endpointField": "mcp_endpoint",
+  "endpointField": "cube_api_server",
   "fields": [
     {
-      "key": "mcp_endpoint",
+      "key": "cube_api_server",
       "type": "url",
-      "label": "MCP 地址",
+      "label": "Cube API Server",
       "required": true,
-      "description": "DevCube 标准 MCP 服务地址，通常以 /mcp 结尾。"
+      "description": "DevCube Cube API Server 地址。"
     },
     {
       "key": "authorization_endpoint",
