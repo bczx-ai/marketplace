@@ -8,7 +8,7 @@ description: "DevCube：监控域日志查询能力。用于通过 Brain DevCube
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和输出格式。
 
 ```bash
-cubelet log <command> [flags]
+cubelet --config "$CUBELET_CONFIG" log <command> [flags]
 ```
 
 ## Commands
@@ -56,16 +56,16 @@ level = 'ERROR' and traceId = '2a82df828b10898e14a97f69f9fa4b63' and spanId = '3
 
 ```bash
 # 查询 prd 环境下 cube-base 在指定 10 分钟时间窗内的系统日志
-cubelet log system --app cube-base --start 1776333432000 --end 1776334032000
+cubelet --config "$CUBELET_CONFIG" log system --app cube-base --start 1776333432000 --end 1776334032000
 
 # 按日志级别过滤
-cubelet log system --app cube-base --start 1776333432000 --end 1776334032000 --level ERROR
+cubelet --config "$CUBELET_CONFIG" log system --app cube-base --start 1776333432000 --end 1776334032000 --level ERROR
 
 # 结合 traceId 和 spanId 精确定位某次调用的日志
-cubelet log system --app cube-base --start 1776333432000 --end 1776334032000 --traceId 2a82df828b10898e14a97f69f9fa4b63 --spanId 3453f7b0f246d62f
+cubelet --config "$CUBELET_CONFIG" log system --app cube-base --start 1776333432000 --end 1776334032000 --traceId 2a82df828b10898e14a97f69f9fa4b63 --spanId 3453f7b0f246d62f
 
 # 显式指定环境
-cubelet log system --app cube-base --start 1776333432000 --end 1776334032000 --level WARN --env test
+cubelet --config "$CUBELET_CONFIG" log system --app cube-base --start 1776333432000 --end 1776334032000 --level WARN --env test
 ```
 
 返回字段说明：

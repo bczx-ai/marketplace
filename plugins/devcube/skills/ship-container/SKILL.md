@@ -8,7 +8,7 @@ description: "DevCube：容器服务运行态能力，包括服务详情、访�
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet container <command> [flags]
+cubelet --config "$CUBELET_CONFIG" container <command> [flags]
 ```
 
 容器分组还支持别名 `service`。
@@ -32,7 +32,7 @@ cubelet container <command> [flags]
 示例：
 
 ```bash
-cubelet container inspect --name demo-service --env dev
+cubelet --config "$CUBELET_CONFIG" container inspect --name demo-service --env dev
 ```
 
 ## `logs`
@@ -53,8 +53,8 @@ cubelet container inspect --name demo-service --env dev
 示例：
 
 ```bash
-cubelet container logs --name demo-service --env dev
-cubelet container logs --name demo-service --env dev --pod POD_NAME --container APP
+cubelet --config "$CUBELET_CONFIG" container logs --name demo-service --env dev
+cubelet --config "$CUBELET_CONFIG" container logs --name demo-service --env dev --pod POD_NAME --container APP
 ```
 
 ## 适用场景

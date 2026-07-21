@@ -8,7 +8,7 @@ description: "需要查询事项看板列表，或查看指定事项看板的泳
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和只读命令使用规则。
 
 ```bash
-cubelet team <command> [flags]
+cubelet --config "$CUBELET_CONFIG" team <command> [flags]
 ```
 
 ## Commands
@@ -27,9 +27,9 @@ cubelet team <command> [flags]
 示例：
 
 ```bash
-cubelet team kanbanlist
-cubelet team kanbanlist --name 需求
-cubelet team kanbanlist --name 事项看板 --currentPage 2 --pageSize 10
+cubelet --config "$CUBELET_CONFIG" team kanbanlist
+cubelet --config "$CUBELET_CONFIG" team kanbanlist --name 需求
+cubelet --config "$CUBELET_CONFIG" team kanbanlist --name 事项看板 --currentPage 2 --pageSize 10
 ```
 
 ## `kanbandatas`
@@ -39,7 +39,7 @@ cubelet team kanbanlist --name 事项看板 --currentPage 2 --pageSize 10
 示例：
 
 ```bash
-cubelet team kanbandatas --id 503
+cubelet --config "$CUBELET_CONFIG" team kanbandatas --id 503
 ```
 
 ## 注意

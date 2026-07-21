@@ -8,7 +8,7 @@ description: "DevCube：监控域 Pod 实例查询能力，包括查询应用在
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和输出格式。
 
 ```bash
-cubelet pod <command> [flags]
+cubelet --config "$CUBELET_CONFIG" pod <command> [flags]
 ```
 
 ## Commands
@@ -28,7 +28,7 @@ cubelet pod <command> [flags]
 
 ## `list`
 
-返回结果新增 `nodeIp` 字段，表示 Pod/容器实例所在的主机节点 IP。拿到这个字段后，可以直接调用 `cubelet node metrics --nodeIp ...`，继续查看该容器实例对应主机节点的资源使用率。
+返回结果新增 `nodeIp` 字段，表示 Pod/容器实例所在的主机节点 IP。拿到这个字段后，可以直接调用 `cubelet --config "$CUBELET_CONFIG" node metrics --nodeIp ...`，继续查看该容器实例对应主机节点的资源使用率。
 
 按应用名称和时间范围查询 Pod 实例信息，返回每个 Pod 的名称、CPU 使用率和内存使用率。这是只读查询命令，不修改任何系统状态。
 
@@ -49,16 +49,16 @@ cubelet pod <command> [flags]
 
 ```bash
 # 查询 prd 环境下 seraph-metadata 应用的 Pod 列表
-cubelet pod list --app seraph-metadata --start 1776043865402 --end 1776045665402
+cubelet --config "$CUBELET_CONFIG" pod list --app seraph-metadata --start 1776043865402 --end 1776045665402
 
 # 显式指定环境
-cubelet pod list --app seraph-metadata --start 1776043865402 --end 1776045665402 --env prd
+cubelet --config "$CUBELET_CONFIG" pod list --app seraph-metadata --start 1776043865402 --end 1776045665402 --env prd
 
 # 查询 dev 环境
-cubelet pod list --app demo-app --start 1776043865402 --end 1776045665402 --env dev
+cubelet --config "$CUBELET_CONFIG" pod list --app demo-app --start 1776043865402 --end 1776045665402 --env dev
 
 # 结合返回结果中的 nodeIp，查看对应主机节点资源使用率
-cubelet node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate,ecs_node_memory_usage_rate --env prd
+cubelet --config "$CUBELET_CONFIG" node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate,ecs_node_memory_usage_rate --env prd
 ```
 
 返回字段说明：
@@ -66,7 +66,7 @@ cubelet node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 177604566
 | 字段 | 说明 |
 |------|------|
 | `podName` | Pod 实例名称 |
-| `nodeIp` | Pod 对应的主机节点 IP，可直接用于 `cubelet node metrics --nodeIp` |
+| `nodeIp` | Pod 对应的主机节点 IP，可直接用于 `cubelet --config "$CUBELET_CONFIG" node metrics --nodeIp` |
 | `cpuUsageRate` | CPU 使用率（带 % 后缀） |
 | `memUsageRate` | 内存使用率（带 % 后缀） |
 
@@ -82,10 +82,10 @@ cubelet node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 177604566
 
 ```bash
 # 查询 prd 环境下的容器实例指标定义列表（默认）
-cubelet pod getMetric
+cubelet --config "$CUBELET_CONFIG" pod getMetric
 
 # 查询指定环境的指标定义列表
-cubelet pod getMetric --env dev
+cubelet --config "$CUBELET_CONFIG" pod getMetric --env dev
 ```
 
 返回字段说明：
@@ -109,19 +109,19 @@ cubelet pod getMetric --env dev
 
 常见指标名称：
 
-> 指标列表非固定值，请通过 `cubelet pod getMetric` 命令动态获取当前环境支持的完整指标定义列表。
+> 指标列表非固定值，请通过 `cubelet --config "$CUBELET_CONFIG" pod getMetric` 命令动态获取当前环境支持的完整指标定义列表。
 
 示例：
 
 ```bash
 # 查询单个 Pod 的 CPU 使用率
-cubelet pod metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m k8s_pod_cpu_usage_rate_v1
+cubelet --config "$CUBELET_CONFIG" pod metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m k8s_pod_cpu_usage_rate_v1
 
 # 查询多个 Pod 的多个指标
-cubelet pod metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z,seraph-metadata-mxqjk-76d5765fc7-lps7m --start 1776043865402 --end 1776045665402 --m k8s_pod_cpu_usage_rate_v1,k8s_pod_memory_usage_wss_rate
+cubelet --config "$CUBELET_CONFIG" pod metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z,seraph-metadata-mxqjk-76d5765fc7-lps7m --start 1776043865402 --end 1776045665402 --m k8s_pod_cpu_usage_rate_v1,k8s_pod_memory_usage_wss_rate
 
 # 指定环境查询
-cubelet pod metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m k8s_pod_cpu_usage_rate_v1 --env prd
+cubelet --config "$CUBELET_CONFIG" pod metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m k8s_pod_cpu_usage_rate_v1 --env prd
 ```
 
 返回格式为指标序列列表，每个指标包含：

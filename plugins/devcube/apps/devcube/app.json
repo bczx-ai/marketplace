@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "key": "devcube",
   "name": "DevCube",
-  "description": "连接 DevCube MCP 服务，在 Agent 会话中使用研发效能、发布、监控、测试与扫描能力。",
+  "description": "连接 DevCube API 服务，在 Agent 会话中使用研发效能、发布、监控、测试与扫描能力。",
   "scope": "user",
   "cardinality": "single",
   "templates": ["devcube-oauth"],

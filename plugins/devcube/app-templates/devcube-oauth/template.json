@@ -52,5 +52,17 @@
       "label": "客户端密钥",
       "required": true
     }
-  ]
+  ],
+  "cliConfig": {
+    "env": "CUBELET_CONFIG",
+    "format": "yaml",
+    "content": {
+      "cubelet": {
+        "server_url": { "valueFrom": "config.cube_api_server" },
+        "x-usercenter-session": { "valueFrom": "auth.access_token" },
+        "x-service-name": "za-cube",
+        "request_timeout": 30
+      }
+    }
+  }
 }

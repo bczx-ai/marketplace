@@ -8,7 +8,7 @@ description: "DevCube：虚拟机应用运行态能力，包括实例详情、�
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet vmapp <command> [flags]
+cubelet --config "$CUBELET_CONFIG" vmapp <command> [flags]
 ```
 
 ## Commands
@@ -28,7 +28,7 @@ cubelet vmapp <command> [flags]
 示例：
 
 ```bash
-cubelet vmapp inspect --name demo-vmapp --env fat
+cubelet --config "$CUBELET_CONFIG" vmapp inspect --name demo-vmapp --env fat
 ```
 
 ## `logs`
@@ -48,8 +48,8 @@ cubelet vmapp inspect --name demo-vmapp --env fat
 示例：
 
 ```bash
-cubelet vmapp logs --name demo-vmapp --env fat
-cubelet vmapp logs --name demo-vmapp --env fat --host 172.28.38.19 --num 200
+cubelet --config "$CUBELET_CONFIG" vmapp logs --name demo-vmapp --env fat
+cubelet --config "$CUBELET_CONFIG" vmapp logs --name demo-vmapp --env fat --host 172.28.38.19 --num 200
 ```
 
 ## 适用场景

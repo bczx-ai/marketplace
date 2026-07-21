@@ -8,7 +8,7 @@ description: "DevCube：监控域健康检查查询能力。用于通过 Brain D
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和输出格式。
 
 ```bash
-cubelet health <command> [flags]
+cubelet --config "$CUBELET_CONFIG" health <command> [flags]
 ```
 
 ## Commands
@@ -48,10 +48,10 @@ cubelet health <command> [flags]
 
 ```bash
 # 查询 prd 环境下 cube-base 的健康检查数据
-cubelet health check --app cube-base --start 1776340140000 --end 1776340740000
+cubelet --config "$CUBELET_CONFIG" health check --app cube-base --start 1776340140000 --end 1776340740000
 
 # 显式指定环境
-cubelet health check --app cube-base --start 1776340140000 --end 1776340740000 --env test
+cubelet --config "$CUBELET_CONFIG" health check --app cube-base --start 1776340140000 --end 1776340740000 --env test
 ```
 
 返回字段说明：

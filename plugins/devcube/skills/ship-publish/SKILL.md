@@ -8,7 +8,7 @@ description: "DevCube：单应用发布相关能力，包括快速发布、创�
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet publish <command> [flags]
+cubelet --config "$CUBELET_CONFIG" publish <command> [flags]
 ```
 
 ## Commands
@@ -50,9 +50,9 @@ cubelet publish <command> [flags]
 示例：
 
 ```bash
-cubelet publish quick --app demo-app --branch release/20260401 --env dev --wait
-cubelet publish quick --app demo-app --branch master --env dev --dry-run
-cubelet publish quick --app demo-app --branch master --env dev --config-file ./application.yaml --config-label application.yaml
+cubelet --config "$CUBELET_CONFIG" publish quick --app demo-app --branch release/20260401 --env dev --wait
+cubelet --config "$CUBELET_CONFIG" publish quick --app demo-app --branch master --env dev --dry-run
+cubelet --config "$CUBELET_CONFIG" publish quick --app demo-app --branch master --env dev --config-file ./application.yaml --config-label application.yaml
 ```
 
 ## `create`
@@ -68,8 +68,8 @@ cubelet publish quick --app demo-app --branch master --env dev --config-file ./a
 示例：
 
 ```bash
-cubelet publish create --app demo-app --branch release/20260401 --env dev
-cubelet publish create --app demo-app --branch master --env dev --name "发布单-灰度验证"
+cubelet --config "$CUBELET_CONFIG" publish create --app demo-app --branch release/20260401 --env dev
+cubelet --config "$CUBELET_CONFIG" publish create --app demo-app --branch master --env dev --name "发布单-灰度验证"
 ```
 
 ## `status`
@@ -82,8 +82,8 @@ cubelet publish create --app demo-app --branch master --env dev --name "发布�
 示例：
 
 ```bash
-cubelet publish status --id 10001
-cubelet publish status --id 10001 --env dev
+cubelet --config "$CUBELET_CONFIG" publish status --id 10001
+cubelet --config "$CUBELET_CONFIG" publish status --id 10001 --env dev
 ```
 
 ## 常见搭配

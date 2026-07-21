@@ -10,7 +10,7 @@ description: "需要查询当前用户可见项目列表，按项目名称或编
 ## `projectlist`
 
 ```bash
-cubelet team projectlist [flags]
+cubelet --config "$CUBELET_CONFIG" team projectlist [flags]
 ```
 
 - `--query`：可选，项目名称或项目编号模糊查询
@@ -20,9 +20,9 @@ cubelet team projectlist [flags]
 示例：
 
 ```bash
-cubelet team projectlist
-cubelet team projectlist --query TEST
-cubelet team projectlist --query 紫 --currentPage 1 --pageSize 20
+cubelet --config "$CUBELET_CONFIG" team projectlist
+cubelet --config "$CUBELET_CONFIG" team projectlist --query TEST
+cubelet --config "$CUBELET_CONFIG" team projectlist --query 紫 --currentPage 1 --pageSize 20
 ```
 
 ## 注意

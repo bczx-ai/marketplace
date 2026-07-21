@@ -10,7 +10,7 @@ description: "需要根据事项 ID 或事项编号查询事项详情。"
 ## `getissue`
 
 ```bash
-cubelet team getissue --id <事项ID或事项编号>
+cubelet --config "$CUBELET_CONFIG" team getissue --id <事项ID或事项编号>
 ```
 
 - `--id`：必填。既支持纯数字事项 ID，也支持事项编号，例如 `ZA-T-98054`
@@ -18,8 +18,8 @@ cubelet team getissue --id <事项ID或事项编号>
 示例：
 
 ```bash
-cubelet team getissue --id 98054
-cubelet team getissue --id ZA-T-98054
+cubelet --config "$CUBELET_CONFIG" team getissue --id 98054
+cubelet --config "$CUBELET_CONFIG" team getissue --id ZA-T-98054
 ```
 
 ## 注意

@@ -8,7 +8,7 @@ description: "DevCube：Mantis 代码扫描任务能力，包括查看、创建�
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet codeTask <command> [flags]
+cubelet --config "$CUBELET_CONFIG" codeTask <command> [flags]
 ```
 
 ## Commands
@@ -55,8 +55,8 @@ cubelet codeTask <command> [flags]
 示例：
 
 ```bash
-cubelet codeTask list
-cubelet codeTask list --name login
+cubelet --config "$CUBELET_CONFIG" codeTask list
+cubelet --config "$CUBELET_CONFIG" codeTask list --name login
 ```
 
 输出示例：
@@ -97,7 +97,7 @@ cubelet codeTask list --name login
 示例：
 
 ```bash
-cubelet codeTask create \
+cubelet --config "$CUBELET_CONFIG" codeTask create \
   --app-id 1001 \
   --name login-scan \
   --branch feature/login \
@@ -138,7 +138,7 @@ cubelet codeTask create \
 示例：
 
 ```bash
-cubelet codeTask run --task-id 3001
+cubelet --config "$CUBELET_CONFIG" codeTask run --task-id 3001
 ```
 
 输出示例：
@@ -170,8 +170,8 @@ cubelet codeTask run --task-id 3001
 示例：
 
 ```bash
-cubelet codeTask status --task-id 3001
-cubelet codeTask status --task-id 3001 --his-id 8899
+cubelet --config "$CUBELET_CONFIG" codeTask status --task-id 3001
+cubelet --config "$CUBELET_CONFIG" codeTask status --task-id 3001 --his-id 8899
 ```
 
 输出示例：
@@ -209,7 +209,7 @@ cubelet codeTask status --task-id 3001 --his-id 8899
 示例：
 
 ```bash
-cubelet codeTask result --task-id 3001 --his-id 8899
+cubelet --config "$CUBELET_CONFIG" codeTask result --task-id 3001 --his-id 8899
 ```
 
 输出示例：
@@ -248,8 +248,8 @@ cubelet codeTask result --task-id 3001 --his-id 8899
 示例：
 
 ```bash
-cubelet codeTask log --his-id 8899
-cubelet codeTask log --his-id 8899
+cubelet --config "$CUBELET_CONFIG" codeTask log --his-id 8899
+cubelet --config "$CUBELET_CONFIG" codeTask log --his-id 8899
 ```
 
 输出示例：
@@ -278,7 +278,7 @@ cubelet codeTask log --his-id 8899
 示例：
 
 ```bash
-cubelet codeTask stop --task-id 3001
+cubelet --config "$CUBELET_CONFIG" codeTask stop --task-id 3001
 ```
 
 输出示例：

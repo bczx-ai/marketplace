@@ -10,7 +10,7 @@ description: "需要查询项目迭代列表，控制是否隐藏已结束迭代
 ## `iterationlist`
 
 ```bash
-cubelet team iterationlist --projectid <项目ID> [flags]
+cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid <项目ID> [flags]
 ```
 
 - `--projectid`：必填，项目 ID
@@ -20,9 +20,9 @@ cubelet team iterationlist --projectid <项目ID> [flags]
 示例：
 
 ```bash
-cubelet team iterationlist --projectid 6625
-cubelet team iterationlist --projectid 6625 --name V12
-cubelet team iterationlist --projectid 6625 --isHide=false
+cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid 6625
+cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid 6625 --name V12
+cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid 6625 --isHide=false
 ```
 
 ## 注意

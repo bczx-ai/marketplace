@@ -8,7 +8,7 @@ description: "用于操作 Cubelet Mantis 制品扫描任务，包括 artifactTa
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和读写安全规则。
 
 ```bash
-cubelet artifactTask <command> [flags]
+cubelet --config "$CUBELET_CONFIG" artifactTask <command> [flags]
 ```
 
 ## 真实接口
@@ -59,8 +59,8 @@ cubelet artifactTask <command> [flags]
 ### list
 
 ```bash
-cubelet artifactTask list
-cubelet artifactTask list --name login
+cubelet --config "$CUBELET_CONFIG" artifactTask list
+cubelet --config "$CUBELET_CONFIG" artifactTask list --name login
 ```
 
 ```json
@@ -86,7 +86,7 @@ cubelet artifactTask list --name login
 `scan-range=2` 扫描仓库最新制品，必须传 `repo-info`；`scan-range=1` 指定制品，必须传 `product-list`。
 
 ```bash
-cubelet artifactTask create \
+cubelet --config "$CUBELET_CONFIG" artifactTask create \
   --name login-image-scan \
   --repo-instance-id harbor-prod \
   --plan-id 7001 \
@@ -112,7 +112,7 @@ cubelet artifactTask create \
 ### run
 
 ```bash
-cubelet artifactTask run --task-id 6001
+cubelet --config "$CUBELET_CONFIG" artifactTask run --task-id 6001
 ```
 
 ```json
@@ -126,7 +126,7 @@ cubelet artifactTask run --task-id 6001
 ### status
 
 ```bash
-cubelet artifactTask status --task-id 6001 --exec-id 8001
+cubelet --config "$CUBELET_CONFIG" artifactTask status --task-id 6001 --exec-id 8001
 ```
 
 ```json
@@ -144,7 +144,7 @@ cubelet artifactTask status --task-id 6001 --exec-id 8001
 ### result
 
 ```bash
-cubelet artifactTask result --exec-id 8001
+cubelet --config "$CUBELET_CONFIG" artifactTask result --exec-id 8001
 ```
 
 ```json
@@ -168,8 +168,8 @@ cubelet artifactTask result --exec-id 8001
 ### log
 
 ```bash
-cubelet artifactTask log --detail-id 9001
-cubelet artifactTask log --detail-id 9001
+cubelet --config "$CUBELET_CONFIG" artifactTask log --detail-id 9001
+cubelet --config "$CUBELET_CONFIG" artifactTask log --detail-id 9001
 ```
 
 ```json
@@ -185,7 +185,7 @@ cubelet artifactTask log --detail-id 9001
 ### stop
 
 ```bash
-cubelet artifactTask stop --task-id 6001
+cubelet --config "$CUBELET_CONFIG" artifactTask stop --task-id 6001
 ```
 
 ```json

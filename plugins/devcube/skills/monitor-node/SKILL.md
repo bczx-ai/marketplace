@@ -8,7 +8,7 @@ description: "DevCube：监控域主机节点指标查询能力，包括查询�
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和输出格式。
 
 ```bash
-cubelet node <command> [flags]
+cubelet --config "$CUBELET_CONFIG" node <command> [flags]
 ```
 
 ## Commands
@@ -37,10 +37,10 @@ cubelet node <command> [flags]
 
 ```bash
 # 查询 prd 环境下的主机节点指标定义列表（默认）
-cubelet node getMetric
+cubelet --config "$CUBELET_CONFIG" node getMetric
 
 # 查询指定环境的主机指标定义列表
-cubelet node getMetric --env dev
+cubelet --config "$CUBELET_CONFIG" node getMetric --env dev
 ```
 
 返回字段说明：
@@ -56,13 +56,13 @@ cubelet node getMetric --env dev
 
 ## `metrics`
 
-`--nodeIp` 可以直接使用 `cubelet pod list` 返回结果中的 `nodeIp`。这适合在发现某个 Pod/容器实例资源异常后，继续查看其所在主机节点的 CPU、内存等资源使用率。
+`--nodeIp` 可以直接使用 `cubelet --config "$CUBELET_CONFIG" pod list` 返回结果中的 `nodeIp`。这适合在发现某个 Pod/容器实例资源异常后，继续查看其所在主机节点的 CPU、内存等资源使用率。
 
 根据主机 IP 列表、查询时间区间及指标列表查询主机节点监控指标数据。支持同时查询多个主机 IP 和多个指标，多个值之间用逗号分隔。
 
 常用参数：
 
-- `--nodeIp`：主机 IP 列表，多个用逗号分隔（必填）；可直接使用 `cubelet pod list` 返回的 `nodeIp`，用于查看 Pod 所在主机节点资源使用率
+- `--nodeIp`：主机 IP 列表，多个用逗号分隔（必填）；可直接使用 `cubelet --config "$CUBELET_CONFIG" pod list` 返回的 `nodeIp`，用于查看 Pod 所在主机节点资源使用率
 - `--start`：查询开始时间，毫秒时间戳（必填）
 - `--end`：查询结束时间，毫秒时间戳（必填）
 - `--m`：主机指标名称列表，多个用逗号分隔（必填）
@@ -70,22 +70,22 @@ cubelet node getMetric --env dev
 
 主机指标名称：
 
-> 指标列表非固定值，请通过 `cubelet node getMetric` 命令动态获取当前环境支持的完整主机指标定义列表。
+> 指标列表非固定值，请通过 `cubelet --config "$CUBELET_CONFIG" node getMetric` 命令动态获取当前环境支持的完整主机指标定义列表。
 
 示例：
 
 ```bash
 # 先通过 pod list 获取 nodeIp，再查看对应主机节点指标
-cubelet pod list --app seraph-metadata --start 1776043865402 --end 1776045665402 --env prd
+cubelet --config "$CUBELET_CONFIG" pod list --app seraph-metadata --start 1776043865402 --end 1776045665402 --env prd
 
 # 查询单个主机的 CPU 使用率
-cubelet node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate
+cubelet --config "$CUBELET_CONFIG" node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate
 
 # 查询多个主机的多个指标
-cubelet node metrics --nodeIp 172.28.38.11,172.28.38.12 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate,ecs_node_memory_usage_rate
+cubelet --config "$CUBELET_CONFIG" node metrics --nodeIp 172.28.38.11,172.28.38.12 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate,ecs_node_memory_usage_rate
 
 # 指定环境查询
-cubelet node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate --env prd
+cubelet --config "$CUBELET_CONFIG" node metrics --nodeIp 172.28.38.11 --start 1776043865402 --end 1776045665402 --m ecs_node_cpu_usage_rate --env prd
 ```
 
 返回格式为指标序列列表，每个指标包含：

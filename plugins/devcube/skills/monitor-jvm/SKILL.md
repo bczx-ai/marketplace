@@ -8,7 +8,7 @@ description: "DevCube：监控域 JVM 指标查询能力，包括查询系统容
 > **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和输出格式。
 
 ```bash
-cubelet jvm <command> [flags]
+cubelet --config "$CUBELET_CONFIG" jvm <command> [flags]
 ```
 
 ## Commands
@@ -37,10 +37,10 @@ cubelet jvm <command> [flags]
 
 ```bash
 # 查询 prd 环境下的容器 JVM 指标定义列表（默认）
-cubelet jvm getMetric
+cubelet --config "$CUBELET_CONFIG" jvm getMetric
 
 # 查询指定环境的 JVM 指标定义列表
-cubelet jvm getMetric --env dev
+cubelet --config "$CUBELET_CONFIG" jvm getMetric --env dev
 ```
 
 返回字段说明：
@@ -60,7 +60,7 @@ cubelet jvm getMetric --env dev
 
 常用参数：
 
-- `--pod`：容器实例名称列表，多个用逗号分隔（必填，可从 `cubelet pod list` 获取）
+- `--pod`：容器实例名称列表，多个用逗号分隔（必填，可从 `cubelet --config "$CUBELET_CONFIG" pod list` 获取）
 - `--start`：查询开始时间，毫秒时间戳（必填）
 - `--end`：查询结束时间，毫秒时间戳（必填）
 - `--m`：JVM 指标名称列表，多个用逗号分隔（必填）
@@ -68,19 +68,19 @@ cubelet jvm getMetric --env dev
 
 JVM 指标名称：
 
-> 指标列表非固定值，请通过 `cubelet jvm getMetric` 命令动态获取当前环境支持的完整 JVM 指标定义列表。
+> 指标列表非固定值，请通过 `cubelet --config "$CUBELET_CONFIG" jvm getMetric` 命令动态获取当前环境支持的完整 JVM 指标定义列表。
 
 示例：
 
 ```bash
 # 查询单个 Pod 的 fullGC 次数
-cubelet jvm metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m jvm_gc_pause_seconds_count
+cubelet --config "$CUBELET_CONFIG" jvm metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m jvm_gc_pause_seconds_count
 
 # 查询多个 Pod 的多个 JVM 指标
-cubelet jvm metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z,seraph-metadata-mxqjk-76d5765fc7-lps7m --start 1776043865402 --end 1776045665402 --m jvm_gc_pause_seconds_count,jvm_memory_pool_bytes_used
+cubelet --config "$CUBELET_CONFIG" jvm metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z,seraph-metadata-mxqjk-76d5765fc7-lps7m --start 1776043865402 --end 1776045665402 --m jvm_gc_pause_seconds_count,jvm_memory_pool_bytes_used
 
 # 指定环境查询
-cubelet jvm metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m jvm_gc_pause_seconds_count --env prd
+cubelet --config "$CUBELET_CONFIG" jvm metrics --pod seraph-metadata-d96h8-86d78fbc7d-b848z --start 1776043865402 --end 1776045665402 --m jvm_gc_pause_seconds_count --env prd
 ```
 
 返回格式为指标序列列表，每个指标包含：
