@@ -1,9 +1,17 @@
 <main class="devcube-detail">
   <header class="overview">
     <div class="overview-copy">
-      <p class="eyebrow">DEV CUBE 研发效能</p>
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <p class="eyebrow">DEV CUBE 研发效能</p>
+      </div>
       <h1>从发布到排障，一处完成</h1>
       <p class="intro">在 Brain 对话中调用 DevCube，覆盖应用交付、运行监控、质量保障和团队协作，让查询、分析与执行保持在同一条工作流里。</p>
+      <dl class="overview-metrics">
+        <div><dt>22</dt><dd>专业 Skill</dd></div>
+        <div><dt>6</dt><dd>研发能力域</dd></div>
+        <div><dt>1</dt><dd>统一安全连接</dd></div>
+      </dl>
     </div>
     <div class="operation-legend" aria-label="操作边界">
       <span class="legend-item legend-query"><i aria-hidden="true"></i>查询类能力可直接执行</span>
@@ -210,8 +218,22 @@
   }
 
   .overview-copy { max-width: 680px; }
+  .brand-lockup { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .brand-mark {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 25px;
+    flex: none;
+    border-radius: 6px;
+    background: #18181b;
+  }
+  .brand-mark i { position: absolute; width: 8px; height: 8px; transform: rotate(30deg) skewX(-30deg) scaleY(.86); }
+  .brand-mark i:nth-child(1) { top: 4px; left: 8.5px; background: #67e8f9; }
+  .brand-mark i:nth-child(2) { top: 11px; left: 5px; background: #34d399; }
+  .brand-mark i:nth-child(3) { top: 11px; right: 5px; background: #60a5fa; }
   .eyebrow, .section-index {
-    margin: 0 0 7px;
+    margin: 0;
     color: var(--blue);
     font-size: 11px;
     font-weight: 750;
@@ -232,6 +254,16 @@
     font-size: 14px;
     line-height: 1.75;
   }
+
+  .overview-metrics {
+    display: flex;
+    gap: 0;
+    margin: 20px 0 0;
+  }
+  .overview-metrics div { min-width: 112px; padding: 0 18px; border-left: 1px solid var(--line); }
+  .overview-metrics div:first-child { padding-left: 0; border-left: 0; }
+  .overview-metrics dt { font-size: 17px; font-weight: 750; line-height: 1.2; }
+  .overview-metrics dd { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
 
   .operation-legend {
     display: grid;
@@ -294,6 +326,7 @@
     border: 1px solid var(--line);
     border-radius: 8px;
     background: var(--surface);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 3%);
   }
 
   .capability-card {
@@ -405,8 +438,10 @@
 
   blockquote {
     margin: 7px 0 14px;
-    padding: 1px 0 1px 11px;
-    border-left: 2px solid var(--line);
+    padding: 9px 11px;
+    border-left: 2px solid var(--blue);
+    border-radius: 0 6px 6px 0;
+    background: var(--surface-strong);
     color: var(--text);
     font-size: 12.5px;
     line-height: 1.65;
@@ -462,11 +497,19 @@
     .status-confirm { border-color: #6a4b1f; background: #423116; }
   }
 
+  @media (min-width: 900px) {
+    .capability-grid, .scenario-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .capability-card { min-height: 172px; }
+    .scenario-card { min-height: 288px; }
+  }
+
   @media (max-width: 560px) {
     .overview { grid-template-columns: 1fr; gap: 16px; align-items: start; }
     .operation-legend { display: flex; min-width: 0; flex-wrap: wrap; gap: 8px 18px; }
     .section-heading { grid-template-columns: 1fr; gap: 6px; align-items: start; }
     .capability-grid, .scenario-grid { grid-template-columns: 1fr; }
+    .overview-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .overview-metrics div { min-width: 0; padding: 0 10px; }
   }
 
   @media (max-width: 420px) {
