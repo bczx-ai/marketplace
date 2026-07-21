@@ -23,6 +23,7 @@ SEMVER = re.compile(
     r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$"
 )
 SHA256 = re.compile(r"^[a-f0-9]{64}$")
+MAX_CLI_SIZE = 128 * 1024 * 1024
 ALLOWED_COMPONENTS = {
     "agents",
     "skills",
@@ -146,14 +147,19 @@ def create_plugin(args: argparse.Namespace) -> Path:
     require_text(args.category, "category", 128)
     require_text(args.brain_compatibility, "brain compatibility", 128)
 
-    codex_catalog_path = root / ".agents/plugins/marketplace.json"
-    claude_catalog_path = root / ".claude-plugin/marketplace.json"
-    original_codex_catalog = load_json(codex_catalog_path)
-    original_claude_catalog = load_json(claude_catalog_path)
-    codex_catalog = copy.deepcopy(original_codex_catalog)
-    claude_catalog = copy.deepcopy(original_claude_catalog)
-    append_catalog(codex_catalog, catalog_entry(name, args.category), codex_catalog_path)
-    append_catalog(claude_catalog, catalog_entry(name, args.category, claude=True), claude_catalog_path)
+    catalogs: list[tuple[Path, dict[str, Any], dict[str, Any]]] = []
+    for path, claude in [
+        (root / ".agents/plugins/marketplace.json", False),
+        (root / ".claude-plugin/marketplace.json", True),
+    ]:
+        if not path.is_file():
+            continue
+        original = load_json(path)
+        updated = copy.deepcopy(original)
+        append_catalog(updated, catalog_entry(name, args.category, claude=claude), path)
+        catalogs.append((path, original, updated))
+    if not catalogs:
+        raise PluginError("Marketplace 未找到 Codex 或 Claude catalog")
 
     plugin_root = root / "plugins" / name
     if plugin_root.exists():
@@ -185,8 +191,7 @@ def create_plugin(args: argparse.Namespace) -> Path:
         } if not args.without_skill else {},
     }
 
-    codex_catalog_written = False
-    claude_catalog_written = False
+    written_catalogs: list[tuple[Path, dict[str, Any]]] = []
     try:
         write_json(plugin_root / ".codex-plugin/plugin.json", manifest)
         write_json(plugin_root / ".claude-plugin/plugin.json", manifest)
@@ -198,17 +203,14 @@ def create_plugin(args: argparse.Namespace) -> Path:
                 starter_skill(name, args.display_name, args.description),
                 encoding="utf-8",
             )
-        write_json(codex_catalog_path, codex_catalog)
-        codex_catalog_written = True
-        write_json(claude_catalog_path, claude_catalog)
-        claude_catalog_written = True
+        for path, original, updated in catalogs:
+            write_json(path, updated)
+            written_catalogs.append((path, original))
     except Exception as error:
         shutil.rmtree(plugin_root, ignore_errors=True)
         try:
-            if codex_catalog_written:
-                write_json(codex_catalog_path, original_codex_catalog)
-            if claude_catalog_written:
-                write_json(claude_catalog_path, original_claude_catalog)
+            for path, original in reversed(written_catalogs):
+                write_json(path, original)
         except OSError as rollback_error:
             raise PluginError(f"创建失败且 catalog 回滚失败: {rollback_error}") from error
         raise
@@ -247,7 +249,7 @@ def named_components(
         expect_file(root, candidates(name), f"components.{key}.{name}", errors)
 
 
-def validate_cli(components: dict[str, Any], errors: list[str]) -> None:
+def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str]) -> None:
     values = components.get("cli", [])
     if not isinstance(values, list):
         errors.append("components.cli 必须是数组")
@@ -278,22 +280,30 @@ def validate_cli(components: dict[str, Any], errors: list[str]) -> None:
                 errors.append(f"components.cli.{key}.{target}.file 不合法")
             if target == "win32-x64" and isinstance(file_name, str) and not file_name.lower().endswith((".exe", ".cmd", ".bat")):
                 errors.append(f"components.cli.{key}.{target}.file 扩展名不支持")
-            if parsed.scheme != "https" or parsed.username or parsed.password or parsed.fragment:
-                errors.append(f"components.cli.{key}.{target}.url 必须是无凭据、无 fragment 的 HTTPS URL")
-            if not isinstance(artifact.get("size"), int) or artifact["size"] <= 0:
-                errors.append(f"components.cli.{key}.{target}.size 必须是正整数")
+            allowed_schemes = {"https"} if source_scope == "public" else {"http", "https"}
+            if parsed.scheme not in allowed_schemes or not parsed.hostname or parsed.username or parsed.password or parsed.fragment:
+                schemes = "HTTPS" if source_scope == "public" else "HTTP 或 HTTPS"
+                errors.append(f"components.cli.{key}.{target}.url 必须是无凭据、无 fragment 的 {schemes} URL")
+            size = artifact.get("size")
+            if type(size) is not int or not 0 < size <= MAX_CLI_SIZE:
+                errors.append(f"components.cli.{key}.{target}.size 必须是 1-{MAX_CLI_SIZE} 的整数")
             if not isinstance(artifact.get("sha256"), str) or not SHA256.fullmatch(artifact["sha256"]):
                 errors.append(f"components.cli.{key}.{target}.sha256 不合法")
 
 
 def validate_catalog(root: Path, name: str, errors: list[str]) -> None:
     expected = f"./plugins/{name}"
+    found = 0
     for relative, is_codex in [
         (".agents/plugins/marketplace.json", True),
         (".claude-plugin/marketplace.json", False),
     ]:
+        path = root / relative
+        if not path.is_file():
+            continue
+        found += 1
         try:
-            catalog = load_json(root / relative)
+            catalog = load_json(path)
         except PluginError as error:
             errors.append(str(error))
             continue
@@ -315,9 +325,15 @@ def validate_catalog(root: Path, name: str, errors: list[str]) -> None:
                 errors.append(f"{relative} 的 {name} 缺少 category")
             if policy != {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}:
                 errors.append(f"{relative} 的 {name} policy 不完整")
+    if not found:
+        errors.append("Marketplace 未找到 Codex 或 Claude catalog")
 
 
-def validate_plugin(plugin_root: Path, marketplace_root: Path | None = None) -> None:
+def validate_plugin(
+    plugin_root: Path,
+    marketplace_root: Path | None = None,
+    source_scope: str = "public",
+) -> None:
     source_root = plugin_root.expanduser()
     if source_root.is_symlink():
         raise PluginError(f"Plugin 根目录不能是 symlink: {source_root}")
@@ -334,20 +350,23 @@ def validate_plugin(plugin_root: Path, marketplace_root: Path | None = None) -> 
         if path.name not in ALLOWED_ROOTS:
             errors.append(f"Plugin 根目录包含不支持的内容: {path.name}")
 
-    try:
-        codex = load_json(root / ".codex-plugin/plugin.json")
-        claude = load_json(root / ".claude-plugin/plugin.json")
-        brain = load_json(root / "brain.json")
-    except PluginError as error:
-        raise PluginError(str(error)) from error
+    codex_path = root / ".codex-plugin/plugin.json"
+    claude_path = root / ".claude-plugin/plugin.json"
+    codex = load_json(codex_path) if codex_path.is_file() else None
+    claude = load_json(claude_path) if claude_path.is_file() else None
+    if codex is None and claude is None:
+        raise PluginError("Plugin 缺少 .codex-plugin/plugin.json 或 .claude-plugin/plugin.json")
+    manifest = codex if codex is not None else claude
+    assert manifest is not None
+    brain = load_json(root / "brain.json")
 
-    if codex != claude:
-        errors.append("Codex 与 Claude plugin.json 必须是确定性一致投影")
-    if codex.get("name") != name:
+    if codex is not None and claude is not None and codex.get("name") != claude.get("name"):
+        errors.append("Codex 与 Claude Plugin manifest name 不一致")
+    if manifest.get("name") != name:
         errors.append("Plugin 目录名与 manifest name 不一致")
-    if not isinstance(codex.get("version"), str) or not SEMVER.fullmatch(codex["version"]):
+    if not isinstance(manifest.get("version"), str) or not SEMVER.fullmatch(manifest["version"]):
         errors.append("Brain 原生 Plugin version 必须是 SemVer")
-    if not isinstance(codex.get("description"), str) or not codex["description"].strip():
+    if not isinstance(manifest.get("description"), str) or not manifest["description"].strip():
         errors.append("Plugin manifest 缺少 description")
 
     if set(brain) - {"$schema", "schemaVersion", "publisherId", "releaseNotes", "compatibility", "components"}:
@@ -402,13 +421,12 @@ def validate_plugin(plugin_root: Path, marketplace_root: Path | None = None) -> 
     mcp = components.get("mcp", [])
     if not isinstance(mcp, list) or not all(isinstance(value, str) and SLUG.fullmatch(value) for value in mcp):
         errors.append("components.mcp 必须是 slug 数组")
-    if mcp and "mcpServers" not in codex:
+    manifests = [item for item in [codex, claude] if item is not None]
+    if mcp and not any("mcpServers" in item for item in manifests):
         errors.append("brain.json 声明 MCP 时 plugin.json 必须声明 mcpServers")
-    if components.get("hooks") and "hooks" not in codex:
+    if components.get("hooks") and not any("hooks" in item for item in manifests):
         errors.append("brain.json 声明 Hook 时 plugin.json 必须声明 hooks")
-    if components.get("skills") and codex.get("skills") != "./skills":
-        errors.append("brain.json 声明 Skill 时 plugin.json skills 必须是 ./skills")
-    validate_cli(components, errors)
+    validate_cli(components, source_scope, errors)
 
     for skill in components.get("skills", []) if isinstance(components.get("skills", []), list) else []:
         if not isinstance(skill, dict) or not isinstance(skill.get("key"), str):
@@ -452,16 +470,49 @@ def self_test() -> None:
         validate_plugin(plugin_root, root)
         claude_path = plugin_root / ".claude-plugin/plugin.json"
         claude = load_json(claude_path)
-        claude["version"] = "0.2.0"
+        claude["description"] = "Claude 宿主专用描述。"
+        write_json(claude_path, claude)
+        validate_plugin(plugin_root, root)
+        claude["name"] = "different-plugin"
         write_json(claude_path, claude)
         try:
             validate_plugin(plugin_root, root)
         except PluginError:
             pass
         else:
-            raise PluginError("双 manifest 分叉必须校验失败")
-        claude["version"] = "0.1.0"
-        write_json(claude_path, claude)
+            raise PluginError("双 manifest name 不一致必须校验失败")
+        claude_path.unlink()
+        (root / ".claude-plugin/marketplace.json").unlink()
+        validate_plugin(plugin_root, root)
+        brain_path = plugin_root / "brain.json"
+        brain = load_json(brain_path)
+        brain["components"]["cli"] = [{
+            "key": "sample",
+            "command": "sample",
+            "targets": {"darwin-arm64": {
+                "file": "sample",
+                "url": "http://objects.example/sample",
+                "size": 1,
+                "sha256": "0" * 64,
+            }},
+        }]
+        write_json(brain_path, brain)
+        validate_plugin(plugin_root, root, "private")
+        for scope in ["public", "private"]:
+            if scope == "private":
+                brain["components"]["cli"][0]["targets"]["darwin-arm64"]["size"] = MAX_CLI_SIZE + 1
+                write_json(brain_path, brain)
+            try:
+                validate_plugin(plugin_root, root, scope)
+            except PluginError:
+                pass
+            else:
+                raise PluginError(f"{scope} CLI 边界必须校验失败")
+        single_args = copy.copy(args)
+        single_args.name = "single-catalog-plugin"
+        single_args.display_name = "Single Catalog Plugin"
+        single_root = create_plugin(single_args)
+        validate_plugin(single_root, root)
         try:
             create_plugin(args)
         except PluginError:
@@ -490,6 +541,7 @@ def parser() -> argparse.ArgumentParser:
     validate = commands.add_parser("validate", help="校验 Brain Plugin 包")
     validate.add_argument("plugin_root", type=Path)
     validate.add_argument("--marketplace-root", type=Path)
+    validate.add_argument("--source-scope", choices=["public", "private", "personal"], default="public")
 
     commands.add_parser("self-test", help="运行脚手架与校验器自测")
     return result
@@ -501,7 +553,7 @@ def main() -> int:
         if args.command == "create":
             create_plugin(args)
         elif args.command == "validate":
-            validate_plugin(args.plugin_root, args.marketplace_root)
+            validate_plugin(args.plugin_root, args.marketplace_root, args.source_scope)
         else:
             self_test()
     except (PluginError, OSError) as error:
