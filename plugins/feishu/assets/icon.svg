@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="飞书">
+  <rect width="64" height="64" rx="13" fill="#f6f8fb"/>
+  <path d="M16 37 36 14l-1 17 13-5-24 25 3-17-11 3Z" fill="#3370ff"/>
+  <path d="m16 37 11-3-3 17-8-14Z" fill="#00d6b9"/>
+  <path d="m36 14 12 12-13 5 1-17Z" fill="#7b67ee"/>
+</svg>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF"
+  short_description: "在 Brain 中读取、创建、转换、拆分、合并并验证 PDF 文件"
+  default_prompt: "处理当前 PDF 文件任务。"

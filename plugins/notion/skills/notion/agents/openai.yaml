@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion"
+  short_description: "在 Brain 中通过 Notion CLI 管理页面、数据库、区块和内容"
+  default_prompt: "使用 Notion CLI 完成当前任务。"

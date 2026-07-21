@@ -1,0 +1,18 @@
+{
+  "name": "tencent-meeting",
+  "version": "1.0.0",
+  "description": "通过腾讯会议官方 CLI 管理会议、参会、录制和智能纪要。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "腾讯会议",
+    "shortDescription": "会议、录制、参会与智能纪要",
+    "longDescription": "使用腾讯会议官方 tmeet CLI，通过 OAuth2 设备授权查询和管理会议、参会记录、录制文件、转写与智能纪要。",
+    "developerName": "brain",
+    "category": "办公协作",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["查看我今天的腾讯会议安排。", "查询指定会议的参会记录。", "获取最近一次会议的智能纪要。"]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "feishu",
+  "version": "1.0.0",
+  "description": "通过飞书官方 CLI 管理消息、文档、日历、任务和协作数据。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "飞书",
+    "shortDescription": "消息、文档、日历、任务与协作数据",
+    "longDescription": "使用飞书官方 lark-cli，通过应用配置与 OAuth 登录，在 Brain 中操作消息、云文档、多维表格、日历、任务、知识库、邮箱、会议和审批。",
+    "developerName": "brain",
+    "category": "办公协作",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["查看我今天的飞书日程。", "创建一份飞书项目周报。", "查询最近的飞书会议纪要。"]
+  }
+}

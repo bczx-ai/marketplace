@@ -1,0 +1,4 @@
+interface:
+  display_name: "腾讯文档"
+  short_description: "在 Brain 中通过腾讯文档开放平台管理在线文档、表格和文件"
+  default_prompt: "使用腾讯文档开放平台完成当前任务。"

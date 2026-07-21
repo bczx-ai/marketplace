@@ -1,0 +1,18 @@
+{
+  "name": "pdf",
+  "version": "1.0.0",
+  "description": "读取、创建、转换、合并、拆分、OCR 并验证 PDF 文件。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "PDF",
+    "shortDescription": "PDF 读取、创建、转换、OCR 与验证",
+    "longDescription": "读取和创建 PDF，完成文本表格提取、合并拆分、旋转、水印、表单、OCR 与加密处理，并通过页面渲染验证结果。",
+    "developerName": "brain",
+    "category": "文档处理",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["提取这份 PDF 的文字和表格。", "合并多份 PDF 并生成目录。", "对扫描版 PDF 执行 OCR 并检查结果。"]
+  }
+}
