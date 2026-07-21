@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "gitlab",
+  "name": "GitLab",
+  "description": "连接 GitLab.com 或企业私有 GitLab，在 Agent 会话中使用 glab 工作流。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["gitlab-cli-login"]
+}

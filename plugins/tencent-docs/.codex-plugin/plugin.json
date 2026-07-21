@@ -1,6 +1,6 @@
 {
   "name": "tencent-docs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "通过腾讯文档开放平台管理在线文档、表格、文件与协作权限。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
@@ -8,7 +8,7 @@
   "interface": {
     "displayName": "腾讯文档",
     "shortDescription": "在线文档、表格、文件与协作权限",
-    "longDescription": "连接腾讯文档开放平台，使用受控 Access Token 查询和管理在线文档、表格、文件、协作者与权限。",
+    "longDescription": "连接腾讯文档开放平台，安装后通过官方 OAuth2 页面扫码授权，查询和管理在线文档、表格、文件、协作者与权限。",
     "developerName": "brain",
     "category": "办公协作",
     "logo": "./assets/icon.svg",

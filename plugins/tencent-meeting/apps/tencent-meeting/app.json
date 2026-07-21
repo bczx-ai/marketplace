@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "tencent-meeting",
+  "name": "腾讯会议",
+  "description": "通过腾讯会议官方 CLI 登录，在 Agent 会话中管理会议、录制和智能纪要。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["tencent-meeting-cli-login"]
+}

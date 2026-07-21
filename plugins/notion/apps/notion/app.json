@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "notion",
+  "name": "Notion",
+  "description": "通过 Notion 官方 CLI 登录 workspace，在 Agent 会话中管理页面、数据源和 Workers。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["notion-cli-login"]
+}

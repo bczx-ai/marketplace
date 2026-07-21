@@ -2,10 +2,12 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "首次发布，支持 Notion 官方 ntn CLI 工作流。",
+  "releaseNotes": "新增 Notion App 连接，安装后自动进入浏览器登录流程。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [{ "key": "notion" }],
+    "apps": [{ "key": "notion", "templates": ["notion-cli-login"] }],
+    "appTemplates": ["notion-cli-login"],
     "assets": ["detail.html", "icon.svg"]
   }
 }

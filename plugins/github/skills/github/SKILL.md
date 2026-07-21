@@ -10,7 +10,7 @@ description: 通过 GitHub 官方 gh CLI 操作仓库、Issue、Pull Request、A
 ## 准备
 
 1. 运行 `command -v gh`。缺失时按 GitHub CLI 官方文档为当前平台安装。
-2. 运行 `gh auth status`。未登录时运行 `gh auth login --web`，由用户在浏览器完成授权；不要要求用户在聊天中提供 PAT。
+2. 确认 `GH_CONFIG_DIR` 已由 Brain 注入，并运行 `gh auth status`。未登录时请用户从插件详情重新连接；Brain 会自动打开浏览器授权页。不要要求用户在聊天中提供 PAT。
 3. 从当前 Git remote 确认仓库；在仓库外使用 `--repo owner/repo`。
 
 ## 操作

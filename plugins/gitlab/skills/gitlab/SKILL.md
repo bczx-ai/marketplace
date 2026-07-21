@@ -10,8 +10,8 @@ description: 通过 GitLab 官方 glab CLI 操作 GitLab.com 或私有 GitLab �
 ## 准备
 
 1. 运行 `command -v glab`。缺失时按 GitLab CLI 官方文档为当前平台安装。
-2. 从仓库 remote 或用户输入确定 hostname，不假定一定是 `gitlab.com`。
-3. 运行 `glab auth status --hostname <host>`。未登录时运行 `glab auth login --hostname <host> --web`；私有实例也可由用户通过 stdin 提供 Token。不要让用户在聊天中粘贴 Token。
+2. 从 `GLAB_CONFIG_DIR` 对应的 Brain 连接和仓库 remote 确定 hostname，不假定一定是 `gitlab.com`。
+3. 运行 `glab auth status --hostname <host>`。未登录或目标实例不一致时，请用户从插件详情为对应 hostname 建立或重新建立连接；Brain 会自动打开授权页面。不要让用户在聊天中粘贴 Token。
 4. 在仓库外执行时，为命令提供 `--repo <host>/<owner>/<repo>` 或先确认目标项目。
 
 ## 操作

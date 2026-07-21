@@ -1,6 +1,6 @@
 {
   "name": "github",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "通过 gh 管理 GitHub 仓库、Issue、Pull Request、Actions 和 Release。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
@@ -12,7 +12,7 @@
     "developerName": "brain",
     "category": "开发工具",
     "logo": "./assets/icon.svg",
-    "capabilities": ["Skills"],
+    "capabilities": ["Skills", "Apps", "App Templates"],
     "defaultPrompt": ["查看当前 GitHub 仓库的开放 PR。", "分析最近失败的 GitHub Actions。", "汇总当前里程碑中的 Issue。"]
   }
 }

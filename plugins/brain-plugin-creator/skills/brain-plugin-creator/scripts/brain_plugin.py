@@ -23,7 +23,20 @@ SEMVER = re.compile(
     r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$"
 )
 SHA256 = re.compile(r"^[a-f0-9]{64}$")
+CLI_ENV = re.compile(r"^[A-Z][A-Z0-9_]{1,63}$")
+CLI_COMMAND = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 MAX_CLI_SIZE = 128 * 1024 * 1024
+AUTH_KINDS = {"oauth2", "oauth2_pkce", "mcp_oauth", "cli_oauth", "api_key", "none"}
+OAUTH_PARAMETERS = re.compile(r"^[A-Za-z][A-Za-z0-9._~-]{0,127}$")
+RESERVED_OAUTH_PARAMETERS = {"client_id", "redirect_uri", "response_type", "state", "code_challenge", "code_challenge_method"}
+FORBIDDEN_CLI_ENVS = {
+    "COLORTERM", "COMSPEC", "HOME", "LANG", "LC_ALL", "LC_CTYPE", "PATH",
+    "PATHEXT", "SHELL", "TERM", "TMP", "TEMP", "TMPDIR", "USER",
+}
+FORBIDDEN_CLI_ENV_PREFIXES = (
+    "BRAIN_", "CLAUDE_", "CODEX_", "DYLD_", "ELECTRON_", "GIT_", "LD_",
+    "NODE_", "NPM_", "PYTHON", "SSH_",
+)
 ALLOWED_COMPONENTS = {
     "agents",
     "skills",
@@ -291,6 +304,94 @@ def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str
                 errors.append(f"components.cli.{key}.{target}.sha256 不合法")
 
 
+def validate_app_template(path: Path, errors: list[str]) -> None:
+    try:
+        template = load_json(path)
+    except PluginError as error:
+        errors.append(str(error))
+        return
+    auth = template.get("auth")
+    if not isinstance(auth, dict) or auth.get("kind") not in AUTH_KINDS:
+        errors.append(f"{path} auth.kind 不支持")
+        return
+    fields = template.get("fields")
+    if not isinstance(fields, list):
+        errors.append(f"{path} fields 必须是数组")
+        return
+    field_types: dict[str, str] = {}
+    for field in fields:
+        if not isinstance(field, dict) or not isinstance(field.get("key"), str) or not isinstance(field.get("type"), str):
+            errors.append(f"{path} field 必须包含 key 和 type")
+            continue
+        field_types[field["key"]] = field["type"]
+    oauth = auth["kind"] in {"oauth2", "oauth2_pkce", "mcp_oauth"}
+    if oauth:
+        if not (isinstance(auth.get("authorizationEndpoint"), str) or field_types.get(auth.get("authorizationEndpointField")) == "url"):
+            errors.append(f"{path} OAuth 授权地址未声明")
+        if not (isinstance(auth.get("tokenEndpoint"), str) or field_types.get(auth.get("tokenEndpointField")) == "url"):
+            errors.append(f"{path} OAuth Token 地址未声明")
+        if field_types.get(auth.get("clientIdField")) != "text":
+            errors.append(f"{path} OAuth clientIdField 必须引用 text 字段")
+        client_secret_field = auth.get("clientSecretField")
+        if client_secret_field is not None and field_types.get(client_secret_field) != "secret":
+            errors.append(f"{path} OAuth clientSecretField 必须引用 secret 字段")
+        if auth.get("tokenMethod", "POST") not in {"GET", "POST"}:
+            errors.append(f"{path} OAuth tokenMethod 只支持 GET 或 POST")
+        parameters = auth.get("authorizationParams", {})
+        if not isinstance(parameters, dict) or len(parameters) > 32:
+            errors.append(f"{path} OAuth authorizationParams 不合法")
+        else:
+            for key, value in parameters.items():
+                if not isinstance(key, str) or not OAUTH_PARAMETERS.fullmatch(key) or key in RESERVED_OAUTH_PARAMETERS:
+                    errors.append(f"{path} OAuth 授权参数 {key} 不合法")
+                if not isinstance(value, str) or not value.strip() or len(value) > 1024:
+                    errors.append(f"{path} OAuth 授权参数 {key} 的值不合法")
+    elif "authorizationParams" in auth or auth.get("tokenMethod", "POST") != "POST":
+        errors.append(f"{path} OAuth 参数只适用于 OAuth App")
+    if auth["kind"] != "cli_oauth":
+        if "configDirEnv" in auth or "commands" in auth:
+            errors.append(f"{path} CLI 登录配置只适用于 cli_oauth")
+        return
+    env = auth.get("configDirEnv")
+    if not isinstance(env, str) or not CLI_ENV.fullmatch(env):
+        errors.append(f"{path} cli_oauth.configDirEnv 不合法")
+    elif env in FORBIDDEN_CLI_ENVS or env.startswith(FORBIDDEN_CLI_ENV_PREFIXES):
+        errors.append(f"{path} cli_oauth.configDirEnv 不安全")
+    commands = auth.get("commands")
+    if not isinstance(commands, list) or not 1 <= len(commands) <= 4:
+        errors.append(f"{path} cli_oauth.commands 必须包含 1-4 条命令")
+        return
+    for index, command in enumerate(commands):
+        label = f"{path} cli_oauth.commands[{index}]"
+        if not isinstance(command, dict) or not isinstance(command.get("command"), str) or not CLI_COMMAND.fullmatch(command["command"]):
+            errors.append(f"{label}.command 不合法")
+            continue
+        arguments = command.get("args", [])
+        if not isinstance(arguments, list) or len(arguments) > 64:
+            errors.append(f"{label}.args 不合法")
+        else:
+            for argument in arguments:
+                if isinstance(argument, str):
+                    if not argument or len(argument) > 2048 or "\0" in argument:
+                        errors.append(f"{label}.args 包含不合法固定参数")
+                    continue
+                if not isinstance(argument, dict) or set(argument) != {"valueFrom"} or not isinstance(argument["valueFrom"], str):
+                    errors.append(f"{label}.args 动态参数格式不合法")
+                    continue
+                source = argument["valueFrom"]
+                key = source.removeprefix("config.")
+                if not source.startswith("config.") or field_types.get(key) in {None, "secret", "string_list"}:
+                    errors.append(f"{label}.args 引用了不允许的来源 {source}")
+        stdin_from = command.get("stdinFrom")
+        if stdin_from is not None:
+            key = stdin_from.removeprefix("secret.") if isinstance(stdin_from, str) else ""
+            if not isinstance(stdin_from, str) or not stdin_from.startswith("secret.") or field_types.get(key) != "secret":
+                errors.append(f"{label}.stdinFrom 必须引用 secret 字段")
+        timeout = command.get("timeoutSeconds", 600)
+        if type(timeout) is not int or not 10 <= timeout <= 600:
+            errors.append(f"{label}.timeoutSeconds 必须是 10-600 的整数")
+
+
 def validate_catalog(root: Path, name: str, errors: list[str]) -> None:
     expected = f"./plugins/{name}"
     found = 0
@@ -401,7 +502,10 @@ def validate_plugin(
             if not isinstance(value, str) or not SLUG.fullmatch(value):
                 errors.append(f"components.{key} 条目必须是 slug")
             else:
+                template_path = root / directory / value / file_name
                 expect_file(root, [f"{directory}/{value}/{file_name}"], f"components.{key}.{value}", errors)
+                if template_path.is_file():
+                    validate_app_template(template_path, errors)
 
     assets = components.get("assets", [])
     if not isinstance(assets, list):
@@ -468,6 +572,75 @@ def self_test() -> None:
         )
         plugin_root = create_plugin(args)
         validate_plugin(plugin_root, root)
+        app_template = plugin_root / "app-templates/sample-login/template.json"
+        write_json(app_template, {
+            "schemaVersion": 1,
+            "key": "sample-login",
+            "name": "Sample Login",
+            "auth": {
+                "kind": "cli_oauth",
+                "configDirEnv": "SAMPLE_CONFIG_DIR",
+                "commands": [{
+                    "command": "sample",
+                    "args": ["auth", {"valueFrom": "config.hostname"}],
+                    "stdinFrom": "secret.token",
+                    "timeoutSeconds": 600,
+                }],
+            },
+            "networkScope": "public",
+            "fields": [
+                {"key": "hostname", "type": "text", "label": "Hostname", "required": True},
+                {"key": "token", "type": "secret", "label": "Token", "required": True},
+            ],
+        })
+        brain_path = plugin_root / "brain.json"
+        brain = load_json(brain_path)
+        brain["components"]["appTemplates"] = ["sample-login"]
+        write_json(brain_path, brain)
+        validate_plugin(plugin_root, root)
+        template = load_json(app_template)
+        template["auth"]["commands"][0]["args"] = [{"valueFrom": "config.token"}]
+        write_json(app_template, template)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("cli_oauth secret argv 必须校验失败")
+        template["auth"]["commands"][0]["args"] = ["auth", {"valueFrom": "config.hostname"}]
+        write_json(app_template, template)
+        write_json(app_template, {
+            "schemaVersion": 1,
+            "key": "sample-login",
+            "name": "Sample Login",
+            "auth": {
+                "kind": "oauth2",
+                "authorizationEndpoint": "https://identity.example/authorize",
+                "authorizationParams": {"scope": "all"},
+                "tokenEndpoint": "https://identity.example/token",
+                "tokenMethod": "GET",
+                "clientIdField": "client_id",
+                "clientSecretField": "client_secret",
+            },
+            "networkScope": "public",
+            "endpoint": "https://api.example/openapi/",
+            "fields": [
+                {"key": "client_id", "type": "text", "label": "Client ID", "required": True},
+                {"key": "client_secret", "type": "secret", "label": "Client Secret", "required": True},
+            ],
+        })
+        validate_plugin(plugin_root, root)
+        oauth_template = load_json(app_template)
+        oauth_template["auth"]["authorizationParams"] = {"state": "fixed"}
+        write_json(app_template, oauth_template)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("OAuth 保留授权参数必须校验失败")
+        oauth_template["auth"]["authorizationParams"] = {"scope": "all"}
+        write_json(app_template, oauth_template)
         claude_path = plugin_root / ".claude-plugin/plugin.json"
         claude = load_json(claude_path)
         claude["description"] = "Claude 宿主专用描述。"
@@ -484,7 +657,6 @@ def self_test() -> None:
         claude_path.unlink()
         (root / ".claude-plugin/marketplace.json").unlink()
         validate_plugin(plugin_root, root)
-        brain_path = plugin_root / "brain.json"
         brain = load_json(brain_path)
         brain["components"]["cli"] = [{
             "key": "sample",
