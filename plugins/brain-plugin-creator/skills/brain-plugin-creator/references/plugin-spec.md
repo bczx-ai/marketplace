@@ -14,16 +14,16 @@
 
 ## 真源与目录
 
-Brain 官方 Marketplace 固定使用 Git 仓库。一个原生 Plugin 的最小结构为：
+Brain 官方 Marketplace 固定使用 Git 仓库。Brain 原生 Plugin 提供 `brain.json`，并至少提供一个宿主 manifest：
 
 ```text
 plugins/<plugin-name>/
   .codex-plugin/plugin.json
-  .claude-plugin/plugin.json
+  .claude-plugin/plugin.json  # 可选；官方发布默认同时提供
   brain.json
 ```
 
-十类组件目录都可选，只创建实际使用的目录：
+九个内容目录都可选，只创建实际使用的目录；CLI 是第十类组件，只在 `brain.json` 中声明：
 
 ```text
 agents/           skills/           commands/
@@ -33,7 +33,7 @@ hooks/            rules/            mcp/
 
 CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 SHA-256，Brain 只下载当前平台 target。
 
-`.codex-plugin/plugin.json` 与 `brain.json` 是 canonical metadata；`.claude-plugin/plugin.json` 是兼容投影。共享字段冲突会导致 Plugin 被拒绝。
+同时存在双 manifest 时，Codex manifest 优先提供展示 metadata，两个 `name` 必须一致。Brain 还会分别解析并比较两边的 Hook 和 MCP 声明；其它宿主专用 metadata 可以不同。
 
 ## Plugin manifest
 
@@ -77,7 +77,9 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 }
 ```
 
-`publisherId` 必须稳定且使用 slug。`schemaVersion` 不代替 Plugin version。`requires` 只能引用同包组件，不支持跨 Plugin 依赖。Schema 是闭合的，不要添加未定义字段。
+`publisherId` 必须稳定且使用 slug。`schemaVersion` 不代替 Plugin version。`requires` 当前只做格式校验，不执行跨 Plugin 依赖求解。Schema 是闭合的，不要添加未定义字段。
+
+`compatibility.brain` 当前会被解析，但尚未执行版本范围判断；当前 Brain compatibility 主要依据本机是否存在所需 CLI target。
 
 ## 组件映射
 
@@ -91,16 +93,25 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 | `assets[]` | `assets/<relative-path>` | `detail.html` 只能使用安全静态 HTML |
 | `hooks[].key` | `hooks/<key>.json` | manifest 还需声明 Hook 配置 |
 | `rules[].key` | `rules/<key>.mdc` 或 `.md` | 由宿主原生发现 |
-| `mcp[]` | manifest `mcpServers` 配置 | 只支持安全的 stdio 与 streamable-http |
+| `mcp[]` | manifest `mcpServers` 配置 | 支持安全的 stdio、http/streamable-http 与 SSE |
 | `cli[]` | `brain.json` target metadata | 不提交二进制 |
 
 不要创建 LSP、lifecycle/install script 或其它未知自动发现目录。Brain 安装器只保留经过校验的受支持内容。
 
-CLI target 只支持 `darwin-arm64`、`darwin-x64`、`win32-x64`。每个 target 必须包含 `file`、无凭据且无 fragment 的 HTTPS `url`、正整数 `size` 和 64 位小写十六进制 `sha256`；Windows 文件扩展名只能是 `.exe`、`.cmd` 或 `.bat`。
+远程 MCP 必须使用无凭据、无 fragment 的固定 HTTPS URL。静态 headers 不能包含 `Authorization`、Cookie、Host 或其它敏感、hop-by-hop header；需要认证时使用 AppConnection。
+
+CLI target 只支持 `darwin-arm64`、`darwin-x64`、`win32-x64`。每个 target 必须包含 `file`、无凭据且无 fragment 的 `url`、1-128 MiB 的整数 `size` 和 64 位小写十六进制 `sha256`；Windows 文件扩展名只能是 `.exe`、`.cmd` 或 `.bat`。`public` source 只允许 HTTPS，Controller `private` source 和个人 Marketplace 允许 HTTP 或 HTTPS。
 
 ## Marketplace catalog
 
-官方市场以 `.agents/plugins/marketplace.json` 为 canonical catalog：
+Marketplace 至少提供以下一个 catalog；Brain 官方市场同时维护两者：
+
+```text
+.agents/plugins/marketplace.json
+.claude-plugin/marketplace.json
+```
+
+Codex catalog 示例：
 
 ```json
 {
@@ -120,7 +131,7 @@ CLI target 只支持 `darwin-arm64`、`darwin-x64`、`win32-x64`。每个 target
 }
 ```
 
-`.claude-plugin/marketplace.json` 保留同名、同 source 的兼容条目。`source.path` 相对 Marketplace 根目录、以 `./` 开头且不能越界。新条目追加到现有列表，除非仓库明确规定排序。
+Controller 同时读取两份 catalog，并按 Plugin name 合并，Codex 条目优先；个人市场按配置的格式或 Codex 优先级读取第一份可用 catalog，不合并。官方 Claude catalog 保留同名、同 source 的兼容条目。`source.path` 相对 Marketplace 根目录、以 `./` 开头且不能越界。新条目追加到现有列表，除非仓库明确规定排序。
 
 ## 安全与版本
 
@@ -128,17 +139,17 @@ CLI target 只支持 `darwin-arm64`、`darwin-x64`、`win32-x64`。每个 target
 - manifest 和组件文件不得包含 access token、private key、用户 credential 或带凭据 URL。
 - Hook 安装时不执行；新增或改变 Hook、MCP、CLI、network scope、OAuth scope 都属于权限变化。
 - stdio MCP 使用 executable token 与参数数组，不使用 shell command string。
-- 远程 MCP 和 CLI 使用固定、安全的 URL；App secret 只进入 Brain server secret store。
+- 远程 MCP 和 CLI 使用固定、安全的 URL；App secret 和 OAuth token 只保存在 Server 拥有的本地 `0600` 文件中，不进入 catalog、公开 RPC、事件或日志。
 - Plugin 内容变化必须递增 SemVer。相同 version 但内容摘要变化会被视为可变重发并拒绝自动更新。
 - `requires` 缺少当前平台 target 时，只禁用依赖组件，不伪装为可用。
 
 ## 发布检查
 
 1. 检查仓库说明、工作树和目标分支，避免覆盖他人改动。
-2. 确认 name、目录名、catalog entry 和两个 manifest 一致。
+2. 确认 name、目录名、catalog entry 和所有现存 manifest 的 name 一致。
 3. 确认 SemVer 已按变更递增，`publisherId` 未变化。
 4. 确认每个 `brain.json.components` 声明都有包内实现，且没有空目录。
-5. 确认 Codex catalog 的 category 和 policy 完整，Claude catalog source 一致。
-6. 搜索 credential、私钥和带凭据 URL；检查 CLI size/SHA-256 与不可变 URL。
+5. 确认所有现存 catalog 都包含条目；Codex catalog 的 category 和 policy 完整，官方 Claude catalog source 一致。
+6. 搜索 credential、私钥和带凭据 URL；按 source scope 检查 CLI URL，并检查 size 上限、SHA-256 与不可变 URL。
 7. 运行 `brain_plugin.py validate`、各 Skill 校验和仓库测试。
 8. review staged diff 后再提交；只有用户明确要求时 push、创建 MR 或 release。
