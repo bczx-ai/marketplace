@@ -2,12 +2,53 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "新增腾讯会议 App 连接，安装后自动进入网页登录流程。",
+  "releaseNotes": "随插件安装腾讯会议官方 CLI 1.0.12，支持 Linux、macOS 和 Windows，安装后自动进入网页登录流程。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
-    "skills": [{ "key": "tencent-meeting" }],
+    "skills": [{ "key": "tencent-meeting", "requires": ["cli:tmeet"] }],
     "apps": [{ "key": "tencent-meeting", "templates": ["tencent-meeting-cli-login"] }],
     "appTemplates": ["tencent-meeting-cli-login"],
-    "assets": ["detail.html", "icon.svg"]
+    "assets": ["detail.html", "icon.svg"],
+    "cli": [{
+      "key": "tmeet",
+      "command": "tmeet",
+      "targets": {
+        "darwin-arm64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.12.tgz",
+          "size": 13046113,
+          "sha256": "ac40953fd5efa0d7a4766f9e5d14e6a8a691cd79388c7dc6c9e381626bd46d39",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-macOS-AppleSilicon" }
+        },
+        "darwin-x64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.12.tgz",
+          "size": 13046113,
+          "sha256": "ac40953fd5efa0d7a4766f9e5d14e6a8a691cd79388c7dc6c9e381626bd46d39",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-macOS-Intel" }
+        },
+        "linux-arm64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.12.tgz",
+          "size": 13046113,
+          "sha256": "ac40953fd5efa0d7a4766f9e5d14e6a8a691cd79388c7dc6c9e381626bd46d39",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-Linux-ARM64" }
+        },
+        "linux-x64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.12.tgz",
+          "size": 13046113,
+          "sha256": "ac40953fd5efa0d7a4766f9e5d14e6a8a691cd79388c7dc6c9e381626bd46d39",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-Linux-x86_64" }
+        },
+        "win32-x64": {
+          "file": "tmeet.exe",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.12.tgz",
+          "size": 13046113,
+          "sha256": "ac40953fd5efa0d7a4766f9e5d14e6a8a691cd79388c7dc6c9e381626bd46d39",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-Windows-x86_64.exe" }
+        }
+      }
+    }]
   }
 }

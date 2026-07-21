@@ -2,12 +2,53 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "新增 GitLab App 连接，支持 GitLab.com 和私有实例网页登录。",
+  "releaseNotes": "随插件安装 GitLab 官方 CLI 1.109.0，支持 Linux、macOS 和 Windows，并可连接 GitLab.com 或私有实例。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
-    "skills": [{ "key": "gitlab" }],
+    "skills": [{ "key": "gitlab", "requires": ["cli:glab"] }],
     "apps": [{ "key": "gitlab", "templates": ["gitlab-cli-login"] }],
     "appTemplates": ["gitlab-cli-login"],
-    "assets": ["detail.html", "icon.svg"]
+    "assets": ["detail.html", "icon.svg"],
+    "cli": [{
+      "key": "glab",
+      "command": "glab",
+      "targets": {
+        "darwin-arm64": {
+          "file": "glab",
+          "url": "https://gitlab.com/gitlab-org/cli/-/releases/v1.109.0/downloads/glab_1.109.0_darwin_arm64.tar.gz",
+          "size": 17222167,
+          "sha256": "e3c2dfeb96ebe8756273a0a04b7efbadf9eee7731cccc3882bfc03b2dc151cbf",
+          "archive": { "format": "tar.gz", "entry": "bin/glab" }
+        },
+        "darwin-x64": {
+          "file": "glab",
+          "url": "https://gitlab.com/gitlab-org/cli/-/releases/v1.109.0/downloads/glab_1.109.0_darwin_amd64.tar.gz",
+          "size": 18649284,
+          "sha256": "b0e321a17dcd44d6186384cf325ce12de93eaa7eb5261dd1d598fede4c7aade0",
+          "archive": { "format": "tar.gz", "entry": "bin/glab" }
+        },
+        "linux-arm64": {
+          "file": "glab",
+          "url": "https://gitlab.com/gitlab-org/cli/-/releases/v1.109.0/downloads/glab_1.109.0_linux_arm64.tar.gz",
+          "size": 16674157,
+          "sha256": "288155229b7a0824aaca5fbdc36000d0c41fe5d8b4a4c3cbe9908e75f4e4ec2e",
+          "archive": { "format": "tar.gz", "entry": "bin/glab" }
+        },
+        "linux-x64": {
+          "file": "glab",
+          "url": "https://gitlab.com/gitlab-org/cli/-/releases/v1.109.0/downloads/glab_1.109.0_linux_amd64.tar.gz",
+          "size": 18086705,
+          "sha256": "67b4a8557727a058f44e0839babdcf214ea6f6f829062cf0bae02f7b25814e5d",
+          "archive": { "format": "tar.gz", "entry": "bin/glab" }
+        },
+        "win32-x64": {
+          "file": "glab.exe",
+          "url": "https://gitlab.com/gitlab-org/cli/-/releases/v1.109.0/downloads/glab_1.109.0_windows_amd64.zip",
+          "size": 18288203,
+          "sha256": "ae7c59adf785a3877176fea40341ac6ac1db316578fbb57e1f0c003d4e840876",
+          "archive": { "format": "zip", "entry": "bin/glab.exe" }
+        }
+      }
+    }]
   }
 }

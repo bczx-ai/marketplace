@@ -26,6 +26,8 @@ SHA256 = re.compile(r"^[a-f0-9]{64}$")
 CLI_ENV = re.compile(r"^[A-Z][A-Z0-9_]{1,63}$")
 CLI_COMMAND = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 MAX_CLI_SIZE = 128 * 1024 * 1024
+CLI_TARGETS = {"darwin-arm64", "darwin-x64", "linux-arm64", "linux-x64", "win32-x64"}
+ARCHIVE_ENTRY = re.compile(r"^[A-Za-z0-9._+-]+(?:/[A-Za-z0-9._+-]+)*$")
 AUTH_KINDS = {"oauth2", "oauth2_pkce", "mcp_oauth", "cli_oauth", "api_key", "none"}
 OAUTH_PARAMETERS = re.compile(r"^[A-Za-z][A-Za-z0-9._~-]{0,127}$")
 RESERVED_OAUTH_PARAMETERS = {"client_id", "redirect_uri", "response_type", "state", "code_challenge", "code_challenge_method"}
@@ -280,12 +282,14 @@ def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str
             errors.append(f"components.cli.{key}.targets 不能为空")
             continue
         for target, artifact in targets.items():
-            if target not in {"darwin-arm64", "darwin-x64", "win32-x64"}:
+            if target not in CLI_TARGETS:
                 errors.append(f"components.cli.{key} target 不支持: {target}")
                 continue
             if not isinstance(artifact, dict):
                 errors.append(f"components.cli.{key}.{target} 必须是对象")
                 continue
+            if set(artifact) - {"file", "url", "size", "sha256", "archive"}:
+                errors.append(f"components.cli.{key}.{target} 包含未知字段")
             file_name = artifact.get("file")
             url = artifact.get("url", "")
             parsed = urlparse(url if isinstance(url, str) else "")
@@ -302,6 +306,15 @@ def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str
                 errors.append(f"components.cli.{key}.{target}.size 必须是 1-{MAX_CLI_SIZE} 的整数")
             if not isinstance(artifact.get("sha256"), str) or not SHA256.fullmatch(artifact["sha256"]):
                 errors.append(f"components.cli.{key}.{target}.sha256 不合法")
+            archive = artifact.get("archive")
+            if archive is not None:
+                if not isinstance(archive, dict) or set(archive) != {"format", "entry"}:
+                    errors.append(f"components.cli.{key}.{target}.archive 不合法")
+                elif (archive.get("format") not in {"tar.gz", "zip"}
+                      or not isinstance(archive.get("entry"), str)
+                      or not ARCHIVE_ENTRY.fullmatch(archive["entry"])
+                      or any(segment in {".", ".."} for segment in archive["entry"].split("/"))):
+                    errors.append(f"components.cli.{key}.{target}.archive 格式或入口不合法")
 
 
 def validate_app_template(path: Path, errors: list[str]) -> None:
@@ -661,18 +674,29 @@ def self_test() -> None:
         brain["components"]["cli"] = [{
             "key": "sample",
             "command": "sample",
-            "targets": {"darwin-arm64": {
+            "targets": {"linux-x64": {
                 "file": "sample",
                 "url": "http://objects.example/sample",
                 "size": 1,
                 "sha256": "0" * 64,
+                "archive": {"format": "tar.gz", "entry": "package/bin/sample"},
             }},
         }]
         write_json(brain_path, brain)
         validate_plugin(plugin_root, root, "private")
+        brain["components"]["cli"][0]["targets"]["linux-x64"]["archive"]["entry"] = "../sample"
+        write_json(brain_path, brain)
+        try:
+            validate_plugin(plugin_root, root, "private")
+        except PluginError:
+            pass
+        else:
+            raise PluginError("CLI 归档越界入口必须校验失败")
+        brain["components"]["cli"][0]["targets"]["linux-x64"]["archive"]["entry"] = "package/bin/sample"
+        write_json(brain_path, brain)
         for scope in ["public", "private"]:
             if scope == "private":
-                brain["components"]["cli"][0]["targets"]["darwin-arm64"]["size"] = MAX_CLI_SIZE + 1
+                brain["components"]["cli"][0]["targets"]["linux-x64"]["size"] = MAX_CLI_SIZE + 1
                 write_json(brain_path, brain)
             try:
                 validate_plugin(plugin_root, root, scope)

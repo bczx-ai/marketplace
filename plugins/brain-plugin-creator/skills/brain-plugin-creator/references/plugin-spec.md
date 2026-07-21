@@ -137,7 +137,21 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 
 远程 MCP 必须使用无凭据、无 fragment 的固定 HTTPS URL。静态 headers 不能包含 `Authorization`、Cookie、Host 或其它敏感、hop-by-hop header；需要认证时使用 AppConnection。
 
-CLI target 只支持 `darwin-arm64`、`darwin-x64`、`win32-x64`。每个 target 必须包含 `file`、无凭据且无 fragment 的 `url`、1-128 MiB 的整数 `size` 和 64 位小写十六进制 `sha256`；Windows 文件扩展名只能是 `.exe`、`.cmd` 或 `.bat`。`public` source 只允许 HTTPS，Controller `private` source 和个人 Marketplace 允许 HTTP 或 HTTPS。
+CLI target 只支持 `darwin-arm64`、`darwin-x64`、`linux-arm64`、`linux-x64`、`win32-x64`。每个 target 必须包含安装文件名 `file`、无凭据且无 fragment 的 `url`、1-128 MiB 的整数 `size` 和 64 位小写十六进制 `sha256`；Windows 文件扩展名只能是 `.exe`、`.cmd` 或 `.bat`。`public` source 只允许 HTTPS，Controller `private` source 和个人 Marketplace 允许 HTTP 或 HTTPS。
+
+官方制品是压缩包时增加 `archive`，只声明一个需要安装的普通文件入口：
+
+```json
+{
+  "file": "example",
+  "url": "https://example.com/example-linux-amd64.tar.gz",
+  "size": 123456,
+  "sha256": "<归档文件 SHA-256>",
+  "archive": { "format": "tar.gz", "entry": "example/bin/example" }
+}
+```
+
+`archive.format` 只允许 `tar.gz` 或 `zip`。Brain 校验归档摘要后只在内存中提取精确匹配的普通文件，不运行安装脚本，也不把其它条目写入磁盘。
 
 ## Marketplace catalog
 

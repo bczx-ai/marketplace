@@ -9,7 +9,7 @@ description: 通过企业微信官方 wecom-cli 查询或管理消息、通讯�
 
 ## 准备
 
-1. 运行 `command -v wecom-cli`。缺失时告知用户先执行 `npm install -g @wecom/cli`。
+1. 运行 `command -v wecom-cli`。缺失表示插件 CLI 安装异常，请用户更新或重新安装企业微信插件，不要执行系统级安装命令。
 2. 确认 `WECOM_CLI_CONFIG_DIR` 已由 Brain 注入。缺失或 `wecom-cli auth show --auth-status` 返回 `unauthorized` 时，请用户从插件详情重新连接；Brain 会自动打开二维码页面。
 3. 用 `wecom-cli --help`、`wecom-cli <category> --help` 和 `wecom-cli <category> <method> --help` 查看当前版本能力与参数。
 
