@@ -1,8 +1,8 @@
 {
   "name": "brain-plugin-creator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "创建、扩展、校验并发布符合 Brain 规范的原生插件。",
-  "author": { "name": "中安信息" },
+  "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
   "interface": {
