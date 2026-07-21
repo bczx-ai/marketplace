@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "修复旧 Connector Skill 冲突；OAuth 授权后自动生成 cubelet 配置，新会话可直接使用原生 CLI。",
+  "releaseNotes": "升级 cubelet 至 10.4.0，包含最新的 DevCube CLI 能力和 team getissue 需求描述修复。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [
@@ -41,21 +41,21 @@
         "targets": {
           "darwin-arm64": {
             "file": "cubelet",
-            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.0.0/darwin-arm64/cubelet",
-            "size": 30108674,
-            "sha256": "b9e288929cce17d1c5a9ff1bf09d8a0c1c1f0169fca95386e65b9a8788aa7db2"
+            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.2.3/darwin-arm64/cubelet",
+            "size": 30108930,
+            "sha256": "fd1a6725518351596b9d8e257cd764dc58cb6ae280158f07c9f9ee04d0f23ea3"
           },
           "darwin-x64": {
             "file": "cubelet",
-            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.0.0/darwin-x64/cubelet",
-            "size": 31309024,
-            "sha256": "a91b108aed3c5a4f9e1f940e5c345eb5a4b135d63726ca4b32b0a52d5ef216bb"
+            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.2.3/darwin-x64/cubelet",
+            "size": 31317488,
+            "sha256": "4914d15b8f449442627c2d3ad9e321b50a3d30b077eba4ad30913d4db6c00491"
           },
           "win32-x64": {
             "file": "cubelet.exe",
-            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.0.0/win32-x64/cubelet.exe",
-            "size": 31258112,
-            "sha256": "327a1e996908b8f318fee58e537cab35ae571d2d15c1a7f63b3bb2785064ae7e"
+            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.2.3/win32-x64/cubelet.exe",
+            "size": 31262720,
+            "sha256": "1899ea386fcdf59a2ac6b1e5ac0a3fade0653aa3f2468cf09174fd4cc532f61e"
           }
         }
       }
