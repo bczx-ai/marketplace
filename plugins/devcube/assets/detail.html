@@ -166,12 +166,43 @@
         <blockquote>在退款需求下创建用例目录并导入 tests/refund-cases.xlsx，执行前展示导入计划。</blockquote>
         <div class="tag-list"><span>用例目录</span><span>需求关联</span><span>文件导入</span></div>
       </article>
-    </div>
 
-    <aside class="more-capability">
-      <span aria-hidden="true">协</span>
-      <p><strong>跟进团队工作也可以直接问。</strong> 查询当前可见项目、迭代计划、事项详情或指定看板的泳道与卡片数据。</p>
-    </aside>
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-cyan" aria-hidden="true">报</span>
+          <h3>日报与周报</h3>
+          <span class="status status-query">可直接查询</span>
+        </div>
+        <p class="scenario-description">汇总迭代目标、事项进展、看板变化、当前阻塞和后续计划，形成结构化团队报告。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>汇总支付平台项目本周的迭代和看板进展，生成周报，突出已完成事项、阻塞和下周计划。</blockquote>
+        <div class="tag-list"><span>迭代进展</span><span>事项汇总</span><span>阻塞与计划</span></div>
+      </article>
+
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-violet" aria-hidden="true">拆</span>
+          <h3>需求拆分</h3>
+          <span class="status status-query">可直接查询</span>
+        </div>
+        <p class="scenario-description">读取需求事项和上下文，分析实现边界，给出任务拆解、验收条件、依赖关系和优先级建议。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>分析 PAY-238 需求，拆分为可交付的研发任务，并列出每项验收标准、前置依赖和优先级。</blockquote>
+        <div class="tag-list"><span>需求理解</span><span>任务拆解</span><span>验收与依赖</span></div>
+      </article>
+
+      <article class="scenario-card">
+        <div class="scenario-title">
+          <span class="scenario-icon icon-rose" aria-hidden="true">险</span>
+          <h3>项目风险分析</h3>
+          <span class="status status-query">可直接查询</span>
+        </div>
+        <p class="scenario-description">结合迭代时间、事项状态和看板堆积，识别延期、长期阻塞、资源瓶颈与交付风险。</p>
+        <div class="prompt-label">你可以这样说</div>
+        <blockquote>分析支付平台当前迭代的交付风险，找出延期或长期未流转事项，并按影响程度给出建议。</blockquote>
+        <div class="tag-list"><span>延期风险</span><span>看板堆积</span><span>影响与建议</span></div>
+      </article>
+    </div>
   </section>
 </main>
 
@@ -336,7 +367,7 @@
     padding: 16px;
   }
 
-  .capability-icon, .scenario-icon, .more-capability > span {
+  .capability-icon, .scenario-icon {
     display: inline-flex;
     width: 38px;
     height: 38px;
@@ -447,20 +478,6 @@
     line-height: 1.65;
   }
 
-  .more-capability {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    margin-top: 12px;
-    padding: 14px 16px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--surface);
-  }
-
-  .more-capability > span { color: var(--cyan); background: var(--cyan-bg); }
-  .more-capability p { margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.65; }
-  .more-capability strong { color: var(--text); }
   .icon-blue { color: var(--blue); background: var(--blue-bg); }
   .icon-green { color: var(--green); background: var(--green-bg); }
   .icon-amber { color: var(--amber); background: var(--amber-bg); }
