@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "key": "tencent-docs",
   "name": "腾讯文档",
-  "description": "连接腾讯文档开放平台，为 Agent 会话提供 Client ID 和 Access Token。",
+  "description": "通过腾讯文档 OAuth2 扫码授权，为 Agent 会话提供自动刷新的受控连接。",
   "scope": "user",
   "cardinality": "single",
   "templates": ["tencent-docs-token"]

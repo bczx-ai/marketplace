@@ -9,11 +9,12 @@ description: 通过腾讯文档开放平台 OpenAPI 查询或管理腾讯文档�
 
 ## 认证
 
-腾讯文档官方流程是 OAuth2 授权码模式，需要 `Client ID`、`Client Secret`、HTTPS 回调地址和用户扫码授权；当前流程未声明 PKCE。Brain 连接因此接收用户已按官方流程取得的 `Access Token` 和对应 `Client ID`，并通过 `TENCENT_DOCS_CONFIG` 投影到受控配置文件。
+腾讯文档使用不带 PKCE 的 OAuth2 授权码模式。安装插件后，Brain 要求填写 `Client ID` 和 `Client Secret`，保存时自动打开腾讯文档官方登录页，由用户扫码并确认授权；Brain 在 Server 端换取和刷新 Token，并通过 `TENCENT_DOCS_CONFIG` 投影 `Client ID`、`Access Token` 和 `Open ID`。
 
 1. 确认环境变量 `TENCENT_DOCS_CONFIG` 存在。
 2. 缺失时请用户在插件详情中建立腾讯文档连接。
-3. 不读取或输出配置文件内容，不在命令行参数中传递 Token。
+3. 腾讯文档只接受已登记的 HTTPS OAuth 回调地址；开放平台应用中的回调地址必须与当前 Brain Agent 空间公开地址一致。
+4. 不读取或输出配置文件内容，不在命令行参数中传递 Token。
 
 ## 调用
 

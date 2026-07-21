@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "key": "tencent-meeting-cli-login",
+  "name": "腾讯会议网页登录",
+  "description": "保存后自动运行腾讯会议官方 CLI，并打开 OAuth2 授权页面。",
+  "auth": {
+    "kind": "cli_oauth",
+    "configDirEnv": "TMEET_CLI_CONFIG_DIR",
+    "commands": [
+      {
+        "command": "tmeet",
+        "args": ["auth", "login"],
+        "timeoutSeconds": 600
+      }
+    ]
+  },
+  "networkScope": "public",
+  "fields": []
+}

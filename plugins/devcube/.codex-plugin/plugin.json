@@ -1,6 +1,6 @@
 {
   "name": "devcube",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "通过 DevCube 查询团队项目，并操作发布、配置、运行状态、监控、测试与扫描任务。",
   "author": { "name": "brain" },
   "skills": "./skills",
@@ -8,7 +8,7 @@
     "displayName": "DevCube",
     "shortDescription": "研发效能、发布、监控、测试与扫描能力",
     "longDescription": "使用原生 cubelet CLI 访问 DevCube，覆盖发布、配置、容器、虚拟机、监控、测试、扫描与团队协作。",
-    "developerName": "中安信息",
+    "developerName": "brain",
     "category": "研发效能",
     "logo": "./assets/icon.svg",
     "capabilities": ["Skills", "Apps", "App Templates", "CLI"],

@@ -16,8 +16,8 @@ def load_config() -> dict:
     if not path:
         raise SystemExit("TENCENT_DOCS_CONFIG is not set; configure the Tencent Docs app in Brain")
     data = json.loads(Path(path).read_text(encoding="utf-8"))
-    if not data.get("client_id") or not data.get("access_token"):
-        raise SystemExit("Tencent Docs connection is missing client_id or access_token")
+    if not data.get("client_id") or not data.get("access_token") or not data.get("open_id"):
+        raise SystemExit("Tencent Docs connection is missing client_id, access_token, or open_id")
     return data
 
 
@@ -63,6 +63,7 @@ def main() -> int:
             "Content-Type": "application/json",
             "Access-Token": config["access_token"],
             "Client-Id": config["client_id"],
+            "Open-Id": config["open_id"],
         },
     )
     try:

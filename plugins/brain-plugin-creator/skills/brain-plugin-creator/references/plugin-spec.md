@@ -96,6 +96,43 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 | `mcp[]` | manifest `mcpServers` 配置 | 支持安全的 stdio、http/streamable-http 与 SSE |
 | `cli[]` | `brain.json` target metadata | 不提交二进制 |
 
+需要由官方 CLI 完成浏览器或扫码登录时，App Template 使用 `auth.kind=cli_oauth`：
+
+```json
+{
+  "auth": {
+    "kind": "cli_oauth",
+    "configDirEnv": "EXAMPLE_CONFIG_DIR",
+    "commands": [{
+      "command": "example",
+      "args": ["auth", "login", { "valueFrom": "config.hostname" }],
+      "stdinFrom": "secret.app_secret",
+      "timeoutSeconds": 600
+    }]
+  }
+}
+```
+
+命令只能是 executable token 和参数数组，不经过 shell。动态参数只能引用非 secret 的 `config.<field>`，secret 只能通过 `stdinFrom` 传入；配置目录环境变量不能覆盖系统、Brain、Agent、Git、Node、动态链接器或 SSH 关键变量。登录命令会进入权限摘要，成功退出后连接才可用。
+
+不支持 PKCE 的标准授权码服务使用 `auth.kind=oauth2`；支持 PKCE S256 时使用 `oauth2_pkce`。两者都由 Brain 自动打开授权页、校验一次性 state、在 Server 端换取并刷新 Token。少数官方服务需要固定登录参数或 GET Token 请求时，可声明 `authorizationParams` 和 `tokenMethod`：
+
+```json
+{
+  "auth": {
+    "kind": "oauth2",
+    "authorizationEndpoint": "https://identity.example/authorize",
+    "authorizationParams": { "scope": "all" },
+    "tokenEndpoint": "https://identity.example/token",
+    "tokenMethod": "GET",
+    "clientIdField": "client_id",
+    "clientSecretField": "client_secret"
+  }
+}
+```
+
+`client_id`、`redirect_uri`、`response_type`、`state` 和 PKCE 参数由 Brain 管理，不能放入 `authorizationParams`。CLI 配置可使用 `auth.access_token`；服务在 Token 响应中返回外部账号 ID 时，还可使用 `auth.identity.external_id`。
+
 不要创建 LSP、lifecycle/install script 或其它未知自动发现目录。Brain 安装器只保留经过校验的受支持内容。
 
 远程 MCP 必须使用无凭据、无 fragment 的固定 HTTPS URL。静态 headers 不能包含 `Authorization`、Cookie、Host 或其它敏感、hop-by-hop header；需要认证时使用 AppConnection。

@@ -1,12 +1,19 @@
 {
   "schemaVersion": 1,
   "key": "tencent-docs-token",
-  "name": "Access Token",
-  "description": "填写按腾讯文档官方 OAuth2 授权码流程取得的 Client ID 和 Access Token。",
+  "name": "OAuth2 扫码登录",
+  "description": "填写腾讯文档开放平台应用凭据后，自动打开官方登录页扫码授权。回调地址必须是 Brain 的 HTTPS 访问地址。",
   "auth": {
-    "kind": "api_key",
-    "apiKeyField": "access_token",
-    "header": "Access-Token",
+    "kind": "oauth2",
+    "authorizationEndpoint": "https://docs.qq.com/oauth/v2/authorize",
+    "authorizationParams": {
+      "new_login": "1",
+      "scope": "all"
+    },
+    "tokenEndpoint": "https://docs.qq.com/oauth/v2/token",
+    "tokenMethod": "GET",
+    "clientIdField": "client_id",
+    "clientSecretField": "client_secret",
     "scopes": []
   },
   "networkScope": "public",
@@ -20,11 +27,11 @@
       "description": "腾讯文档开放平台分配的第三方应用唯一标识。"
     },
     {
-      "key": "access_token",
+      "key": "client_secret",
       "type": "secret",
-      "label": "Access Token",
+      "label": "Client Secret",
       "required": true,
-      "description": "通过腾讯文档 OAuth2 授权码流程取得的用户访问令牌。"
+      "description": "腾讯文档开放平台分配的应用密钥，仅在 Brain Server 换取和刷新 Token 时使用。"
     }
   ],
   "cliConfig": {
@@ -32,7 +39,8 @@
     "format": "json",
     "content": {
       "client_id": { "valueFrom": "config.client_id" },
-      "access_token": { "valueFrom": "secret.access_token" }
+      "access_token": { "valueFrom": "auth.access_token" },
+      "open_id": { "valueFrom": "auth.identity.external_id" }
     }
   }
 }

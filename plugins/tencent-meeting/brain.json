@@ -2,10 +2,12 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "首次发布，支持腾讯会议官方 CLI 工作流。",
+  "releaseNotes": "新增腾讯会议 App 连接，安装后自动进入网页登录流程。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [{ "key": "tencent-meeting" }],
+    "apps": [{ "key": "tencent-meeting", "templates": ["tencent-meeting-cli-login"] }],
+    "appTemplates": ["tencent-meeting-cli-login"],
     "assets": ["detail.html", "icon.svg"]
   }
 }

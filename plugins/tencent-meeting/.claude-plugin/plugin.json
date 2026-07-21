@@ -1,6 +1,6 @@
 {
   "name": "tencent-meeting",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "通过腾讯会议官方 CLI 管理会议、参会、录制和智能纪要。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
@@ -12,7 +12,7 @@
     "developerName": "brain",
     "category": "办公协作",
     "logo": "./assets/icon.svg",
-    "capabilities": ["Skills"],
+    "capabilities": ["Skills", "Apps", "App Templates"],
     "defaultPrompt": ["查看我今天的腾讯会议安排。", "查询指定会议的参会记录。", "获取最近一次会议的智能纪要。"]
   }
 }

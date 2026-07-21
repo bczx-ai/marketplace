@@ -10,9 +10,9 @@ description: 通过飞书官方 lark-cli 操作消息、文档、云空间、多
 ## 准备
 
 1. 运行 `command -v lark-cli`。缺失时告知用户执行 `npx @larksuite/cli@latest install`。
-2. 首次使用运行 `lark-cli config init --new`，把命令输出的配置 URL 交给用户完成应用配置。
-3. 运行 `lark-cli auth status`。未登录时运行 `lark-cli auth login --recommend`；Agent 环境可用 `--no-wait` 获取 URL，再按输出的 device code 恢复。
-4. 凭据保存在系统钥匙串；不要读取或复制。需要隔离时只使用官方 `LARKSUITE_CLI_CONFIG_DIR`。
+2. 确认 `LARKSUITE_CLI_CONFIG_DIR` 已由 Brain 注入。Brain 连接会通过 stdin 配置 App Secret，不在参数中暴露凭据。
+3. 运行 `lark-cli auth status`。未登录时请用户从插件详情重新连接；Brain 会自动打开 CLI 输出的用户授权页面。
+4. 凭据保存在系统钥匙串和当前连接配置目录；不要读取或复制。
 
 ## 调用层级
 

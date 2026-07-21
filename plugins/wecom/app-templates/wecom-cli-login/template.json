@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "key": "wecom-cli-login",
+  "name": "企业微信扫码登录",
+  "description": "保存后自动运行企业微信官方 CLI，并打开二维码页面完成扫码。",
+  "auth": {
+    "kind": "cli_oauth",
+    "configDirEnv": "WECOM_CLI_CONFIG_DIR",
+    "commands": [
+      {
+        "command": "wecom-cli",
+        "args": ["init", "--noninteractive"],
+        "timeoutSeconds": 600
+      }
+    ]
+  },
+  "networkScope": "public",
+  "fields": []
+}

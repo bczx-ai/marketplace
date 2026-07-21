@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "feishu",
+  "name": "飞书",
+  "description": "配置飞书应用并完成用户授权，在 Agent 会话中使用消息、文档、日历和任务能力。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["feishu-cli-login"]
+}

@@ -10,10 +10,10 @@ description: 通过企业微信官方 wecom-cli 查询或管理消息、通讯�
 ## 准备
 
 1. 运行 `command -v wecom-cli`。缺失时告知用户先执行 `npm install -g @wecom/cli`。
-2. 首次使用运行 `wecom-cli init`，由用户完成扫码登录，或按向导提供智能机器人 Bot ID 与 Secret。凭据由 CLI 加密保存在本机。
+2. 确认 `WECOM_CLI_CONFIG_DIR` 已由 Brain 注入。缺失或 `wecom-cli auth show --auth-status` 返回 `unauthorized` 时，请用户从插件详情重新连接；Brain 会自动打开二维码页面。
 3. 用 `wecom-cli --help`、`wecom-cli <category> --help` 和 `wecom-cli <category> <method> --help` 查看当前版本能力与参数。
 
-不要读取、打印或迁移 CLI 凭据。需要隔离配置时，只使用官方支持的 `WECOM_CLI_CONFIG_DIR`。
+不要自行运行登录流程，不要读取、打印或迁移 CLI 凭据。
 
 ## 调用
 

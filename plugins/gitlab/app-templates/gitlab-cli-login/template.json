@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "key": "gitlab-cli-login",
+  "name": "GitLab 网页登录",
+  "description": "填写 GitLab hostname 后自动运行 glab，并打开对应实例的授权页面。",
+  "auth": {
+    "kind": "cli_oauth",
+    "configDirEnv": "GLAB_CONFIG_DIR",
+    "commands": [
+      {
+        "command": "glab",
+        "args": [
+          "auth",
+          "login",
+          "--hostname",
+          { "valueFrom": "config.hostname" },
+          "--web",
+          "--git-protocol",
+          "https"
+        ],
+        "timeoutSeconds": 600
+      }
+    ]
+  },
+  "networkScope": "private",
+  "fields": [
+    {
+      "key": "hostname",
+      "type": "text",
+      "label": "GitLab Hostname",
+      "required": true,
+      "defaultValue": "gitlab.com",
+      "description": "公网使用 gitlab.com；私有实例填写域名或主机名，不包含协议和路径。"
+    }
+  ]
+}

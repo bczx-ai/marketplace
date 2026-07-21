@@ -10,8 +10,8 @@ description: 通过腾讯会议官方 tmeet CLI 查询和管理会议、参会�
 ## 准备
 
 1. 运行 `command -v tmeet`。缺失时告知用户执行 `npm install -g @tencentcloud/tmeet`。
-2. 运行 `tmeet auth status` 检查登录。未登录时运行 `tmeet auth login`；无浏览器环境使用 `tmeet auth login --no-browser`，把授权 URL 交给用户完成 OAuth2 设备授权。
-3. 凭据由 CLI 加密保存在本机，不读取或复制其配置。需要隔离时使用官方 `TMEET_CLI_CONFIG_DIR`。
+2. 确认 `TMEET_CLI_CONFIG_DIR` 已由 Brain 注入，并运行 `tmeet auth status` 检查登录。未登录时请用户从插件详情重新连接；Brain 会自动打开授权页面。
+3. 凭据由 CLI 加密保存在 Brain 当前连接的配置目录，不读取或复制其配置。
 4. 执行前用 `tmeet --help` 和子命令 `--help` 确认参数。
 
 ## 工作流
