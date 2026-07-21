@@ -1,0 +1,21 @@
+{
+  "name": "brain-plugin-creator",
+  "version": "1.0.0",
+  "description": "创建、扩展、校验并发布符合 Brain 规范的原生插件。",
+  "author": { "name": "中安信息" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Brain Plugin Creator",
+    "shortDescription": "创建、扩展并校验 Brain 原生插件",
+    "longDescription": "根据 Brain Plugin 包格式生成双宿主 manifest、brain.json 和 Marketplace catalog 条目，并在发布前检查组件引用、版本与安全边界。",
+    "developerName": "中安信息",
+    "category": "开发工具",
+    "capabilities": ["Skills"],
+    "defaultPrompt": [
+      "创建一个新的 Brain 原生插件。",
+      "检查当前 Brain 插件是否符合发布规范。",
+      "为现有 Brain 插件增加一种组件。"
+    ]
+  }
+}

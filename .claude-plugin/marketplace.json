@@ -4,6 +4,10 @@
     {
       "name": "devcube",
       "source": { "source": "local", "path": "./plugins/devcube" }
+    },
+    {
+      "name": "brain-plugin-creator",
+      "source": { "source": "local", "path": "./plugins/brain-plugin-creator" }
     }
   ]
 }
