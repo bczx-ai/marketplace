@@ -1,0 +1,18 @@
+{
+  "name": "github",
+  "version": "1.0.0",
+  "description": "通过 gh 管理 GitHub 仓库、Issue、Pull Request、Actions 和 Release。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "GitHub",
+    "shortDescription": "仓库、Issue、PR、Actions 与 Release",
+    "longDescription": "使用 GitHub 官方 gh CLI，通过浏览器安全登录，在 Brain 中完成仓库浏览、Issue、Pull Request、Actions 和 Release 工作流。",
+    "developerName": "brain",
+    "category": "开发工具",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["查看当前 GitHub 仓库的开放 PR。", "分析最近失败的 GitHub Actions。", "汇总当前里程碑中的 Issue。"]
+  }
+}

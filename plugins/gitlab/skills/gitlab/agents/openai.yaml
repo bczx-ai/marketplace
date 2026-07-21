@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitLab"
+  short_description: "在 Brain 中通过 glab 管理公网或私有 GitLab 项目与协作"
+  default_prompt: "使用 glab 完成当前 GitLab 任务。"

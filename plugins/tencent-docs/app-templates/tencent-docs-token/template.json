@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "key": "tencent-docs-token",
+  "name": "Access Token",
+  "description": "填写按腾讯文档官方 OAuth2 授权码流程取得的 Client ID 和 Access Token。",
+  "auth": {
+    "kind": "api_key",
+    "apiKeyField": "access_token",
+    "header": "Access-Token",
+    "scopes": []
+  },
+  "networkScope": "public",
+  "endpoint": "https://docs.qq.com/openapi/",
+  "fields": [
+    {
+      "key": "client_id",
+      "type": "text",
+      "label": "Client ID",
+      "required": true,
+      "description": "腾讯文档开放平台分配的第三方应用唯一标识。"
+    },
+    {
+      "key": "access_token",
+      "type": "secret",
+      "label": "Access Token",
+      "required": true,
+      "description": "通过腾讯文档 OAuth2 授权码流程取得的用户访问令牌。"
+    }
+  ],
+  "cliConfig": {
+    "env": "TENCENT_DOCS_CONFIG",
+    "format": "json",
+    "content": {
+      "client_id": { "valueFrom": "config.client_id" },
+      "access_token": { "valueFrom": "secret.access_token" }
+    }
+  }
+}

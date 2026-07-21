@@ -1,0 +1,18 @@
+{
+  "name": "excel",
+  "version": "1.0.0",
+  "description": "创建、读取、编辑、计算并验证 Excel 工作簿和表格数据。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Excel",
+    "shortDescription": "工作簿、公式、图表与数据处理",
+    "longDescription": "创建和编辑 Excel 工作簿，完成数据清洗、公式、格式与图表处理，并通过重算和关键结果检查保证交付质量。",
+    "developerName": "brain",
+    "category": "文档处理",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["根据数据生成一份 Excel 分析表。", "清洗并格式化现有工作簿。", "检查工作簿中的公式错误和异常值。"]
+  }
+}

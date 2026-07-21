@@ -1,0 +1,4 @@
+interface:
+  display_name: "企业微信"
+  short_description: "在 Brain 中通过企业微信 CLI 管理消息、通讯录、日程和文档"
+  default_prompt: "使用企业微信 CLI 完成当前任务。"

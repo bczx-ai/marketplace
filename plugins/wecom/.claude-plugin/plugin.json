@@ -1,0 +1,18 @@
+{
+  "name": "wecom",
+  "version": "1.0.0",
+  "description": "通过企业微信官方 CLI 管理消息、通讯录、文档、待办、会议和日程。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "企业微信",
+    "shortDescription": "企业微信消息、通讯录与协作能力",
+    "longDescription": "使用企业微信官方 wecom-cli，在 Brain 中查询通讯录与消息，并管理文档、智能表格、待办、会议和日程。",
+    "developerName": "brain",
+    "category": "办公协作",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["查询企业微信通讯录中的成员。", "创建一份企业微信项目周报文档。", "查看近期企业微信会议和日程。"]
+  }
+}

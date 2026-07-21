@@ -1,0 +1,18 @@
+{
+  "name": "gitlab",
+  "version": "1.0.0",
+  "description": "通过 glab 管理公网或私有 GitLab 项目与研发协作。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "GitLab",
+    "shortDescription": "公网与私有 GitLab 研发协作",
+    "longDescription": "使用 GitLab 官方 glab CLI，自动识别仓库 hostname，操作 GitLab.com 或企业私有 GitLab 的项目、MR、Issue、CI/CD 和 Release。",
+    "developerName": "brain",
+    "category": "开发工具",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["查看当前 GitLab 项目的开放 MR。", "分析最近失败的 GitLab pipeline。", "查询私有 GitLab 项目的 Issue。"]
+  }
+}
