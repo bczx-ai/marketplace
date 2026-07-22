@@ -1,11 +1,11 @@
 ---
 name: gitlab
-description: 通过 GitLab 官方 glab CLI 操作 GitLab.com 或私有 GitLab 实例，包括项目、Issue、Merge Request、CI/CD、Release 和同源 API。用户提到 GitLab、glab、MR、pipeline 或私有 GitLab 地址时使用。
+description: 使用 GitLab 官方 glab CLI 管理项目、Issue、Merge Request、CI/CD pipeline、Release 和同源 API。用户提到 GitLab、glab、MR 审查、Issue 跟进、pipeline 排障、发布或 GitLab API 时使用。
 ---
 
 # GitLab CLI
 
-使用官方 `glab`，同时支持公网 GitLab 和用户指定的私有 GitLab hostname。
+使用官方 `glab` 完成 GitLab 日常开发协作、CI/CD 排障与自动化操作。
 
 ## 准备
 
