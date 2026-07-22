@@ -5,15 +5,22 @@ from __future__ import annotations
 
 import argparse
 import copy
+import gzip
+import hashlib
+import io
 import json
 import os
 import re
 import shutil
+import stat
 import sys
+import tarfile
 import tempfile
+import zipfile
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+from urllib.request import Request, urlopen
 
 
 SLUG = re.compile(r"^[a-z0-9]+(?:[._-][a-z0-9]+)*$")
@@ -26,6 +33,7 @@ SHA256 = re.compile(r"^[a-f0-9]{64}$")
 CLI_ENV = re.compile(r"^[A-Z][A-Z0-9_]{1,63}$")
 CLI_COMMAND = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 MAX_CLI_SIZE = 128 * 1024 * 1024
+MAX_CLI_ARCHIVE_OUTPUT_SIZE = 256 * 1024 * 1024
 CLI_TARGETS = {"darwin-arm64", "darwin-x64", "linux-arm64", "linux-x64", "win32-x64"}
 ARCHIVE_ENTRY = re.compile(r"^[A-Za-z0-9._+-]+(?:/[A-Za-z0-9._+-]+)*$")
 AUTH_KINDS = {"oauth2", "oauth2_pkce", "mcp_oauth", "cli_oauth", "api_key", "none"}
@@ -264,11 +272,24 @@ def named_components(
         expect_file(root, candidates(name), f"components.{key}.{name}", errors)
 
 
-def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str]) -> None:
+def cli_file_matches_command(command: str, target: str, file_name: str) -> bool:
+    if target != "win32-x64":
+        return file_name == command
+    command = command.lower()
+    file_name = file_name.lower()
+    extensions = (".exe", ".cmd", ".bat")
+    if command.endswith(extensions):
+        return file_name == command
+    return file_name in {f"{command}{extension}" for extension in extensions}
+
+
+def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str]) -> set[str]:
     values = components.get("cli", [])
     if not isinstance(values, list):
         errors.append("components.cli 必须是数组")
-        return
+        return set()
+    keys: set[str] = set()
+    commands: set[str] = set()
     for item in values:
         if not isinstance(item, dict):
             errors.append("components.cli 条目必须是对象")
@@ -276,8 +297,16 @@ def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str
         key, command, targets = item.get("key"), item.get("command"), item.get("targets")
         if not isinstance(key, str) or not SLUG.fullmatch(key):
             errors.append("components.cli.key 必须是 slug")
-        if not isinstance(command, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", command):
+        elif key in keys:
+            errors.append(f"components.cli key 重复: {key}")
+        else:
+            keys.add(key)
+        if not isinstance(command, str) or not CLI_COMMAND.fullmatch(command):
             errors.append(f"components.cli.{key}.command 不合法")
+        elif command in commands:
+            errors.append(f"components.cli command 重复: {command}")
+        else:
+            commands.add(command)
         if not isinstance(targets, dict) or not targets:
             errors.append(f"components.cli.{key}.targets 不能为空")
             continue
@@ -295,8 +324,8 @@ def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str
             parsed = urlparse(url if isinstance(url, str) else "")
             if not isinstance(file_name, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", file_name):
                 errors.append(f"components.cli.{key}.{target}.file 不合法")
-            if target == "win32-x64" and isinstance(file_name, str) and not file_name.lower().endswith((".exe", ".cmd", ".bat")):
-                errors.append(f"components.cli.{key}.{target}.file 扩展名不支持")
+            elif isinstance(command, str) and CLI_COMMAND.fullmatch(command) and not cli_file_matches_command(command, target, file_name):
+                errors.append(f"components.cli.{key}.{target}.file 必须能以命令 {command} 从 PATH 调用")
             allowed_schemes = {"https"} if source_scope == "public" else {"http", "https"}
             if parsed.scheme not in allowed_schemes or not parsed.hostname or parsed.username or parsed.password or parsed.fragment:
                 schemes = "HTTPS" if source_scope == "public" else "HTTP 或 HTTPS"
@@ -315,22 +344,27 @@ def validate_cli(components: dict[str, Any], source_scope: str, errors: list[str
                       or not ARCHIVE_ENTRY.fullmatch(archive["entry"])
                       or any(segment in {".", ".."} for segment in archive["entry"].split("/"))):
                     errors.append(f"components.cli.{key}.{target}.archive 格式或入口不合法")
+    return commands
 
 
-def validate_app_template(path: Path, errors: list[str]) -> None:
+def validate_app_template(path: Path, errors: list[str]) -> set[str]:
     try:
         template = load_json(path)
     except PluginError as error:
         errors.append(str(error))
-        return
+        return set()
+    if template.get("schemaVersion") != 1:
+        errors.append(f"{path} schemaVersion 必须为 1")
+    if template.get("key") != path.parent.name:
+        errors.append(f"{path} key 必须与目录名一致")
     auth = template.get("auth")
     if not isinstance(auth, dict) or auth.get("kind") not in AUTH_KINDS:
         errors.append(f"{path} auth.kind 不支持")
-        return
+        return set()
     fields = template.get("fields")
     if not isinstance(fields, list):
         errors.append(f"{path} fields 必须是数组")
-        return
+        return set()
     field_types: dict[str, str] = {}
     for field in fields:
         if not isinstance(field, dict) or not isinstance(field.get("key"), str) or not isinstance(field.get("type"), str):
@@ -364,7 +398,7 @@ def validate_app_template(path: Path, errors: list[str]) -> None:
     if auth["kind"] != "cli_oauth":
         if "configDirEnv" in auth or "commands" in auth:
             errors.append(f"{path} CLI 登录配置只适用于 cli_oauth")
-        return
+        return set()
     env = auth.get("configDirEnv")
     if not isinstance(env, str) or not CLI_ENV.fullmatch(env):
         errors.append(f"{path} cli_oauth.configDirEnv 不合法")
@@ -373,12 +407,14 @@ def validate_app_template(path: Path, errors: list[str]) -> None:
     commands = auth.get("commands")
     if not isinstance(commands, list) or not 1 <= len(commands) <= 4:
         errors.append(f"{path} cli_oauth.commands 必须包含 1-4 条命令")
-        return
+        return set()
+    executables: set[str] = set()
     for index, command in enumerate(commands):
         label = f"{path} cli_oauth.commands[{index}]"
         if not isinstance(command, dict) or not isinstance(command.get("command"), str) or not CLI_COMMAND.fullmatch(command["command"]):
             errors.append(f"{label}.command 不合法")
             continue
+        executables.add(command["command"])
         arguments = command.get("args", [])
         if not isinstance(arguments, list) or len(arguments) > 64:
             errors.append(f"{label}.args 不合法")
@@ -403,6 +439,177 @@ def validate_app_template(path: Path, errors: list[str]) -> None:
         timeout = command.get("timeoutSeconds", 600)
         if type(timeout) is not int or not 10 <= timeout <= 600:
             errors.append(f"{label}.timeoutSeconds 必须是 10-600 的整数")
+    return executables
+
+
+def validate_cli_requirements(components: dict[str, Any], commands: set[str], errors: list[str]) -> None:
+    for component_type in ["agents", "skills", "commands", "apps", "hooks", "rules"]:
+        values = components.get(component_type, [])
+        if not isinstance(values, list):
+            continue
+        for item in values:
+            if not isinstance(item, dict) or not isinstance(item.get("key"), str):
+                continue
+            requires = item.get("requires", [])
+            if not isinstance(requires, list):
+                continue
+            for requirement in requires:
+                if not isinstance(requirement, str) or not requirement.startswith("cli:"):
+                    continue
+                command = requirement.removeprefix("cli:")
+                if not CLI_COMMAND.fullmatch(command) or command not in commands:
+                    errors.append(
+                        f"components.{component_type}.{item['key']}.requires 引用了未声明的 CLI {requirement}"
+                    )
+
+
+def validate_apps(root: Path, components: dict[str, Any], errors: list[str]) -> None:
+    templates = components.get("appTemplates", [])
+    declared_templates: set[str] = set()
+    if isinstance(templates, list):
+        for template in templates:
+            if not isinstance(template, str) or not SLUG.fullmatch(template):
+                continue
+            if template in declared_templates:
+                errors.append(f"components.appTemplates 包含重复条目 {template}")
+            declared_templates.add(template)
+    apps = components.get("apps", [])
+    if not isinstance(apps, list):
+        return
+    used_templates: set[str] = set()
+    for component in apps:
+        if not isinstance(component, dict) or not isinstance(component.get("key"), str):
+            continue
+        key = component["key"]
+        path = root / "apps" / key / "app.json"
+        if not path.is_file():
+            continue
+        try:
+            app = load_json(path)
+        except PluginError as error:
+            errors.append(str(error))
+            continue
+        if app.get("schemaVersion") != 1:
+            errors.append(f"{path} schemaVersion 必须为 1")
+        if app.get("key") != key:
+            errors.append(f"{path} key 必须与 components.apps.{key} 一致")
+        component_templates = component.get("templates", [])
+        app_templates = app.get("templates", [])
+        if (not isinstance(component_templates, list)
+                or not 1 <= len(component_templates) <= 64
+                or not all(isinstance(value, str) and SLUG.fullmatch(value) for value in component_templates)
+                or len(component_templates) != len(set(component_templates))):
+            errors.append(f"components.apps.{key}.templates 必须是 1-64 个不重复 slug")
+            continue
+        if (not isinstance(app_templates, list)
+                or not 1 <= len(app_templates) <= 64
+                or not all(isinstance(value, str) and SLUG.fullmatch(value) for value in app_templates)
+                or len(app_templates) != len(set(app_templates))):
+            errors.append(f"{path} templates 必须是 1-64 个不重复 slug")
+            continue
+        if component_templates != app_templates:
+            errors.append(f"components.apps.{key}.templates 必须与 {path} 一致")
+        used_templates.update(app_templates)
+        for template in app_templates:
+            if template not in declared_templates:
+                errors.append(f"App {key} 引用了未声明的 App Template {template}")
+    for template in sorted(declared_templates - used_templates):
+        errors.append(f"App Template {template} 未被任何 App 引用")
+
+
+def extract_cli_artifact(contents: bytes, artifact: dict[str, Any], label: str) -> bytes:
+    archive = artifact.get("archive")
+    if archive is None:
+        executable = contents
+    elif archive["format"] == "tar.gz":
+        try:
+            expanded = gzip.GzipFile(fileobj=io.BytesIO(contents)).read(MAX_CLI_ARCHIVE_OUTPUT_SIZE + 1)
+            if len(expanded) > MAX_CLI_ARCHIVE_OUTPUT_SIZE:
+                raise PluginError(f"{label} tar.gz 展开内容超过 {MAX_CLI_ARCHIVE_OUTPUT_SIZE} 字节")
+            with tarfile.open(fileobj=io.BytesIO(expanded), mode="r:") as package:
+                matches = [member for member in package.getmembers() if member.name == archive["entry"]]
+                if len(matches) != 1 or not matches[0].isfile():
+                    raise PluginError(f"{label} tar.gz 必须包含唯一普通文件入口 {archive['entry']}")
+                if matches[0].size <= 0 or matches[0].size > MAX_CLI_SIZE:
+                    raise PluginError(f"{label} tar.gz 入口大小不合法")
+                stream = package.extractfile(matches[0])
+                if stream is None:
+                    raise PluginError(f"{label} tar.gz 入口不可读取")
+                executable = stream.read(MAX_CLI_SIZE + 1)
+        except (gzip.BadGzipFile, EOFError, tarfile.TarError) as error:
+            raise PluginError(f"{label} tar.gz 不合法: {error}") from error
+    else:
+        try:
+            with zipfile.ZipFile(io.BytesIO(contents)) as package:
+                matches = [item for item in package.infolist() if item.filename == archive["entry"]]
+                if len(matches) != 1 or matches[0].is_dir():
+                    raise PluginError(f"{label} zip 必须包含唯一普通文件入口 {archive['entry']}")
+                mode = matches[0].external_attr >> 16
+                if stat.S_IFMT(mode) not in {0, stat.S_IFREG}:
+                    raise PluginError(f"{label} zip 入口不是普通文件")
+                if matches[0].file_size <= 0 or matches[0].file_size > MAX_CLI_SIZE:
+                    raise PluginError(f"{label} zip 入口大小不合法")
+                executable = package.read(matches[0])
+        except (zipfile.BadZipFile, NotImplementedError, RuntimeError) as error:
+            raise PluginError(f"{label} zip 不合法: {error}") from error
+    if not 0 < len(executable) <= MAX_CLI_SIZE:
+        raise PluginError(f"{label} 可执行文件大小不合法")
+    return executable
+
+
+def download_cli_artifact(url: str, expected_size: int, expected_sha256: str, timeout: int, label: str) -> bytes:
+    request = Request(url, headers={"User-Agent": "brain-plugin-creator/1.0"})
+    try:
+        with urlopen(request, timeout=timeout) as response:
+            contents = response.read(expected_size + 1)
+    except OSError as error:
+        raise PluginError(f"{label} 下载失败: {error}") from error
+    if len(contents) != expected_size:
+        raise PluginError(f"{label} size 不匹配：期望 {expected_size}，实际 {len(contents)}")
+    digest = hashlib.sha256(contents).hexdigest()
+    if digest != expected_sha256:
+        raise PluginError(f"{label} SHA-256 不匹配：期望 {expected_sha256}，实际 {digest}")
+    return contents
+
+
+def verify_cli_artifacts(
+    plugin_root: Path,
+    source_scope: str,
+    selected_targets: list[str] | None,
+    timeout: int,
+) -> None:
+    root = plugin_root.expanduser().resolve()
+    validate_plugin(root, source_scope=source_scope)
+    brain = load_json(root / "brain.json")
+    definitions = brain.get("components", {}).get("cli", [])
+    if not definitions:
+        raise PluginError("Plugin 未声明 CLI 制品")
+    requested = set(selected_targets or [])
+    cache: dict[tuple[str, int, str], bytes] = {}
+    verified = 0
+    for definition in definitions:
+        targets = definition["targets"]
+        if requested:
+            missing = requested - set(targets)
+            if missing:
+                raise PluginError(f"CLI {definition['command']} 缺少 target: {', '.join(sorted(missing))}")
+            target_names = sorted(requested)
+        else:
+            target_names = sorted(targets)
+        for target in target_names:
+            artifact = targets[target]
+            label = f"CLI {definition['command']} {target}"
+            cache_key = (artifact["url"], artifact["size"], artifact["sha256"])
+            contents = cache.get(cache_key)
+            if contents is None:
+                contents = download_cli_artifact(
+                    artifact["url"], artifact["size"], artifact["sha256"], timeout, label
+                )
+                cache[cache_key] = contents
+            executable = extract_cli_artifact(contents, artifact, label)
+            print(f"制品通过: {definition['command']} {target} ({len(contents)} -> {len(executable)} bytes)")
+            verified += 1
+    print(f"CLI 制品验证通过: {root} ({verified} targets, {len(cache)} downloads)")
 
 
 def validate_catalog(root: Path, name: str, errors: list[str]) -> None:
@@ -476,6 +683,8 @@ def validate_plugin(
 
     if codex is not None and claude is not None and codex.get("name") != claude.get("name"):
         errors.append("Codex 与 Claude Plugin manifest name 不一致")
+    if codex is not None and claude is not None and codex.get("version") != claude.get("version"):
+        errors.append("Codex 与 Claude Plugin manifest version 不一致")
     if manifest.get("name") != name:
         errors.append("Plugin 目录名与 manifest name 不一致")
     if not isinstance(manifest.get("version"), str) or not SEMVER.fullmatch(manifest["version"]):
@@ -504,6 +713,7 @@ def validate_plugin(
     named_components(root, components, "hooks", lambda key: [f"hooks/{key}.json"], errors)
     named_components(root, components, "rules", lambda key: [f"rules/{key}.mdc", f"rules/{key}.md"], errors)
 
+    cli_auth_commands: set[str] = set()
     for key, directory, file_name in [
         ("appTemplates", "app-templates", "template.json"),
     ]:
@@ -518,7 +728,8 @@ def validate_plugin(
                 template_path = root / directory / value / file_name
                 expect_file(root, [f"{directory}/{value}/{file_name}"], f"components.{key}.{value}", errors)
                 if template_path.is_file():
-                    validate_app_template(template_path, errors)
+                    cli_auth_commands.update(validate_app_template(template_path, errors))
+    validate_apps(root, components, errors)
 
     assets = components.get("assets", [])
     if not isinstance(assets, list):
@@ -543,7 +754,18 @@ def validate_plugin(
         errors.append("brain.json 声明 MCP 时 plugin.json 必须声明 mcpServers")
     if components.get("hooks") and not any("hooks" in item for item in manifests):
         errors.append("brain.json 声明 Hook 时 plugin.json 必须声明 hooks")
-    validate_cli(components, source_scope, errors)
+    cli_commands = validate_cli(components, source_scope, errors)
+    validate_cli_requirements(components, cli_commands, errors)
+    for command in sorted(cli_auth_commands - cli_commands):
+        errors.append(f"cli_oauth 登录命令 {command} 未在 brain.json components.cli 中声明")
+    if cli_commands:
+        for label, plugin_manifest in [("Codex", codex), ("Claude", claude)]:
+            if plugin_manifest is None:
+                continue
+            interface = plugin_manifest.get("interface")
+            capabilities = interface.get("capabilities", []) if isinstance(interface, dict) else []
+            if not isinstance(capabilities, list) or "CLI" not in capabilities:
+                errors.append(f"{label} Plugin manifest interface.capabilities 缺少 CLI")
 
     for skill in components.get("skills", []) if isinstance(components.get("skills", []), list) else []:
         if not isinstance(skill, dict) or not isinstance(skill.get("key"), str):
@@ -606,9 +828,91 @@ def self_test() -> None:
                 {"key": "token", "type": "secret", "label": "Token", "required": True},
             ],
         })
+        write_json(plugin_root / "apps/sample/app.json", {
+            "schemaVersion": 1,
+            "key": "sample",
+            "name": "Sample",
+            "description": "Sample App",
+            "scope": "user",
+            "cardinality": "single",
+            "templates": ["sample-login"],
+        })
         brain_path = plugin_root / "brain.json"
         brain = load_json(brain_path)
         brain["components"]["appTemplates"] = ["sample-login"]
+        brain["components"]["apps"] = [{"key": "sample", "templates": ["sample-login"]}]
+        write_json(brain_path, brain)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("cli_oauth 登录命令未声明 CLI 时必须校验失败")
+        brain["components"]["cli"] = [{
+            "key": "sample",
+            "command": "sample",
+            "targets": {"linux-x64": {
+                "file": "sample",
+                "url": "https://objects.example/sample",
+                "size": 1,
+                "sha256": "0" * 64,
+                "archive": {"format": "tar.gz", "entry": "package/bin/sample"},
+            }},
+        }]
+        brain["components"]["skills"][0]["requires"] = ["cli:sample"]
+        write_json(brain_path, brain)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("CLI Plugin manifest 缺少 CLI capability 时必须校验失败")
+        for manifest_path in [
+            plugin_root / ".codex-plugin/plugin.json",
+            plugin_root / ".claude-plugin/plugin.json",
+        ]:
+            plugin_manifest = load_json(manifest_path)
+            plugin_manifest["interface"]["capabilities"].append("CLI")
+            write_json(manifest_path, plugin_manifest)
+        validate_plugin(plugin_root, root)
+        brain["components"]["apps"] = []
+        write_json(brain_path, brain)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("App Template 未被 App 引用时必须校验失败")
+        brain["components"]["apps"] = [{"key": "sample", "templates": ["sample-login"]}]
+        write_json(brain_path, brain)
+        brain["components"]["apps"][0]["templates"] = ["different-login"]
+        write_json(brain_path, brain)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("App 与 brain.json 的 Template 列表不一致时必须校验失败")
+        brain["components"]["apps"][0]["templates"] = ["sample-login"]
+        write_json(brain_path, brain)
+        brain["components"]["skills"][0]["requires"] = ["cli:missing"]
+        write_json(brain_path, brain)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("Skill 悬空 CLI 依赖必须校验失败")
+        brain["components"]["skills"][0]["requires"] = ["cli:sample"]
+        brain["components"]["cli"][0]["targets"]["linux-x64"]["file"] = "different"
+        write_json(brain_path, brain)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("CLI 安装文件名无法从 PATH 调用时必须校验失败")
+        brain["components"]["cli"][0]["targets"]["linux-x64"]["file"] = "sample"
         write_json(brain_path, brain)
         validate_plugin(plugin_root, root)
         template = load_json(app_template)
@@ -659,6 +963,15 @@ def self_test() -> None:
         claude["description"] = "Claude 宿主专用描述。"
         write_json(claude_path, claude)
         validate_plugin(plugin_root, root)
+        claude["version"] = "9.9.9"
+        write_json(claude_path, claude)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("双 manifest version 不一致必须校验失败")
+        claude["version"] = "0.1.0"
         claude["name"] = "different-plugin"
         write_json(claude_path, claude)
         try:
@@ -671,19 +984,6 @@ def self_test() -> None:
         (root / ".claude-plugin/marketplace.json").unlink()
         validate_plugin(plugin_root, root)
         brain = load_json(brain_path)
-        brain["components"]["cli"] = [{
-            "key": "sample",
-            "command": "sample",
-            "targets": {"linux-x64": {
-                "file": "sample",
-                "url": "http://objects.example/sample",
-                "size": 1,
-                "sha256": "0" * 64,
-                "archive": {"format": "tar.gz", "entry": "package/bin/sample"},
-            }},
-        }]
-        write_json(brain_path, brain)
-        validate_plugin(plugin_root, root, "private")
         brain["components"]["cli"][0]["targets"]["linux-x64"]["archive"]["entry"] = "../sample"
         write_json(brain_path, brain)
         try:
@@ -693,6 +993,25 @@ def self_test() -> None:
         else:
             raise PluginError("CLI 归档越界入口必须校验失败")
         brain["components"]["cli"][0]["targets"]["linux-x64"]["archive"]["entry"] = "package/bin/sample"
+        write_json(brain_path, brain)
+        executable = b"sample executable"
+        tar_buffer = io.BytesIO()
+        with tarfile.open(fileobj=tar_buffer, mode="w:gz") as package:
+            member = tarfile.TarInfo("package/bin/sample")
+            member.size = len(executable)
+            package.addfile(member, io.BytesIO(executable))
+        if extract_cli_artifact(tar_buffer.getvalue(), {
+            "archive": {"format": "tar.gz", "entry": "package/bin/sample"}
+        }, "self-test") != executable:
+            raise PluginError("tar.gz CLI 入口提取自测失败")
+        zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(zip_buffer, mode="w", compression=zipfile.ZIP_DEFLATED) as package:
+            package.writestr("bin/sample.exe", executable)
+        if extract_cli_artifact(zip_buffer.getvalue(), {
+            "archive": {"format": "zip", "entry": "bin/sample.exe"}
+        }, "self-test") != executable:
+            raise PluginError("zip CLI 入口提取自测失败")
+        brain["components"]["cli"][0]["targets"]["linux-x64"]["url"] = "http://objects.example/sample"
         write_json(brain_path, brain)
         for scope in ["public", "private"]:
             if scope == "private":
@@ -739,6 +1058,12 @@ def parser() -> argparse.ArgumentParser:
     validate.add_argument("--marketplace-root", type=Path)
     validate.add_argument("--source-scope", choices=["public", "private", "personal"], default="public")
 
+    verify_cli = commands.add_parser("verify-cli", help="下载并验证 Brain Plugin CLI 制品")
+    verify_cli.add_argument("plugin_root", type=Path)
+    verify_cli.add_argument("--source-scope", choices=["public", "private", "personal"], default="public")
+    verify_cli.add_argument("--target", dest="targets", action="append", choices=sorted(CLI_TARGETS))
+    verify_cli.add_argument("--timeout-seconds", type=int, default=60)
+
     commands.add_parser("self-test", help="运行脚手架与校验器自测")
     return result
 
@@ -750,6 +1075,10 @@ def main() -> int:
             create_plugin(args)
         elif args.command == "validate":
             validate_plugin(args.plugin_root, args.marketplace_root, args.source_scope)
+        elif args.command == "verify-cli":
+            if not 1 <= args.timeout_seconds <= 600:
+                raise PluginError("--timeout-seconds 必须是 1-600 的整数")
+            verify_cli_artifacts(args.plugin_root, args.source_scope, args.targets, args.timeout_seconds)
         else:
             self_test()
     except (PluginError, OSError) as error:
