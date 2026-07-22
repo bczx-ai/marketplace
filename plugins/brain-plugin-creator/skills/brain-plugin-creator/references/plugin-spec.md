@@ -33,7 +33,7 @@ hooks/            rules/            mcp/
 
 CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 SHA-256，Brain 只下载当前平台 target。
 
-同时存在双 manifest 时，Codex manifest 优先提供展示 metadata，两个 `name` 必须一致。Brain 还会分别解析并比较两边的 Hook 和 MCP 声明；其它宿主专用 metadata 可以不同。
+同时存在双 manifest 时，Codex manifest 优先提供展示 metadata，两个 `name` 和 `version` 必须一致。Brain 还会分别解析并比较两边的 Hook 和 MCP 声明；其它宿主专用 metadata 可以不同。
 
 ## Plugin manifest
 
@@ -115,6 +115,16 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 
 命令只能是 executable token 和参数数组，不经过 shell。动态参数只能引用非 secret 的 `config.<field>`，secret 只能通过 `stdinFrom` 传入；配置目录环境变量不能覆盖系统、Brain、Agent、Git、Node、动态链接器或 SSH 关键变量。登录命令会进入权限摘要，成功退出后连接才可用。
 
+`cli_oauth` 不是独立的登录脚本声明。登录 executable 必须存在于同包 `components.cli[].command`，使用 CLI 的 Skill 等组件必须声明 `requires: ["cli:<command>"]`。两份宿主 manifest 都要在 `interface.capabilities` 中包含 `CLI`。
+
+需要安装后出现连接入口时必须同时提供 App 和 App Template，并满足：
+
+- `components.apps[].templates` 与对应 `apps/<key>/app.json.templates` 完全一致；
+- 每个 App 引用的 Template 都存在于 `components.appTemplates`；
+- 每个声明的 App Template 至少被一个 App 引用。
+
+安装成功后，Client 会打开尚未配置的 App。无字段且为 `public` network 的 `cli_oauth` 直接开始登录；需要字段或使用 `private` network 时先由用户确认配置，再打开浏览器或进行扫码认证。
+
 不支持 PKCE 的标准授权码服务使用 `auth.kind=oauth2`；支持 PKCE S256 时使用 `oauth2_pkce`。两者都由 Brain 自动打开授权页、校验一次性 state、在 Server 端换取并刷新 Token。少数官方服务需要固定登录参数或 GET Token 请求时，可声明 `authorizationParams` 和 `tokenMethod`：
 
 ```json
@@ -137,7 +147,7 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 
 远程 MCP 必须使用无凭据、无 fragment 的固定 HTTPS URL。静态 headers 不能包含 `Authorization`、Cookie、Host 或其它敏感、hop-by-hop header；需要认证时使用 AppConnection。
 
-CLI target 只支持 `darwin-arm64`、`darwin-x64`、`linux-arm64`、`linux-x64`、`win32-x64`。每个 target 必须包含安装文件名 `file`、无凭据且无 fragment 的 `url`、1-128 MiB 的整数 `size` 和 64 位小写十六进制 `sha256`；Windows 文件扩展名只能是 `.exe`、`.cmd` 或 `.bat`。`public` source 只允许 HTTPS，Controller `private` source 和个人 Marketplace 允许 HTTP 或 HTTPS。
+CLI target 只支持 `darwin-arm64`、`darwin-x64`、`linux-arm64`、`linux-x64`、`win32-x64`。每个 target 必须包含安装文件名 `file`、无凭据且无 fragment 的 `url`、1-128 MiB 的整数 `size` 和 64 位小写十六进制 `sha256`。Unix target 的 `file` 必须与 `command` 相同；Windows target 使用 `<command>.exe`、`.cmd` 或 `.bat`，确保 Agent 能从 `PATH` 直接调用声明的命令。`public` source 只允许 HTTPS，Controller `private` source 和个人 Marketplace 允许 HTTP 或 HTTPS。
 
 官方制品是压缩包时增加 `archive`，只声明一个需要安装的普通文件入口：
 
@@ -197,10 +207,11 @@ Controller 同时读取两份 catalog，并按 Plugin name 合并，Codex 条目
 ## 发布检查
 
 1. 检查仓库说明、工作树和目标分支，避免覆盖他人改动。
-2. 确认 name、目录名、catalog entry 和所有现存 manifest 的 name 一致。
+2. 确认 name、目录名、catalog entry 和所有现存 manifest 的 name 一致，双 manifest 的 version 一致。
 3. 确认 SemVer 已按变更递增，`publisherId` 未变化。
 4. 确认每个 `brain.json.components` 声明都有包内实现，且没有空目录。
 5. 确认所有现存 catalog 都包含条目；Codex catalog 的 category 和 policy 完整，官方 Claude catalog source 一致。
 6. 搜索 credential、私钥和带凭据 URL；按 source scope 检查 CLI URL，并检查 size 上限、SHA-256 与不可变 URL。
-7. 运行 `brain_plugin.py validate`、各 Skill 校验和仓库测试。
-8. review staged diff 后再提交；只有用户明确要求时 push、创建 MR 或 release。
+7. 运行 `brain_plugin.py validate`、各 Skill 校验和仓库测试。CLI Plugin 还要运行 `brain_plugin.py verify-cli <plugin-root> --source-scope <scope> --target <current-target>`；该命令只下载并校验制品，不执行程序。
+8. 通过 Brain 完成真实安装和认证，确认浏览器跳转或扫码流程结束且连接状态有效。然后新建 Codex 与 Claude 会话，在新会话内检查 `command -v <command>`、官方认证状态和一次只读真实调用；不要用认证前已启动的 Agent 进程判断结果。
+9. review staged diff 后再提交；只有用户明确要求时 push、创建 MR 或 release。
