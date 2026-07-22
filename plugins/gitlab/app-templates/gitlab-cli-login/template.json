@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "key": "gitlab-cli-login",
-  "name": "GitLab 网页登录",
-  "description": "填写 GitLab hostname 后自动运行 glab，并打开对应实例的授权页面。",
+  "name": "GitLab glab 登录",
+  "description": "登录 GitLab 账号并为 Agent 配置 glab 命令行访问。",
   "auth": {
     "kind": "cli_oauth",
     "configDirEnv": "GLAB_CONFIG_DIR",
@@ -30,7 +30,7 @@
       "label": "GitLab Hostname",
       "required": true,
       "defaultValue": "gitlab.com",
-      "description": "公网使用 gitlab.com；私有实例填写域名或主机名，不包含协议和路径。"
+      "description": "填写要登录的 GitLab 主机名，例如 gitlab.com 或 gitlab.example.com，不包含协议和路径。"
     }
   ]
 }
