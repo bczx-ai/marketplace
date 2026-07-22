@@ -9,7 +9,7 @@ description: 通过 Notion 官方 ntn CLI 查询、创建和编辑页面、数�
 
 ## 准备
 
-1. 运行 `command -v ntn`。缺失时，macOS/Linux 推荐 `curl -fsSL https://ntn.dev | bash`，跨平台可用 `npm install --global ntn`（Node.js 22+）。
+1. 运行 `command -v ntn`。缺失表示插件 CLI 安装异常，请用户更新或重新安装 Notion 插件，不要执行系统级安装命令。
 2. 确认 `NOTION_HOME` 已由 Brain 注入，并运行 `ntn doctor` 检查认证。未登录时请用户从插件详情重新连接；Brain 会自动打开浏览器授权页。
 3. CLI 默认将 workspace token 保存在系统钥匙串。不要读取或迁移凭据，也不要主动设置 `NOTION_KEYRING=0` 降级为明文存储。
 

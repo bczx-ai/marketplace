@@ -1,6 +1,6 @@
 {
   "name": "feishu",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "通过飞书官方 CLI 管理消息、文档、日历、任务和协作数据。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
@@ -12,7 +12,7 @@
     "developerName": "brain",
     "category": "办公协作",
     "logo": "./assets/icon.svg",
-    "capabilities": ["Skills", "Apps", "App Templates"],
+    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
     "defaultPrompt": ["查看我今天的飞书日程。", "创建一份飞书项目周报。", "查询最近的飞书会议纪要。"]
   }
 }

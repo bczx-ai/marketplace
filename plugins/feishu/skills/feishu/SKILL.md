@@ -9,7 +9,7 @@ description: 通过飞书官方 lark-cli 操作消息、文档、云空间、多
 
 ## 准备
 
-1. 运行 `command -v lark-cli`。缺失时告知用户执行 `npx @larksuite/cli@latest install`。
+1. 运行 `command -v lark-cli`。缺失表示插件 CLI 安装异常，请用户更新或重新安装飞书插件，不要执行系统级安装命令。
 2. 确认 `LARKSUITE_CLI_CONFIG_DIR` 已由 Brain 注入。Brain 连接会通过 stdin 配置 App Secret，不在参数中暴露凭据。
 3. 运行 `lark-cli auth status`。未登录时请用户从插件详情重新连接；Brain 会自动打开 CLI 输出的用户授权页面。
 4. 凭据保存在系统钥匙串和当前连接配置目录；不要读取或复制。
