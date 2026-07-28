@@ -1,0 +1,17 @@
+{
+  "name": "brain-session-artifacts",
+  "version": "1.0.0",
+  "description": "把文件、链接、分支、合并请求和流水线等交付物登记到当前 Brain 会话。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Brain 会话产物",
+    "shortDescription": "登记当前会话生成的交付物",
+    "longDescription": "通过 Brain Workspace CLI 把本次任务生成的文件、链接、分支、合并请求或流水线追加到当前会话的产物列表。",
+    "developerName": "brain",
+    "category": "办公协作",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["把本次任务的交付物登记到当前 Brain 会话。"]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "brain-session-reference",
+  "version": "1.0.0",
+  "description": "按需读取用户在当前消息中引用的 Brain 历史会话。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Brain 会话引用",
+    "shortDescription": "读取消息中引用的 Brain 历史会话",
+    "longDescription": "识别消息中的 brain-session 引用，先分页浏览用户回合，再以满足任务所需的最小详细级别读取历史上下文。",
+    "developerName": "brain",
+    "category": "知识管理",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["读取我在消息中引用的 Brain 历史会话并继续处理。"]
+  }
+}

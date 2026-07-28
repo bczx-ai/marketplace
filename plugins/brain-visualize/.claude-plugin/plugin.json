@@ -1,0 +1,17 @@
+{
+  "name": "brain-visualize",
+  "version": "1.0.0",
+  "description": "在 Brain 消息中生成隔离运行的交互表单、选择、参数探索和轻量模拟。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Brain Visualize",
+    "shortDescription": "生成 Brain 消息内交互界面",
+    "longDescription": "在交互界面明显优于纯文本时输出 Brain visualize HTML 围栏，并把用户确认结果安全填入当前输入框。",
+    "developerName": "brain",
+    "category": "内容创作",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["生成一个适合当前问题的 Brain 交互界面。"]
+  }
+}

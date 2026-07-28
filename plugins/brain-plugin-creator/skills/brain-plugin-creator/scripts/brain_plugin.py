@@ -644,7 +644,10 @@ def validate_catalog(root: Path, name: str, errors: list[str]) -> None:
             policy = entry.get("policy")
             if not isinstance(entry.get("category"), str) or not entry["category"]:
                 errors.append(f"{relative} 的 {name} 缺少 category")
-            if policy != {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}:
+            if policy not in [
+                {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+                {"installation": "REQUIRED", "authentication": "ON_INSTALL"},
+            ]:
                 errors.append(f"{relative} 的 {name} policy 不完整")
     if not found:
         errors.append("Marketplace 未找到 Codex 或 Claude catalog")
@@ -806,6 +809,11 @@ def self_test() -> None:
             without_skill=False,
         )
         plugin_root = create_plugin(args)
+        validate_plugin(plugin_root, root)
+        codex_catalog_path = root / ".agents/plugins/marketplace.json"
+        codex_catalog = load_json(codex_catalog_path)
+        codex_catalog["plugins"][0]["policy"]["installation"] = "REQUIRED"
+        write_json(codex_catalog_path, codex_catalog)
         validate_plugin(plugin_root, root)
         app_template = plugin_root / "app-templates/sample-login/template.json"
         write_json(app_template, {

@@ -1,0 +1,17 @@
+{
+  "name": "brain-kanban",
+  "version": "1.0.0",
+  "description": "读取当前 Brain Workspace 项目的看板事项和详情。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Brain 看板",
+    "shortDescription": "读取当前项目的看板事项",
+    "longDescription": "通过 Brain Workspace CLI 按事项 ID、编号或 Team 父事项编码读取详情，并支持按状态分页查询当前项目事项。",
+    "developerName": "brain",
+    "category": "开发工具",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["读取当前项目的看板事项。"]
+  }
+}

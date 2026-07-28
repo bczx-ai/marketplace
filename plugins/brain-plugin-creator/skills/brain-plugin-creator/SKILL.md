@@ -50,6 +50,7 @@ python3 scripts/brain_plugin.py create <marketplace-root> <plugin-name> \
 - `cli_oauth` 必须引用同包 `components.cli` 中的命令，并同时提供 App 和 App Template。`components.apps[].templates`、`app.json.templates` 与 `components.appTemplates` 双向一致，避免安装后没有连接入口。
 - 不创建空目录，不加入 lifecycle/install script，不为单一实现增加 manager 或 wrapper。
 - 内容发生变化时递增 SemVer；同一版本的内容、CLI URL、size 或 SHA-256 不得改变。
+- Brain 官方系统 Plugin 在 Codex catalog 中使用完整的 `policy`，其中 `installation` 为 `REQUIRED`；普通 Plugin 使用 `AVAILABLE`。两者的 `authentication` 都为 `ON_INSTALL`。
 - 新增权限、网络范围、Hook、MCP、App credential 或 CLI 时，按目标仓库安全规则补充检查和用户确认。
 
 ## 校验

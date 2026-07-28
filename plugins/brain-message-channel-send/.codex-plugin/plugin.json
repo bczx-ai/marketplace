@@ -1,0 +1,17 @@
+{
+  "name": "brain-message-channel-send",
+  "version": "1.0.0",
+  "description": "把当前 Brain 消息渠道任务生成的项目内图片或文件原生发送给发起用户。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Brain 消息渠道附件发送",
+    "shortDescription": "向当前消息渠道用户发送项目内附件",
+    "longDescription": "在飞书或个人微信消息渠道任务中，通过 Brain Workspace CLI 把项目内图片或文件原生回复给当前来源会话。",
+    "developerName": "brain",
+    "category": "办公协作",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["把本次任务生成的附件发送给消息渠道用户。"]
+  }
+}

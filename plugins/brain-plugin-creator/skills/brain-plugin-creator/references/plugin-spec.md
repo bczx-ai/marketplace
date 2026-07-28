@@ -192,6 +192,8 @@ Codex catalog 示例：
 }
 ```
 
+`policy.installation` 支持 `AVAILABLE` 和 `REQUIRED`。普通 Plugin 使用 `AVAILABLE`；只有 Brain 官方系统 Plugin 使用 `REQUIRED`，由 Workspace 自动安装并禁止卸载。`policy.authentication` 固定为 `ON_INSTALL`。
+
 Controller 同时读取两份 catalog，并按 Plugin name 合并，Codex 条目优先；个人市场按配置的格式或 Codex 优先级读取第一份可用 catalog，不合并。官方 Claude catalog 保留同名、同 source 的兼容条目。`source.path` 相对 Marketplace 根目录、以 `./` 开头且不能越界。新条目追加到现有列表，除非仓库明确规定排序。
 
 ## 安全与版本
@@ -210,7 +212,7 @@ Controller 同时读取两份 catalog，并按 Plugin name 合并，Codex 条目
 2. 确认 name、目录名、catalog entry 和所有现存 manifest 的 name 一致，双 manifest 的 version 一致。
 3. 确认 SemVer 已按变更递增，`publisherId` 未变化。
 4. 确认每个 `brain.json.components` 声明都有包内实现，且没有空目录。
-5. 确认所有现存 catalog 都包含条目；Codex catalog 的 category 和 policy 完整，官方 Claude catalog source 一致。
+5. 确认所有现存 catalog 都包含条目；Codex catalog 的 category 和 policy 完整，系统 Plugin 使用 `REQUIRED`，官方 Claude catalog source 一致。
 6. 搜索 credential、私钥和带凭据 URL；按 source scope 检查 CLI URL，并检查 size 上限、SHA-256 与不可变 URL。
 7. 运行 `brain_plugin.py validate`、各 Skill 校验和仓库测试。CLI Plugin 还要运行 `brain_plugin.py verify-cli <plugin-root> --source-scope <scope> --target <current-target>`；该命令只下载并校验制品，不执行程序。
 8. 通过 Brain 完成真实安装和认证，确认浏览器跳转或扫码流程结束且连接状态有效。然后新建 Codex 与 Claude 会话，在新会话内检查 `command -v <command>`、官方认证状态和一次只读真实调用；不要用认证前已启动的 Agent 进程判断结果。
