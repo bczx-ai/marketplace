@@ -1,0 +1,17 @@
+{
+  "name": "brain",
+  "version": "1.0.0",
+  "description": "提供 Brain 内置的消息渠道附件发送、会话产物、会话引用、交互可视化和项目看板能力。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Brain",
+    "shortDescription": "Brain 内置系统能力",
+    "longDescription": "为 Brain 会话提供消息渠道附件发送、会话产物登记、历史会话引用、交互可视化和项目看板读取能力。",
+    "developerName": "brain",
+    "category": "AI Agent",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["使用 Brain 内置能力完成当前任务。"]
+  }
+}

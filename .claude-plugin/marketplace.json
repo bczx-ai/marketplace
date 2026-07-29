@@ -10,24 +10,8 @@
       "source": { "source": "local", "path": "./plugins/brain-plugin-creator" }
     },
     {
-      "name": "brain-message-channel-send",
-      "source": { "source": "local", "path": "./plugins/brain-message-channel-send" }
-    },
-    {
-      "name": "brain-session-artifacts",
-      "source": { "source": "local", "path": "./plugins/brain-session-artifacts" }
-    },
-    {
-      "name": "brain-session-reference",
-      "source": { "source": "local", "path": "./plugins/brain-session-reference" }
-    },
-    {
-      "name": "brain-visualize",
-      "source": { "source": "local", "path": "./plugins/brain-visualize" }
-    },
-    {
-      "name": "brain-kanban",
-      "source": { "source": "local", "path": "./plugins/brain-kanban" }
+      "name": "brain",
+      "source": { "source": "local", "path": "./plugins/brain" }
     },
     {
       "name": "wecom",
