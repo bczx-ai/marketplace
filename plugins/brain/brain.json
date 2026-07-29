@@ -2,12 +2,13 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "首个聚合版本，统一提供五项 Brain 系统 Skill。",
+  "releaseNotes": "合并 Brain Plugin 创建、扩展和发布校验能力。",
   "compatibility": { "brain": ">=1.0.17" },
   "components": {
     "skills": [
       { "key": "brain-kanban" },
       { "key": "brain-message-channel-send" },
+      { "key": "brain-plugin-creator" },
       { "key": "brain-session-artifacts" },
       { "key": "brain-session-reference" },
       { "key": "brain-visualize" }

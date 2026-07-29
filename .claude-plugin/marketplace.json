@@ -6,10 +6,6 @@
       "source": { "source": "local", "path": "./plugins/devcube" }
     },
     {
-      "name": "brain-plugin-creator",
-      "source": { "source": "local", "path": "./plugins/brain-plugin-creator" }
-    },
-    {
       "name": "brain",
       "source": { "source": "local", "path": "./plugins/brain" }
     },

@@ -9,12 +9,6 @@
       "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
     },
     {
-      "name": "brain-plugin-creator",
-      "source": { "source": "local", "path": "./plugins/brain-plugin-creator" },
-      "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
-    },
-    {
       "name": "brain",
       "source": { "source": "local", "path": "./plugins/brain" },
       "category": "AI Agent",
