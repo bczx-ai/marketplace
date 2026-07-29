@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "key": "gitlab-cli-login",
-  "name": "GitLab glab 登录",
-  "description": "填写 GitLab 地址后登录账号，并为 Agent 配置 glab 命令行访问。",
+  "name": "GitLab Token 登录",
+  "description": "填写 GitLab 地址和 Personal Access Token，为 Agent 配置 glab 命令行访问。",
   "auth": {
     "kind": "cli_oauth",
     "configDirEnv": "GLAB_CONFIG_DIR",
@@ -14,11 +14,22 @@
           "login",
           "--hostname",
           { "valueFrom": "config.hostname" },
-          "--web",
+          "--stdin",
           "--git-protocol",
           "https"
         ],
-        "timeoutSeconds": 600
+        "stdinFrom": "secret.access_token",
+        "timeoutSeconds": 120
+      },
+      {
+        "command": "glab",
+        "args": [
+          "auth",
+          "status",
+          "--hostname",
+          { "valueFrom": "config.hostname" }
+        ],
+        "timeoutSeconds": 120
       }
     ]
   },
@@ -31,6 +42,13 @@
       "required": true,
       "defaultValue": "https://gitlab.com/",
       "description": "支持完整 HTTP(S) URL 或 hostname，例如 https://gitlab.com/ 或 codebase.example.com。"
+    },
+    {
+      "key": "access_token",
+      "type": "secret",
+      "label": "Personal Access Token",
+      "required": true,
+      "description": "请在 GitLab 创建至少具有 api 权限的 Token；Brain 仅通过 stdin 传给 glab。"
     }
   ]
 }

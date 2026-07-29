@@ -11,7 +11,7 @@ description: 使用 GitLab 官方 glab CLI 管理项目、Issue、Merge Request�
 
 1. 运行 `command -v glab`。缺失表示插件 CLI 安装异常，请用户更新或重新安装 GitLab 插件，不要执行系统级安装命令。
 2. 从 `GLAB_CONFIG_DIR` 对应的 Brain 连接和仓库 remote 确定 hostname，不假定一定是 `gitlab.com`。
-3. 运行 `glab auth status --hostname <host>`。未登录或目标实例不一致时，请用户从插件详情为对应 hostname 建立或重新建立连接；Brain 会自动打开授权页面。不要让用户在聊天中粘贴 Token。
+3. 运行 `glab auth status --hostname <host>`。未登录或目标实例不一致时，请用户从插件详情为对应 hostname 建立或重新建立连接，并在连接表单中填写 Personal Access Token。不要让用户在聊天中粘贴 Token。
 4. 在仓库外执行时，为命令提供 `--repo <host>/<owner>/<repo>` 或先确认目标项目。
 
 ## 操作
