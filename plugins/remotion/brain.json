@@ -18,6 +18,7 @@
       { "key": "remotion-render" },
       { "key": "remotion-saas" },
       { "key": "remotion-upgrade" }
-    ]
+    ],
+    "assets": ["icon.png"]
   }
 }

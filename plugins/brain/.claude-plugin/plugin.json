@@ -1,6 +1,6 @@
 {
   "name": "brain",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "提供 Brain 内置系统能力及 Plugin、Skill 开发工具。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
@@ -11,6 +11,7 @@
     "longDescription": "提供故障诊断与脱敏报告、消息渠道附件发送、会话产物登记、历史会话引用、交互可视化、项目看板读取，以及 Plugin 和 Skill 创建校验能力。",
     "developerName": "brain",
     "category": "AI Agent",
+    "logo": "./assets/icon.png",
     "capabilities": ["Skills"],
     "defaultPrompt": [
       "使用 Brain 内置能力完成当前任务。",

@@ -1,6 +1,6 @@
 {
   "name": "webapp-testing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "使用 Playwright 测试本地 Web 应用，覆盖页面交互、界面调试、截图和浏览器日志。",
   "author": { "name": "Anthropic", "url": "https://www.anthropic.com" },
   "homepage": "https://github.com/anthropics/skills/tree/main/skills/webapp-testing",
@@ -13,6 +13,7 @@
     "longDescription": "使用 Playwright 验证本地 Web 应用功能、调试界面行为、检查渲染后的 DOM、采集截图与浏览器日志，并管理一个或多个开发服务器。",
     "developerName": "Anthropic",
     "category": "开发工具",
+    "logo": "./assets/icon.png",
     "capabilities": ["Skills"],
     "defaultPrompt": [
       "测试这个本地 Web 应用的核心流程。",

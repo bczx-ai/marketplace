@@ -15,6 +15,7 @@
       { "key": "cavecrew" },
       { "key": "caveman" },
       { "key": "caveman-compress" }
-    ]
+    ],
+    "assets": ["icon.png"]
   }
 }

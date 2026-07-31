@@ -1,6 +1,6 @@
 {
   "name": "caveman",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "提供精简表达、上下文压缩和轻量子代理协作能力，同时保持技术准确性。",
   "author": { "name": "Julius Brussee", "url": "https://github.com/JuliusBrussee" },
   "homepage": "https://github.com/JuliusBrussee/caveman",
@@ -13,6 +13,7 @@
     "longDescription": "在保留技术准确性的同时压缩表达，支持压缩自然语言记忆文件，并提供调查、实现和审查三类精简输出代理。",
     "developerName": "Julius Brussee",
     "category": "AI Agent",
+    "logo": "./assets/icon.png",
     "capabilities": ["Skills", "Agents"],
     "defaultPrompt": [
       "使用 Caveman 模式精简回答。",
