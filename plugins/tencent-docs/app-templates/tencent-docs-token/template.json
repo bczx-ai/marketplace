@@ -31,7 +31,7 @@
       "type": "secret",
       "label": "Client Secret",
       "required": true,
-      "description": "腾讯文档开放平台分配的应用密钥，仅在 Brain Server 换取和刷新 Token 时使用。"
+      "description": "腾讯文档开放平台分配的应用密钥，仅由 Server 用于换取和刷新 Token。"
     }
   ],
   "cliConfig": {

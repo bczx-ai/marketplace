@@ -19,6 +19,7 @@
           "https"
         ],
         "stdinFrom": "secret.access_token",
+        "captureAuthorizationUrl": false,
         "timeoutSeconds": 120
       },
       {
@@ -29,6 +30,7 @@
           "--hostname",
           { "valueFrom": "config.hostname" }
         ],
+        "captureAuthorizationUrl": false,
         "timeoutSeconds": 120
       }
     ]

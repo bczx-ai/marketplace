@@ -57,7 +57,7 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 }
 ```
 
-仅在对应配置真实存在时声明 `skills`、`hooks`、`mcpServers` 或其它路径。图标使用 `interface.logo`，回退 `composerIcon`；第三方插件只能使用包内不超过 1 MiB 的 PNG、JPEG 或 WebP，经过审查的 Brain 内置插件可使用 SVG。
+仅在对应配置真实存在时声明 `skills`、`hooks`、`mcpServers` 或其它路径。图标优先自动发现唯一的 `assets/icon.svg|jpg|png|webp`，再回退到 `interface.logo` 或 `composerIcon`；图标必须是包内不超过 5 MiB 且可读取的普通文件，不限制像素宽高。
 
 ## Brain manifest
 
@@ -107,13 +107,14 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
       "command": "example",
       "args": ["auth", "login", { "valueFrom": "config.hostname" }],
       "stdinFrom": "secret.app_secret",
+      "captureAuthorizationUrl": true,
       "timeoutSeconds": 600
     }]
   }
 }
 ```
 
-命令只能是 executable token 和参数数组，不经过 shell。动态参数只能引用非 secret 的 `config.<field>`，secret 只能通过 `stdinFrom` 传入；配置目录环境变量不能覆盖系统、Brain、Agent、Git、Node、动态链接器或 SSH 关键变量。登录命令会进入权限摘要，成功退出后连接才可用。
+命令只能是 executable token 和参数数组，不经过 shell。动态参数只能引用非 secret 的 `config.<field>`，secret 只能通过 `stdinFrom` 传入；配置目录环境变量不能覆盖系统、Brain、Agent、Git、Node、动态链接器或 SSH 关键变量。`captureAuthorizationUrl` 默认开启；PAT 登录、状态检查和其它不需要浏览器的命令必须关闭，避免把诊断或遥测 URL 当成授权页。登录命令会进入权限摘要，成功退出后连接才可用。
 
 `cli_oauth` 不是独立的登录脚本声明。登录 executable 必须存在于同包 `components.cli[].command`，使用 CLI 的 Skill 等组件必须声明 `requires: ["cli:<command>"]`。两份宿主 manifest 都要在 `interface.capabilities` 中包含 `CLI`。
 
@@ -123,7 +124,7 @@ CLI 二进制不进入 Git 包。`brain.json` 声明对象存储 URL、size 和 
 - 每个 App 引用的 Template 都存在于 `components.appTemplates`；
 - 每个声明的 App Template 至少被一个 App 引用。
 
-安装成功后，Client 会打开尚未配置的 App。无字段且为 `public` network 的 `cli_oauth` 直接开始登录；需要字段或使用 `private` network 时先由用户确认配置，再打开浏览器或进行扫码认证。
+安装成功后，Client 会打开尚未配置的 App。无字段的 `cli_oauth` 直接开始登录；需要字段时先由用户保存配置，再打开浏览器或进行扫码认证。`private` network 不额外请求确认，Agent 空间仍拒绝 `loopback` App。
 
 不支持 PKCE 的标准授权码服务使用 `auth.kind=oauth2`；支持 PKCE S256 时使用 `oauth2_pkce`。两者都由 Brain 自动打开授权页、校验一次性 state、在 Server 端换取并刷新 Token。少数官方服务需要固定登录参数或 GET Token 请求时，可声明 `authorizationParams` 和 `tokenMethod`：
 
@@ -192,13 +193,13 @@ Codex catalog 示例：
 }
 ```
 
-`policy.installation` 支持 `AVAILABLE` 和 `REQUIRED`。普通 Plugin 使用 `AVAILABLE`；只有 Brain 官方系统 Plugin 使用 `REQUIRED`，由 Workspace 自动安装并禁止卸载。`policy.authentication` 固定为 `ON_INSTALL`。
+`policy.installation` 支持 `AVAILABLE` 和 `REQUIRED`，`policy.authentication` 固定为 `ON_INSTALL`。普通 Plugin 使用 `AVAILABLE`；只有默认官方来源的 canonical key `brain-official:brain` 会被 Workspace 归一为系统必装并禁止卸载。其它条目即使写入 `REQUIRED` 也不会获得系统权限，发布校验应直接拒绝这种误导配置。
 
 Controller 同时读取两份 catalog，并按 Plugin name 合并，Codex 条目优先；个人市场按配置的格式或 Codex 优先级读取第一份可用 catalog，不合并。官方 Claude catalog 保留同名、同 source 的兼容条目。`source.path` 相对 Marketplace 根目录、以 `./` 开头且不能越界。新条目追加到现有列表，除非仓库明确规定排序。
 
 ## 安全与版本
 
-- 禁止 symlink、hardlink、特殊文件、绝对路径、`..` 和越出 Plugin 根目录的引用。
+- 禁止 symlink、hardlink、特殊文件、空目录、绝对路径、`..` 和越出 Plugin 根目录的引用。
 - manifest 和组件文件不得包含 access token、private key、用户 credential 或带凭据 URL。
 - Hook 安装时不执行；新增或改变 Hook、MCP、CLI、network scope、OAuth scope 都属于权限变化。
 - stdio MCP 使用 executable token 与参数数组，不使用 shell command string。

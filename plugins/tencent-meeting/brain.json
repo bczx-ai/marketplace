@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "随插件安装腾讯会议官方 CLI 1.0.12，支持 Linux、macOS 和 Windows，安装后自动进入网页登录流程。",
+  "releaseNotes": "优化 Skill 与连接配置文案。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [{ "key": "tencent-meeting", "requires": ["cli:tmeet"] }],

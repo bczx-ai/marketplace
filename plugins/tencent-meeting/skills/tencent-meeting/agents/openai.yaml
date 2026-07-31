@@ -1,4 +1,4 @@
 interface:
   display_name: "腾讯会议"
-  short_description: "在 Brain 中通过腾讯会议 CLI 管理会议、录制、参会和纪要"
+  short_description: "通过腾讯会议 CLI 管理会议、录制、参会和纪要"
   default_prompt: "使用腾讯会议 CLI 完成当前任务。"

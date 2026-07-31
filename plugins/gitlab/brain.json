@@ -2,8 +2,8 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "GitLab 连接改用 Personal Access Token 经 stdin 登录，兼容 GitLab.com 和自建实例，并在保存前验证认证状态。",
-  "compatibility": { "brain": ">=1.0.16" },
+  "releaseNotes": "修复 Personal Access Token 登录和状态检查误打开 CLI 遥测地址的问题。",
+  "compatibility": { "brain": ">=1.0.20" },
   "components": {
     "skills": [{ "key": "gitlab", "requires": ["cli:glab"] }],
     "apps": [{ "key": "gitlab", "templates": ["gitlab-cli-login"] }],

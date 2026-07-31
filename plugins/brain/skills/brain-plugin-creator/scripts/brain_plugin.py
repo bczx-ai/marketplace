@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create and validate Brain-native marketplace plugins with the Python stdlib."""
+"""使用 Python 标准库创建并校验 Brain 原生 Marketplace Plugin。"""
 
 from __future__ import annotations
 
@@ -34,7 +34,9 @@ CLI_ENV = re.compile(r"^[A-Z][A-Z0-9_]{1,63}$")
 CLI_COMMAND = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 MAX_CLI_SIZE = 128 * 1024 * 1024
 MAX_CLI_ARCHIVE_OUTPUT_SIZE = 256 * 1024 * 1024
+MAX_ICON_SIZE = 5 * 1024 * 1024
 CLI_TARGETS = {"darwin-arm64", "darwin-x64", "linux-arm64", "linux-x64", "win32-x64"}
+ICON_SUFFIXES = {".svg", ".jpg", ".png", ".webp"}
 ARCHIVE_ENTRY = re.compile(r"^[A-Za-z0-9._+-]+(?:/[A-Za-z0-9._+-]+)*$")
 AUTH_KINDS = {"oauth2", "oauth2_pkce", "mcp_oauth", "cli_oauth", "api_key", "none"}
 OAUTH_PARAMETERS = re.compile(r"^[A-Za-z][A-Za-z0-9._~-]{0,127}$")
@@ -122,6 +124,53 @@ def safe_relative(value: str, label: str) -> Path:
     if normalized.startswith("/") or ".." in normalized.split("/"):
         raise PluginError(f"{label} 必须是包内相对路径: {value}")
     return Path(normalized.removeprefix("./"))
+
+
+def validate_icon(root: Path, manifest: dict[str, Any], errors: list[str]) -> None:
+    assets = root / "assets"
+    icon_candidates: list[Path] = []
+    if assets.is_dir():
+        for path in assets.iterdir():
+            if not path.name.lower().startswith("icon."):
+                continue
+            if path.suffix.lower() not in ICON_SUFFIXES:
+                errors.append(f"assets/icon 图标格式不支持: {path.name}")
+                continue
+            icon_candidates.append(path)
+    if len(icon_candidates) > 1:
+        errors.append("assets 目录只能包含一个 icon 图标")
+        return
+
+    icon = icon_candidates[0] if icon_candidates else None
+    interface = manifest.get("interface")
+    fallback = None
+    if isinstance(interface, dict):
+        fallback = interface.get("logo") or interface.get("composerIcon")
+    if icon is None and isinstance(fallback, str) and fallback.strip():
+        if not fallback.startswith("./"):
+            errors.append("Plugin 图标路径必须以 ./ 开头")
+            return
+        try:
+            icon = root / safe_relative(fallback, "Plugin 图标")
+        except PluginError as error:
+            errors.append(str(error))
+            return
+        if not icon.exists():
+            errors.append(f"Plugin 图标不存在: {fallback}")
+            return
+    if icon is None:
+        return
+
+    try:
+        info = icon.lstat()
+    except OSError as error:
+        errors.append(f"读取 Plugin 图标失败: {error}")
+        return
+    if not stat.S_ISREG(info.st_mode):
+        errors.append("Plugin 图标必须是普通文件")
+        return
+    if not 0 < info.st_size <= MAX_ICON_SIZE:
+        errors.append("Plugin 图标必须是 1 字节到 5 MiB")
 
 
 def catalog_entry(name: str, category: str, claude: bool = False) -> dict[str, Any]:
@@ -357,6 +406,8 @@ def validate_app_template(path: Path, errors: list[str]) -> set[str]:
         errors.append(f"{path} schemaVersion 必须为 1")
     if template.get("key") != path.parent.name:
         errors.append(f"{path} key 必须与目录名一致")
+    if template.get("networkScope") not in {"public", "private", "loopback"}:
+        errors.append(f"{path} networkScope 不支持")
     auth = template.get("auth")
     if not isinstance(auth, dict) or auth.get("kind") not in AUTH_KINDS:
         errors.append(f"{path} auth.kind 不支持")
@@ -436,6 +487,8 @@ def validate_app_template(path: Path, errors: list[str]) -> set[str]:
             key = stdin_from.removeprefix("secret.") if isinstance(stdin_from, str) else ""
             if not isinstance(stdin_from, str) or not stdin_from.startswith("secret.") or field_types.get(key) != "secret":
                 errors.append(f"{label}.stdinFrom 必须引用 secret 字段")
+        if type(command.get("captureAuthorizationUrl", True)) is not bool:
+            errors.append(f"{label}.captureAuthorizationUrl 必须是布尔值")
         timeout = command.get("timeoutSeconds", 600)
         if type(timeout) is not int or not 10 <= timeout <= 600:
             errors.append(f"{label}.timeoutSeconds 必须是 10-600 的整数")
@@ -649,6 +702,9 @@ def validate_catalog(root: Path, name: str, errors: list[str]) -> None:
                 {"installation": "REQUIRED", "authentication": "ON_INSTALL"},
             ]:
                 errors.append(f"{relative} 的 {name} policy 不完整")
+            elif (policy.get("installation") == "REQUIRED"
+                  and not (catalog.get("name") == "brain-official" and name == "brain")):
+                errors.append(f"{relative} 只有 brain-official:brain 可以声明 REQUIRED")
     if not found:
         errors.append("Marketplace 未找到 Codex 或 Claude catalog")
 
@@ -668,8 +724,20 @@ def validate_plugin(
         errors.append(f"Plugin 目录名必须是 slug: {name}")
 
     for path in root.rglob("*"):
-        if path.is_symlink():
-            errors.append(f"Plugin 包不能包含 symlink: {path.relative_to(root)}")
+        relative = path.relative_to(root)
+        try:
+            info = path.lstat()
+        except OSError as error:
+            errors.append(f"无法检查 Plugin 路径 {relative}: {error}")
+            continue
+        if stat.S_ISLNK(info.st_mode):
+            errors.append(f"Plugin 包不能包含 symlink: {relative}")
+        elif not (stat.S_ISREG(info.st_mode) or stat.S_ISDIR(info.st_mode)):
+            errors.append(f"Plugin 包只能包含普通文件和目录: {relative}")
+        elif stat.S_ISREG(info.st_mode) and info.st_nlink > 1:
+            errors.append(f"Plugin 包不能包含 hardlink: {relative}")
+        elif stat.S_ISDIR(info.st_mode) and not any(path.iterdir()):
+            errors.append(f"Plugin 包不能包含空目录: {relative}")
     for path in root.iterdir() if root.is_dir() else []:
         if path.name not in ALLOWED_ROOTS:
             errors.append(f"Plugin 根目录包含不支持的内容: {path.name}")
@@ -694,6 +762,7 @@ def validate_plugin(
         errors.append("Brain 原生 Plugin version 必须是 SemVer")
     if not isinstance(manifest.get("description"), str) or not manifest["description"].strip():
         errors.append("Plugin manifest 缺少 description")
+    validate_icon(root, manifest, errors)
 
     if set(brain) - {"$schema", "schemaVersion", "publisherId", "releaseNotes", "compatibility", "components"}:
         errors.append("brain.json 包含未知顶层字段")
@@ -760,7 +829,7 @@ def validate_plugin(
     cli_commands = validate_cli(components, source_scope, errors)
     validate_cli_requirements(components, cli_commands, errors)
     for command in sorted(cli_auth_commands - cli_commands):
-        errors.append(f"cli_oauth 登录命令 {command} 未在 brain.json components.cli 中声明")
+        errors.append(f"brain.json components.cli 未声明 cli_oauth 登录命令 {command}")
     if cli_commands:
         for label, plugin_manifest in [("Codex", codex), ("Claude", claude)]:
             if plugin_manifest is None:
@@ -810,9 +879,55 @@ def self_test() -> None:
         )
         plugin_root = create_plugin(args)
         validate_plugin(plugin_root, root)
+        assets_root = plugin_root / "assets"
+        assets_root.mkdir()
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("空目录必须校验失败")
+        icon_path = assets_root / "icon.svg"
+        icon_path.write_text('<svg xmlns="http://www.w3.org/2000/svg"></svg>', encoding="utf-8")
+        validate_plugin(plugin_root, root)
+        extra_icon = assets_root / "icon.png"
+        extra_icon.write_bytes(b"x")
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("多个 Plugin 图标必须校验失败")
+        extra_icon.unlink()
+        icon_path.write_bytes(b"")
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("空 Plugin 图标必须校验失败")
+        icon_path.unlink()
+        hardlink = assets_root / "hardlink.md"
+        os.link(plugin_root / "skills/sample-plugin/SKILL.md", hardlink)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("hardlink 必须校验失败")
+        hardlink.unlink()
+        assets_root.rmdir()
         codex_catalog_path = root / ".agents/plugins/marketplace.json"
         codex_catalog = load_json(codex_catalog_path)
         codex_catalog["plugins"][0]["policy"]["installation"] = "REQUIRED"
+        write_json(codex_catalog_path, codex_catalog)
+        try:
+            validate_plugin(plugin_root, root)
+        except PluginError:
+            pass
+        else:
+            raise PluginError("普通 Plugin 声明 REQUIRED 必须校验失败")
+        codex_catalog["plugins"][0]["policy"]["installation"] = "AVAILABLE"
         write_json(codex_catalog_path, codex_catalog)
         validate_plugin(plugin_root, root)
         app_template = plugin_root / "app-templates/sample-login/template.json"
@@ -827,6 +942,7 @@ def self_test() -> None:
                     "command": "sample",
                     "args": ["auth", {"valueFrom": "config.hostname"}],
                     "stdinFrom": "secret.token",
+                    "captureAuthorizationUrl": False,
                     "timeoutSeconds": 600,
                 }],
             },
@@ -882,6 +998,9 @@ def self_test() -> None:
             plugin_manifest = load_json(manifest_path)
             plugin_manifest["interface"]["capabilities"].append("CLI")
             write_json(manifest_path, plugin_manifest)
+        template = load_json(app_template)
+        template["networkScope"] = "loopback"
+        write_json(app_template, template)
         validate_plugin(plugin_root, root)
         brain["components"]["apps"] = []
         write_json(brain_path, brain)
@@ -989,6 +1108,7 @@ def self_test() -> None:
         else:
             raise PluginError("双 manifest name 不一致必须校验失败")
         claude_path.unlink()
+        claude_path.parent.rmdir()
         (root / ".claude-plugin/marketplace.json").unlink()
         validate_plugin(plugin_root, root)
         brain = load_json(brain_path)

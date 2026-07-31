@@ -14,7 +14,7 @@ from pathlib import Path
 def load_config() -> dict:
     path = os.environ.get("TENCENT_DOCS_CONFIG")
     if not path:
-        raise SystemExit("TENCENT_DOCS_CONFIG is not set; configure the Tencent Docs app in Brain")
+        raise SystemExit("TENCENT_DOCS_CONFIG 未设置，请先配置腾讯文档应用连接")
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     if not data.get("client_id") or not data.get("access_token") or not data.get("open_id"):
         raise SystemExit("Tencent Docs connection is missing client_id, access_token, or open_id")

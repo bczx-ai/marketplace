@@ -1,0 +1,7 @@
+interface:
+  display_name: "Brain 诊断"
+  short_description: "分析 Brain 运行日志，定位根因并生成可交付的脱敏诊断报告"
+  default_prompt: "使用 $brain-diagnose 分析我刚才遇到的 Brain 错误，定位根因并生成诊断报告。"
+
+policy:
+  allow_implicit_invocation: false
