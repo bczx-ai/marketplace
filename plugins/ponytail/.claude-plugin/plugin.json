@@ -1,6 +1,6 @@
 {
   "name": "ponytail",
-  "version": "4.8.4",
+  "version": "4.8.5",
   "description": "以 YAGNI、标准库优先和最小正确实现指导开发、审查与技术债治理。",
   "author": { "name": "Dietrich Gebert", "url": "https://github.com/DietrichGebert" },
   "homepage": "https://github.com/DietrichGebert/ponytail",

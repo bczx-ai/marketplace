@@ -22,6 +22,6 @@
       { "key": "writing-plans" },
       { "key": "writing-skills" }
     ],
-    "assets": ["app-icon.png"]
+    "assets": ["detail.html", "app-icon.png"]
   }
 }

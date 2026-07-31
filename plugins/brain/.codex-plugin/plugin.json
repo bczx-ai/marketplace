@@ -1,6 +1,6 @@
 {
   "name": "brain",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "提供 Brain 内置系统能力及 Plugin、Skill 开发工具。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",

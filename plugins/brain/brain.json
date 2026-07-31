@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "补充 Brain 插件图标。",
+  "releaseNotes": "补充功能、工作方式和示例请求详情页。",
   "compatibility": { "brain": ">=1.0.17" },
   "components": {
     "skills": [
@@ -15,6 +15,6 @@
       { "key": "brain-skill-creator" },
       { "key": "brain-visualize" }
     ],
-    "assets": ["icon.png"]
+    "assets": ["detail.html", "icon.png"]
   }
 }

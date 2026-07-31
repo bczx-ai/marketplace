@@ -19,6 +19,6 @@
       { "key": "remotion-saas" },
       { "key": "remotion-upgrade" }
     ],
-    "assets": ["icon.png"]
+    "assets": ["detail.html", "icon.png"]
   }
 }

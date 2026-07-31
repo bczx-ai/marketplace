@@ -1,6 +1,6 @@
 {
   "name": "hyperframes",
-  "version": "0.7.85",
+  "version": "0.7.86",
   "description": "使用 HTML、CSS 和动画运行时创作、预览、检查并渲染视频与动态视觉内容。",
   "author": { "name": "HeyGen", "url": "https://hyperframes.heygen.com" },
   "homepage": "https://hyperframes.heygen.com",

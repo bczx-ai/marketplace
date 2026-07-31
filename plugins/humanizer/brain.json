@@ -6,6 +6,7 @@
     "brain": ">=1.0.16"
   },
   "components": {
-    "skills": [{ "key": "humanizer" }]
+    "skills": [{ "key": "humanizer" }],
+    "assets": ["detail.html"]
   }
 }

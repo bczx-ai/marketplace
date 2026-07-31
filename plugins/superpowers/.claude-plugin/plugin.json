@@ -1,6 +1,6 @@
 {
   "name": "superpowers",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "提供头脑风暴、计划、测试驱动开发、系统调试、代码审查和交付工作流。",
   "author": { "name": "Jesse Vincent", "url": "https://github.com/obra" },
   "homepage": "https://github.com/obra/superpowers",

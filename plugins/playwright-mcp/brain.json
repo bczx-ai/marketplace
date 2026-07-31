@@ -7,6 +7,6 @@
   },
   "components": {
     "mcp": ["playwright"],
-    "assets": ["icon.png"]
+    "assets": ["detail.html", "icon.png"]
   }
 }

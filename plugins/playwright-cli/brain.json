@@ -7,6 +7,6 @@
   },
   "components": {
     "skills": [{ "key": "playwright-cli" }],
-    "assets": ["icon.png"]
+    "assets": ["detail.html", "icon.png"]
   }
 }

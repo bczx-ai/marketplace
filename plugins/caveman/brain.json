@@ -16,6 +16,6 @@
       { "key": "caveman" },
       { "key": "caveman-compress" }
     ],
-    "assets": ["icon.png"]
+    "assets": ["detail.html", "icon.png"]
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "caveman",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "提供精简表达、上下文压缩和轻量子代理协作能力，同时保持技术准确性。",
   "author": { "name": "Julius Brussee", "url": "https://github.com/JuliusBrussee" },
   "homepage": "https://github.com/JuliusBrussee/caveman",

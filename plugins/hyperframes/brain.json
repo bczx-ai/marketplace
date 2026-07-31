@@ -27,6 +27,6 @@
       { "key": "slideshow" },
       { "key": "talking-head-recut" }
     ],
-    "assets": ["icon.png", "logo.png"]
+    "assets": ["detail.html", "icon.png", "logo.png"]
   }
 }

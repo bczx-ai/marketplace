@@ -23,6 +23,6 @@
       { "key": "ponytail-review" }
     ],
     "hooks": [{ "key": "claude-codex-hooks" }],
-    "assets": ["logo.png"]
+    "assets": ["detail.html", "logo.png"]
   }
 }

@@ -7,6 +7,6 @@
   },
   "components": {
     "skills": [{ "key": "frontend-design" }],
-    "assets": ["icon.png"]
+    "assets": ["detail.html", "icon.png"]
   }
 }

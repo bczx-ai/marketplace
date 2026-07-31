@@ -1,6 +1,6 @@
 {
   "name": "remotion",
-  "version": "4.0.503",
+  "version": "4.0.504",
   "description": "提供 Remotion 视频项目创建、动画编排、字幕、渲染、媒体处理和升级指导。",
   "author": { "name": "Remotion", "url": "https://www.remotion.dev" },
   "homepage": "https://www.remotion.dev/docs/ai/codex-plugin",
