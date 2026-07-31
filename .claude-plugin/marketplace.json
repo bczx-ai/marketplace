@@ -52,6 +52,46 @@
     {
       "name": "pdf",
       "source": { "source": "local", "path": "./plugins/pdf" }
+    },
+    {
+      "name": "remotion",
+      "source": { "source": "local", "path": "./plugins/remotion" }
+    },
+    {
+      "name": "ponytail",
+      "source": { "source": "local", "path": "./plugins/ponytail" }
+    },
+    {
+      "name": "superpowers",
+      "source": { "source": "local", "path": "./plugins/superpowers" }
+    },
+    {
+      "name": "caveman",
+      "source": { "source": "local", "path": "./plugins/caveman" }
+    },
+    {
+      "name": "humanizer",
+      "source": { "source": "local", "path": "./plugins/humanizer" }
+    },
+    {
+      "name": "hyperframes",
+      "source": { "source": "local", "path": "./plugins/hyperframes" }
+    },
+    {
+      "name": "webapp-testing",
+      "source": { "source": "local", "path": "./plugins/webapp-testing" }
+    },
+    {
+      "name": "frontend-design",
+      "source": { "source": "local", "path": "./plugins/frontend-design" }
+    },
+    {
+      "name": "playwright-cli",
+      "source": { "source": "local", "path": "./plugins/playwright-cli" }
+    },
+    {
+      "name": "playwright-mcp",
+      "source": { "source": "local", "path": "./plugins/playwright-mcp" }
     }
   ]
 }

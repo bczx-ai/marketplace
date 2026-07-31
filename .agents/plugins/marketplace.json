@@ -79,6 +79,66 @@
       "source": { "source": "local", "path": "./plugins/pdf" },
       "category": "文档处理",
       "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "remotion",
+      "source": { "source": "local", "path": "./plugins/remotion" },
+      "category": "设计多媒体",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "ponytail",
+      "source": { "source": "local", "path": "./plugins/ponytail" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "superpowers",
+      "source": { "source": "local", "path": "./plugins/superpowers" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "caveman",
+      "source": { "source": "local", "path": "./plugins/caveman" },
+      "category": "AI Agent",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "humanizer",
+      "source": { "source": "local", "path": "./plugins/humanizer" },
+      "category": "内容创作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "hyperframes",
+      "source": { "source": "local", "path": "./plugins/hyperframes" },
+      "category": "设计多媒体",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "webapp-testing",
+      "source": { "source": "local", "path": "./plugins/webapp-testing" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "frontend-design",
+      "source": { "source": "local", "path": "./plugins/frontend-design" },
+      "category": "设计多媒体",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "playwright-cli",
+      "source": { "source": "local", "path": "./plugins/playwright-cli" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "playwright-mcp",
+      "source": { "source": "local", "path": "./plugins/playwright-mcp" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
     }
   ]
 }

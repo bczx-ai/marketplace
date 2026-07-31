@@ -1,0 +1,11 @@
+{
+  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
+  "schemaVersion": 1,
+  "publisherId": "anthropic",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [{ "key": "webapp-testing" }]
+  }
+}

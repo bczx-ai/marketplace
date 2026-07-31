@@ -1,0 +1,23 @@
+{
+  "name": "remotion",
+  "version": "4.0.502",
+  "description": "提供 Remotion 视频项目创建、动画编排、字幕、渲染、媒体处理和升级指导。",
+  "author": { "name": "Remotion", "url": "https://www.remotion.dev" },
+  "homepage": "https://www.remotion.dev/docs/ai/codex-plugin",
+  "repository": "https://github.com/remotion-dev/remotion/tree/main/packages/skills",
+  "license": "Remotion License",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Remotion",
+    "shortDescription": "Remotion 视频创作与渲染",
+    "longDescription": "覆盖 Remotion 项目创建、React 视频编排、动画与特效、字幕、地图、媒体处理、服务化渲染、交互结构和版本升级。",
+    "developerName": "Remotion",
+    "category": "设计多媒体",
+    "capabilities": ["Skills"],
+    "defaultPrompt": [
+      "创建一个 Remotion 视频项目并实现动画。",
+      "为现有视频添加字幕和转场。",
+      "检查并优化 Remotion 渲染流程。"
+    ]
+  }
+}

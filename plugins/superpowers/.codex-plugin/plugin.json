@@ -1,0 +1,24 @@
+{
+  "name": "superpowers",
+  "version": "6.2.0",
+  "description": "提供头脑风暴、计划、测试驱动开发、系统调试、代码审查和交付工作流。",
+  "author": { "name": "Jesse Vincent", "url": "https://github.com/obra" },
+  "homepage": "https://github.com/obra/superpowers",
+  "repository": "https://github.com/obra/superpowers",
+  "license": "MIT",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Superpowers",
+    "shortDescription": "完整的软件开发工作流",
+    "longDescription": "覆盖需求头脑风暴、实施计划、测试驱动开发、系统化调试、并行代理协作、代码审查、Git worktree 和分支收尾。",
+    "developerName": "Jesse Vincent",
+    "category": "开发工具",
+    "logo": "./assets/app-icon.png",
+    "capabilities": ["Skills"],
+    "defaultPrompt": [
+      "把这个需求整理成可执行的开发方案。",
+      "使用测试驱动开发实现这个功能。",
+      "系统排查并修复这个问题。"
+    ]
+  }
+}

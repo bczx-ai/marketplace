@@ -1,0 +1,23 @@
+{
+  "name": "playwright-cli",
+  "version": "0.1.17",
+  "description": "通过命令行自动化浏览器交互、调试网页并运行 Playwright 测试。",
+  "author": { "name": "Microsoft Corporation", "url": "https://github.com/microsoft" },
+  "homepage": "https://github.com/microsoft/playwright-cli",
+  "repository": "https://github.com/microsoft/playwright-cli",
+  "license": "Apache-2.0",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Playwright CLI",
+    "shortDescription": "命令行浏览器自动化与测试",
+    "longDescription": "使用 Playwright CLI 打开和操作页面、管理会话、检查 DOM 与网络、采集截图和追踪，并运行、生成和调试 Playwright 测试。",
+    "developerName": "Microsoft Corporation",
+    "category": "开发工具",
+    "capabilities": ["Skills"],
+    "defaultPrompt": [
+      "测试这个网页的核心交互流程。",
+      "使用 Playwright CLI 复现这个界面问题。",
+      "运行并调试现有 Playwright 测试。"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ponytail",
+  "version": "4.8.4",
+  "description": "以 YAGNI、标准库优先和最小正确实现指导开发、审查与技术债治理。",
+  "author": { "name": "Dietrich Gebert", "url": "https://github.com/DietrichGebert" },
+  "homepage": "https://github.com/DietrichGebert/ponytail",
+  "repository": "https://github.com/DietrichGebert/ponytail",
+  "license": "MIT",
+  "skills": "./skills",
+  "hooks": "./hooks/claude-codex-hooks.json",
+  "interface": {
+    "displayName": "Ponytail",
+    "shortDescription": "最小正确实现与过度设计审查",
+    "longDescription": "以 YAGNI、标准库和平台原生能力为优先级，指导最小正确实现，并提供过度设计审查、全仓审计、技术债清单和效果说明。",
+    "developerName": "Dietrich Gebert",
+    "category": "开发工具",
+    "logo": "./assets/logo.png",
+    "capabilities": ["Skills", "Commands", "Hooks"],
+    "defaultPrompt": [
+      "使用 Ponytail 模式完成当前开发任务。",
+      "审查当前改动是否存在过度设计。",
+      "找出满足需求的最小正确实现。"
+    ]
+  }
+}
