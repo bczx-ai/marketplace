@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "优化插件详情文案。",
+  "releaseNotes": "将 cubelet CLI 制品迁移至 R2 公共下载地址。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [
@@ -41,19 +41,19 @@
         "targets": {
           "darwin-arm64": {
             "file": "cubelet",
-            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.2.3/darwin-arm64/cubelet",
+            "url": "https://download-app.aidevops.top/marketplace/plugins/devcube/1.2.7/darwin-arm64/cubelet",
             "size": 30108930,
             "sha256": "fd1a6725518351596b9d8e257cd764dc58cb6ae280158f07c9f9ee04d0f23ea3"
           },
           "darwin-x64": {
             "file": "cubelet",
-            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.2.3/darwin-x64/cubelet",
+            "url": "https://download-app.aidevops.top/marketplace/plugins/devcube/1.2.7/darwin-x64/cubelet",
             "size": 31317488,
             "sha256": "4914d15b8f449442627c2d3ad9e321b50a3d30b077eba4ad30913d4db6c00491"
           },
           "win32-x64": {
             "file": "cubelet.exe",
-            "url": "http://minio:9000/brain-plugin-artifacts/plugins/devcube/1.2.3/win32-x64/cubelet.exe",
+            "url": "https://download-app.aidevops.top/marketplace/plugins/devcube/1.2.7/win32-x64/cubelet.exe",
             "size": 31262720,
             "sha256": "1899ea386fcdf59a2ac6b1e5ac0a3fade0653aa3f2468cf09174fd4cc532f61e"
           }
