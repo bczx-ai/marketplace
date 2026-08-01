@@ -1,20 +1,21 @@
 {
   "name": "brain",
-  "version": "1.2.2",
-  "description": "提供 Brain 内置系统能力及 Plugin、Skill 开发工具。",
+  "version": "1.3.0",
+  "description": "提供 Brain 内置系统能力及 Plugin、Skill、Extension 开发工具。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
   "interface": {
     "displayName": "Brain",
     "shortDescription": "Brain 内置系统能力",
-    "longDescription": "提供故障诊断与脱敏报告、消息渠道附件发送、会话产物登记、历史会话引用、交互可视化、项目看板读取，以及 Plugin 和 Skill 创建校验能力。",
+    "longDescription": "提供故障诊断与脱敏报告、消息渠道附件发送、会话产物登记、历史会话引用、交互可视化、项目看板读取，以及 Plugin、Skill 和 Extension 开发校验能力。",
     "developerName": "brain",
     "category": "AI Agent",
     "logo": "./assets/icon.png",
     "capabilities": ["Skills"],
     "defaultPrompt": [
       "使用 Brain 内置能力完成当前任务。",
+      "使用 $brain-ext-development 创建、测试、打包、发布或诊断 Brain Extension。",
       "使用 $brain-diagnose 诊断 Brain 故障并生成脱敏报告。",
       "使用 $brain-plugin-creator 创建或检查一个原生 Plugin。",
       "使用 $brain-skill-creator 创建或检查一个市场 Skill。"

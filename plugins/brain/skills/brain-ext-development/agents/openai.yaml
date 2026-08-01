@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brain 扩展开发"
+  short_description: "创建、测试、打包、签名、发布并诊断 Brain 第三方扩展"
+  default_prompt: "Use $brain-ext-development to create and validate a Brain extension."
