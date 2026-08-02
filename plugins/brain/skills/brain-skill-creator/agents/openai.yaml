@@ -1,4 +1,0 @@
-interface:
-  display_name: "Brain Skill Creator"
-  short_description: "创建、校验并发布符合 Skill 市场规范的可安装技能"
-  default_prompt: "使用 $brain-skill-creator 创建一个符合 Skill 市场规范并可发布的技能。"

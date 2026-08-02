@@ -6,10 +6,6 @@
       "source": { "source": "local", "path": "./plugins/devcube" }
     },
     {
-      "name": "brain",
-      "source": { "source": "local", "path": "./plugins/brain" }
-    },
-    {
       "name": "wecom",
       "source": { "source": "local", "path": "./plugins/wecom" }
     },
