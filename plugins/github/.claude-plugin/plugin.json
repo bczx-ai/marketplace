@@ -1,6 +1,6 @@
 {
   "name": "github",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "通过 gh 管理 GitHub 仓库、Issue、Pull Request、Actions 和 Release。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",

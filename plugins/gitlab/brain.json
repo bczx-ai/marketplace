@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "修复 Personal Access Token 登录和状态检查误打开 CLI 遥测地址的问题。",
+  "releaseNotes": "优化插件详情页的信息层级、窄屏布局和使用边界说明。",
   "compatibility": { "brain": ">=1.0.20" },
   "components": {
     "skills": [{ "key": "gitlab", "requires": ["cli:glab"] }],

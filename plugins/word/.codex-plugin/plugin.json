@@ -1,6 +1,6 @@
 {
   "name": "word",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "创建、读取、编辑、转换并验证专业 Word 文档。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",

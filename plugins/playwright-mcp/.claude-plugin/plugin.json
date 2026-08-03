@@ -1,6 +1,6 @@
 {
   "name": "playwright-mcp",
-  "version": "0.0.80",
+  "version": "0.0.81",
   "description": "通过 MCP 使用 Playwright 的结构化页面快照和浏览器自动化工具。",
   "author": { "name": "Microsoft Corporation", "url": "https://github.com/microsoft" },
   "homepage": "https://github.com/microsoft/playwright-mcp",

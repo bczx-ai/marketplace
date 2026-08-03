@@ -1,6 +1,6 @@
 {
   "name": "tencent-meeting",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "通过腾讯会议官方 CLI 管理会议、参会、录制和智能纪要。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
