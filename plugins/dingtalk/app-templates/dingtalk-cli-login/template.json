@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "key": "dingtalk-cli-login",
+  "name": "钉钉账号授权",
+  "description": "保存后自动运行钉钉官方 dws CLI，并打开账号授权页面。",
+  "auth": {
+    "kind": "cli_oauth",
+    "configDirEnv": "DWS_CONFIG_DIR",
+    "commands": [{
+      "command": "dws",
+      "args": ["auth", "login"],
+      "timeoutSeconds": 600
+    }]
+  },
+  "networkScope": "public",
+  "fields": []
+}

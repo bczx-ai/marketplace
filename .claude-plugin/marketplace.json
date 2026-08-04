@@ -1379,6 +1379,13 @@
         "source": "local",
         "path": "./plugins/zotero"
       }
+    },
+    {
+      "name": "dingtalk",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dingtalk"
+      }
     }
   ]
 }
