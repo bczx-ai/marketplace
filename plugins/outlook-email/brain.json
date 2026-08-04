@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "outlook-email"
+      },
+      {
+        "key": "outlook-email-inbox-triage"
+      },
+      {
+        "key": "outlook-email-reply-drafting"
+      },
+      {
+        "key": "outlook-email-shared-mailboxes"
+      },
+      {
+        "key": "outlook-email-subscription-cleanup"
+      },
+      {
+        "key": "outlook-email-task-extraction"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "openai-app.json",
+      "logo.png"
+    ]
+  }
+}

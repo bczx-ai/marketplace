@@ -1,138 +1,2372 @@
 {
   "name": "brain-official",
-  "interface": { "displayName": "Brain 官方市场" },
+  "interface": {
+    "displayName": "Brain 官方市场"
+  },
   "plugins": [
     {
       "name": "devcube",
-      "source": { "source": "local", "path": "./plugins/devcube" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/devcube"
+      },
       "category": "研发效能",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "wecom",
-      "source": { "source": "local", "path": "./plugins/wecom" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/wecom"
+      },
       "category": "办公协作",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "tencent-meeting",
-      "source": { "source": "local", "path": "./plugins/tencent-meeting" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/tencent-meeting"
+      },
       "category": "办公协作",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "tencent-docs",
-      "source": { "source": "local", "path": "./plugins/tencent-docs" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/tencent-docs"
+      },
       "category": "办公协作",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "notion",
-      "source": { "source": "local", "path": "./plugins/notion" },
-      "category": "办公协作",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/notion"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "gitlab",
-      "source": { "source": "local", "path": "./plugins/gitlab" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/gitlab"
+      },
       "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "github",
-      "source": { "source": "local", "path": "./plugins/github" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/github"
+      },
       "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "feishu",
-      "source": { "source": "local", "path": "./plugins/feishu" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/feishu"
+      },
       "category": "办公协作",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "word",
-      "source": { "source": "local", "path": "./plugins/word" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/word"
+      },
       "category": "文档处理",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "ppt",
-      "source": { "source": "local", "path": "./plugins/ppt" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/ppt"
+      },
       "category": "文档处理",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "excel",
-      "source": { "source": "local", "path": "./plugins/excel" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/excel"
+      },
       "category": "文档处理",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "pdf",
-      "source": { "source": "local", "path": "./plugins/pdf" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/pdf"
+      },
       "category": "文档处理",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "remotion",
-      "source": { "source": "local", "path": "./plugins/remotion" },
-      "category": "设计多媒体",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/remotion"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "ponytail",
-      "source": { "source": "local", "path": "./plugins/ponytail" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/ponytail"
+      },
       "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "superpowers",
-      "source": { "source": "local", "path": "./plugins/superpowers" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/superpowers"
+      },
       "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "caveman",
-      "source": { "source": "local", "path": "./plugins/caveman" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/caveman"
+      },
       "category": "AI Agent",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "humanizer",
-      "source": { "source": "local", "path": "./plugins/humanizer" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/humanizer"
+      },
       "category": "内容创作",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "hyperframes",
-      "source": { "source": "local", "path": "./plugins/hyperframes" },
-      "category": "设计多媒体",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/hyperframes"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "webapp-testing",
-      "source": { "source": "local", "path": "./plugins/webapp-testing" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/webapp-testing"
+      },
       "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "frontend-design",
-      "source": { "source": "local", "path": "./plugins/frontend-design" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/frontend-design"
+      },
       "category": "设计多媒体",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "playwright-cli",
-      "source": { "source": "local", "path": "./plugins/playwright-cli" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/playwright-cli"
+      },
       "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     },
     {
       "name": "playwright-mcp",
-      "source": { "source": "local", "path": "./plugins/playwright-mcp" },
+      "source": {
+        "source": "local",
+        "path": "./plugins/playwright-mcp"
+      },
       "category": "开发工具",
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "actively",
+      "source": {
+        "source": "local",
+        "path": "./plugins/actively"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "aiera",
+      "source": {
+        "source": "local",
+        "path": "./plugins/aiera"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "airtable",
+      "source": {
+        "source": "local",
+        "path": "./plugins/airtable"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "alation",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alation"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "alpaca",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alpaca"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "amplitude",
+      "source": {
+        "source": "local",
+        "path": "./plugins/amplitude"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "apollo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/apollo"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "asana",
+      "source": {
+        "source": "local",
+        "path": "./plugins/asana"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "atlassian-rovo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/atlassian-rovo"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "attio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/attio"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "base44",
+      "source": {
+        "source": "local",
+        "path": "./plugins/base44"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "binance",
+      "source": {
+        "source": "local",
+        "path": "./plugins/binance"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "biorender",
+      "source": {
+        "source": "local",
+        "path": "./plugins/biorender"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "boltz-api-cli",
+      "source": {
+        "source": "local",
+        "path": "./plugins/boltz-api-cli"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "box",
+      "source": {
+        "source": "local",
+        "path": "./plugins/box"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "brand24",
+      "source": {
+        "source": "local",
+        "path": "./plugins/brand24"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "brex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/brex"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "brighthire",
+      "source": {
+        "source": "local",
+        "path": "./plugins/brighthire"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "build-ios-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-ios-apps"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "build-macos-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-macos-apps"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "build-web-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-web-apps"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "build-web-data-visualization",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-web-data-visualization"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "calendly",
+      "source": {
+        "source": "local",
+        "path": "./plugins/calendly"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "canva",
+      "source": {
+        "source": "local",
+        "path": "./plugins/canva"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "carta-crm",
+      "source": {
+        "source": "local",
+        "path": "./plugins/carta-crm"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "catalyst-by-zoho",
+      "source": {
+        "source": "local",
+        "path": "./plugins/catalyst-by-zoho"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "cb-insights",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cb-insights"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "channel99",
+      "source": {
+        "source": "local",
+        "path": "./plugins/channel99"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "chronograph-gp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/chronograph-gp"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "chronograph-lp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/chronograph-lp"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "circleback",
+      "source": {
+        "source": "local",
+        "path": "./plugins/circleback"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "circleci",
+      "source": {
+        "source": "local",
+        "path": "./plugins/circleci"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "clay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/clay"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "clickup",
+      "source": {
+        "source": "local",
+        "path": "./plugins/clickup"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "close",
+      "source": {
+        "source": "local",
+        "path": "./plugins/close"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "cloudflare",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cloudflare"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "cloudinary",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cloudinary"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "coderabbit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/coderabbit"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "codex-security",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-security"
+      },
+      "category": "安全",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "cogedim",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cogedim"
+      },
+      "category": "其他",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "common-room",
+      "source": {
+        "source": "local",
+        "path": "./plugins/common-room"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "conductor",
+      "source": {
+        "source": "local",
+        "path": "./plugins/conductor"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "convex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/convex"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "coupler-io",
+      "source": {
+        "source": "local",
+        "path": "./plugins/coupler-io"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "coveo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/coveo"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "cube",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cube"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "daloopa",
+      "source": {
+        "source": "local",
+        "path": "./plugins/daloopa"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "datadog",
+      "source": {
+        "source": "local",
+        "path": "./plugins/datadog"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "datasite",
+      "source": {
+        "source": "local",
+        "path": "./plugins/datasite"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "deepnote",
+      "source": {
+        "source": "local",
+        "path": "./plugins/deepnote"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "demandbase",
+      "source": {
+        "source": "local",
+        "path": "./plugins/demandbase"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "digitalocean",
+      "source": {
+        "source": "local",
+        "path": "./plugins/digitalocean"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "dnb-finance-analytics",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dnb-finance-analytics"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "docket",
+      "source": {
+        "source": "local",
+        "path": "./plugins/docket"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "docusign",
+      "source": {
+        "source": "local",
+        "path": "./plugins/docusign"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "domotz-preview",
+      "source": {
+        "source": "local",
+        "path": "./plugins/domotz-preview"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "dovetail",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dovetail"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "dow-jones-factiva",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dow-jones-factiva"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "egnyte",
+      "source": {
+        "source": "local",
+        "path": "./plugins/egnyte"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "expo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/expo"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "factset",
+      "source": {
+        "source": "local",
+        "path": "./plugins/factset"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "fal",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fal"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "figma",
+      "source": {
+        "source": "local",
+        "path": "./plugins/figma"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "finn",
+      "source": {
+        "source": "local",
+        "path": "./plugins/finn"
+      },
+      "category": "出行服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "fireflies",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fireflies"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "fiscal-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fiscal-ai"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "fyxer",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fyxer"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "game-studio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/game-studio"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "glean",
+      "source": {
+        "source": "local",
+        "path": "./plugins/glean"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "gmail",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gmail"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "google-calendar",
+      "source": {
+        "source": "local",
+        "path": "./plugins/google-calendar"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "google-drive",
+      "source": {
+        "source": "local",
+        "path": "./plugins/google-drive"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "govtribe",
+      "source": {
+        "source": "local",
+        "path": "./plugins/govtribe"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "granola",
+      "source": {
+        "source": "local",
+        "path": "./plugins/granola"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "happenstance",
+      "source": {
+        "source": "local",
+        "path": "./plugins/happenstance"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "hebbia",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hebbia"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "help-scout",
+      "source": {
+        "source": "local",
+        "path": "./plugins/help-scout"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "hex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hex"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "heygen",
+      "source": {
+        "source": "local",
+        "path": "./plugins/heygen"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "hg-insights",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hg-insights"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "highlevel",
+      "source": {
+        "source": "local",
+        "path": "./plugins/highlevel"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "hostinger",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hostinger"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "hubspot",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hubspot"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "hugging-face",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hugging-face"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "intercom",
+      "source": {
+        "source": "local",
+        "path": "./plugins/intercom"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "jam",
+      "source": {
+        "source": "local",
+        "path": "./plugins/jam"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "keybid-puls",
+      "source": {
+        "source": "local",
+        "path": "./plugins/keybid-puls"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "life-science-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/life-science-research"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "linear",
+      "source": {
+        "source": "local",
+        "path": "./plugins/linear"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "lovable",
+      "source": {
+        "source": "local",
+        "path": "./plugins/lovable"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "lseg",
+      "source": {
+        "source": "local",
+        "path": "./plugins/lseg"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "magicpath",
+      "source": {
+        "source": "local",
+        "path": "./plugins/magicpath"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "marcopolo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/marcopolo"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "mem",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mem"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "meticulate",
+      "source": {
+        "source": "local",
+        "path": "./plugins/meticulate"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "midpage",
+      "source": {
+        "source": "local",
+        "path": "./plugins/midpage"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "mixpanel",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mixpanel"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "mixpanel-headless",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mixpanel-headless"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "monday-com",
+      "source": {
+        "source": "local",
+        "path": "./plugins/monday-com"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "moody-s",
+      "source": {
+        "source": "local",
+        "path": "./plugins/moody-s"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "morningstar",
+      "source": {
+        "source": "local",
+        "path": "./plugins/morningstar"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "motherduck",
+      "source": {
+        "source": "local",
+        "path": "./plugins/motherduck"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "mt-newswires",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mt-newswires"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "myregistry-com",
+      "source": {
+        "source": "local",
+        "path": "./plugins/myregistry-com"
+      },
+      "category": "其他",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "neon-postgres",
+      "source": {
+        "source": "local",
+        "path": "./plugins/neon-postgres"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "netlify",
+      "source": {
+        "source": "local",
+        "path": "./plugins/netlify"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "network-solutions",
+      "source": {
+        "source": "local",
+        "path": "./plugins/network-solutions"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "ngs-analysis",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ngs-analysis"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "nvidia",
+      "source": {
+        "source": "local",
+        "path": "./plugins/nvidia"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "omni-analytics",
+      "source": {
+        "source": "local",
+        "path": "./plugins/omni-analytics"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "openai-ads-conversions",
+      "source": {
+        "source": "local",
+        "path": "./plugins/openai-ads-conversions"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "openai-developers",
+      "source": {
+        "source": "local",
+        "path": "./plugins/openai-developers"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "otter-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/otter-ai"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "outlook-calendar",
+      "source": {
+        "source": "local",
+        "path": "./plugins/outlook-calendar"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "outlook-email",
+      "source": {
+        "source": "local",
+        "path": "./plugins/outlook-email"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "outreach",
+      "source": {
+        "source": "local",
+        "path": "./plugins/outreach"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "particl-market-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/particl-market-research"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "picsart",
+      "source": {
+        "source": "local",
+        "path": "./plugins/picsart"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "pipedrive",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pipedrive"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "pitchbook",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pitchbook"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "plugin-eval",
+      "source": {
+        "source": "local",
+        "path": "./plugins/plugin-eval"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "policynote",
+      "source": {
+        "source": "local",
+        "path": "./plugins/policynote"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "posthog",
+      "source": {
+        "source": "local",
+        "path": "./plugins/posthog"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "pylon",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pylon"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "quartr",
+      "source": {
+        "source": "local",
+        "path": "./plugins/quartr"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "quickbooks",
+      "source": {
+        "source": "local",
+        "path": "./plugins/quickbooks"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "quicknode",
+      "source": {
+        "source": "local",
+        "path": "./plugins/quicknode"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "ranked-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ranked-ai"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "razorpay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/razorpay"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "read-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/read-ai"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "readwise",
+      "source": {
+        "source": "local",
+        "path": "./plugins/readwise"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "render",
+      "source": {
+        "source": "local",
+        "path": "./plugins/render"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "replayio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/replayio"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "replit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/replit"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "responsive",
+      "source": {
+        "source": "local",
+        "path": "./plugins/responsive"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "rox",
+      "source": {
+        "source": "local",
+        "path": "./plugins/rox"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "s-p",
+      "source": {
+        "source": "local",
+        "path": "./plugins/s-p"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "scite",
+      "source": {
+        "source": "local",
+        "path": "./plugins/scite"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "semrush",
+      "source": {
+        "source": "local",
+        "path": "./plugins/semrush"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "sendgrid",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sendgrid"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "sentry",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sentry"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "setu-bharat-connect-billpay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/setu-bharat-connect-billpay"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "sharepoint",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sharepoint"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "shopify",
+      "source": {
+        "source": "local",
+        "path": "./plugins/shopify"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "shutterstock",
+      "source": {
+        "source": "local",
+        "path": "./plugins/shutterstock"
+      },
+      "category": "创意设计",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "signnow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/signnow"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "similarweb",
+      "source": {
+        "source": "local",
+        "path": "./plugins/similarweb"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "skywatch",
+      "source": {
+        "source": "local",
+        "path": "./plugins/skywatch"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "slack",
+      "source": {
+        "source": "local",
+        "path": "./plugins/slack"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "statsig",
+      "source": {
+        "source": "local",
+        "path": "./plugins/statsig"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "streak",
+      "source": {
+        "source": "local",
+        "path": "./plugins/streak"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "stripe",
+      "source": {
+        "source": "local",
+        "path": "./plugins/stripe"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "supabase",
+      "source": {
+        "source": "local",
+        "path": "./plugins/supabase"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "superhuman",
+      "source": {
+        "source": "local",
+        "path": "./plugins/superhuman"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "taxdown",
+      "source": {
+        "source": "local",
+        "path": "./plugins/taxdown"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "teams",
+      "source": {
+        "source": "local",
+        "path": "./plugins/teams"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "teamwork-com",
+      "source": {
+        "source": "local",
+        "path": "./plugins/teamwork-com"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "temporal",
+      "source": {
+        "source": "local",
+        "path": "./plugins/temporal"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "test-android-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/test-android-apps"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "third-bridge",
+      "source": {
+        "source": "local",
+        "path": "./plugins/third-bridge"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "thoughtspot",
+      "source": {
+        "source": "local",
+        "path": "./plugins/thoughtspot"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "tinman-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/tinman-ai"
+      },
+      "category": "金融服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "twilio-developer-kit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/twilio-developer-kit"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "united-rentals",
+      "source": {
+        "source": "local",
+        "path": "./plugins/united-rentals"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "vantage",
+      "source": {
+        "source": "local",
+        "path": "./plugins/vantage"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "vercel",
+      "source": {
+        "source": "local",
+        "path": "./plugins/vercel"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "waldo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/waldo"
+      },
+      "category": "效率工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "weatherpromise",
+      "source": {
+        "source": "local",
+        "path": "./plugins/weatherpromise"
+      },
+      "category": "出行服务",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "windsor-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/windsor-ai"
+      },
+      "category": "数据分析",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "wix",
+      "source": {
+        "source": "local",
+        "path": "./plugins/wix"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "yepcode",
+      "source": {
+        "source": "local",
+        "path": "./plugins/yepcode"
+      },
+      "category": "开发工具",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "zoho",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zoho"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "zoom",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zoom"
+      },
+      "category": "沟通协作",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "zoominfo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zoominfo"
+      },
+      "category": "商业运营",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
+    },
+    {
+      "name": "zotero",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zotero"
+      },
+      "category": "教育研究",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      }
     }
   ]
 }

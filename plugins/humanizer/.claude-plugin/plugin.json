@@ -1,6 +1,6 @@
 {
   "name": "humanizer",
-  "version": "2.9.3",
+  "version": "2.9.4",
   "description": "识别并改写 AI 生成文本常见模式，在保留事实和语义的前提下使表达更自然。",
   "author": { "name": "blader", "url": "https://github.com/blader" },
   "homepage": "https://github.com/blader/humanizer",

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "netlify-ai-gateway"
+      },
+      {
+        "key": "netlify-blobs"
+      },
+      {
+        "key": "netlify-caching"
+      },
+      {
+        "key": "netlify-cli-and-deploy"
+      },
+      {
+        "key": "netlify-config"
+      },
+      {
+        "key": "netlify-deploy"
+      },
+      {
+        "key": "netlify-edge-functions"
+      },
+      {
+        "key": "netlify-forms"
+      },
+      {
+        "key": "netlify-frameworks"
+      },
+      {
+        "key": "netlify-functions"
+      },
+      {
+        "key": "netlify-identity"
+      },
+      {
+        "key": "netlify-image-cdn"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "openai-app.json",
+      "app-icon.png"
+    ]
+  }
+}

@@ -3,91 +3,1382 @@
   "plugins": [
     {
       "name": "devcube",
-      "source": { "source": "local", "path": "./plugins/devcube" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/devcube"
+      }
     },
     {
       "name": "wecom",
-      "source": { "source": "local", "path": "./plugins/wecom" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/wecom"
+      }
     },
     {
       "name": "tencent-meeting",
-      "source": { "source": "local", "path": "./plugins/tencent-meeting" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/tencent-meeting"
+      }
     },
     {
       "name": "tencent-docs",
-      "source": { "source": "local", "path": "./plugins/tencent-docs" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/tencent-docs"
+      }
     },
     {
       "name": "notion",
-      "source": { "source": "local", "path": "./plugins/notion" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/notion"
+      }
     },
     {
       "name": "gitlab",
-      "source": { "source": "local", "path": "./plugins/gitlab" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/gitlab"
+      }
     },
     {
       "name": "github",
-      "source": { "source": "local", "path": "./plugins/github" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/github"
+      }
     },
     {
       "name": "feishu",
-      "source": { "source": "local", "path": "./plugins/feishu" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/feishu"
+      }
     },
     {
       "name": "word",
-      "source": { "source": "local", "path": "./plugins/word" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/word"
+      }
     },
     {
       "name": "ppt",
-      "source": { "source": "local", "path": "./plugins/ppt" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/ppt"
+      }
     },
     {
       "name": "excel",
-      "source": { "source": "local", "path": "./plugins/excel" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/excel"
+      }
     },
     {
       "name": "pdf",
-      "source": { "source": "local", "path": "./plugins/pdf" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/pdf"
+      }
     },
     {
       "name": "remotion",
-      "source": { "source": "local", "path": "./plugins/remotion" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/remotion"
+      }
     },
     {
       "name": "ponytail",
-      "source": { "source": "local", "path": "./plugins/ponytail" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/ponytail"
+      }
     },
     {
       "name": "superpowers",
-      "source": { "source": "local", "path": "./plugins/superpowers" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/superpowers"
+      }
     },
     {
       "name": "caveman",
-      "source": { "source": "local", "path": "./plugins/caveman" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/caveman"
+      }
     },
     {
       "name": "humanizer",
-      "source": { "source": "local", "path": "./plugins/humanizer" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/humanizer"
+      }
     },
     {
       "name": "hyperframes",
-      "source": { "source": "local", "path": "./plugins/hyperframes" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/hyperframes"
+      }
     },
     {
       "name": "webapp-testing",
-      "source": { "source": "local", "path": "./plugins/webapp-testing" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/webapp-testing"
+      }
     },
     {
       "name": "frontend-design",
-      "source": { "source": "local", "path": "./plugins/frontend-design" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/frontend-design"
+      }
     },
     {
       "name": "playwright-cli",
-      "source": { "source": "local", "path": "./plugins/playwright-cli" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/playwright-cli"
+      }
     },
     {
       "name": "playwright-mcp",
-      "source": { "source": "local", "path": "./plugins/playwright-mcp" }
+      "source": {
+        "source": "local",
+        "path": "./plugins/playwright-mcp"
+      }
+    },
+    {
+      "name": "actively",
+      "source": {
+        "source": "local",
+        "path": "./plugins/actively"
+      }
+    },
+    {
+      "name": "aiera",
+      "source": {
+        "source": "local",
+        "path": "./plugins/aiera"
+      }
+    },
+    {
+      "name": "airtable",
+      "source": {
+        "source": "local",
+        "path": "./plugins/airtable"
+      }
+    },
+    {
+      "name": "alation",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alation"
+      }
+    },
+    {
+      "name": "alpaca",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alpaca"
+      }
+    },
+    {
+      "name": "amplitude",
+      "source": {
+        "source": "local",
+        "path": "./plugins/amplitude"
+      }
+    },
+    {
+      "name": "apollo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/apollo"
+      }
+    },
+    {
+      "name": "asana",
+      "source": {
+        "source": "local",
+        "path": "./plugins/asana"
+      }
+    },
+    {
+      "name": "atlassian-rovo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/atlassian-rovo"
+      }
+    },
+    {
+      "name": "attio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/attio"
+      }
+    },
+    {
+      "name": "base44",
+      "source": {
+        "source": "local",
+        "path": "./plugins/base44"
+      }
+    },
+    {
+      "name": "binance",
+      "source": {
+        "source": "local",
+        "path": "./plugins/binance"
+      }
+    },
+    {
+      "name": "biorender",
+      "source": {
+        "source": "local",
+        "path": "./plugins/biorender"
+      }
+    },
+    {
+      "name": "boltz-api-cli",
+      "source": {
+        "source": "local",
+        "path": "./plugins/boltz-api-cli"
+      }
+    },
+    {
+      "name": "box",
+      "source": {
+        "source": "local",
+        "path": "./plugins/box"
+      }
+    },
+    {
+      "name": "brand24",
+      "source": {
+        "source": "local",
+        "path": "./plugins/brand24"
+      }
+    },
+    {
+      "name": "brex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/brex"
+      }
+    },
+    {
+      "name": "brighthire",
+      "source": {
+        "source": "local",
+        "path": "./plugins/brighthire"
+      }
+    },
+    {
+      "name": "build-ios-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-ios-apps"
+      }
+    },
+    {
+      "name": "build-macos-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-macos-apps"
+      }
+    },
+    {
+      "name": "build-web-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-web-apps"
+      }
+    },
+    {
+      "name": "build-web-data-visualization",
+      "source": {
+        "source": "local",
+        "path": "./plugins/build-web-data-visualization"
+      }
+    },
+    {
+      "name": "calendly",
+      "source": {
+        "source": "local",
+        "path": "./plugins/calendly"
+      }
+    },
+    {
+      "name": "canva",
+      "source": {
+        "source": "local",
+        "path": "./plugins/canva"
+      }
+    },
+    {
+      "name": "carta-crm",
+      "source": {
+        "source": "local",
+        "path": "./plugins/carta-crm"
+      }
+    },
+    {
+      "name": "catalyst-by-zoho",
+      "source": {
+        "source": "local",
+        "path": "./plugins/catalyst-by-zoho"
+      }
+    },
+    {
+      "name": "cb-insights",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cb-insights"
+      }
+    },
+    {
+      "name": "channel99",
+      "source": {
+        "source": "local",
+        "path": "./plugins/channel99"
+      }
+    },
+    {
+      "name": "chronograph-gp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/chronograph-gp"
+      }
+    },
+    {
+      "name": "chronograph-lp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/chronograph-lp"
+      }
+    },
+    {
+      "name": "circleback",
+      "source": {
+        "source": "local",
+        "path": "./plugins/circleback"
+      }
+    },
+    {
+      "name": "circleci",
+      "source": {
+        "source": "local",
+        "path": "./plugins/circleci"
+      }
+    },
+    {
+      "name": "clay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/clay"
+      }
+    },
+    {
+      "name": "clickup",
+      "source": {
+        "source": "local",
+        "path": "./plugins/clickup"
+      }
+    },
+    {
+      "name": "close",
+      "source": {
+        "source": "local",
+        "path": "./plugins/close"
+      }
+    },
+    {
+      "name": "cloudflare",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cloudflare"
+      }
+    },
+    {
+      "name": "cloudinary",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cloudinary"
+      }
+    },
+    {
+      "name": "coderabbit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/coderabbit"
+      }
+    },
+    {
+      "name": "codex-security",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-security"
+      }
+    },
+    {
+      "name": "cogedim",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cogedim"
+      }
+    },
+    {
+      "name": "common-room",
+      "source": {
+        "source": "local",
+        "path": "./plugins/common-room"
+      }
+    },
+    {
+      "name": "conductor",
+      "source": {
+        "source": "local",
+        "path": "./plugins/conductor"
+      }
+    },
+    {
+      "name": "convex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/convex"
+      }
+    },
+    {
+      "name": "coupler-io",
+      "source": {
+        "source": "local",
+        "path": "./plugins/coupler-io"
+      }
+    },
+    {
+      "name": "coveo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/coveo"
+      }
+    },
+    {
+      "name": "cube",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cube"
+      }
+    },
+    {
+      "name": "daloopa",
+      "source": {
+        "source": "local",
+        "path": "./plugins/daloopa"
+      }
+    },
+    {
+      "name": "datadog",
+      "source": {
+        "source": "local",
+        "path": "./plugins/datadog"
+      }
+    },
+    {
+      "name": "datasite",
+      "source": {
+        "source": "local",
+        "path": "./plugins/datasite"
+      }
+    },
+    {
+      "name": "deepnote",
+      "source": {
+        "source": "local",
+        "path": "./plugins/deepnote"
+      }
+    },
+    {
+      "name": "demandbase",
+      "source": {
+        "source": "local",
+        "path": "./plugins/demandbase"
+      }
+    },
+    {
+      "name": "digitalocean",
+      "source": {
+        "source": "local",
+        "path": "./plugins/digitalocean"
+      }
+    },
+    {
+      "name": "dnb-finance-analytics",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dnb-finance-analytics"
+      }
+    },
+    {
+      "name": "docket",
+      "source": {
+        "source": "local",
+        "path": "./plugins/docket"
+      }
+    },
+    {
+      "name": "docusign",
+      "source": {
+        "source": "local",
+        "path": "./plugins/docusign"
+      }
+    },
+    {
+      "name": "domotz-preview",
+      "source": {
+        "source": "local",
+        "path": "./plugins/domotz-preview"
+      }
+    },
+    {
+      "name": "dovetail",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dovetail"
+      }
+    },
+    {
+      "name": "dow-jones-factiva",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dow-jones-factiva"
+      }
+    },
+    {
+      "name": "egnyte",
+      "source": {
+        "source": "local",
+        "path": "./plugins/egnyte"
+      }
+    },
+    {
+      "name": "expo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/expo"
+      }
+    },
+    {
+      "name": "factset",
+      "source": {
+        "source": "local",
+        "path": "./plugins/factset"
+      }
+    },
+    {
+      "name": "fal",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fal"
+      }
+    },
+    {
+      "name": "figma",
+      "source": {
+        "source": "local",
+        "path": "./plugins/figma"
+      }
+    },
+    {
+      "name": "finn",
+      "source": {
+        "source": "local",
+        "path": "./plugins/finn"
+      }
+    },
+    {
+      "name": "fireflies",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fireflies"
+      }
+    },
+    {
+      "name": "fiscal-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fiscal-ai"
+      }
+    },
+    {
+      "name": "fyxer",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fyxer"
+      }
+    },
+    {
+      "name": "game-studio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/game-studio"
+      }
+    },
+    {
+      "name": "glean",
+      "source": {
+        "source": "local",
+        "path": "./plugins/glean"
+      }
+    },
+    {
+      "name": "gmail",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gmail"
+      }
+    },
+    {
+      "name": "google-calendar",
+      "source": {
+        "source": "local",
+        "path": "./plugins/google-calendar"
+      }
+    },
+    {
+      "name": "google-drive",
+      "source": {
+        "source": "local",
+        "path": "./plugins/google-drive"
+      }
+    },
+    {
+      "name": "govtribe",
+      "source": {
+        "source": "local",
+        "path": "./plugins/govtribe"
+      }
+    },
+    {
+      "name": "granola",
+      "source": {
+        "source": "local",
+        "path": "./plugins/granola"
+      }
+    },
+    {
+      "name": "happenstance",
+      "source": {
+        "source": "local",
+        "path": "./plugins/happenstance"
+      }
+    },
+    {
+      "name": "hebbia",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hebbia"
+      }
+    },
+    {
+      "name": "help-scout",
+      "source": {
+        "source": "local",
+        "path": "./plugins/help-scout"
+      }
+    },
+    {
+      "name": "hex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hex"
+      }
+    },
+    {
+      "name": "heygen",
+      "source": {
+        "source": "local",
+        "path": "./plugins/heygen"
+      }
+    },
+    {
+      "name": "hg-insights",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hg-insights"
+      }
+    },
+    {
+      "name": "highlevel",
+      "source": {
+        "source": "local",
+        "path": "./plugins/highlevel"
+      }
+    },
+    {
+      "name": "hostinger",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hostinger"
+      }
+    },
+    {
+      "name": "hubspot",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hubspot"
+      }
+    },
+    {
+      "name": "hugging-face",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hugging-face"
+      }
+    },
+    {
+      "name": "intercom",
+      "source": {
+        "source": "local",
+        "path": "./plugins/intercom"
+      }
+    },
+    {
+      "name": "jam",
+      "source": {
+        "source": "local",
+        "path": "./plugins/jam"
+      }
+    },
+    {
+      "name": "keybid-puls",
+      "source": {
+        "source": "local",
+        "path": "./plugins/keybid-puls"
+      }
+    },
+    {
+      "name": "life-science-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/life-science-research"
+      }
+    },
+    {
+      "name": "linear",
+      "source": {
+        "source": "local",
+        "path": "./plugins/linear"
+      }
+    },
+    {
+      "name": "lovable",
+      "source": {
+        "source": "local",
+        "path": "./plugins/lovable"
+      }
+    },
+    {
+      "name": "lseg",
+      "source": {
+        "source": "local",
+        "path": "./plugins/lseg"
+      }
+    },
+    {
+      "name": "magicpath",
+      "source": {
+        "source": "local",
+        "path": "./plugins/magicpath"
+      }
+    },
+    {
+      "name": "marcopolo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/marcopolo"
+      }
+    },
+    {
+      "name": "mem",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mem"
+      }
+    },
+    {
+      "name": "meticulate",
+      "source": {
+        "source": "local",
+        "path": "./plugins/meticulate"
+      }
+    },
+    {
+      "name": "midpage",
+      "source": {
+        "source": "local",
+        "path": "./plugins/midpage"
+      }
+    },
+    {
+      "name": "mixpanel",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mixpanel"
+      }
+    },
+    {
+      "name": "mixpanel-headless",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mixpanel-headless"
+      }
+    },
+    {
+      "name": "monday-com",
+      "source": {
+        "source": "local",
+        "path": "./plugins/monday-com"
+      }
+    },
+    {
+      "name": "moody-s",
+      "source": {
+        "source": "local",
+        "path": "./plugins/moody-s"
+      }
+    },
+    {
+      "name": "morningstar",
+      "source": {
+        "source": "local",
+        "path": "./plugins/morningstar"
+      }
+    },
+    {
+      "name": "motherduck",
+      "source": {
+        "source": "local",
+        "path": "./plugins/motherduck"
+      }
+    },
+    {
+      "name": "mt-newswires",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mt-newswires"
+      }
+    },
+    {
+      "name": "myregistry-com",
+      "source": {
+        "source": "local",
+        "path": "./plugins/myregistry-com"
+      }
+    },
+    {
+      "name": "neon-postgres",
+      "source": {
+        "source": "local",
+        "path": "./plugins/neon-postgres"
+      }
+    },
+    {
+      "name": "netlify",
+      "source": {
+        "source": "local",
+        "path": "./plugins/netlify"
+      }
+    },
+    {
+      "name": "network-solutions",
+      "source": {
+        "source": "local",
+        "path": "./plugins/network-solutions"
+      }
+    },
+    {
+      "name": "ngs-analysis",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ngs-analysis"
+      }
+    },
+    {
+      "name": "nvidia",
+      "source": {
+        "source": "local",
+        "path": "./plugins/nvidia"
+      }
+    },
+    {
+      "name": "omni-analytics",
+      "source": {
+        "source": "local",
+        "path": "./plugins/omni-analytics"
+      }
+    },
+    {
+      "name": "openai-ads-conversions",
+      "source": {
+        "source": "local",
+        "path": "./plugins/openai-ads-conversions"
+      }
+    },
+    {
+      "name": "openai-developers",
+      "source": {
+        "source": "local",
+        "path": "./plugins/openai-developers"
+      }
+    },
+    {
+      "name": "otter-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/otter-ai"
+      }
+    },
+    {
+      "name": "outlook-calendar",
+      "source": {
+        "source": "local",
+        "path": "./plugins/outlook-calendar"
+      }
+    },
+    {
+      "name": "outlook-email",
+      "source": {
+        "source": "local",
+        "path": "./plugins/outlook-email"
+      }
+    },
+    {
+      "name": "outreach",
+      "source": {
+        "source": "local",
+        "path": "./plugins/outreach"
+      }
+    },
+    {
+      "name": "particl-market-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/particl-market-research"
+      }
+    },
+    {
+      "name": "picsart",
+      "source": {
+        "source": "local",
+        "path": "./plugins/picsart"
+      }
+    },
+    {
+      "name": "pipedrive",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pipedrive"
+      }
+    },
+    {
+      "name": "pitchbook",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pitchbook"
+      }
+    },
+    {
+      "name": "plugin-eval",
+      "source": {
+        "source": "local",
+        "path": "./plugins/plugin-eval"
+      }
+    },
+    {
+      "name": "policynote",
+      "source": {
+        "source": "local",
+        "path": "./plugins/policynote"
+      }
+    },
+    {
+      "name": "posthog",
+      "source": {
+        "source": "local",
+        "path": "./plugins/posthog"
+      }
+    },
+    {
+      "name": "pylon",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pylon"
+      }
+    },
+    {
+      "name": "quartr",
+      "source": {
+        "source": "local",
+        "path": "./plugins/quartr"
+      }
+    },
+    {
+      "name": "quickbooks",
+      "source": {
+        "source": "local",
+        "path": "./plugins/quickbooks"
+      }
+    },
+    {
+      "name": "quicknode",
+      "source": {
+        "source": "local",
+        "path": "./plugins/quicknode"
+      }
+    },
+    {
+      "name": "ranked-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ranked-ai"
+      }
+    },
+    {
+      "name": "razorpay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/razorpay"
+      }
+    },
+    {
+      "name": "read-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/read-ai"
+      }
+    },
+    {
+      "name": "readwise",
+      "source": {
+        "source": "local",
+        "path": "./plugins/readwise"
+      }
+    },
+    {
+      "name": "render",
+      "source": {
+        "source": "local",
+        "path": "./plugins/render"
+      }
+    },
+    {
+      "name": "replayio",
+      "source": {
+        "source": "local",
+        "path": "./plugins/replayio"
+      }
+    },
+    {
+      "name": "replit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/replit"
+      }
+    },
+    {
+      "name": "responsive",
+      "source": {
+        "source": "local",
+        "path": "./plugins/responsive"
+      }
+    },
+    {
+      "name": "rox",
+      "source": {
+        "source": "local",
+        "path": "./plugins/rox"
+      }
+    },
+    {
+      "name": "s-p",
+      "source": {
+        "source": "local",
+        "path": "./plugins/s-p"
+      }
+    },
+    {
+      "name": "scite",
+      "source": {
+        "source": "local",
+        "path": "./plugins/scite"
+      }
+    },
+    {
+      "name": "semrush",
+      "source": {
+        "source": "local",
+        "path": "./plugins/semrush"
+      }
+    },
+    {
+      "name": "sendgrid",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sendgrid"
+      }
+    },
+    {
+      "name": "sentry",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sentry"
+      }
+    },
+    {
+      "name": "setu-bharat-connect-billpay",
+      "source": {
+        "source": "local",
+        "path": "./plugins/setu-bharat-connect-billpay"
+      }
+    },
+    {
+      "name": "sharepoint",
+      "source": {
+        "source": "local",
+        "path": "./plugins/sharepoint"
+      }
+    },
+    {
+      "name": "shopify",
+      "source": {
+        "source": "local",
+        "path": "./plugins/shopify"
+      }
+    },
+    {
+      "name": "shutterstock",
+      "source": {
+        "source": "local",
+        "path": "./plugins/shutterstock"
+      }
+    },
+    {
+      "name": "signnow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/signnow"
+      }
+    },
+    {
+      "name": "similarweb",
+      "source": {
+        "source": "local",
+        "path": "./plugins/similarweb"
+      }
+    },
+    {
+      "name": "skywatch",
+      "source": {
+        "source": "local",
+        "path": "./plugins/skywatch"
+      }
+    },
+    {
+      "name": "slack",
+      "source": {
+        "source": "local",
+        "path": "./plugins/slack"
+      }
+    },
+    {
+      "name": "statsig",
+      "source": {
+        "source": "local",
+        "path": "./plugins/statsig"
+      }
+    },
+    {
+      "name": "streak",
+      "source": {
+        "source": "local",
+        "path": "./plugins/streak"
+      }
+    },
+    {
+      "name": "stripe",
+      "source": {
+        "source": "local",
+        "path": "./plugins/stripe"
+      }
+    },
+    {
+      "name": "supabase",
+      "source": {
+        "source": "local",
+        "path": "./plugins/supabase"
+      }
+    },
+    {
+      "name": "superhuman",
+      "source": {
+        "source": "local",
+        "path": "./plugins/superhuman"
+      }
+    },
+    {
+      "name": "taxdown",
+      "source": {
+        "source": "local",
+        "path": "./plugins/taxdown"
+      }
+    },
+    {
+      "name": "teams",
+      "source": {
+        "source": "local",
+        "path": "./plugins/teams"
+      }
+    },
+    {
+      "name": "teamwork-com",
+      "source": {
+        "source": "local",
+        "path": "./plugins/teamwork-com"
+      }
+    },
+    {
+      "name": "temporal",
+      "source": {
+        "source": "local",
+        "path": "./plugins/temporal"
+      }
+    },
+    {
+      "name": "test-android-apps",
+      "source": {
+        "source": "local",
+        "path": "./plugins/test-android-apps"
+      }
+    },
+    {
+      "name": "third-bridge",
+      "source": {
+        "source": "local",
+        "path": "./plugins/third-bridge"
+      }
+    },
+    {
+      "name": "thoughtspot",
+      "source": {
+        "source": "local",
+        "path": "./plugins/thoughtspot"
+      }
+    },
+    {
+      "name": "tinman-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/tinman-ai"
+      }
+    },
+    {
+      "name": "twilio-developer-kit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/twilio-developer-kit"
+      }
+    },
+    {
+      "name": "united-rentals",
+      "source": {
+        "source": "local",
+        "path": "./plugins/united-rentals"
+      }
+    },
+    {
+      "name": "vantage",
+      "source": {
+        "source": "local",
+        "path": "./plugins/vantage"
+      }
+    },
+    {
+      "name": "vercel",
+      "source": {
+        "source": "local",
+        "path": "./plugins/vercel"
+      }
+    },
+    {
+      "name": "waldo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/waldo"
+      }
+    },
+    {
+      "name": "weatherpromise",
+      "source": {
+        "source": "local",
+        "path": "./plugins/weatherpromise"
+      }
+    },
+    {
+      "name": "windsor-ai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/windsor-ai"
+      }
+    },
+    {
+      "name": "wix",
+      "source": {
+        "source": "local",
+        "path": "./plugins/wix"
+      }
+    },
+    {
+      "name": "yepcode",
+      "source": {
+        "source": "local",
+        "path": "./plugins/yepcode"
+      }
+    },
+    {
+      "name": "zoho",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zoho"
+      }
+    },
+    {
+      "name": "zoom",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zoom"
+      }
+    },
+    {
+      "name": "zoominfo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zoominfo"
+      }
+    },
+    {
+      "name": "zotero",
+      "source": {
+        "source": "local",
+        "path": "./plugins/zotero"
+      }
     }
   ]
 }

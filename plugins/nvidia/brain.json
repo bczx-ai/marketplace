@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "aiq-deploy"
+      },
+      {
+        "key": "aiq-research"
+      },
+      {
+        "key": "cuopt-user-rules"
+      },
+      {
+        "key": "dynamo-interconnect-check"
+      },
+      {
+        "key": "dynamo-router-starter"
+      },
+      {
+        "key": "nemoclaw-user-get-started"
+      },
+      {
+        "key": "omniverse-cad-to-simready"
+      },
+      {
+        "key": "omniverse-realtime-viewer"
+      },
+      {
+        "key": "omniverse-usd-performance-tuning"
+      },
+      {
+        "key": "physical-ai-infrastructure-setup-and-resilient-scaling"
+      },
+      {
+        "key": "physical-ai-neural-reconstruction"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "nvidia.png"
+    ]
+  }
+}

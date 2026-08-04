@@ -1,11 +1,20 @@
 {
-  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
-  "publisherId": "zainfo",
-  "releaseNotes": "优化插件详情页的信息层级、窄屏布局和使用边界说明。",
+  "publisherId": "brain",
+  "releaseNotes": "同步 WeComTeam/wecom-cli 官方 9 个 Skills，并更新插件作者与能力说明。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
-    "skills": [{ "key": "wecom", "requires": ["cli:wecom-cli"] }],
+    "skills": [
+      { "key": "wecomcli-contact", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-doc", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-meeting", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-msg", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-schedule", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-sheet", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-smartpage", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-smartsheet", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-todo", "requires": ["cli:wecom-cli"] }
+    ],
     "apps": [{ "key": "wecom", "templates": ["wecom-cli-login"] }],
     "appTemplates": ["wecom-cli-login"],
     "assets": ["detail.html", "icon.svg"],

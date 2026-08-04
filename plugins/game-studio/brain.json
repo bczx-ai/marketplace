@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "game-playtest"
+      },
+      {
+        "key": "game-studio"
+      },
+      {
+        "key": "game-ui-frontend"
+      },
+      {
+        "key": "phaser-2d-game"
+      },
+      {
+        "key": "react-three-fiber-game"
+      },
+      {
+        "key": "sprite-pipeline"
+      },
+      {
+        "key": "three-webgl-game"
+      },
+      {
+        "key": "web-3d-asset-pipeline"
+      },
+      {
+        "key": "web-game-foundations"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "app-icon.png"
+    ]
+  }
+}

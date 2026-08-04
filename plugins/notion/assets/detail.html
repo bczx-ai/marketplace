@@ -1,35 +1,239 @@
-<main class="detail">
-  <header class="hero"><p class="eyebrow">NOTION CLI</p><h1>知识、数据与自动化协同</h1><p class="lead">通过 Notion 官方 ntn CLI 管理页面、数据源、文件和 Workers。安装后自动打开浏览器，workspace 凭据安全保存在系统钥匙串。</p><div class="facts"><span>自动浏览器登录</span><span>系统钥匙串</span><span>多 Workspace</span></div></header>
-  <section><div class="section-head simple-head"><p class="index">01 / 功能</p><h2>覆盖核心工作对象</h2></div><div class="grid">
-    <article><b>页面内容</b><p>以 Markdown 读取、创建和编辑页面，让知识整理和内容更新更直接。</p></article>
-    <article><b>数据源与文件</b><p>查询结构化记录、处理分页与筛选，并上传或查看工作区文件。</p></article>
-    <article><b>Notion Workers</b><p>创建、部署和诊断 Worker，管理能力、运行记录和加密环境变量。</p></article>
-  </div></section>
-  <section><div class="section-head simple-head"><p class="index">02 / 使用场景</p><h2>可以直接这样说</h2></div><div class="scenarios"><blockquote>“读取产品需求页面，整理风险和待确认项。”</blockquote><blockquote>“查询客户数据源中本月新增记录并汇总。”</blockquote><blockquote>“检查 Notion Worker 最近的运行日志和失败原因。”</blockquote></div></section>
-  <aside class="detail-boundary">
-    <div><p class="boundary-label">WORKING BOUNDARY</p><h2>知识更新遵循连接权限</h2></div>
-    <p>页面、数据源、文件与 Worker 操作只使用已授权能力；写入前确认目标空间、对象和变更范围。</p>
+<main class="plugin-detail">
+  <header class="hero">
+    <div class="brand-row">
+      <figure class="logo"><img src="notion.png" alt="" width="72" height="72"></figure>
+      <div class="title-block">
+        <p class="eyebrow">OPENAI OFFICIAL PLUGIN</p>
+        <h1>Notion</h1>
+        <p class="lead">Notion workflows for specs, research, meetings, and knowledge capture</p>
+      </div>
+    </div>
+    <div class="facts"><span>效率工具</span><span>OpenAI</span><span>v1.0.5</span></div>
+  </header>
+
+  <section class="overview">
+    <div class="section-heading">
+      <div><p class="index">01 / 概览</p><h2>面向真实工作的官方能力</h2></div>
+      <p>Notion workflows for turning specs into implementation plans, synthesizing research into structured documentation, preparing meeting materials with workspace context, and capturing decisions or conversations into durable knowledge pages.</p>
+    </div>
+    <div class="tags" aria-label="官方能力"><span>交互式工作流</span><span>读取与检索</span><span>写入与执行</span><span>Skills</span><span>MCP</span><span>Apps</span><span>CLI</span></div>
+  </section>
+
+  <section>
+    <div class="section-heading compact">
+      <div><p class="index">02 / 组件</p><h2>安装后可用的能力</h2></div>
+      <p>组件与内容同步自 OpenAI 官方 plugins 仓库。</p>
+    </div>
+    <div class="capability-grid">
+      <article class="capability-card tone-1">
+        <span class="capability-icon" aria-hidden="true">SK</span>
+        <div><h3>4 项 Skills</h3><p>官方工作流与领域知识</p></div>
+      </article>
+      <article class="capability-card tone-2">
+        <span class="capability-icon" aria-hidden="true">MCP</span>
+        <div><h3>1 个 MCP</h3><p>连接官方工具与实时上下文</p></div>
+      </article>
+      <article class="capability-card tone-3">
+        <span class="capability-icon" aria-hidden="true">APP</span>
+        <div><h3>官方 App 连接</h3><p>使用 OpenAI 官方连接配置</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading compact">
+      <div><p class="index">03 / 示例</p><h2>可以从这些任务开始</h2></div>
+      <p>以下提示来自官方插件元数据。</p>
+    </div>
+    <div class="prompts"><blockquote>Search Notion workspace content, update pages, or turn specs, notes, and meeting context into structured outputs</blockquote></div>
+  </section>
+
+  <aside class="boundary">
+    <div><p class="boundary-label">CONNECTION &amp; PERMISSIONS</p><h2>连接范围保持可见</h2></div>
+    <p>读取、写入或调用外部服务时，以当前连接的授权范围为准；产生外部影响的操作在执行前确认目标与范围。</p>
   </aside>
 </main>
 <style>
-  :root{color-scheme:light dark;--text:#20201f;--muted:#6d6c68;--line:#dfded9;--surface:#f7f7f5;--accent:#20201f;--accent2:#2f6fed}*{box-sizing:border-box}.detail{color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}.hero{padding:8px 0 28px;border-bottom:1px solid var(--line)}.eyebrow,.index{margin:0 0 8px;color:var(--accent2);font-size:12px;font-weight:750;letter-spacing:0}.hero h1{margin:0;max-width:720px;font-size:34px;line-height:1.2;letter-spacing:0}.lead{max-width:760px;margin:14px 0;color:var(--muted);font-size:16px}.facts{display:flex;flex-wrap:wrap;gap:8px}.facts span{padding:4px 9px;border:1px solid var(--line);border-radius:6px;background:var(--surface);font-size:12px}section{padding:26px 0;border-bottom:1px solid var(--line)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.grid article{padding:16px;border:1px solid var(--line);border-radius:8px;background:var(--surface);border-top:3px solid var(--accent)}article:nth-child(2){border-top-color:#0f9f6e}article:nth-child(3){border-top-color:var(--accent2)}.grid p{margin:6px 0 0;color:var(--muted)}.scenarios{display:grid;gap:8px}blockquote{margin:0;padding:12px 15px;border-left:3px solid var(--accent2);background:var(--surface)}@media(max-width:680px){.grid{grid-template-columns:1fr}.hero h1{font-size:28px}}@media(prefers-color-scheme:dark){:root{--text:#f1f1ef;--muted:#b4b2ac;--line:#41413e;--surface:#282826;--accent:#f1f1ef}}
-</style>
-<style>
-  body{margin:0}
-  main{width:100%;max-width:1120px;margin:0 auto;padding:24px clamp(18px,4vw,42px) 56px;overflow-wrap:anywhere}
-  main .hero h1,main .overview h1{font-size:clamp(32px,5vw,52px);line-height:1.08;letter-spacing:-.04em}
-  main .lead,main .intro{max-width:760px;line-height:1.7}
-  main .facts span,main .tag-list span{border-radius:999px}
-  main section{padding-top:42px;padding-bottom:42px}
-  main .simple-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.7fr);gap:10px 24px;align-items:end;margin-bottom:20px}
-  main .simple-head .index{grid-column:1/-1}
-  main .simple-head h2{margin:0;font-size:22px;line-height:1.25;letter-spacing:-.025em}
-  main .grid article,main .capability-card,main .scenario-card{border-radius:16px;box-shadow:0 12px 30px rgba(28,39,66,.055)}
-  main blockquote{border-radius:0 12px 12px 0}
-  main .detail-boundary{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,1.28fr);gap:28px;margin-top:48px;padding:24px 26px;border:1px solid var(--line,#dfe5ef);border-left:4px solid var(--accent,var(--blue,#356cf6));border-radius:18px;background:var(--surface,#f6f8fc)}
-  main .detail-boundary .boundary-label{margin:0;color:var(--accent,var(--blue,#356cf6));font:700 11px/1.2 ui-monospace,"SFMono-Regular",Consolas,monospace;letter-spacing:.08em}
-  main .detail-boundary h2{margin:8px 0 0;font-size:19px;line-height:1.3;letter-spacing:-.02em}
-  main .detail-boundary>p{margin:0;color:var(--muted,#68748a);font-size:13px;line-height:1.7;align-self:end}
-  @media(max-width:720px){main{padding:18px 14px 44px}main .hero h1,main .overview h1{font-size:32px}main section{padding-top:34px;padding-bottom:34px}main .simple-head,main .detail-boundary{grid-template-columns:1fr}main .detail-boundary{gap:14px;margin-top:34px;padding:20px}main .detail-boundary>p{align-self:auto}}
-  @media(prefers-color-scheme:dark){main .grid article,main .capability-card,main .scenario-card{box-shadow:none}main .detail-boundary{background:var(--surface,#1b2639)}}
+  :root {
+    color-scheme: light dark;
+    --canvas: #fbfcfd;
+    --surface: #ffffff;
+    --surface-subtle: #f3f5f7;
+    --ink: #171a20;
+    --muted: #606a76;
+    --line: #dce2e8;
+    --brand: #111111;
+    --brand-dark: #7c7c7c;
+    --brand-soft: color-mix(in srgb, var(--brand) 11%, transparent);
+    --accent-2: #0e8060;
+    --accent-2-soft: color-mix(in srgb, var(--accent-2) 11%, transparent);
+    --accent-3: #2f6fed;
+    --accent-3-soft: color-mix(in srgb, var(--accent-3) 11%, transparent);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--canvas); }
+  .plugin-detail {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 32px 36px 68px;
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+  h1, h2, h3, p, figure, blockquote { margin-top: 0; }
+  h1, h2, h3 { color: var(--ink); letter-spacing: 0; }
+  .hero {
+    padding: 36px;
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--brand);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 0 18px 48px rgb(28 36 48 / 7%);
+    animation: reveal 440ms cubic-bezier(.2,.75,.25,1) both;
+  }
+  .brand-row { display: grid; grid-template-columns: 94px minmax(0, 1fr); gap: 24px; align-items: center; }
+  .logo {
+    width: 88px;
+    height: 88px;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 7px 7px 0 var(--brand-soft);
+  }
+  .logo img { width: 68px; height: 68px; object-fit: contain; }
+  .monogram { color: var(--brand); font-size: 22px; font-weight: 800; }
+  .title-block { min-width: 0; }
+  .eyebrow, .index, .boundary-label {
+    margin-bottom: 9px;
+    color: var(--brand);
+    font: 760 11px/1.3 ui-monospace, "SFMono-Regular", Consolas, monospace;
+    letter-spacing: 0;
+  }
+  h1 { margin-bottom: 0; font-size: 46px; font-weight: 770; line-height: 1.08; }
+  .lead { max-width: 820px; margin: 13px 0 0; color: var(--muted); font-size: 16px; line-height: 1.72; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .facts span, .tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 27px;
+    padding: 3px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 11px;
+  }
+  .facts span:first-child { border-color: var(--brand); background: var(--brand-soft); color: var(--brand); }
+  .facts span:nth-child(2) { border-color: var(--accent-2); background: var(--accent-2-soft); color: var(--accent-2); }
+  section { padding: 48px 2px; border-bottom: 1px solid var(--line); animation: rise 400ms ease-out both; }
+  section:nth-of-type(1) { animation-delay: 70ms; }
+  section:nth-of-type(2) { animation-delay: 120ms; }
+  section:nth-of-type(3) { animation-delay: 170ms; }
+  .section-heading { display: grid; grid-template-columns: minmax(250px, .76fr) minmax(0, 1.24fr); gap: 36px; align-items: end; }
+  .section-heading h2 { margin: 0; font-size: 25px; line-height: 1.22; }
+  .section-heading > p { margin: 0; color: var(--muted); font-size: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tags span:nth-child(3n + 2) { border-color: var(--accent-2); color: var(--accent-2); }
+  .tags span:nth-child(3n) { border-color: var(--accent-3); color: var(--accent-3); }
+  .capability-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
+  .capability-card {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 43px minmax(0, 1fr);
+    gap: 14px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--brand);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 0 12px 30px rgb(28 36 48 / 6%);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .tone-2 { border-top-color: var(--accent-2); }
+  .tone-3 { border-top-color: var(--accent-3); }
+  .capability-icon {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .tone-2 .capability-icon { background: var(--accent-2-soft); color: var(--accent-2); }
+  .tone-3 .capability-icon { background: var(--accent-3-soft); color: var(--accent-3); }
+  .capability-card h3 { margin: 0; font-size: 15px; line-height: 1.35; }
+  .capability-card p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+  .prompts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+  blockquote {
+    min-width: 0;
+    margin: 0;
+    padding: 17px 18px;
+    border: 0;
+    border-left: 4px solid var(--brand);
+    border-radius: 0 8px 8px 0;
+    background: var(--surface-subtle);
+    color: var(--ink);
+    font-size: 13px;
+  }
+  blockquote:nth-child(2) { border-left-color: var(--accent-2); }
+  blockquote:nth-child(3) { border-left-color: var(--accent-3); }
+  .boundary {
+    display: grid;
+    grid-template-columns: minmax(240px, .76fr) minmax(0, 1.24fr);
+    gap: 36px;
+    align-items: center;
+    margin-top: 48px;
+    padding: 26px 28px;
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--accent-3);
+    border-radius: 8px;
+    background: var(--surface-subtle);
+  }
+  .boundary h2 { margin: 0; font-size: 19px; }
+  .boundary p:last-child { margin: 0; color: var(--muted); font-size: 13px; }
+  @media (hover: hover) {
+    .capability-card:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgb(28 36 48 / 10%); }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas: #111418;
+      --surface: #191d22;
+      --surface-subtle: #20252b;
+      --ink: #f2f5f7;
+      --muted: #adb6c0;
+      --line: #333a43;
+      --brand: var(--brand-dark);
+    }
+    .logo { background: #ffffff; }
+    .hero, .capability-card { box-shadow: none; }
+  }
+  @media (max-width: 760px) {
+    .plugin-detail { padding: 18px 16px 44px; }
+    .hero { padding: 24px 20px; }
+    .brand-row { grid-template-columns: 68px minmax(0, 1fr); gap: 16px; align-items: start; }
+    .logo { width: 64px; height: 64px; box-shadow: 4px 4px 0 var(--brand-soft); }
+    .logo img { width: 48px; height: 48px; }
+    .monogram { font-size: 16px; }
+    h1 { font-size: 32px; line-height: 1.12; }
+    .lead { font-size: 14px; }
+    section { padding: 36px 0; }
+    .section-heading, .boundary { grid-template-columns: 1fr; gap: 13px; }
+    .capability-grid, .prompts { grid-template-columns: 1fr; }
+    .boundary { margin-top: 36px; padding: 22px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+  }
+  @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 </style>

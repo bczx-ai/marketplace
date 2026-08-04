@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "twilio-account-setup"
+      },
+      {
+        "key": "twilio-agent-augmentation-architect"
+      },
+      {
+        "key": "twilio-agent-connect"
+      },
+      {
+        "key": "twilio-ai-agent-architect"
+      },
+      {
+        "key": "twilio-call-recordings"
+      },
+      {
+        "key": "twilio-cli-reference"
+      },
+      {
+        "key": "twilio-compliance-onboarding"
+      },
+      {
+        "key": "twilio-compliance-traffic"
+      },
+      {
+        "key": "twilio-conference-calls"
+      },
+      {
+        "key": "twilio-content-template-builder"
+      },
+      {
+        "key": "twilio-conversation-intelligence"
+      },
+      {
+        "key": "twilio-conversation-orchestrator"
+      },
+      {
+        "key": "twilio-conversations-classic-api"
+      },
+      {
+        "key": "twilio-customer-memory"
+      },
+      {
+        "key": "twilio-customer-support-architect"
+      },
+      {
+        "key": "twilio-debugging-observability"
+      },
+      {
+        "key": "twilio-email-deliverability-advisor"
+      },
+      {
+        "key": "twilio-email-send"
+      },
+      {
+        "key": "twilio-enterprise-knowledge"
+      },
+      {
+        "key": "twilio-iam-auth-setup"
+      },
+      {
+        "key": "twilio-identity-verification-advisor"
+      },
+      {
+        "key": "twilio-lookup-phone-intelligence"
+      },
+      {
+        "key": "twilio-marketing-promotions-advisor"
+      },
+      {
+        "key": "twilio-messaging-channel-advisor"
+      },
+      {
+        "key": "twilio-messaging-overview"
+      },
+      {
+        "key": "twilio-messaging-services"
+      },
+      {
+        "key": "twilio-messaging-webhooks"
+      },
+      {
+        "key": "twilio-notifications-alerts-advisor"
+      },
+      {
+        "key": "twilio-numbers-senders"
+      },
+      {
+        "key": "twilio-organizations-setup"
+      },
+      {
+        "key": "twilio-rcs-messaging"
+      },
+      {
+        "key": "twilio-regulatory-compliance-bundles"
+      },
+      {
+        "key": "twilio-reliability-patterns"
+      },
+      {
+        "key": "twilio-security-api-auth"
+      },
+      {
+        "key": "twilio-security-compliance-hipaa"
+      },
+      {
+        "key": "twilio-security-hardening"
+      },
+      {
+        "key": "twilio-send-message"
+      },
+      {
+        "key": "twilio-sendgrid-account-setup"
+      },
+      {
+        "key": "twilio-sendgrid-deliverability-advisor"
+      },
+      {
+        "key": "twilio-sendgrid-email-send"
+      },
+      {
+        "key": "twilio-sendgrid-email-settings"
+      },
+      {
+        "key": "twilio-sendgrid-engagement-quality"
+      },
+      {
+        "key": "twilio-sendgrid-inbound-parse"
+      },
+      {
+        "key": "twilio-sendgrid-suppressions"
+      },
+      {
+        "key": "twilio-sendgrid-webhooks"
+      },
+      {
+        "key": "twilio-sms-isv-setup"
+      },
+      {
+        "key": "twilio-sms-send-message"
+      },
+      {
+        "key": "twilio-taskrouter-routing"
+      },
+      {
+        "key": "twilio-verify-send-otp"
+      },
+      {
+        "key": "twilio-voice-conversation-relay"
+      },
+      {
+        "key": "twilio-voice-outbound-calls"
+      },
+      {
+        "key": "twilio-voice-twiml"
+      },
+      {
+        "key": "twilio-webhook-architecture"
+      },
+      {
+        "key": "twilio-whatsapp-manage-senders"
+      },
+      {
+        "key": "twilio-whatsapp-send-message"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "logo.svg"
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "render-background-workers"
+      },
+      {
+        "key": "render-blueprints"
+      },
+      {
+        "key": "render-cli"
+      },
+      {
+        "key": "render-cron-jobs"
+      },
+      {
+        "key": "render-debug"
+      },
+      {
+        "key": "render-deploy"
+      },
+      {
+        "key": "render-disks"
+      },
+      {
+        "key": "render-docker"
+      },
+      {
+        "key": "render-domains"
+      },
+      {
+        "key": "render-env-vars"
+      },
+      {
+        "key": "render-keyvalue"
+      },
+      {
+        "key": "render-mcp"
+      },
+      {
+        "key": "render-migrate-from-heroku"
+      },
+      {
+        "key": "render-monitor"
+      },
+      {
+        "key": "render-networking"
+      },
+      {
+        "key": "render-postgres"
+      },
+      {
+        "key": "render-private-services"
+      },
+      {
+        "key": "render-scaling"
+      },
+      {
+        "key": "render-static-sites"
+      },
+      {
+        "key": "render-web-services"
+      },
+      {
+        "key": "render-workflows"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "openai-agent.yaml",
+      "logo.svg"
+    ]
+  }
+}

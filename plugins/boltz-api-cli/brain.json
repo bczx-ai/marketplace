@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "boltz-check-status"
+      },
+      {
+        "key": "boltz-cli-setup"
+      },
+      {
+        "key": "boltz-protein-design"
+      },
+      {
+        "key": "boltz-protein-screen"
+      },
+      {
+        "key": "boltz-small-molecule-adme"
+      },
+      {
+        "key": "boltz-small-molecule-design"
+      },
+      {
+        "key": "boltz-small-molecule-screen"
+      },
+      {
+        "key": "boltz-structure-and-binding"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "app-icon.png"
+    ]
+  }
+}

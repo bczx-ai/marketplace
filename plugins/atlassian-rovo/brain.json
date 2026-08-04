@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "capture-tasks-from-meeting-notes"
+      },
+      {
+        "key": "generate-status-report"
+      },
+      {
+        "key": "search-company-knowledge"
+      },
+      {
+        "key": "spec-to-backlog"
+      },
+      {
+        "key": "triage-issue"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "openai-app.json",
+      "openai-agent.yaml",
+      "logo.png"
+    ]
+  }
+}

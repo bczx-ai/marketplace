@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "temporal-developer"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "temporal-logo.svg"
+    ]
+  }
+}

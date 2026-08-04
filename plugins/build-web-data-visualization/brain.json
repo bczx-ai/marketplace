@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "skills": [
+      {
+        "key": "accessibility-and-inclusive-visualization"
+      },
+      {
+        "key": "canvas2d-data-visualization"
+      },
+      {
+        "key": "d3-data-visualization"
+      },
+      {
+        "key": "dashboards-and-real-time-visualization"
+      },
+      {
+        "key": "data-visualization"
+      },
+      {
+        "key": "gantt-chart-visualization"
+      },
+      {
+        "key": "geospatial-and-cartographic-visualization"
+      },
+      {
+        "key": "grammar-of-graphics-and-declarative-visualization"
+      },
+      {
+        "key": "node-link-and-diagram-layout"
+      },
+      {
+        "key": "react-and-nextjs-data-visualization"
+      },
+      {
+        "key": "reports-pdfs-and-slide-automation"
+      },
+      {
+        "key": "scrollytelling-and-parallax-data-visualization"
+      },
+      {
+        "key": "statistical-and-uncertainty-visualization"
+      },
+      {
+        "key": "testing-data-visualizations"
+      },
+      {
+        "key": "threejs-data-visualization"
+      },
+      {
+        "key": "typescript-data-visualization-engineering"
+      },
+      {
+        "key": "uml-and-software-architecture-visualization"
+      },
+      {
+        "key": "visualization-strategy-and-critique"
+      }
+    ],
+    "assets": [
+      "detail.html",
+      "openai-agent.yaml",
+      "app-icon.svg"
+    ]
+  }
+}

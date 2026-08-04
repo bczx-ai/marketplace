@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "openai",
+  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "compatibility": {
+    "brain": ">=1.0.16"
+  },
+  "components": {
+    "agents": [
+      {
+        "key": "design-parity-review-agent"
+      },
+      {
+        "key": "design-system-rules-agent"
+      },
+      {
+        "key": "figma-code-connect-agent"
+      },
+      {
+        "key": "figma-implementation-agent"
+      }
+    ],
+    "skills": [
+      {
+        "key": "figma-code-connect"
+      },
+      {
+        "key": "figma-create-new-file"
+      },
+      {
+        "key": "figma-design-to-code"
+      },
+      {
+        "key": "figma-generate-design"
+      },
+      {
+        "key": "figma-generate-diagram"
+      },
+      {
+        "key": "figma-generate-library"
+      },
+      {
+        "key": "figma-implement-motion"
+      },
+      {
+        "key": "figma-swiftui"
+      },
+      {
+        "key": "figma-use"
+      },
+      {
+        "key": "figma-use-figjam"
+      },
+      {
+        "key": "figma-use-motion"
+      },
+      {
+        "key": "figma-use-slides"
+      }
+    ],
+    "commands": [
+      {
+        "key": "connect-figma-components"
+      },
+      {
+        "key": "create-design-system-rules"
+      },
+      {
+        "key": "implement-from-figma"
+      },
+      {
+        "key": "review-design-parity"
+      }
+    ],
+    "hooks": [
+      {
+        "key": "openai-hooks"
+      }
+    ],
+    "mcp": [
+      "figma"
+    ],
+    "assets": [
+      "detail.html",
+      "openai-app.json",
+      "openai-agent.yaml",
+      "logo-padded.png"
+    ]
+  }
+}
