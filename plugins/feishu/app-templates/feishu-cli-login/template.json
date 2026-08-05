@@ -10,6 +10,7 @@
       {
         "command": "lark-cli",
         "args": ["config", "init", "--new", "--brand", "feishu"],
+        "captureAuthorizationUrl": false,
         "timeoutSeconds": 600
       },
       {

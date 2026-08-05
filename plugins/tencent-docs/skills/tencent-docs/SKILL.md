@@ -1,37 +1,22 @@
 ---
 name: tencent-docs
-description: 通过腾讯文档开放平台 OpenAPI 查询或管理腾讯文档、在线表格、文件、权限和协作者。用户提到腾讯文档、docs.qq.com、在线文档或在线表格 API 操作时使用。
+description: 通过腾讯文档官方 MCP 查询或管理腾讯文档、在线表格、文件、权限和协作者。用户提到腾讯文档、docs.qq.com、在线文档或在线表格操作时使用。
 ---
 
-# 腾讯文档开放平台
+# 腾讯文档
 
-使用随技能提供的 `scripts/tencent_docs.py` 调用腾讯文档 OpenAPI。
+使用当前会话中由腾讯文档插件注入的官方 MCP 工具。
 
 ## 认证
 
-腾讯文档使用不带 PKCE 的 OAuth2 授权码模式。安装插件后，Brain 要求填写 `Client ID` 和 `Client Secret`，保存时自动打开腾讯文档官方登录页，由用户扫码并确认授权；Brain 在 Server 端换取和刷新 Token，并通过 `TENCENT_DOCS_CONFIG` 投影 `Client ID`、`Access Token` 和 `Open ID`。
-
-1. 确认环境变量 `TENCENT_DOCS_CONFIG` 存在。
-2. 缺失时请用户在插件详情中建立腾讯文档连接。
-3. 腾讯文档只接受已登记的 HTTPS OAuth 回调地址；开放平台应用中的回调地址必须与当前 Brain Agent 空间公开地址一致。
-4. 不读取或输出配置文件内容，不在命令行参数中传递 Token。
+安装插件后，Brain 通过腾讯文档官方 MCP 自动注册 OAuth 客户端并打开扫码登录页，不需要用户提供 `Client ID` 或 `Client Secret`。连接不可用时，请用户在插件详情中重新授权；不要索取、读取或输出 Token。
 
 ## 调用
 
-先从腾讯文档官方文档确认 API 的 method、path、query 和 body，再调用：
-
-```bash
-python scripts/tencent_docs.py GET /openapi/v2/files
-python scripts/tencent_docs.py POST /openapi/v2/example --query '{"limit":20}' --data '{"name":"示例"}'
-```
-
-也可使用项目内 JSON 文件：
-
-```bash
-python scripts/tencent_docs.py POST /openapi/v2/example --data-file request.json
-```
-
-不要猜测 endpoint 或字段。需要上传、下载或官方文档未覆盖的认证头时，先查官方文档并说明当前脚本是否支持。
+1. 从当前可用工具中选择腾讯文档 MCP 工具，并以工具 Schema 为参数真源。
+2. 查询列表、读取元数据或正文时直接调用对应只读工具。
+3. 工具能力不足时明确说明，不猜测工具名、参数或 OpenAPI endpoint。
+4. 不绕过 MCP 直接构造带 Token 的 HTTP 请求。
 
 ## 安全
 
