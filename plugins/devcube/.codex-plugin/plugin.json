@@ -1,6 +1,6 @@
 {
   "name": "devcube",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "通过 DevCube 查询团队项目，并操作发布、配置、运行状态、监控、测试与扫描任务。",
   "author": { "name": "brain" },
   "skills": "./skills",

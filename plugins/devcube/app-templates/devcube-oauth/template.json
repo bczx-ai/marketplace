@@ -1,16 +1,13 @@
 {
   "schemaVersion": 1,
   "key": "devcube-oauth",
-  "name": "OAuth2/PKCE",
-  "description": "填写 DevCube 服务和 OAuth2 客户端配置后登录授权。",
+  "name": "访问令牌",
+  "description": "填写完整的 DevCube API Server 地址和访问令牌后连接。",
   "auth": {
-    "kind": "oauth2_pkce",
-    "authorizationEndpointField": "authorization_endpoint",
-    "tokenEndpointField": "token_endpoint",
-    "userinfoEndpointField": "userinfo_endpoint",
-    "clientIdField": "client_id",
-    "clientSecretField": "client_secret",
-    "scopes": ["email", "openid", "profile"]
+    "kind": "api_key",
+    "apiKeyField": "access_token",
+    "header": "x-usercenter-session",
+    "scopes": []
   },
   "networkScope": "private",
   "endpointField": "cube_api_server",
@@ -18,39 +15,16 @@
     {
       "key": "cube_api_server",
       "type": "url",
-      "label": "Cube API Server",
+      "label": "DevCube API Server 地址",
       "required": true,
-      "description": "DevCube Cube API Server 地址。"
+      "description": "请输入完整地址：DevCube 域名后加 /cube-api-server，例如 https://cube.anlink.com/cube-api-server。"
     },
     {
-      "key": "authorization_endpoint",
-      "type": "url",
-      "label": "OAuth2 授权地址",
-      "required": true
-    },
-    {
-      "key": "token_endpoint",
-      "type": "url",
-      "label": "OAuth2 Token 地址",
-      "required": true
-    },
-    {
-      "key": "userinfo_endpoint",
-      "type": "url",
-      "label": "OAuth2 UserInfo 地址",
-      "required": true
-    },
-    {
-      "key": "client_id",
-      "type": "text",
-      "label": "客户端 ID",
-      "required": true
-    },
-    {
-      "key": "client_secret",
+      "key": "access_token",
       "type": "secret",
-      "label": "客户端密钥",
-      "required": true
+      "label": "访问令牌",
+      "required": true,
+      "description": "DevCube 访问令牌，仅由 Server 写入 cubelet 配置文件。"
     }
   ],
   "cliConfig": {
@@ -59,7 +33,7 @@
     "content": {
       "cubelet": {
         "server_url": { "valueFrom": "config.cube_api_server" },
-        "x-usercenter-session": { "valueFrom": "auth.access_token" },
+        "x-usercenter-session": { "valueFrom": "secret.access_token" },
         "x-service-name": "za-cube",
         "request_timeout": 30
       }
