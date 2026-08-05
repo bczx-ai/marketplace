@@ -1,6 +1,6 @@
 {
   "name": "notion",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "通过 Notion 官方 CLI 管理页面、数据源、文件和 Workers。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",

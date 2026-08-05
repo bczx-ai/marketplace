@@ -1,6 +1,6 @@
 {
   "name": "frontend-design",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "为新建或重塑的前端界面提供审美方向、字体、色彩、布局、动效和自检指导。",
   "author": { "name": "Anthropic", "url": "https://www.anthropic.com" },
   "homepage": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
