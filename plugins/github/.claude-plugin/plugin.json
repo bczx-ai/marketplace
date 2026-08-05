@@ -1,18 +1,18 @@
 {
   "name": "github",
-  "version": "1.0.6",
-  "description": "通过 gh 管理 GitHub 仓库、Issue、Pull Request、Actions 和 Release。",
+  "version": "1.0.7",
+  "description": "通过 GitHub MCP 与 gh 管理仓库、Issue、Pull Request、Actions 和 Release。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
   "interface": {
     "displayName": "GitHub",
-    "shortDescription": "仓库、Issue、PR、Actions 与 Release",
-    "longDescription": "使用 GitHub 官方 gh CLI，通过浏览器安全登录，在 Brain 中完成仓库浏览、Issue、Pull Request、Actions 和 Release 工作流。",
+    "shortDescription": "PR 评审、CI 排障与发布工作流",
+    "longDescription": "结合 GitHub 官方 MCP 与 gh CLI，完成仓库浏览、Issue 和 Pull Request 分流、评审意见处理、Actions 排障及分支发布工作流。",
     "developerName": "brain",
     "category": "开发工具",
     "logo": "./assets/icon.svg",
-    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
-    "defaultPrompt": ["查看当前 GitHub 仓库的开放 PR。", "分析最近失败的 GitHub Actions。", "汇总当前里程碑中的 Issue。"]
+    "capabilities": ["Skills", "MCP", "Apps", "App Templates", "CLI"],
+    "defaultPrompt": ["查看当前 GitHub 仓库的开放 PR。", "处理当前 PR 中尚未解决的评审意见。", "分析最近失败的 GitHub Actions。", "提交当前改动并创建草稿 PR。"]
   }
 }

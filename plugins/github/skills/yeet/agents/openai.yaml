@@ -1,0 +1,6 @@
+interface:
+  display_name: "发布改动"
+  short_description: "提交、推送并创建草稿 PR"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  default_prompt: "使用 $yeet 确认改动范围，创建提交、推送分支并打开草稿 PR。"

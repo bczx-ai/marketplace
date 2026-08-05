@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "publisherId": "brain",
-  "releaseNotes": "保留 WeComTeam/wecom-cli 官方 9 个 Skills，恢复插件详情页。",
+  "releaseNotes": "修复扫码认证时重复打开登录页面的问题。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [

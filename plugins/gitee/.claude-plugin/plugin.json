@@ -1,0 +1,18 @@
+{
+  "name": "gitee",
+  "version": "1.0.0",
+  "description": "通过 Gitee 官方远程 MCP 管理仓库、Issue、Pull Request、Release 和通知。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Gitee",
+    "shortDescription": "仓库、Issue、PR 与 Release",
+    "longDescription": "使用 Gitee 官方远程 MCP，通过 Personal Access Token 连接账号，查询代码与协作状态，并在确认后创建或更新 Issue、Pull Request 和 Release。",
+    "developerName": "brain",
+    "category": "开发工具",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills", "MCP", "Apps", "App Templates"],
+    "defaultPrompt": ["列出我的 Gitee 仓库。", "查看指定仓库的开放 Issue 和 Pull Request。", "比较两个分支并汇总变更。"]
+  }
+}

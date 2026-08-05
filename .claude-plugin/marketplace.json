@@ -30,6 +30,10 @@
       "source": { "source": "local", "path": "./plugins/github" }
     },
     {
+      "name": "gitee",
+      "source": { "source": "local", "path": "./plugins/gitee" }
+    },
+    {
       "name": "feishu",
       "source": { "source": "local", "path": "./plugins/feishu" }
     },

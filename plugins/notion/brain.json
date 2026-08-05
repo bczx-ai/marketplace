@@ -2,12 +2,19 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "恢复插件详情页。",
+  "releaseNotes": "补齐 OpenAI 官方 Notion 知识沉淀、会议准备、研究文档和规格实施 Skill，并接入 Notion 官方远程 MCP。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
-    "skills": [{ "key": "notion", "requires": ["cli:ntn"] }],
+    "skills": [
+      { "key": "notion", "requires": ["cli:ntn"] },
+      { "key": "notion-knowledge-capture" },
+      { "key": "notion-meeting-intelligence" },
+      { "key": "notion-research-documentation" },
+      { "key": "notion-spec-to-implementation" }
+    ],
     "apps": [{ "key": "notion", "templates": ["notion-cli-login"] }],
     "appTemplates": ["notion-cli-login"],
+    "mcp": ["notion"],
     "assets": ["detail.html", "icon.svg"],
     "cli": [{
       "key": "ntn",

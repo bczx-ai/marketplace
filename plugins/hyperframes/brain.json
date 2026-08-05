@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "heygen",
-  "releaseNotes": "恢复插件详情页。",
+  "releaseNotes": "优化市场卡片图标的视觉占比和小尺寸清晰度。",
   "compatibility": {
     "brain": ">=1.0.16"
   },

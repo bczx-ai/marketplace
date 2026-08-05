@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "key": "gitee-token",
+  "name": "Gitee 访问令牌",
+  "description": "填写 Gitee Personal Access Token，连接 Gitee 官方远程 MCP。",
+  "auth": {
+    "kind": "api_key",
+    "apiKeyField": "access_token",
+    "header": "Authorization",
+    "scheme": "Bearer",
+    "scopes": []
+  },
+  "networkScope": "public",
+  "endpoint": "https://api.gitee.com/mcp",
+  "fields": [
+    {
+      "key": "access_token",
+      "type": "secret",
+      "label": "Personal Access Token",
+      "required": true,
+      "description": "请在 Gitee 私人令牌页面按需授权；Token 仅保存在 Brain Server 的敏感存储中。"
+    }
+  ]
+}

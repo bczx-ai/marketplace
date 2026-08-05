@@ -1,0 +1,6 @@
+interface:
+  display_name: "知识沉淀"
+  short_description: "把讨论和决策整理为 Notion 页面"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  default_prompt: "使用 $notion-knowledge-capture 把当前讨论沉淀为结构化 Notion 知识页面。"

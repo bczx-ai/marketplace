@@ -1,18 +1,19 @@
 {
   "name": "notion",
-  "version": "1.0.6",
-  "description": "通过 Notion 官方 CLI 管理页面、数据源、文件和 Workers。",
+  "version": "1.0.7",
+  "description": "通过 Notion MCP 与官方 CLI 完成知识沉淀、会议准备、研究和规格实施工作流。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
+  "mcpServers": "./mcp/servers.json",
   "interface": {
     "displayName": "Notion",
-    "shortDescription": "页面、数据源、文件与 Workers",
-    "longDescription": "使用 Notion 官方 ntn CLI，通过浏览器与系统钥匙串安全登录，管理页面、数据源、文件和 Notion Workers。",
+    "shortDescription": "知识、会议、研究与规格实施工作流",
+    "longDescription": "结合 Notion 官方远程 MCP 与 ntn CLI，完成知识沉淀、会议准备、研究文档、规格转实施计划，以及页面、数据源、文件和 Workers 管理。",
     "developerName": "brain",
     "category": "办公协作",
     "logo": "./assets/icon.svg",
-    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
-    "defaultPrompt": ["读取指定 Notion 页面并总结。", "查询 Notion 数据源中的记录。", "列出当前 workspace 的 Notion Workers。"]
+    "capabilities": ["Skills", "MCP", "Apps", "App Templates", "CLI"],
+    "defaultPrompt": ["把这段讨论沉淀为 Notion 知识页面。", "根据 Notion 上下文准备会议议程。", "研究 Notion 中的资料并生成带引用的报告。", "把 Notion 规格转成实施计划和任务。"]
   }
 }

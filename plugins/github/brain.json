@@ -2,12 +2,20 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "恢复插件详情页。",
+  "releaseNotes": "补齐 OpenAI 官方 GitHub 工作流 Skill，增加 GitHub MCP PAT 连接，并将 gh 2.96.0 制品迁移至 R2 公共下载地址。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
-    "skills": [{ "key": "github", "requires": ["cli:gh"] }],
-    "apps": [{ "key": "github", "templates": ["github-cli-login"] }],
-    "appTemplates": ["github-cli-login"],
+    "skills": [
+      { "key": "gh-address-comments", "requires": ["cli:gh"] },
+      { "key": "gh-fix-ci", "requires": ["cli:gh"] },
+      { "key": "github", "requires": ["cli:gh"] },
+      { "key": "yeet", "requires": ["cli:gh"] }
+    ],
+    "apps": [
+      { "key": "github", "templates": ["github-cli-login"] },
+      { "key": "github-mcp", "templates": ["github-mcp-token"] }
+    ],
+    "appTemplates": ["github-cli-login", "github-mcp-token"],
     "assets": ["detail.html", "icon.svg"],
     "cli": [{
       "key": "gh",
@@ -15,35 +23,35 @@
       "targets": {
         "darwin-arm64": {
           "file": "gh",
-          "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_macOS_arm64.zip",
+          "url": "https://download-app.aidevops.top/marketplace/plugins/github/1.0.7/darwin-arm64/gh_2.96.0_macOS_arm64.zip",
           "size": 13950131,
           "sha256": "f23a0c37d963aacc3bed703ccbd59b41c5ca22101fab7f00eb2b7cad23aba463",
           "archive": { "format": "zip", "entry": "gh_2.96.0_macOS_arm64/bin/gh" }
         },
         "darwin-x64": {
           "file": "gh",
-          "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_macOS_amd64.zip",
+          "url": "https://download-app.aidevops.top/marketplace/plugins/github/1.0.7/darwin-x64/gh_2.96.0_macOS_amd64.zip",
           "size": 15298430,
           "sha256": "4bd449df9ad639391bc62b8032546f0fe9edcd8526e06682a4f88abd8c5d163c",
           "archive": { "format": "zip", "entry": "gh_2.96.0_macOS_amd64/bin/gh" }
         },
         "linux-arm64": {
           "file": "gh",
-          "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_arm64.tar.gz",
+          "url": "https://download-app.aidevops.top/marketplace/plugins/github/1.0.7/linux-arm64/gh_2.96.0_linux_arm64.tar.gz",
           "size": 13321232,
           "sha256": "06f86ec7103d41993b76cd78072f43595c34aaa56506d971d9860e67140bf909",
           "archive": { "format": "tar.gz", "entry": "gh_2.96.0_linux_arm64/bin/gh" }
         },
         "linux-x64": {
           "file": "gh",
-          "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_amd64.tar.gz",
+          "url": "https://download-app.aidevops.top/marketplace/plugins/github/1.0.7/linux-x64/gh_2.96.0_linux_amd64.tar.gz",
           "size": 14652560,
           "sha256": "83d5c2ccad5498f58bf6368acb1ab32588cf43ab3a4b1c301bf36328b1c8bd60",
           "archive": { "format": "tar.gz", "entry": "gh_2.96.0_linux_amd64/bin/gh" }
         },
         "win32-x64": {
           "file": "gh.exe",
-          "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_windows_amd64.zip",
+          "url": "https://download-app.aidevops.top/marketplace/plugins/github/1.0.7/win32-x64/gh_2.96.0_windows_amd64.zip",
           "size": 14821821,
           "sha256": "c2d6acc935cd2f00e2144d7e036d5cd82e6b6bd5594e8c75aa75ef2a4ed6aac3",
           "archive": { "format": "zip", "entry": "bin/gh.exe" }

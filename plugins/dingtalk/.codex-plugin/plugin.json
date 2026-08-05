@@ -1,6 +1,6 @@
 {
   "name": "dingtalk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "通过钉钉官方 dws CLI 管理消息、文档、表格、日程、待办、审批、考勤、邮箱和知识库。",
   "author": { "name": "DingTalk", "url": "https://github.com/DingTalk-Real-AI" },
   "homepage": "https://open.dingtalk.com/dingtalk-cli",

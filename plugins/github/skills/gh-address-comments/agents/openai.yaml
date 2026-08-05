@@ -1,0 +1,6 @@
+interface:
+  display_name: "评审意见处理"
+  short_description: "处理 PR 中尚未解决的评审意见"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  default_prompt: "使用 $gh-address-comments 检查当前 PR 的未解决评审意见，实施选定修复并总结结果。"

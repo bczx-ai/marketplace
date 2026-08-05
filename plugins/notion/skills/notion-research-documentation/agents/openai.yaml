@@ -1,0 +1,6 @@
+interface:
+  display_name: "研究与文档"
+  short_description: "研究 Notion 内容并生成报告"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  default_prompt: "使用 $notion-research-documentation 研究 Notion 资料并生成带来源的报告。"

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Gitee">
+  <rect width="64" height="64" rx="13" fill="#c71d23"/>
+  <path d="M17 19a7 7 0 0 1 7-7h23v10H27v6h20v16a8 8 0 0 1-8 8H24a7 7 0 0 1-7-7V19Zm10 19v4h10v-4H27Z" fill="#fff"/>
+</svg>

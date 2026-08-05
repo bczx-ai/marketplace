@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "key": "gitee",
+  "name": "Gitee",
+  "description": "连接 Gitee 官方远程 MCP，在 Agent 会话中管理仓库、Issue、Pull Request、Release 和通知。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["gitee-token"],
+  "mcp": ["gitee"]
+}

@@ -9,7 +9,7 @@
     "commands": [
       {
         "command": "wecom-cli",
-        "args": ["init", "--noninteractive"],
+        "args": ["init", "--noninteractive", "--no-open"],
         "timeoutSeconds": 600
       }
     ]

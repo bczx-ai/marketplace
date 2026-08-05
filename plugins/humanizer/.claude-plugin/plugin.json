@@ -1,6 +1,6 @@
 {
   "name": "humanizer",
-  "version": "2.9.5",
+  "version": "2.9.6",
   "description": "识别并改写 AI 生成文本常见模式，在保留事实和语义的前提下使表达更自然。",
   "author": { "name": "blader", "url": "https://github.com/blader" },
   "homepage": "https://github.com/blader/humanizer",
@@ -13,6 +13,7 @@
     "longDescription": "识别夸大意义、宣传式措辞、模糊归因、机械句式等 AI 写作模式，在不新增事实的前提下保留原意并改善自然度。",
     "developerName": "blader",
     "category": "内容创作",
+    "logo": "./assets/icon.svg",
     "capabilities": ["Skills"],
     "defaultPrompt": [
       "把这段文字改得更自然并保留事实。",

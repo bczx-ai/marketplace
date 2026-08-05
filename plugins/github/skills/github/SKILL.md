@@ -3,9 +3,18 @@ name: github
 description: 通过 GitHub 官方 gh CLI 操作仓库、Issue、Pull Request、Actions、Release 和 GitHub API。用户提到 GitHub、gh、PR、Actions workflow、GitHub Release 或仓库协作时使用。
 ---
 
-# GitHub CLI
+# GitHub
 
-使用官方 `gh`，优先使用专用子命令，必要时使用 `gh api`。
+使用 GitHub MCP 读取仓库、Issue、Pull Request 和评论；使用官方 `gh` 处理当前分支、Actions 日志及 MCP 未覆盖的操作。
+
+## 工作流分流
+
+- 常规仓库、Issue 和 PR 查询留在本 Skill。
+- 未解决的 PR 评审意见使用 `../gh-address-comments/SKILL.md`。
+- GitHub Actions 失败排查使用 `../gh-fix-ci/SKILL.md`。
+- 提交、推送并创建草稿 PR 使用 `../yeet/SKILL.md`。
+
+能用 GitHub MCP 获得结构化结果时优先使用 MCP；当前分支 PR 发现、GraphQL review thread、Actions 日志和本地发布流程使用 `gh`。
 
 ## 准备
 

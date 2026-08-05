@@ -1,0 +1,6 @@
+interface:
+  display_name: "CI 排障"
+  short_description: "排查失败的 GitHub Actions 检查"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  default_prompt: "使用 $gh-fix-ci 检查当前 PR 失败的 GitHub Actions，定位根因并给出最小修复。"

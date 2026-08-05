@@ -45,6 +45,12 @@
       "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
     },
     {
+      "name": "gitee",
+      "source": { "source": "local", "path": "./plugins/gitee" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
       "name": "feishu",
       "source": { "source": "local", "path": "./plugins/feishu" },
       "category": "办公协作",
