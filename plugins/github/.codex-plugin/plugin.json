@@ -1,10 +1,11 @@
 {
   "name": "github",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "通过 GitHub MCP 与 gh 管理仓库、Issue、Pull Request、Actions 和 Release。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
+  "mcpServers": "./mcp/servers.json",
   "interface": {
     "displayName": "GitHub",
     "shortDescription": "PR 评审、CI 排障与发布工作流",

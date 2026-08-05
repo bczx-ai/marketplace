@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "补齐 OpenAI 官方 GitHub 工作流 Skill，增加 GitHub MCP PAT 连接，并将 gh 2.96.0 制品迁移至 R2 公共下载地址。",
+  "releaseNotes": "GitHub 应用仅保留 gh CLI 浏览器认证，并将 GitHub 官方远程 MCP 调整为独立组件。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [
@@ -11,11 +11,9 @@
       { "key": "github", "requires": ["cli:gh"] },
       { "key": "yeet", "requires": ["cli:gh"] }
     ],
-    "apps": [
-      { "key": "github", "templates": ["github-cli-login"] },
-      { "key": "github-mcp", "templates": ["github-mcp-token"] }
-    ],
-    "appTemplates": ["github-cli-login", "github-mcp-token"],
+    "apps": [{ "key": "github", "templates": ["github-cli-login"] }],
+    "appTemplates": ["github-cli-login"],
+    "mcp": ["github"],
     "assets": ["detail.html", "icon.svg"],
     "cli": [{
       "key": "gh",

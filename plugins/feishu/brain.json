@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "publisherId": "brain",
-  "releaseNotes": "将 lark-cli 1.0.82 制品迁移至 R2 公共下载地址。",
+  "releaseNotes": "安装后直接打开飞书一键应用配置和用户授权页面，无需填写 App ID 与 App Secret。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [

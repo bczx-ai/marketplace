@@ -1,25 +1,16 @@
 {
   "schemaVersion": 1,
   "key": "feishu-cli-login",
-  "name": "飞书应用与用户登录",
-  "description": "填写飞书应用凭据后，Brain 通过 stdin 安全配置官方 CLI，并打开用户授权页面。",
+  "name": "飞书账号授权",
+  "description": "自动运行飞书官方 CLI，打开一键应用配置和用户授权页面。",
   "auth": {
     "kind": "cli_oauth",
     "configDirEnv": "LARKSUITE_CLI_CONFIG_DIR",
     "commands": [
       {
         "command": "lark-cli",
-        "args": [
-          "config",
-          "init",
-          "--app-id",
-          { "valueFrom": "config.app_id" },
-          "--app-secret-stdin",
-          "--brand",
-          "feishu"
-        ],
-        "stdinFrom": "secret.app_secret",
-        "timeoutSeconds": 120
+        "args": ["config", "init", "--new", "--brand", "feishu"],
+        "timeoutSeconds": 600
       },
       {
         "command": "lark-cli",
@@ -29,20 +20,5 @@
     ]
   },
   "networkScope": "public",
-  "fields": [
-    {
-      "key": "app_id",
-      "type": "text",
-      "label": "App ID",
-      "required": true,
-      "description": "飞书开放平台应用的 App ID。"
-    },
-    {
-      "key": "app_secret",
-      "type": "secret",
-      "label": "App Secret",
-      "required": true,
-      "description": "仅通过 stdin 传给 lark-cli，不进入命令参数或公开状态。"
-    }
-  ]
+  "fields": []
 }
