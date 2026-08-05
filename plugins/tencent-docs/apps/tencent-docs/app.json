@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "tencent-docs",
+  "name": "腾讯文档",
+  "description": "通过腾讯文档 OAuth2 扫码授权，为 Agent 会话提供自动刷新的受控连接。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["tencent-docs-token"]
+}

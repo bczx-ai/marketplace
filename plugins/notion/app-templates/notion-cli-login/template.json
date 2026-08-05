@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "key": "notion-cli-login",
+  "name": "Notion 浏览器登录",
+  "description": "保存后自动运行 Notion 官方 CLI，并打开浏览器完成 workspace 授权。",
+  "auth": {
+    "kind": "cli_oauth",
+    "configDirEnv": "NOTION_HOME",
+    "commands": [
+      {
+        "command": "ntn",
+        "args": ["login"],
+        "timeoutSeconds": 600
+      }
+    ]
+  },
+  "networkScope": "public",
+  "fields": []
+}

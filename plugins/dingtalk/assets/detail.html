@@ -1,0 +1,259 @@
+<main class="dingtalk-detail">
+  <header class="hero">
+    <div class="hero-copy">
+      <div class="brandline">
+        <img src="icon.svg" alt="" width="56" height="56">
+        <div><span>DINGTALK</span><small>WORKSPACE CLI</small></div>
+      </div>
+      <h1>钉钉</h1>
+      <p class="statement">让消息、文档、日程与业务数据进入同一条 Agent 工作流。</p>
+      <p class="lead">通过官方 <code>dws</code> CLI 和生产推荐的 mono Skill，在账号授权范围内查询、整理与执行钉钉工作。</p>
+      <dl class="facts">
+        <div><dt>SKILL</dt><dd>官方 mono 全量版</dd></div>
+        <div><dt>CLI</dt><dd>dws 1.0.51</dd></div>
+        <div><dt>SCOPE</dt><dd>20+ 工作域</dd></div>
+      </dl>
+    </div>
+
+    <div class="command-rail" aria-label="从自然语言到钉钉工作对象的执行流程">
+      <div class="rail-head"><span>AGENT FLOW</span><code>dws</code></div>
+      <div class="rail-step active"><b>01</b><div><strong>理解意图</strong><span>“汇总今天的待办和会议”</span></div></div>
+      <div class="rail-step"><b>02</b><div><strong>读取命令契约</strong><code>dws schema todo</code></div></div>
+      <div class="rail-step"><b>03</b><div><strong>校验账号与权限</strong><span>OAuth · 当前组织 · 当前用户</span></div></div>
+      <div class="rail-step"><b>04</b><div><strong>执行并返回结果</strong><span>JSON 输出 · 全程可审计</span></div></div>
+      <div class="rail-status"><i></i><span>连接由 Brain 托管</span></div>
+    </div>
+  </header>
+
+  <section class="capabilities">
+    <div class="section-title">
+      <p>完整工作台</p>
+      <h2>一套入口，覆盖日常协作与业务操作</h2>
+    </div>
+    <div class="capability-grid">
+      <article><span>沟通</span><h3>消息、群聊与 DING</h3><p>搜索会话、管理群成员、发送机器人消息，并订阅个人实时事件。</p></article>
+      <article><span>内容</span><h3>文档、云盘与知识库</h3><p>检索和编辑钉钉文档、Markdown、云盘文件与知识库内容。</p></article>
+      <article><span>数据</span><h3>AI 表格与电子表格</h3><p>处理记录、字段、视图、图表、仪表盘和电子表格数据。</p></article>
+      <article><span>时间</span><h3>日程、会议室与待办</h3><p>查询忙闲、安排会议、预订会议室，并维护个人与团队待办。</p></article>
+      <article><span>组织</span><h3>通讯录、考勤与审批</h3><p>查找同事和组织信息，处理考勤、日志、审批与组织业务。</p></article>
+      <article><span>沉淀</span><h3>听记、邮箱与工作流</h3><p>读取会议听记、邮件和报告，串联跨产品任务与自动化脚本。</p></article>
+    </div>
+  </section>
+
+  <section class="execution">
+    <div class="section-title">
+      <p>受控执行</p>
+      <h2>先看清目标，再改变工作数据</h2>
+    </div>
+    <div class="execution-grid">
+      <ol>
+        <li><b>发现</b><span>按需读取当前二进制的 Schema 和帮助，不猜命令或参数。</span></li>
+        <li><b>确认</b><span>删除、撤回、拒绝审批等高影响操作先展示摘要并等待确认。</span></li>
+        <li><b>执行</b><span>使用结构化 JSON 结果，保留组织、账号与操作上下文。</span></li>
+      </ol>
+      <aside>
+        <span>AUTH BOUNDARY</span>
+        <h3>企业管理员启用 CLI 后授权</h3>
+        <p>安装插件会打开钉钉账号授权页。所有能力遵循当前组织和账号已有权限，凭据不会写入 Skill 或命令参数。</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="prompts">
+    <div class="section-title">
+      <p>开始使用</p>
+      <h2>直接描述要完成的工作</h2>
+    </div>
+    <div class="prompt-list">
+      <blockquote>“汇总今天的钉钉日程、待办和未读事项。”</blockquote>
+      <blockquote>“查找最近的项目周报，整理风险和待确认事项。”</blockquote>
+      <blockquote>“读取最近一次听记，提取决策、责任人和截止时间。”</blockquote>
+    </div>
+  </section>
+
+  <footer>
+    <img src="icon.svg" alt="" width="32" height="32">
+    <p><strong>DingTalk Workspace CLI</strong><span>官方 CLI · 官方 Skill · Brain 托管连接</span></p>
+  </footer>
+</main>
+
+<style>
+  :root {
+    color-scheme: light dark;
+    --canvas: #f7f9fc;
+    --paper: #ffffff;
+    --ink: #171b21;
+    --muted: #5e6875;
+    --line: #d8e0ea;
+    --line-strong: #b9c7d8;
+    --blue: #1185fe;
+    --blue-deep: #0059c7;
+    --blue-soft: #e8f3ff;
+    --green: #087b5b;
+    --green-soft: #e6f5ef;
+    --orange: #b84a11;
+    --orange-soft: #fff0e8;
+    --shadow: rgb(26 52 82 / 10%);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--canvas); }
+  .dingtalk-detail {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 42px 42px 64px;
+    color: var(--ink);
+    font-family: "Avenir Next", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+  h1, h2, h3, p, dl, dd, blockquote { margin-top: 0; }
+  h1, h2, h3, strong, b { color: var(--ink); }
+  code, .brandline, .section-title > p, .facts dt, .rail-head, .command-rail b, .capability-grid article > span, .execution aside > span {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    letter-spacing: 0;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+    gap: 56px;
+    align-items: center;
+    min-height: 520px;
+    padding: 28px 4px 62px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-copy { animation: reveal 480ms cubic-bezier(.2,.72,.25,1) both; }
+  .brandline { display: flex; align-items: center; gap: 14px; color: var(--blue-deep); font-size: 12px; font-weight: 760; }
+  .brandline img { width: 56px; height: 56px; border-radius: 8px; box-shadow: 0 9px 22px var(--shadow); }
+  .brandline div { display: grid; gap: 1px; }
+  .brandline small { color: var(--muted); font-size: 10px; font-weight: 650; }
+  h1 {
+    margin: 30px 0 12px;
+    font-family: "Arial Rounded MT Bold", "Avenir Next", "PingFang SC", sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .statement { max-width: 620px; margin-bottom: 14px; font-size: 26px; font-weight: 650; line-height: 1.35; }
+  .lead { max-width: 650px; margin-bottom: 0; color: var(--muted); font-size: 16px; }
+  .lead code { padding: 2px 6px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--blue-deep); font-size: 13px; }
+  .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 30px 0 0; }
+  .facts div { min-width: 0; padding: 10px 12px; border-left: 3px solid var(--blue); background: var(--blue-soft); }
+  .facts div:nth-child(2) { border-left-color: var(--orange); background: var(--orange-soft); }
+  .facts div:nth-child(3) { border-left-color: var(--green); background: var(--green-soft); }
+  .facts dt { color: var(--muted); font-size: 10px; font-weight: 750; }
+  .facts dd { margin: 3px 0 0; font-size: 12px; font-weight: 680; line-height: 1.35; }
+
+  .command-rail {
+    position: relative;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--paper);
+    box-shadow: 14px 16px 0 var(--blue-soft), 0 24px 56px var(--shadow);
+    animation: rail-in 520ms 80ms cubic-bezier(.2,.72,.25,1) both;
+  }
+  .rail-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 750; }
+  .rail-head code { padding: 3px 7px; border-radius: 4px; background: var(--ink); color: var(--paper); font-size: 11px; }
+  .rail-step { position: relative; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; min-height: 76px; padding: 15px 4px 14px; }
+  .rail-step:not(:last-of-type)::after { content: ""; position: absolute; left: 16px; top: 47px; bottom: -5px; width: 1px; background: var(--line-strong); }
+  .rail-step b { position: relative; z-index: 1; width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--paper); color: var(--muted); font-size: 10px; }
+  .rail-step.active b { border-color: var(--blue); background: var(--blue); color: #fff; }
+  .rail-step div { min-width: 0; display: grid; align-content: start; gap: 3px; padding-top: 3px; }
+  .rail-step strong { font-size: 14px; line-height: 1.3; }
+  .rail-step span, .rail-step code { color: var(--muted); font-size: 11px; line-height: 1.5; }
+  .rail-step code { width: fit-content; max-width: 100%; padding: 2px 6px; border-radius: 4px; background: var(--blue-soft); color: var(--blue-deep); white-space: normal; }
+  .rail-status { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--canvas); color: var(--muted); font-size: 11px; }
+  .rail-status i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px var(--green-soft); }
+
+  section { padding: 58px 4px; border-bottom: 1px solid var(--line); }
+  .section-title { display: grid; grid-template-columns: 160px minmax(0, 700px); gap: 24px; align-items: start; margin-bottom: 28px; }
+  .section-title > p { margin: 5px 0 0; color: var(--blue-deep); font-size: 11px; font-weight: 750; }
+  .section-title h2 { margin: 0; font-size: 28px; font-weight: 720; line-height: 1.28; }
+
+  .capability-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .capability-grid article { min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+  .capability-grid article:nth-child(3n + 2) > span { color: var(--orange); background: var(--orange-soft); }
+  .capability-grid article:nth-child(3n) > span { color: var(--green); background: var(--green-soft); }
+  .capability-grid article > span { display: inline-block; padding: 3px 7px; border-radius: 4px; background: var(--blue-soft); color: var(--blue-deep); font-size: 10px; font-weight: 750; }
+  .capability-grid h3 { margin: 17px 0 8px; font-size: 16px; line-height: 1.35; }
+  .capability-grid p { margin: 0; color: var(--muted); font-size: 13px; }
+
+  .execution-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 36px; align-items: stretch; }
+  .execution ol { margin: 0; padding: 0; list-style: none; counter-reset: steps; }
+  .execution li { counter-increment: steps; display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 18px; padding: 19px 0; border-top: 1px solid var(--line); }
+  .execution li:last-child { border-bottom: 1px solid var(--line); }
+  .execution li b::before { content: "0" counter(steps) " "; color: var(--blue); font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; }
+  .execution li b { font-size: 14px; }
+  .execution li span { color: var(--muted); font-size: 13px; }
+  .execution aside { padding: 26px; border-left: 4px solid var(--blue); background: var(--ink); color: #d9e1eb; }
+  .execution aside > span { color: #69b7ff; font-size: 10px; font-weight: 750; }
+  .execution aside h3 { margin: 18px 0 10px; color: #fff; font-size: 20px; line-height: 1.35; }
+  .execution aside p { margin: 0; color: #bdc7d2; font-size: 13px; }
+
+  .prompt-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  blockquote { position: relative; min-width: 0; margin: 0; padding: 20px 20px 20px 38px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); font-size: 14px; }
+  blockquote::before { content: "“"; position: absolute; left: 16px; top: 10px; color: var(--blue); font-family: Georgia, serif; font-size: 30px; line-height: 1; }
+
+  footer { display: flex; align-items: center; gap: 12px; padding: 26px 4px 0; }
+  footer img { border-radius: 7px; }
+  footer p { display: grid; gap: 1px; margin: 0; }
+  footer strong { font-size: 12px; }
+  footer span { color: var(--muted); font-size: 10px; }
+
+  @media (hover: hover) {
+    .capability-grid article:hover { transform: translateY(-3px); border-color: var(--line-strong); box-shadow: 0 14px 34px var(--shadow); }
+  }
+  @media (max-width: 880px) {
+    .dingtalk-detail { padding: 28px 24px 50px; }
+    .hero { grid-template-columns: 1fr; gap: 40px; min-height: 0; padding-top: 12px; }
+    .command-rail { max-width: 620px; }
+    .capability-grid, .prompt-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .execution-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 580px) {
+    .dingtalk-detail { padding: 22px 16px 40px; }
+    .hero { gap: 32px; padding-bottom: 46px; }
+    h1 { margin-top: 24px; font-size: 46px; }
+    .statement { font-size: 21px; }
+    .lead { font-size: 14px; }
+    .facts { grid-template-columns: 1fr; }
+    .command-rail { padding: 15px; box-shadow: 8px 10px 0 var(--blue-soft); }
+    section { padding: 44px 2px; }
+    .section-title { grid-template-columns: 1fr; gap: 7px; }
+    .section-title h2 { font-size: 23px; }
+    .capability-grid, .prompt-list { grid-template-columns: 1fr; }
+    .execution li { grid-template-columns: 70px minmax(0, 1fr); gap: 12px; }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas: #11161c;
+      --paper: #191f27;
+      --ink: #f4f7fa;
+      --muted: #aeb8c4;
+      --line: #303a46;
+      --line-strong: #455466;
+      --blue: #46a4ff;
+      --blue-deep: #79bdff;
+      --blue-soft: #172d43;
+      --green: #54c7a3;
+      --green-soft: #19332c;
+      --orange: #ff9a66;
+      --orange-soft: #3a261d;
+      --shadow: rgb(0 0 0 / 28%);
+    }
+    .rail-head code, .execution aside { background: #080b0f; }
+    .rail-status i { box-shadow: 0 0 0 4px var(--green-soft); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  @keyframes reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes rail-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+</style>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitLab"
+  short_description: "通过 glab 管理 GitLab 仓库、MR、Issue、CI/CD 与 Release"
+  default_prompt: "使用 $gitlab 通过 glab 处理当前 GitLab 仓库的研发协作任务。"

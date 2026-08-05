@@ -1,0 +1,54 @@
+{
+  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
+  "schemaVersion": 1,
+  "publisherId": "zainfo",
+  "releaseNotes": "恢复插件详情页。",
+  "compatibility": { "brain": ">=1.0.16" },
+  "components": {
+    "skills": [{ "key": "notion", "requires": ["cli:ntn"] }],
+    "apps": [{ "key": "notion", "templates": ["notion-cli-login"] }],
+    "appTemplates": ["notion-cli-login"],
+    "assets": ["detail.html", "icon.svg"],
+    "cli": [{
+      "key": "ntn",
+      "command": "ntn",
+      "targets": {
+        "darwin-arm64": {
+          "file": "ntn",
+          "url": "https://registry.npmjs.org/ntn/-/ntn-0.19.1.tgz",
+          "size": 22141688,
+          "sha256": "35cf9291a936c3cd543c893e4905bed95c86dc6016a0f2b31fb3090028ac33c5",
+          "archive": { "format": "tar.gz", "entry": "package/dist/ntn-darwin-arm64/ntn" }
+        },
+        "darwin-x64": {
+          "file": "ntn",
+          "url": "https://registry.npmjs.org/ntn/-/ntn-0.19.1.tgz",
+          "size": 22141688,
+          "sha256": "35cf9291a936c3cd543c893e4905bed95c86dc6016a0f2b31fb3090028ac33c5",
+          "archive": { "format": "tar.gz", "entry": "package/dist/ntn-darwin-x64/ntn" }
+        },
+        "linux-arm64": {
+          "file": "ntn",
+          "url": "https://registry.npmjs.org/ntn/-/ntn-0.19.1.tgz",
+          "size": 22141688,
+          "sha256": "35cf9291a936c3cd543c893e4905bed95c86dc6016a0f2b31fb3090028ac33c5",
+          "archive": { "format": "tar.gz", "entry": "package/dist/ntn-linux-arm64/ntn" }
+        },
+        "linux-x64": {
+          "file": "ntn",
+          "url": "https://registry.npmjs.org/ntn/-/ntn-0.19.1.tgz",
+          "size": 22141688,
+          "sha256": "35cf9291a936c3cd543c893e4905bed95c86dc6016a0f2b31fb3090028ac33c5",
+          "archive": { "format": "tar.gz", "entry": "package/dist/ntn-linux-x64/ntn" }
+        },
+        "win32-x64": {
+          "file": "ntn.exe",
+          "url": "https://registry.npmjs.org/ntn/-/ntn-0.19.1.tgz",
+          "size": 22141688,
+          "sha256": "35cf9291a936c3cd543c893e4905bed95c86dc6016a0f2b31fb3090028ac33c5",
+          "archive": { "format": "tar.gz", "entry": "package/dist/ntn-win32-x64/ntn.exe" }
+        }
+      }
+    }]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "playwright-mcp",
+  "version": "0.0.83",
+  "description": "通过 MCP 使用 Playwright 的结构化页面快照和浏览器自动化工具。",
+  "author": { "name": "Microsoft Corporation", "url": "https://github.com/microsoft" },
+  "homepage": "https://github.com/microsoft/playwright-mcp",
+  "repository": "https://github.com/microsoft/playwright-mcp",
+  "license": "Apache-2.0",
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@0.0.78"]
+    }
+  },
+  "interface": {
+    "displayName": "Playwright MCP",
+    "shortDescription": "结构化页面快照与浏览器自动化",
+    "longDescription": "通过 Playwright MCP 使用结构化无障碍快照浏览和操作页面，适合持续浏览器状态、探索式自动化和多轮页面调试。",
+    "developerName": "Microsoft Corporation",
+    "category": "开发工具",
+    "logo": "./assets/icon.png",
+    "capabilities": ["MCP"],
+    "defaultPrompt": [
+      "使用 Playwright MCP 检查这个网页。",
+      "自动化完成这个页面操作流程。",
+      "定位这个页面的交互问题。"
+    ]
+  }
+}

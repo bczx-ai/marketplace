@@ -1,0 +1,25 @@
+{
+  "name": "hyperframes",
+  "version": "0.7.89",
+  "description": "使用 HTML、CSS 和动画运行时创作、预览、检查并渲染视频与动态视觉内容。",
+  "author": { "name": "HeyGen", "url": "https://hyperframes.heygen.com" },
+  "homepage": "https://hyperframes.heygen.com",
+  "repository": "https://github.com/heygen-com/hyperframes",
+  "license": "Apache-2.0",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "HyperFrames by HeyGen",
+    "shortDescription": "使用 HTML 创作并渲染视频",
+    "longDescription": "使用 HTML、CSS、Tailwind、GSAP、Anime.js、Lottie、Three.js 和 WAAPI 创作视频，覆盖字幕、配音、媒体、网站捕获、动效设计、检查与渲染。",
+    "developerName": "HeyGen",
+    "category": "设计多媒体",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png",
+    "capabilities": ["Skills"],
+    "defaultPrompt": [
+      "把这个网站制作成 20 秒产品宣传视频。",
+      "创建带有动态排版的动画标题。",
+      "为这段配音添加同步字幕。"
+    ]
+  }
+}

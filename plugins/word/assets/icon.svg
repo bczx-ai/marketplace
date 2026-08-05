@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Word">
+  <rect width="64" height="64" rx="13" fill="#185abd"/>
+  <rect x="27" y="12" width="25" height="40" rx="3" fill="#fff" opacity=".95"/>
+  <rect x="11" y="19" width="29" height="31" rx="4" fill="#2b7cd3"/>
+  <path d="m18 27 3.4 15h4.2l2.5-9.2L30.6 42h4.2L38 27h-4l-1.6 9.7L30 27h-3.8l-2.5 9.7L22 27h-4Z" fill="#fff"/>
+</svg>

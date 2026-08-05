@@ -7,6 +7,138 @@
       "source": { "source": "local", "path": "./plugins/devcube" },
       "category": "研发效能",
       "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "wecom",
+      "source": { "source": "local", "path": "./plugins/wecom" },
+      "category": "办公协作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "tencent-meeting",
+      "source": { "source": "local", "path": "./plugins/tencent-meeting" },
+      "category": "办公协作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "tencent-docs",
+      "source": { "source": "local", "path": "./plugins/tencent-docs" },
+      "category": "办公协作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "notion",
+      "source": { "source": "local", "path": "./plugins/notion" },
+      "category": "办公协作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "gitlab",
+      "source": { "source": "local", "path": "./plugins/gitlab" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "github",
+      "source": { "source": "local", "path": "./plugins/github" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "feishu",
+      "source": { "source": "local", "path": "./plugins/feishu" },
+      "category": "办公协作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "word",
+      "source": { "source": "local", "path": "./plugins/word" },
+      "category": "文档处理",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "ppt",
+      "source": { "source": "local", "path": "./plugins/ppt" },
+      "category": "文档处理",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "excel",
+      "source": { "source": "local", "path": "./plugins/excel" },
+      "category": "文档处理",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "pdf",
+      "source": { "source": "local", "path": "./plugins/pdf" },
+      "category": "文档处理",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "remotion",
+      "source": { "source": "local", "path": "./plugins/remotion" },
+      "category": "设计多媒体",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "ponytail",
+      "source": { "source": "local", "path": "./plugins/ponytail" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "superpowers",
+      "source": { "source": "local", "path": "./plugins/superpowers" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "caveman",
+      "source": { "source": "local", "path": "./plugins/caveman" },
+      "category": "AI Agent",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "humanizer",
+      "source": { "source": "local", "path": "./plugins/humanizer" },
+      "category": "内容创作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "hyperframes",
+      "source": { "source": "local", "path": "./plugins/hyperframes" },
+      "category": "设计多媒体",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "webapp-testing",
+      "source": { "source": "local", "path": "./plugins/webapp-testing" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "frontend-design",
+      "source": { "source": "local", "path": "./plugins/frontend-design" },
+      "category": "设计多媒体",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "playwright-cli",
+      "source": { "source": "local", "path": "./plugins/playwright-cli" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "playwright-mcp",
+      "source": { "source": "local", "path": "./plugins/playwright-mcp" },
+      "category": "开发工具",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
+    },
+    {
+      "name": "dingtalk",
+      "source": { "source": "local", "path": "./plugins/dingtalk" },
+      "category": "办公协作",
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" }
     }
   ]
 }

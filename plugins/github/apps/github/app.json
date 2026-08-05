@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "github",
+  "name": "GitHub",
+  "description": "通过 GitHub 官方 CLI 登录，在 Agent 会话中管理仓库、Issue、PR 和 Actions。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["github-cli-login"]
+}

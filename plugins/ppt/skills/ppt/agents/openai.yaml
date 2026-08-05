@@ -1,0 +1,4 @@
+interface:
+  display_name: "PPT"
+  short_description: "创建、读取、编辑、渲染并验证 PowerPoint 演示文稿"
+  default_prompt: "处理当前 PowerPoint 演示文稿任务。"

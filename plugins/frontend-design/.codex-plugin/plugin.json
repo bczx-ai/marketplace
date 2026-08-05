@@ -1,0 +1,24 @@
+{
+  "name": "frontend-design",
+  "version": "1.0.5",
+  "description": "为新建或重塑的前端界面提供审美方向、字体、色彩、布局、动效和自检指导。",
+  "author": { "name": "Anthropic", "url": "https://www.anthropic.com" },
+  "homepage": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+  "repository": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+  "license": "Apache-2.0",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Frontend Design",
+    "shortDescription": "有辨识度的前端视觉设计",
+    "longDescription": "根据产品主题和受众建立明确的视觉方向，系统处理字体、色彩、布局、动效、文案、响应式与可访问性，并通过自我审查减少模板化设计。",
+    "developerName": "Anthropic",
+    "category": "设计多媒体",
+    "logo": "./assets/icon.png",
+    "capabilities": ["Skills"],
+    "defaultPrompt": [
+      "为这个产品设计并实现一个有辨识度的前端界面。",
+      "重新设计这个页面并改善视觉层级。",
+      "检查当前界面是否过于模板化。"
+    ]
+  }
+}

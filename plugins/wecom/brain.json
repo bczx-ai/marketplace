@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "brain",
+  "releaseNotes": "保留 WeComTeam/wecom-cli 官方 9 个 Skills，恢复插件详情页。",
+  "compatibility": { "brain": ">=1.0.16" },
+  "components": {
+    "skills": [
+      { "key": "wecomcli-contact", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-doc", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-meeting", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-msg", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-schedule", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-sheet", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-smartpage", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-smartsheet", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-todo", "requires": ["cli:wecom-cli"] }
+    ],
+    "apps": [{ "key": "wecom", "templates": ["wecom-cli-login"] }],
+    "appTemplates": ["wecom-cli-login"],
+    "assets": ["detail.html", "icon.svg"],
+    "cli": [{
+      "key": "wecom-cli",
+      "command": "wecom-cli",
+      "targets": {
+        "darwin-arm64": {
+          "file": "wecom-cli",
+          "url": "https://registry.npmjs.org/@wecom/cli-darwin-arm64/-/cli-darwin-arm64-0.1.9.tgz",
+          "size": 3989779,
+          "sha256": "050d251cf0bb55591569af467f9d90292edd5538431b9c5572d55cbc71aa2f33",
+          "archive": { "format": "tar.gz", "entry": "package/bin/wecom-cli" }
+        },
+        "darwin-x64": {
+          "file": "wecom-cli",
+          "url": "https://registry.npmjs.org/@wecom/cli-darwin-x64/-/cli-darwin-x64-0.1.9.tgz",
+          "size": 4310532,
+          "sha256": "031bab15f91ae19b4e741de1918bd5f166a71397424b2ec9b8d2965e62692b57",
+          "archive": { "format": "tar.gz", "entry": "package/bin/wecom-cli" }
+        },
+        "linux-arm64": {
+          "file": "wecom-cli",
+          "url": "https://registry.npmjs.org/@wecom/cli-linux-arm64/-/cli-linux-arm64-0.1.9.tgz",
+          "size": 4259083,
+          "sha256": "8d41fa973daca2a55b376ecd8849744a681a4a486090c312bf83ff79137f11a0",
+          "archive": { "format": "tar.gz", "entry": "package/bin/wecom-cli" }
+        },
+        "linux-x64": {
+          "file": "wecom-cli",
+          "url": "https://registry.npmjs.org/@wecom/cli-linux-x64/-/cli-linux-x64-0.1.9.tgz",
+          "size": 4539247,
+          "sha256": "c8bfe1d3211b1387e8d9eb1ce6a873551bfe62b6dd6e2706532a4df8934e60b1",
+          "archive": { "format": "tar.gz", "entry": "package/bin/wecom-cli" }
+        },
+        "win32-x64": {
+          "file": "wecom-cli.exe",
+          "url": "https://registry.npmjs.org/@wecom/cli-win32-x64/-/cli-win32-x64-0.1.9.tgz",
+          "size": 3420207,
+          "sha256": "9803e8deab1e5ad6877fc21679a07c562fda0d3b389c4839dfdaf0ea49ef549c",
+          "archive": { "format": "tar.gz", "entry": "package/bin/wecom-cli.exe" }
+        }
+      }
+    }]
+  }
+}

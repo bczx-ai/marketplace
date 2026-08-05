@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "brain",
+  "releaseNotes": "保留 TencentCloud/tencentmeeting-cli 官方 Skill 与 tmeet CLI 1.0.14，恢复插件详情页。",
+  "compatibility": { "brain": ">=1.0.16" },
+  "components": {
+    "skills": [{ "key": "tmeet-skill", "requires": ["cli:tmeet"] }],
+    "apps": [{ "key": "tencent-meeting", "templates": ["tencent-meeting-cli-login"] }],
+    "appTemplates": ["tencent-meeting-cli-login"],
+    "assets": ["detail.html", "icon.svg"],
+    "cli": [{
+      "key": "tmeet",
+      "command": "tmeet",
+      "targets": {
+        "darwin-arm64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.14.tgz",
+          "size": 14508532,
+          "sha256": "25dd23dcf2859b8b024d418ce72a945fb83728eeecb6ca2817fbd582d27740c7",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-macOS-AppleSilicon" }
+        },
+        "darwin-x64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.14.tgz",
+          "size": 14508532,
+          "sha256": "25dd23dcf2859b8b024d418ce72a945fb83728eeecb6ca2817fbd582d27740c7",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-macOS-Intel" }
+        },
+        "linux-arm64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.14.tgz",
+          "size": 14508532,
+          "sha256": "25dd23dcf2859b8b024d418ce72a945fb83728eeecb6ca2817fbd582d27740c7",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-Linux-ARM64" }
+        },
+        "linux-x64": {
+          "file": "tmeet",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.14.tgz",
+          "size": 14508532,
+          "sha256": "25dd23dcf2859b8b024d418ce72a945fb83728eeecb6ca2817fbd582d27740c7",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-Linux-x86_64" }
+        },
+        "win32-x64": {
+          "file": "tmeet.exe",
+          "url": "https://registry.npmjs.org/@tencentcloud/tmeet/-/tmeet-1.0.14.tgz",
+          "size": 14508532,
+          "sha256": "25dd23dcf2859b8b024d418ce72a945fb83728eeecb6ca2817fbd582d27740c7",
+          "archive": { "format": "tar.gz", "entry": "package/dist/tmeet-Windows-x86_64.exe" }
+        }
+      }
+    }]
+  }
+}

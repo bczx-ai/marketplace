@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "gitlab",
+  "name": "GitLab",
+  "description": "连接 GitLab 账号，让 Agent 使用 glab 查看项目、审查 Merge Request、管理 Issue、排查 CI/CD 和处理 Release。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["gitlab-cli-login"]
+}

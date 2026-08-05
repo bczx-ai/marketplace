@@ -1,0 +1,20 @@
+{
+  "name": "tencent-meeting",
+  "version": "1.0.6",
+  "description": "通过腾讯会议官方 CLI 管理会议、参会、录制和智能纪要。",
+  "author": { "name": "Tencent Cloud", "url": "https://github.com/TencentCloud" },
+  "homepage": "https://github.com/TencentCloud/tencentmeeting-cli",
+  "repository": "https://github.com/TencentCloud/tencentmeeting-cli",
+  "license": "MIT",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "腾讯会议",
+    "shortDescription": "会议、录制、参会与智能纪要",
+    "longDescription": "使用腾讯会议官方 tmeet CLI 和官方 Skill，通过 OAuth2 设备授权管理会议、通讯录、参会报告、录制、转写、智能纪要与会中控制。",
+    "developerName": "Tencent Cloud",
+    "category": "办公协作",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
+    "defaultPrompt": ["查看我今天的腾讯会议安排。", "查询指定会议的参会记录。", "获取最近一次会议的智能纪要。"]
+  }
+}

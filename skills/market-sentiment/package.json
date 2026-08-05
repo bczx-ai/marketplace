@@ -1,0 +1,17 @@
+{
+  "name": "market-sentiment",
+  "displayName": "Market Sentiment",
+  "version": "1.0.0",
+  "description": "📊 市场情绪分析器 — 基于四维度模型的大盘环境诊断工具",
+  "icon": "📊",
+  "categories": ["Finance", "Research", "Analysis"],
+  "topics": ["market-sentiment", "市场情绪", "大盘诊断", "stock-market", "情绪分析"],
+  "author": "ChengQian (成乾)",
+  "license": "MIT",
+  "scripts": {
+    "analyze": "python3 scripts/sentiment.py analyze",
+    "score": "python3 scripts/sentiment.py score",
+    "trend": "python3 scripts/sentiment.py trend",
+    "summary": "python3 scripts/sentiment.py summary"
+  }
+}

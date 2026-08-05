@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "publisherId": "brain",
+  "releaseNotes": "保留 lark-cli 1.0.82 与 27 个官方 Skill，恢复插件详情页。",
+  "compatibility": { "brain": ">=1.0.16" },
+  "components": {
+    "skills": [
+      { "key": "feishu", "requires": ["cli:lark-cli"] },
+      { "key": "lark-approval", "requires": ["cli:lark-cli"] },
+      { "key": "lark-apps", "requires": ["cli:lark-cli"] },
+      { "key": "lark-attendance", "requires": ["cli:lark-cli"] },
+      { "key": "lark-base", "requires": ["cli:lark-cli"] },
+      { "key": "lark-calendar", "requires": ["cli:lark-cli"] },
+      { "key": "lark-contact", "requires": ["cli:lark-cli"] },
+      { "key": "lark-doc", "requires": ["cli:lark-cli"] },
+      { "key": "lark-drive", "requires": ["cli:lark-cli"] },
+      { "key": "lark-event", "requires": ["cli:lark-cli"] },
+      { "key": "lark-im", "requires": ["cli:lark-cli"] },
+      { "key": "lark-mail", "requires": ["cli:lark-cli"] },
+      { "key": "lark-markdown", "requires": ["cli:lark-cli"] },
+      { "key": "lark-minutes", "requires": ["cli:lark-cli"] },
+      { "key": "lark-note", "requires": ["cli:lark-cli"] },
+      { "key": "lark-okr", "requires": ["cli:lark-cli"] },
+      { "key": "lark-openapi-explorer", "requires": ["cli:lark-cli"] },
+      { "key": "lark-shared", "requires": ["cli:lark-cli"] },
+      { "key": "lark-sheets", "requires": ["cli:lark-cli"] },
+      { "key": "lark-skill-maker", "requires": ["cli:lark-cli"] },
+      { "key": "lark-slides", "requires": ["cli:lark-cli"] },
+      { "key": "lark-task", "requires": ["cli:lark-cli"] },
+      { "key": "lark-vc", "requires": ["cli:lark-cli"] },
+      { "key": "lark-vc-agent", "requires": ["cli:lark-cli"] },
+      { "key": "lark-whiteboard", "requires": ["cli:lark-cli"] },
+      { "key": "lark-wiki", "requires": ["cli:lark-cli"] },
+      { "key": "lark-workflow-meeting-summary", "requires": ["cli:lark-cli"] },
+      { "key": "lark-workflow-standup-report", "requires": ["cli:lark-cli"] }
+    ],
+    "apps": [{ "key": "feishu", "templates": ["feishu-cli-login"] }],
+    "appTemplates": ["feishu-cli-login"],
+    "assets": ["detail.html", "icon.svg"],
+    "cli": [{
+      "key": "lark-cli",
+      "command": "lark-cli",
+      "targets": {
+        "darwin-arm64": {
+          "file": "lark-cli",
+          "url": "https://github.com/larksuite/cli/releases/download/v1.0.82/lark-cli-1.0.82-darwin-arm64.tar.gz",
+          "size": 12423340,
+          "sha256": "4aad6d81b1a39a641c04d2a2c386e91a09c67334f027c32712bd65aef8dc6a7a",
+          "archive": { "format": "tar.gz", "entry": "lark-cli" }
+        },
+        "darwin-x64": {
+          "file": "lark-cli",
+          "url": "https://github.com/larksuite/cli/releases/download/v1.0.82/lark-cli-1.0.82-darwin-amd64.tar.gz",
+          "size": 12880853,
+          "sha256": "3f9800b350399f58031e8fe534279c02afef627623d6bf767e895c1a9029ba62",
+          "archive": { "format": "tar.gz", "entry": "lark-cli" }
+        },
+        "linux-arm64": {
+          "file": "lark-cli",
+          "url": "https://github.com/larksuite/cli/releases/download/v1.0.82/lark-cli-1.0.82-linux-arm64.tar.gz",
+          "size": 11729871,
+          "sha256": "2e3e418062c015c20019fbbda05853f36bdfc2f680464e694fd8246ff36a5a9b",
+          "archive": { "format": "tar.gz", "entry": "lark-cli" }
+        },
+        "linux-x64": {
+          "file": "lark-cli",
+          "url": "https://github.com/larksuite/cli/releases/download/v1.0.82/lark-cli-1.0.82-linux-amd64.tar.gz",
+          "size": 12522459,
+          "sha256": "3ab5f030d66580b9e7908880fc6a21bb0c5cb214816579819b093c7ea1608cab",
+          "archive": { "format": "tar.gz", "entry": "lark-cli" }
+        },
+        "win32-x64": {
+          "file": "lark-cli.exe",
+          "url": "https://github.com/larksuite/cli/releases/download/v1.0.82/lark-cli-1.0.82-windows-amd64.zip",
+          "size": 12913370,
+          "sha256": "7d12b020965c9f8d86b2b09d932878f91476053bd5460dce83fcf985ff62b983",
+          "archive": { "format": "zip", "entry": "lark-cli.exe" }
+        }
+      }
+    }]
+  }
+}

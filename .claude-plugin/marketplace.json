@@ -4,6 +4,94 @@
     {
       "name": "devcube",
       "source": { "source": "local", "path": "./plugins/devcube" }
+    },
+    {
+      "name": "wecom",
+      "source": { "source": "local", "path": "./plugins/wecom" }
+    },
+    {
+      "name": "tencent-meeting",
+      "source": { "source": "local", "path": "./plugins/tencent-meeting" }
+    },
+    {
+      "name": "tencent-docs",
+      "source": { "source": "local", "path": "./plugins/tencent-docs" }
+    },
+    {
+      "name": "notion",
+      "source": { "source": "local", "path": "./plugins/notion" }
+    },
+    {
+      "name": "gitlab",
+      "source": { "source": "local", "path": "./plugins/gitlab" }
+    },
+    {
+      "name": "github",
+      "source": { "source": "local", "path": "./plugins/github" }
+    },
+    {
+      "name": "feishu",
+      "source": { "source": "local", "path": "./plugins/feishu" }
+    },
+    {
+      "name": "word",
+      "source": { "source": "local", "path": "./plugins/word" }
+    },
+    {
+      "name": "ppt",
+      "source": { "source": "local", "path": "./plugins/ppt" }
+    },
+    {
+      "name": "excel",
+      "source": { "source": "local", "path": "./plugins/excel" }
+    },
+    {
+      "name": "pdf",
+      "source": { "source": "local", "path": "./plugins/pdf" }
+    },
+    {
+      "name": "remotion",
+      "source": { "source": "local", "path": "./plugins/remotion" }
+    },
+    {
+      "name": "ponytail",
+      "source": { "source": "local", "path": "./plugins/ponytail" }
+    },
+    {
+      "name": "superpowers",
+      "source": { "source": "local", "path": "./plugins/superpowers" }
+    },
+    {
+      "name": "caveman",
+      "source": { "source": "local", "path": "./plugins/caveman" }
+    },
+    {
+      "name": "humanizer",
+      "source": { "source": "local", "path": "./plugins/humanizer" }
+    },
+    {
+      "name": "hyperframes",
+      "source": { "source": "local", "path": "./plugins/hyperframes" }
+    },
+    {
+      "name": "webapp-testing",
+      "source": { "source": "local", "path": "./plugins/webapp-testing" }
+    },
+    {
+      "name": "frontend-design",
+      "source": { "source": "local", "path": "./plugins/frontend-design" }
+    },
+    {
+      "name": "playwright-cli",
+      "source": { "source": "local", "path": "./plugins/playwright-cli" }
+    },
+    {
+      "name": "playwright-mcp",
+      "source": { "source": "local", "path": "./plugins/playwright-mcp" }
+    },
+    {
+      "name": "dingtalk",
+      "source": { "source": "local", "path": "./plugins/dingtalk" }
     }
   ]
 }

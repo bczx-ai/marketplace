@@ -1,0 +1,4 @@
+interface:
+  display_name: "飞书"
+  short_description: "通过飞书 CLI 管理消息、文档、日历、任务和协作数据"
+  default_prompt: "使用飞书 CLI 完成当前任务。"

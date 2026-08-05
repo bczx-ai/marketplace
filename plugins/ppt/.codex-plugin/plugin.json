@@ -1,0 +1,18 @@
+{
+  "name": "ppt",
+  "version": "1.0.4",
+  "description": "创建、读取、编辑、渲染并验证 PowerPoint 演示文稿。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "PPT",
+    "shortDescription": "专业演示文稿创建、编辑与验证",
+    "longDescription": "创建和编辑可交付的 PowerPoint 演示文稿，支持模板、母版、图表与图片，并通过逐页渲染检查内容和视觉质量。",
+    "developerName": "brain",
+    "category": "文档处理",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["根据材料生成一份项目汇报 PPT。", "更新现有演示文稿并保持品牌风格。", "检查 PPT 中的溢出、重叠和内容问题。"]
+  }
+}

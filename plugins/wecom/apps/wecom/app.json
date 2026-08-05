@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "wecom",
+  "name": "企业微信",
+  "description": "通过企业微信官方 CLI 扫码登录，在 Agent 会话中使用消息、通讯录和协作能力。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["wecom-cli-login"]
+}
