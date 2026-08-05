@@ -1,31 +1,33 @@
 {
+  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "heygen",
-  "releaseNotes": "同步 OpenAI 官方 plugins 内容，并提供 Brain 兼容组件声明与全新响应式详情页。",
+  "releaseNotes": "优化插件详情页的信息层级、窄屏布局和使用边界说明。",
   "compatibility": {
     "brain": ">=1.0.16"
   },
   "components": {
     "skills": [
-      {
-        "key": "gsap"
-      },
-      {
-        "key": "hyperframes"
-      },
-      {
-        "key": "hyperframes-cli"
-      },
-      {
-        "key": "hyperframes-registry"
-      },
-      {
-        "key": "website-to-hyperframes"
-      }
+      { "key": "embedded-captions" },
+      { "key": "faceless-explainer" },
+      { "key": "figma" },
+      { "key": "general-video" },
+      { "key": "hyperframes" },
+      { "key": "hyperframes-animation" },
+      { "key": "hyperframes-cli" },
+      { "key": "hyperframes-core" },
+      { "key": "hyperframes-creative" },
+      { "key": "hyperframes-keyframes" },
+      { "key": "hyperframes-registry" },
+      { "key": "media-use" },
+      { "key": "motion-graphics" },
+      { "key": "music-to-video" },
+      { "key": "pr-to-video" },
+      { "key": "product-launch-video" },
+      { "key": "remotion-to-hyperframes" },
+      { "key": "slideshow" },
+      { "key": "talking-head-recut" }
     ],
-    "assets": [
-      "detail.html",
-      "logo.png"
-    ]
+    "assets": ["detail.html", "icon.png", "logo.png"]
   }
 }

@@ -1,48 +1,24 @@
 {
   "name": "superpowers",
-  "version": "6.2.3",
-  "description": "An agentic skills framework & software development methodology that works: planning, TDD, debugging, and collaboration workflows.",
-  "author": {
-    "name": "Jesse Vincent",
-    "email": "jesse@fsck.com",
-    "url": "https://github.com/obra"
-  },
+  "version": "6.2.2",
+  "description": "提供头脑风暴、计划、测试驱动开发、系统调试、代码审查和交付工作流。",
+  "author": { "name": "Jesse Vincent", "url": "https://github.com/obra" },
   "homepage": "https://github.com/obra/superpowers",
   "repository": "https://github.com/obra/superpowers",
   "license": "MIT",
-  "keywords": [
-    "brainstorming",
-    "subagent-driven-development",
-    "skills",
-    "planning",
-    "tdd",
-    "debugging",
-    "code-review",
-    "workflow"
-  ],
   "skills": "./skills",
   "interface": {
     "displayName": "Superpowers",
-    "shortDescription": "Planning, TDD, debugging, and delivery workflows for coding agents",
-    "longDescription": "Use Superpowers to guide agent work through brainstorming, implementation planning, test-driven development, systematic debugging, parallel execution, code review, and finish-the-branch workflows.",
+    "shortDescription": "完整的软件开发工作流",
+    "longDescription": "覆盖需求头脑风暴、实施计划、测试驱动开发、系统化调试、并行代理协作、代码审查、Git worktree 和分支收尾。",
     "developerName": "Jesse Vincent",
-    "category": "Developer Tools",
-    "capabilities": [
-      "Interactive",
-      "Read",
-      "Write",
-      "Skills"
-    ],
+    "category": "开发工具",
+    "logo": "./assets/app-icon.png",
+    "capabilities": ["Skills"],
     "defaultPrompt": [
-      "I've got an idea for something I'd like to build.",
-      "Let's add a feature to this project."
-    ],
-    "websiteURL": "https://github.com/obra/superpowers",
-    "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
-    "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
-    "brandColor": "#F59E0B",
-    "composerIcon": "./assets/superpowers-small.svg",
-    "logo": "./assets/superpowers-small.svg",
-    "screenshots": []
+      "把这个需求整理成可执行的开发方案。",
+      "使用测试驱动开发实现这个功能。",
+      "系统排查并修复这个问题。"
+    ]
   }
 }

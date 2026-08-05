@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "publisherId": "brain",
-  "releaseNotes": "补齐 lark-cli 1.0.82 的 27 个官方 Skill，并重做插件详情页视觉与响应式布局。",
+  "releaseNotes": "保留 lark-cli 1.0.82 与 27 个官方 Skill，恢复插件详情页。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [

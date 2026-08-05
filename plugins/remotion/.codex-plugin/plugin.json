@@ -1,50 +1,24 @@
 {
   "name": "remotion",
-  "version": "4.0.506",
-  "description": "Remotion video creation skills — best practices, animations, audio, captions, 3D, and more for building programmatic videos with React.",
-  "author": {
-    "name": "Remotion",
-    "email": "hi@remotion.dev",
-    "url": "https://remotion.dev"
-  },
-  "homepage": "https://remotion.dev",
-  "repository": "https://github.com/remotion-dev/remotion",
-  "license": "MIT",
-  "keywords": [
-    "remotion",
-    "video",
-    "react",
-    "animation",
-    "composition",
-    "rendering",
-    "ffmpeg",
-    "captions",
-    "audio"
-  ],
+  "version": "4.0.505",
+  "description": "提供 Remotion 视频项目创建、动画编排、字幕、渲染、媒体处理和升级指导。",
+  "author": { "name": "Remotion", "url": "https://www.remotion.dev" },
+  "homepage": "https://www.remotion.dev/docs/ai/codex-plugin",
+  "repository": "https://github.com/remotion-dev/remotion/tree/main/packages/skills",
+  "license": "Remotion License",
   "skills": "./skills",
   "interface": {
     "displayName": "Remotion",
-    "shortDescription": "Create motion graphics from prompts",
-    "longDescription": "Build videos programmatically with Remotion and React. Covers animations, timing, audio, captions, 3D, transitions, charts, text effects, and more.",
+    "shortDescription": "Remotion 视频创作与渲染",
+    "longDescription": "覆盖 Remotion 项目创建、React 视频编排、动画与特效、字幕、地图、媒体处理、服务化渲染、交互结构和版本升级。",
     "developerName": "Remotion",
-    "category": "Creativity",
-    "capabilities": [
-      "Read",
-      "Write",
-      "Skills"
-    ],
-    "websiteURL": "https://remotion.dev",
-    "privacyPolicyURL": "https://remotion.pro/privacy",
-    "termsOfServiceURL": "https://remotion.pro/terms",
+    "category": "设计多媒体",
+    "logo": "./assets/icon.png",
+    "capabilities": ["Skills"],
     "defaultPrompt": [
-      "Create an animated chart with 5 bars",
-      "Make an animated call-to-action subscribe button for our YouTube channel",
-      "Use Remotion to add captions and audio to a video composition."
-    ],
-    "screenshots": [],
-    "brandColor": "#0B84F3",
-    "composerIcon": "./assets/icon.png",
-    "logo": "./assets/logo.png",
-    "logoDark": "./assets/logo-dark.png"
+      "创建一个 Remotion 视频项目并实现动画。",
+      "为现有视频添加字幕和转场。",
+      "检查并优化 Remotion 渲染流程。"
+    ]
   }
 }

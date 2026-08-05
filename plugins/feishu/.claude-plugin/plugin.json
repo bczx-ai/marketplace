@@ -1,6 +1,6 @@
 {
   "name": "feishu",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "通过飞书官方 CLI 管理消息、文档、日历、任务和协作数据。",
   "author": { "name": "brain" },
   "repository": "https://github.com/larksuite/cli",

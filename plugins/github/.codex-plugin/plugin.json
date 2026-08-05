@@ -1,49 +1,18 @@
 {
   "name": "github",
-  "version": "1.0.5",
-  "description": "Inspect repositories, triage pull requests and issues, debug CI, and publish changes through a hybrid GitHub connector and CLI workflow.",
-  "author": {
-    "name": "OpenAI",
-    "email": "support@openai.com",
-    "url": "https://openai.com/"
-  },
-  "homepage": "https://github.com/",
-  "repository": "https://github.com/openai/plugins",
-  "license": "MIT",
-  "keywords": [
-    "github",
-    "pull-request",
-    "code-review",
-    "issues",
-    "ci",
-    "actions"
-  ],
+  "version": "1.0.4",
+  "description": "通过 gh 管理 GitHub 仓库、Issue、Pull Request、Actions 和 Release。",
+  "author": { "name": "brain" },
+  "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
-  "apps": "./assets/openai-app.json",
-  "mcpServers": "./mcp/servers.json",
   "interface": {
     "displayName": "GitHub",
-    "shortDescription": "Triage PRs, issues, CI, and publish flows",
-    "longDescription": "Use GitHub to inspect repositories, review pull requests, address feedback, debug failing Actions checks, and prepare code changes for review through a connector-first workflow with targeted CLI fallbacks.",
-    "developerName": "OpenAI",
-    "category": "Developer Tools",
-    "capabilities": [
-      "Interactive",
-      "Write",
-      "Skills",
-      "MCP",
-      "Apps",
-      "CLI"
-    ],
-    "websiteURL": "https://github.com/",
-    "privacyPolicyURL": "https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement",
-    "termsOfServiceURL": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
-    "defaultPrompt": [
-      "Inspect PRs, triage issues, debug failing checks, and prepare code changes for review"
-    ],
-    "composerIcon": "./assets/github-small.svg",
-    "logo": "./assets/logo.png",
-    "screenshots": [],
-    "brandColor": "#24292F"
+    "shortDescription": "仓库、Issue、PR、Actions 与 Release",
+    "longDescription": "使用 GitHub 官方 gh CLI，通过浏览器安全登录，在 Brain 中完成仓库浏览、Issue、Pull Request、Actions 和 Release 工作流。",
+    "developerName": "brain",
+    "category": "开发工具",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
+    "defaultPrompt": ["查看当前 GitHub 仓库的开放 PR。", "分析最近失败的 GitHub Actions。", "汇总当前里程碑中的 Issue。"]
   }
 }

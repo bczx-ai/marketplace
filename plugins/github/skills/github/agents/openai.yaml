@@ -1,6 +1,4 @@
 interface:
   display_name: "GitHub"
-  short_description: "Inspect PRs, issues, CI, and publish flows"
-  icon_small: "./assets/github-small.svg"
-  icon_large: "./assets/github.png"
-  default_prompt: "Use $github to inspect pull requests and issues, orient the repository context, and choose the right GitHub workflow."
+  short_description: "通过 gh 管理 GitHub 仓库、议题、拉取请求和工作流"
+  default_prompt: "使用 gh 完成当前 GitHub 任务。"

@@ -1,6 +1,6 @@
 {
   "name": "wecom",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "通过企业微信官方 CLI 管理通讯录、文档、消息、会议、日程、表格和待办。",
   "author": { "name": "WeCom Team", "url": "https://github.com/WecomTeam" },
   "homepage": "https://github.com/WecomTeam/wecom-cli",

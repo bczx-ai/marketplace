@@ -1,6 +1,6 @@
 {
   "name": "tencent-meeting",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "通过腾讯会议官方 CLI 管理会议、参会、录制和智能纪要。",
   "author": { "name": "Tencent Cloud", "url": "https://github.com/TencentCloud" },
   "homepage": "https://github.com/TencentCloud/tencentmeeting-cli",
