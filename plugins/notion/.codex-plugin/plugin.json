@@ -1,6 +1,6 @@
 {
   "name": "notion",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "通过 Notion MCP 与官方 CLI 完成知识沉淀、会议准备、研究和规格实施工作流。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",

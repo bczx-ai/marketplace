@@ -1,6 +1,6 @@
 {
   "name": "tencent-docs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "通过腾讯文档官方 MCP 管理在线文档、表格、文件与协作权限。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",

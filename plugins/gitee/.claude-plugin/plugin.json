@@ -1,10 +1,11 @@
 {
   "name": "gitee",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "通过 Gitee 官方远程 MCP 管理仓库、Issue、Pull Request、Release 和通知。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
+  "mcpServers": "./mcp/servers.json",
   "interface": {
     "displayName": "Gitee",
     "shortDescription": "仓库、Issue、PR 与 Release",

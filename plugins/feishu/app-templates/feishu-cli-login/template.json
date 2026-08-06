@@ -16,6 +16,7 @@
       {
         "command": "lark-cli",
         "args": ["auth", "login", "--recommend"],
+        "captureAuthorizationUrl": false,
         "timeoutSeconds": 600
       }
     ]

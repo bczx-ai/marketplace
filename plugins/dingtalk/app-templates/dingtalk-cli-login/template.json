@@ -8,7 +8,7 @@
     "configDirEnv": "DWS_CONFIG_DIR",
     "commands": [{
       "command": "dws",
-      "args": ["auth", "login"],
+      "args": ["auth", "login", "--no-browser"],
       "timeoutSeconds": 600
     }]
   },

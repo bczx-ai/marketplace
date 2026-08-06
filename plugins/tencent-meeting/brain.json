@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "publisherId": "brain",
-  "releaseNotes": "保留 TencentCloud/tencentmeeting-cli 官方 Skill 与 tmeet CLI 1.0.14，恢复插件详情页。",
+  "releaseNotes": "保留腾讯会议官方 Skill 与 tmeet CLI，并由 Brain 统一打开授权页，避免重复跳转。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [{ "key": "tmeet-skill", "requires": ["cli:tmeet"] }],

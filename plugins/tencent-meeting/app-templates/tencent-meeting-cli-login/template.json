@@ -9,7 +9,7 @@
     "commands": [
       {
         "command": "tmeet",
-        "args": ["auth", "login"],
+        "args": ["auth", "login", "--no-browser"],
         "timeoutSeconds": 600
       }
     ]

@@ -8,6 +8,5 @@
     "scopes": ["docs:read", "docs:write", "docs:manage"]
   },
   "networkScope": "public",
-  "endpoint": "https://docs.qq.com/openapi/mcp",
   "fields": []
 }
