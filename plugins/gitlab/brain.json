@@ -2,9 +2,10 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "恢复插件详情页。",
+  "releaseNotes": "新增 GitLab 原生 Merge Request 与 Issue Board 扩展。",
   "compatibility": { "brain": ">=1.0.20" },
   "components": {
+    "extensions": [{ "path": "gitlab" }],
     "skills": [{ "key": "gitlab", "requires": ["cli:glab"] }],
     "apps": [{ "key": "gitlab", "templates": ["gitlab-cli-login"] }],
     "appTemplates": ["gitlab-cli-login"],
