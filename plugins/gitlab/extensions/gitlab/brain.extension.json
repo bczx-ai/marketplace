@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "extensionId": "devcube.gitlab",
+  "version": "1.0.2",
+  "publisher": "devcube",
+  "runtimeKind": "trusted-node",
+  "dist": {
+    "type": "url",
+    "url": "https://download-app.aidevops.top/marketplace/extensions/devcube.gitlab/1.0.2/devcube.gitlab-1.0.2.brain-ext",
+    "size": 8397000,
+    "sha256": "f83aaaeedbe46144803b37958a69b59e947d9d79f1c1d3e6890323a9f7d5a36b"
+  }
+}
