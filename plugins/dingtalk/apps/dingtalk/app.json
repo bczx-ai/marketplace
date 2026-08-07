@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "key": "dingtalk",
+  "name": "钉钉",
+  "description": "通过钉钉官方 CLI 登录，在 Agent 会话中使用消息、文档、日程和业务协同能力。",
+  "scope": "user",
+  "cardinality": "single",
+  "templates": ["dingtalk-cli-login"]
+}

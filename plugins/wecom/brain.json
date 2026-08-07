@@ -1,11 +1,20 @@
 {
-  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
-  "publisherId": "zainfo",
-  "releaseNotes": "优化 Skill 展示文案。",
+  "publisherId": "brain",
+  "releaseNotes": "保留 WeComTeam/wecom-cli 官方 9 个 Skills，恢复插件详情页。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
-    "skills": [{ "key": "wecom", "requires": ["cli:wecom-cli"] }],
+    "skills": [
+      { "key": "wecomcli-contact", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-doc", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-meeting", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-msg", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-schedule", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-sheet", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-smartpage", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-smartsheet", "requires": ["cli:wecom-cli"] },
+      { "key": "wecomcli-todo", "requires": ["cli:wecom-cli"] }
+    ],
     "apps": [{ "key": "wecom", "templates": ["wecom-cli-login"] }],
     "appTemplates": ["wecom-cli-login"],
     "assets": ["detail.html", "icon.svg"],

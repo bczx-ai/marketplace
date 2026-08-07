@@ -6,10 +6,6 @@
       "source": { "source": "local", "path": "./plugins/devcube" }
     },
     {
-      "name": "brain",
-      "source": { "source": "local", "path": "./plugins/brain" }
-    },
-    {
       "name": "wecom",
       "source": { "source": "local", "path": "./plugins/wecom" }
     },
@@ -92,6 +88,10 @@
     {
       "name": "playwright-mcp",
       "source": { "source": "local", "path": "./plugins/playwright-mcp" }
+    },
+    {
+      "name": "dingtalk",
+      "source": { "source": "local", "path": "./plugins/dingtalk" }
     }
   ]
 }

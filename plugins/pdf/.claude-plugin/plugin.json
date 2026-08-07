@@ -1,6 +1,6 @@
 {
   "name": "pdf",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "读取、创建、转换、合并、拆分、OCR 并验证 PDF 文件。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",

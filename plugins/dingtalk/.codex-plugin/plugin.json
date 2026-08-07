@@ -1,0 +1,24 @@
+{
+  "name": "dingtalk",
+  "version": "1.0.0",
+  "description": "通过钉钉官方 dws CLI 管理消息、文档、表格、日程、待办、审批、考勤、邮箱和知识库。",
+  "author": { "name": "DingTalk", "url": "https://github.com/DingTalk-Real-AI" },
+  "homepage": "https://open.dingtalk.com/dingtalk-cli",
+  "repository": "https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli",
+  "license": "Apache-2.0",
+  "skills": "./skills",
+  "interface": {
+    "displayName": "钉钉",
+    "shortDescription": "钉钉消息、文档、日程与业务协同",
+    "longDescription": "使用钉钉官方 dws CLI 和生产推荐的 mono Skill，在 Brain 中管理消息、文档、云盘、表格、日历、待办、审批、考勤、日志、听记、邮箱、知识库与实时事件。",
+    "developerName": "DingTalk",
+    "category": "办公协作",
+    "logo": "./assets/icon.svg",
+    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
+    "defaultPrompt": [
+      "汇总我今天的钉钉日程、待办和未读事项。",
+      "在钉钉文档中查找最近的项目周报并总结风险。",
+      "读取最近一次钉钉听记，提取决策和责任人。"
+    ]
+  }
+}
