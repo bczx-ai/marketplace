@@ -10,6 +10,7 @@
       {
         "command": "gh",
         "args": ["auth", "login", "--hostname", "github.com", "--web", "--git-protocol", "https", "--insecure-storage"],
+        "captureAuthorizationUrl": false,
         "timeoutSeconds": 600
       }
     ]

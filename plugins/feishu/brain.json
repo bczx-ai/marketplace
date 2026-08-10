@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "publisherId": "brain",
-  "releaseNotes": "修复一键创建 CLI 应用后未继续打开用户 OAuth 授权页，导致插件一直显示待授权的问题。",
+  "releaseNotes": "修复一键创建 CLI 应用后未继续授权的问题，并避免飞书 CLI 与 Brain 重复打开同一授权页。",
   "compatibility": { "brain": ">=1.0.16" },
   "components": {
     "skills": [

@@ -5,7 +5,7 @@ description: 通过 GitHub 官方 gh CLI 操作仓库、Issue、Pull Request、A
 
 # GitHub
 
-使用 GitHub MCP 读取仓库、Issue、Pull Request 和评论；使用官方 `gh` 处理当前分支、Actions 日志及 MCP 未覆盖的操作。
+使用 GitHub 官方 `gh` CLI 读取和管理仓库、Issue、Pull Request、评论、Actions 与 Release。
 
 ## 工作流分流
 
@@ -14,7 +14,7 @@ description: 通过 GitHub 官方 gh CLI 操作仓库、Issue、Pull Request、A
 - GitHub Actions 失败排查使用 `../gh-fix-ci/SKILL.md`。
 - 提交、推送并创建草稿 PR 使用 `../yeet/SKILL.md`。
 
-能用 GitHub MCP 获得结构化结果时优先使用 MCP；当前分支 PR 发现、GraphQL review thread、Actions 日志和本地发布流程使用 `gh`。
+所有 GitHub 操作统一使用 `gh`；查询优先使用 `--json` 和 `--jq`，GitHub REST 或 GraphQL 能力通过 `gh api` 调用。
 
 ## 准备
 

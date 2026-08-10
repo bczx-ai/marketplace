@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "迁移到腾讯文档官方 MCP，安装后无需 Client ID 或 Client Secret 即可直接扫码授权。",
+  "releaseNotes": "使用标准 MCP OAuth 动态发现和客户端注册，安装后无需 Client ID 或 Client Secret 即可直接扫码授权。",
   "compatibility": { "brain": ">=1.1.0" },
   "components": {
     "skills": [{ "key": "tencent-docs" }],

@@ -9,7 +9,13 @@
     "commands": [
       {
         "command": "ntn",
-        "args": ["login"],
+        "args": ["login", "--no-browser"],
+        "timeoutSeconds": 600
+      },
+      {
+        "command": "ntn",
+        "args": ["login", "poll"],
+        "captureAuthorizationUrl": false,
         "timeoutSeconds": 600
       }
     ]

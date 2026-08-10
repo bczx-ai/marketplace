@@ -1,18 +1,18 @@
 {
   "name": "gitlab",
-  "version": "1.0.9",
-  "description": "通过 GitLab 官方 glab CLI 管理仓库、Issue、Merge Request、CI/CD、Release 和 GitLab API。",
+  "version": "1.0.10",
+  "description": "通过原生扩展和 GitLab 官方 glab CLI 管理 Merge Request、Issue、仓库、CI/CD、Release 与 GitLab API。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
   "skills": "./skills",
   "interface": {
     "displayName": "GitLab",
-    "shortDescription": "用 glab 管理 GitLab 研发协作",
-    "longDescription": "使用 GitLab 官方 glab CLI 查看项目与代码，管理 Issue 和 Merge Request，排查 pipeline 与 job，处理 Release，并通过 GitLab API 补足自动化能力。",
+    "shortDescription": "原生查看 GitLab MR 与 Issue，并用 glab 完成研发协作",
+    "longDescription": "使用 Brain 原生扩展查看 Merge Request 与 Issue Board，并通过 GitLab 官方 glab CLI 管理项目、代码、Issue、Merge Request、pipeline、job、Release 和 GitLab API。",
     "developerName": "brain",
     "category": "开发工具",
     "logo": "./assets/icon.svg",
-    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
-    "defaultPrompt": ["审查当前项目待合并的 Merge Request，汇总阻塞项。", "分析最近失败的 pipeline 和 job 日志，定位首个有效错误。", "根据当前改动创建 Issue 或 Merge Request，执行前先确认内容。"]
+    "capabilities": ["Skills", "Apps", "App Templates", "CLI", "Extensions"],
+    "defaultPrompt": ["打开 GitLab Merge Request 列表并审查当前项目待合并的变更。", "打开 GitLab Issue Board，汇总当前迭代的阻塞事项。", "分析最近失败的 pipeline 和 job 日志，定位首个有效错误。"]
   }
 }

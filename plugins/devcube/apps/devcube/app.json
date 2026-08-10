@@ -5,6 +5,5 @@
   "description": "连接 DevCube API 服务，在 Agent 会话中使用研发效能、发布、监控、测试与扫描能力。",
   "scope": "user",
   "cardinality": "single",
-  "templates": ["devcube-oauth"],
-  "mcp": ["devcube"]
+  "templates": ["devcube-oauth"]
 }
