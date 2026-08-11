@@ -96,6 +96,10 @@
     {
       "name": "dingtalk",
       "source": { "source": "local", "path": "./plugins/dingtalk" }
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "source": { "source": "local", "path": "./plugins/chrome-devtools-mcp" }
     }
   ]
 }
