@@ -29,7 +29,7 @@ cubelet --config "$CUBELET_CONFIG" trace --help
 - 运行状态：`container`、`vmapp`
 - 监控排障：`health`、`jvm`、`log`、`node`、`pod`、`trace`
 - 测试与扫描：`case`、`codeTask`、`artifactTask`
-- 团队协作：`team`（项目、迭代、事项和看板查询）
+- 团队协作：`team`（项目、迭代、事项和看板查询，以及事项创建和更新）
 
 ## 常用调用
 
@@ -53,7 +53,7 @@ cubelet --config "$CUBELET_CONFIG" team projectlist --query 支付 --currentPage
 
 ## 安全规则
 
-- `publish quick`、`publish create`、`workflow run`、配置创建或更新、测试用例写入、扫描任务创建/执行/停止都属于写操作，执行前必须获得用户明确确认。
+- `publish quick`、`publish create`、`workflow run`、配置创建或更新、测试用例写入、扫描任务创建/执行/停止，以及 `team createissue`、`team updateissue` 都属于写操作，执行前必须获得用户明确确认。
 - 查询、状态、结果和日志命令可以直接执行，但要限制时间范围和返回规模。
 - 文件参数只使用当前项目内的相对路径，不访问项目外文件。
 - 保持默认 JSON 输出；只有用户明确要求其它格式时才传 `--output`。
