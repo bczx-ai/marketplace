@@ -6,6 +6,12 @@
     "brain": ">=1.0.16"
   },
   "components": {
+    "skills": [
+      { "key": "chrome-devtools" },
+      { "key": "debug-optimize-lcp" },
+      { "key": "a11y-debugging" },
+      { "key": "troubleshooting" }
+    ],
     "mcp": ["chrome-devtools"],
     "assets": ["detail.html", "icon.svg"]
   }

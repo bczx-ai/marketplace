@@ -1,6 +1,6 @@
 {
   "name": "chrome-devtools-mcp",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "通过 Chrome DevTools MCP 控制和检查 Chrome，执行浏览器自动化、深度调试与性能分析。",
   "author": {
     "name": "Google LLC",
@@ -9,6 +9,7 @@
   "homepage": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
   "repository": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
   "license": "Apache-2.0",
+  "skills": "./skills",
   "mcpServers": {
     "chrome-devtools": {
       "command": "npx",
@@ -16,13 +17,13 @@
     }
   },
   "interface": {
-    "displayName": "Chrome DevTools MCP",
+    "displayName": "Chrome",
     "shortDescription": "Chrome 自动化、调试与性能分析",
-    "longDescription": "通过 Chrome DevTools 和 Puppeteer 控制、检查与调试 Chrome，支持页面交互、网络与控制台分析、截图、性能追踪和可操作的性能洞察。",
+    "longDescription": "通过 Chrome DevTools 和 Puppeteer 控制、检查与调试 Chrome，支持页面交互、网络与控制台分析、截图和性能追踪，并内置通用调试、LCP 优化、无障碍审计与连接排障 Skills。",
     "developerName": "Google LLC",
     "category": "开发工具",
     "logo": "./assets/icon.svg",
-    "capabilities": ["MCP"],
+    "capabilities": ["MCP", "Skills"],
     "defaultPrompt": [
       "使用 Chrome DevTools 检查这个网页的性能问题。",
       "分析这个页面的网络请求和控制台错误。",

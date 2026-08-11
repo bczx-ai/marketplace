@@ -1,0 +1,4 @@
+interface:
+  display_name: "LCP 性能优化"
+  short_description: "使用 Chrome DevTools 定位并优化页面 LCP 性能瓶颈"
+  default_prompt: "使用 $debug-optimize-lcp 分析当前页面的 LCP 瓶颈并给出优化方案。"

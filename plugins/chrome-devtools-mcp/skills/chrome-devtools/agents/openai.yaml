@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome DevTools"
+  short_description: "使用 Chrome DevTools 调试网页并自动操作浏览器"
+  default_prompt: "使用 $chrome-devtools 调试当前网页并验证问题。"

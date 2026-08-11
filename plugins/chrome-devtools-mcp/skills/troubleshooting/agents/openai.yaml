@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome 连接排障"
+  short_description: "排查 Chrome DevTools MCP 启动、连接与工具缺失问题"
+  default_prompt: "使用 $troubleshooting 排查当前 Chrome DevTools MCP 连接故障。"
