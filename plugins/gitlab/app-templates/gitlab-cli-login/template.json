@@ -23,16 +23,6 @@
         "stdinFrom": "secret.access_token",
         "captureAuthorizationUrl": false,
         "timeoutSeconds": 120
-      },
-      {
-        "command": "glab",
-        "args": [
-          "auth",
-          "status",
-          "--all"
-        ],
-        "captureAuthorizationUrl": false,
-        "timeoutSeconds": 120
       }
     ]
   },
