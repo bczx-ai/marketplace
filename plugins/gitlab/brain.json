@@ -2,8 +2,8 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "新增 GitLab 原生 Merge Request 与 Issue Board 扩展。",
-  "compatibility": { "brain": ">=1.0.20" },
+  "releaseNotes": "GitLab 地址支持 HTTP、HTTPS、端口和子路径，并简化连接表单提示。",
+  "compatibility": { "brain": ">=1.1.2" },
   "components": {
     "extensions": [{ "path": "gitlab" }],
     "skills": [{ "key": "gitlab", "requires": ["cli:glab"] }],
