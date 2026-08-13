@@ -13,9 +13,7 @@
           "auth",
           "login",
           "--hostname",
-          { "valueFrom": "config.hostname", "transform": "url_host" },
-          "--api-host",
-          { "valueFrom": "config.hostname", "transform": "url_host_path" },
+          { "valueFrom": "config.hostname" },
           "--api-protocol",
           { "valueFrom": "config.hostname", "transform": "url_protocol" },
           "--stdin",
@@ -31,8 +29,7 @@
         "args": [
           "auth",
           "status",
-          "--hostname",
-          { "valueFrom": "config.hostname", "transform": "url_host" }
+          "--all"
         ],
         "captureAuthorizationUrl": false,
         "timeoutSeconds": 120

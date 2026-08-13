@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "GitLab 地址支持 HTTP、HTTPS、端口和子路径，并简化连接表单提示。",
+  "releaseNotes": "GitLab 地址由 glab 原生解析子路径，同时支持 HTTP、HTTPS 和端口。",
   "compatibility": { "brain": ">=1.1.2" },
   "components": {
     "extensions": [{ "path": "gitlab" }],

@@ -1,6 +1,6 @@
 {
   "name": "gitlab",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "通过原生扩展和 GitLab 官方 glab CLI 管理 Merge Request、Issue、仓库、CI/CD、Release 与 GitLab API。",
   "author": { "name": "brain" },
   "repository": "https://codebase.zhonganinfo.com/zainfo/marketplace",
