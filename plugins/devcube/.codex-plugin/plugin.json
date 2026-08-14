@@ -1,17 +1,17 @@
 {
   "name": "devcube",
-  "version": "1.4.0",
-  "description": "通过 DevCube 查询团队项目，并操作发布、配置、运行状态、监控、测试与扫描任务。",
+  "version": "1.6.0",
+  "description": "通过 DevCube 查询团队项目，并操作发布、配置、运行状态、监控、测试、扫描与质量工程任务。",
   "author": { "name": "brain" },
   "skills": "./skills",
   "interface": {
     "displayName": "DevCube",
-    "shortDescription": "研发效能、发布、监控、测试与扫描能力",
-    "longDescription": "使用原生 cubelet CLI 访问 DevCube，覆盖发布、配置、容器、虚拟机、监控、测试、扫描与团队协作。",
+    "shortDescription": "研发效能、发布、监控、测试、扫描与质量工程能力",
+    "longDescription": "使用原生 cubelet CLI 访问 DevCube，覆盖发布、配置、容器、虚拟机、监控、测试、扫描、团队协作与质量工程。",
     "developerName": "brain",
     "category": "研发效能",
     "logo": "./assets/icon.svg",
-    "capabilities": ["Skills", "Apps", "App Templates", "CLI"],
+    "capabilities": ["Skills", "Apps", "App Templates", "CLI", "Extensions"],
     "defaultPrompt": [
       "查询当前可见的 DevCube 项目。",
       "查看指定应用最近一次发布状态。",

@@ -45,3 +45,4 @@ cubelet --config "$CUBELET_CONFIG" team kanbandatas --id 503
 ## 注意
 
 - 两个命令都是只读查询，不会修改看板或事项状态。
+- 默认优先使用 `--output json`。

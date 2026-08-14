@@ -38,8 +38,7 @@ cubelet --config "$CUBELET_CONFIG" team projectlist --query 紫 --currentPage 1 
 cubelet --config "$CUBELET_CONFIG" team projectmenus --projectid <项目ID>
 ```
 
-- 第一层 `type=1` 表示可创建组件。
-- 第一层 `typeName` 用作 `createissue --project-type-name`。
-- 第一层 `children[].id` 用作 `createissue --task-type-id`。
-- 不要将 `project-type-name` 限制为固定枚举，始终使用当前项目返回的 `typeName`。
-- 这是只读命令。
+- 第一层 `type=1` 表示可创建组件
+- 第一层 `typeName` 用作 `createissue --project-type-name`
+- 第一层 `children[].id` 用作 `createissue --task-type-id`
+- 不要将 `project-type-name` 限制为固定枚举；始终使用当前项目返回的 `typeName`

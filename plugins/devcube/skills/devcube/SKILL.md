@@ -30,6 +30,7 @@ cubelet --config "$CUBELET_CONFIG" trace --help
 - 监控排障：`health`、`jvm`、`log`、`node`、`pod`、`trace`
 - 测试与扫描：`case`、`codeTask`、`artifactTask`
 - 团队协作：`team`（项目、迭代、事项和看板查询，以及事项创建、更新和文件上传）
+- 质量工程：`mantis-test-design`、`mantis-case-generate`、`mantis-auto-generate`、`mantis-auto-run`（写入 `.brain-quality` 与 `tests/**`，不替代上述 CLI 命令组）
 
 ## 常用调用
 
