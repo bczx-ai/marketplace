@@ -25,7 +25,7 @@
         <p class="section-index">01</p>
         <h2>可用能力</h2>
       </div>
-      <p>26 个内置 Skill 覆盖 cubelet 与质量工程流程，按研发工作流组合常用操作。</p>
+      <p>26 个内置 Skill 与质量工程扩展协同，覆盖 cubelet CLI 与 Agent 驱动的质量流程。</p>
     </div>
 
     <div class="capability-grid">
@@ -57,11 +57,11 @@
       </article>
 
       <article class="capability-card">
-        <span class="capability-icon icon-amber" aria-hidden="true">测</span>
+        <span class="capability-icon icon-amber" aria-hidden="true">质</span>
         <div class="capability-content">
-          <h3>测试与质量工程</h3>
-          <p>管理用例库，并完成测试设计、功能用例、自动化脚本生成与本机执行引导。</p>
-          <div class="tag-list"><span>用例库</span><span>测试设计</span><span>自动化用例</span></div>
+          <h3>质量工程</h3>
+          <p>随插件安装原生扩展，在 Agent 与质量工程面板中完成测试设计、功能用例编写、自动化脚本生成与本机执行。</p>
+          <div class="tag-list"><span>测试设计</span><span>功能用例</span><span>自动化执行</span></div>
         </div>
       </article>
 
@@ -91,7 +91,7 @@
         <p class="section-index">02</p>
         <h2>使用场景</h2>
       </div>
-      <p>直接描述目标；涉及发布、配置、测试或扫描写操作时，Agent 会在执行前请求确认。</p>
+      <p>直接描述目标；涉及发布、配置、质量工程产物写入或扫描写操作时，Agent 会在执行前请求确认。</p>
     </div>
 
     <div class="scenario-grid">
@@ -157,14 +157,14 @@
 
       <article class="scenario-card">
         <div class="scenario-title">
-          <span class="scenario-icon icon-orange" aria-hidden="true">测</span>
-          <h3>维护测试用例</h3>
+          <span class="scenario-icon icon-amber" aria-hidden="true">质</span>
+          <h3>推进质量工程</h3>
           <span class="status status-confirm">执行前确认</span>
         </div>
-        <p class="scenario-description">创建用例库或目录、关联需求，并从项目内的 Excel 或 XMind 文件导入用例。</p>
+        <p class="scenario-description">从需求或 Cube 事项出发，依次完成测试设计、功能用例与 Playwright/k6 自动化脚本，并在质量工程面板本机执行。</p>
         <div class="prompt-label">你可以这样说</div>
-        <blockquote>在退款需求下创建用例目录并导入 tests/refund-cases.xlsx，执行前展示导入计划。</blockquote>
-        <div class="tag-list"><span>用例目录</span><span>需求关联</span><span>文件导入</span></div>
+        <blockquote>基于 docs/requirements/refund.md 生成测试设计，固化后产出功能用例和 UI 自动化脚本，并引导我在质量工程面板执行。</blockquote>
+        <div class="tag-list"><span>测试设计</span><span>功能用例</span><span>本机执行</span></div>
       </article>
 
       <article class="scenario-card">
