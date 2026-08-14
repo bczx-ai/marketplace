@@ -49,12 +49,13 @@ cubelet --config "$CUBELET_CONFIG" container inspect --name demo-service --env d
 日志读取建议：
 
 - 想保留结构化信息时用默认 `json`
+- 想直接查看日志正文时用 `--output raw`
 
 示例：
 
 ```bash
 cubelet --config "$CUBELET_CONFIG" container logs --name demo-service --env dev
-cubelet --config "$CUBELET_CONFIG" container logs --name demo-service --env dev --pod POD_NAME --container APP
+cubelet --config "$CUBELET_CONFIG" container logs --name demo-service --env dev --pod POD_NAME --container APP --output raw
 ```
 
 ## 适用场景

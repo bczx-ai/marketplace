@@ -5,7 +5,7 @@ description: "发布应用时附带配置文件或内联配置，并在需要时
 
 # Publish with Config
 
-> **PREREQUISITE:** 执行该 recipe 前加载 [ship-publish](../ship-publish/SKILL.md)、[ship-config](../ship-config/SKILL.md)。
+> **PREREQUISITE:** 执行该 recipe 前加载 `ship-publish`、`ship-config`。
 
 在发布时附带配置，或先独立管理配置再发布。
 

@@ -1,6 +1,6 @@
 ---
 name: monitor-health
-description: "DevCube：监控域健康检查查询能力。用于通过 Brain DevCube 应用连接查询业务应用在指定毫秒时间区间内的健康检查时序数据，并理解健康检查时间点与心跳值的含义。"
+description: "DevCube：监控域健康检查查询能力。用于通过 cubelet 查询业务应用在指定毫秒时间区间内的健康检查时序数据，并理解健康检查时间点与心跳值的含义。"
 ---
 
 # health

@@ -1,6 +1,6 @@
 ---
 name: monitor-log
-description: "DevCube：监控域日志查询能力。用于通过 Brain DevCube 应用连接查询业务应用系统日志数据，按应用名、毫秒时间区间、日志级别、traceId、spanId 等条件筛选，并理解系统日志输出字段和常见日志属性含义。"
+description: "DevCube：监控域日志查询能力。用于通过 cubelet 查询业务应用系统日志数据，按应用名、毫秒时间区间、日志级别、traceId、spanId 等条件筛选，并理解系统日志输出字段和常见日志属性含义。"
 ---
 
 # log

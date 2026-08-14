@@ -1,6 +1,6 @@
 ---
 name: mantis-test-case-library
-description: "需要通过 Brain DevCube 应用连接管理 Mantis 测试管理用例库，包括查询/创建用例库、查看目录树、新增目录、导入 Excel/XMind 用例，或批量新增用例并关联需求。"
+description: "agent 需要通过 cubelet 管理 Mantis 测试管理用例库，包括查询/创建用例库、查看目录树、新增目录、导入 Excel/XMind 用例，或批量新增用例并关联需求。"
 ---
 
 # case
@@ -45,7 +45,7 @@ cubelet --config "$CUBELET_CONFIG" case <command> [flags]
 
 ## 返回读取规则
 
-`cubelet` 命令输出统一是 envelope：
+cubelet --config "$CUBELET_CONFIG" 直接命令输出统一是 envelope：
 
 - `ok`：布尔值；只有 `true` 才继续读取业务字段
 - `error`：错误文本；`ok=false` 时优先把它反馈给用户

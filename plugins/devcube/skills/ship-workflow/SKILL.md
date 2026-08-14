@@ -54,12 +54,14 @@ cubelet --config "$CUBELET_CONFIG" workflow run --publish-id 10001 --stage 部�
 
 日志读取建议：
 
+- 默认用 `--output json`
+- 需要直接查看原始日志文本时用 `--output raw`
 
 示例：
 
 ```bash
 cubelet --config "$CUBELET_CONFIG" workflow logs --publish-id 10001
-cubelet --config "$CUBELET_CONFIG" workflow logs --publish-id 10001 --app demo-app
+cubelet --config "$CUBELET_CONFIG" workflow logs --publish-id 10001 --app demo-app --output raw
 ```
 
 ## 常见搭配

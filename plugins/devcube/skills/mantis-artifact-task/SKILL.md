@@ -29,6 +29,7 @@ cubelet --config "$CUBELET_CONFIG" artifactTask <command> [flags]
 
 - `create`、`run` 和 `stop` 会改变系统状态，执行前必须让用户明确确认。
 - `list`、`status`、`result`、`log` 是只读命令。
+- 日志原文用 `--output raw`；默认 JSON 更适合机器解析。
 
 ## 状态码
 
@@ -169,7 +170,7 @@ cubelet --config "$CUBELET_CONFIG" artifactTask result --exec-id 8001
 
 ```bash
 cubelet --config "$CUBELET_CONFIG" artifactTask log --detail-id 9001
-cubelet --config "$CUBELET_CONFIG" artifactTask log --detail-id 9001
+cubelet --config "$CUBELET_CONFIG" --output raw artifactTask log --detail-id 9001
 ```
 
 ```json

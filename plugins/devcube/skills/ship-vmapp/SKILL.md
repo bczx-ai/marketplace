@@ -43,13 +43,14 @@ cubelet --config "$CUBELET_CONFIG" vmapp inspect --name demo-vmapp --env fat
 日志读取建议：
 
 - 默认保留 `json`
+- 需要原始日志时使用 `--output raw`
 - 多主机场景优先带 `--host` 精确定位
 
 示例：
 
 ```bash
 cubelet --config "$CUBELET_CONFIG" vmapp logs --name demo-vmapp --env fat
-cubelet --config "$CUBELET_CONFIG" vmapp logs --name demo-vmapp --env fat --host 172.28.38.19 --num 200
+cubelet --config "$CUBELET_CONFIG" vmapp logs --name demo-vmapp --env fat --host 172.28.38.19 --num 200 --output raw
 ```
 
 ## 适用场景

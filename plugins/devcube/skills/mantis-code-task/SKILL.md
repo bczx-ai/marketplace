@@ -244,12 +244,13 @@ cubelet --config "$CUBELET_CONFIG" codeTask result --task-id 3001 --his-id 8899
 注意：
 
 - 下游真实接口是 `GET /rick/api/scanTask/history/logs/{hisId}`
+- 需要纯日志文本时使用 `--output raw`
 
 示例：
 
 ```bash
 cubelet --config "$CUBELET_CONFIG" codeTask log --his-id 8899
-cubelet --config "$CUBELET_CONFIG" codeTask log --his-id 8899
+cubelet --config "$CUBELET_CONFIG" --output raw codeTask log --his-id 8899
 ```
 
 输出示例：
