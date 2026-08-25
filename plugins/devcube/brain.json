@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "随附质量工程原生扩展（devcube.quality-engineering 0.1.75），提供测试设计、功能用例、自动化脚本生成与本机执行面板；同步 cube-cli skills 与 mantis 质量工程流程。",
+  "releaseNotes": "升级质量工程原生扩展至 devcube.quality-engineering 0.1.76，提供测试设计、功能用例、自动化脚本生成与本机执行面板；同步 cube-cli skills 与 mantis 质量工程流程。",
   "compatibility": { "brain": ">=1.1.2" },
   "components": {
     "extensions": [{ "path": "quality-engineering" }],
