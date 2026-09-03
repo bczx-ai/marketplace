@@ -1,24 +1,32 @@
 ---
 name: team-issue
-description: "需要查询 Team 事项、发现可编辑字段和动态选项、创建根/子事项，或更新普通字段、Markdown 富文本及其本地图片/附件引用。"
+description: "Use when需要查询 Team 事项、发现可编辑字段和动态选项、创建根/子事项，或更新普通字段、Markdown 富文本及其本地图片/附件引用。"
+metadata:
+  version: 0.3.0
+  openclaw:
+    category: "project-management"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet team --help"
 ---
 
 # Team Issue
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)。创建和更新会修改真实事项，执行前必须向用户确认目标项目、事项和更新内容。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`。创建和更新会修改真实事项，执行前必须向用户确认目标项目、事项和更新内容。
 
 ## 查询事项
 
 按数字 ID 或事项编号做简要查询：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team getissue --id <事项ID或编号>
+cubelet team getissue --id <事项ID或编号>
 ```
 
 查询完整详情、字段定义和当前值：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team issuedetail \
+cubelet team issuedetail \
   --projectid <项目ID> \
   --project-type-name <组件typeName> \
   --id <事项ID>
@@ -40,13 +48,13 @@ cubelet --config "$CUBELET_CONFIG" team issuedetail \
 仅当目标字段 `options` 为空且 `source` 非空时调用：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team fieldoptions --source '<source>' [--search <关键字>]
+cubelet team fieldoptions --source '<source>' [--search <关键字>]
 ```
 
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team fieldoptions \
+cubelet team fieldoptions \
   --source '/search/select/iteration?search=' \
   --search 迭代
 ```
@@ -63,13 +71,13 @@ cubelet --config "$CUBELET_CONFIG" team fieldoptions \
 创建子事项时，再调用：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team parentandchildren --id <父事项ID>
+cubelet team parentandchildren --id <父事项ID>
 ```
 
 只使用返回 `children` 中允许的 `task-type-id`。使用 `team userlist` 选择经办人后创建：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team createissue \
+cubelet team createissue \
   --projectid <项目ID> \
   --project-type-name <typeName> \
   --name <名称> \
@@ -97,7 +105,7 @@ cubelet --config "$CUBELET_CONFIG" team createissue \
 ```
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team updateissue \
+cubelet team updateissue \
   --projectid <项目ID> \
   --project-type-name <typeName> \
   --id <事项ID> \
@@ -121,13 +129,13 @@ cubelet --config "$CUBELET_CONFIG" team updateissue \
 对每个本地引用先上传：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team uploadfile --file <本地文件路径>
+cubelet team uploadfile --file <本地文件路径>
 ```
 
 从返回 `data.url` 取得远程地址，将 Markdown 中对应目标完整替换为该 URL。同一本地文件只上传一次，所有重复引用复用同一 URL。全部上传成功后，检查 Markdown 中不再存在本地文件引用，再执行更新：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team updateissue \
+cubelet team updateissue \
   --projectid <项目ID> \
   --project-type-name <typeName> \
   --id <事项ID> \
@@ -142,7 +150,7 @@ cubelet --config "$CUBELET_CONFIG" team updateissue \
 `componentType=team-upload` 使用本地文件：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team updateissue \
+cubelet team updateissue \
   --projectid <项目ID> \
   --project-type-name <typeName> \
   --id <事项ID> \

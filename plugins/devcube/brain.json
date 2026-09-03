@@ -2,12 +2,13 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "升级质量工程原生扩展至 devcube.quality-engineering 0.1.76，提供测试设计、功能用例、自动化脚本生成与本机执行面板；同步 cube-cli skills 与 mantis 质量工程流程。",
+  "releaseNotes": "升级质量工程原生扩展至 devcube.quality-engineering 0.2.8，修复新会话面板首次启动失败、会话状态绑定和阶段产物刷新问题；同步 cube-cli skills、shared 前置规则与 mantis 质量工程流程。",
   "compatibility": { "brain": ">=1.1.2" },
   "components": {
     "extensions": [{ "path": "quality-engineering" }],
     "skills": [
       { "key": "devcube", "requires": ["cli:cubelet"] },
+      { "key": "shared", "requires": ["cli:cubelet"] },
       { "key": "mantis-artifact-task", "requires": ["cli:cubelet"] },
       { "key": "mantis-auto-generate" },
       { "key": "mantis-auto-run" },

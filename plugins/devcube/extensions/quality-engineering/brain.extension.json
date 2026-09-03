@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "extensionId": "devcube.quality-engineering",
-  "version": "0.1.76",
+  "version": "0.2.8",
   "publisher": "devcube",
   "runtimeKind": "trusted-node",
   "dist": {
     "type": "url",
-    "url": "https://download-app.aidevops.top/marketplace/extensions/devcube.quality-engineering/0.1.76/devcube.quality-engineering-0.1.76.brain-ext",
-    "size": 344678,
-    "sha256": "ff77d5de020b75132f667a0c0b7a9a972d684b32bd3efa016bdde2195b3f5c0d"
+    "url": "https://download-app.aidevops.top/marketplace/extensions/devcube.quality-engineering/0.2.8/devcube.quality-engineering-0.2.8.brain-ext",
+    "size": 349906,
+    "sha256": "b26c16d3b784d14bd03a5f4c61f0f776b6110a09f66e61866018cf005c6f02b2"
   }
 }

@@ -1,14 +1,22 @@
 ---
 name: ship-vmapp
-description: "DevCube：虚拟机应用运行态能力，包括实例详情、访问地址和最新日志。"
+description: "Cubelet：虚拟机应用运行态能力，包括实例详情、访问地址和最新日志。"
+metadata:
+  version: 0.1.0
+  openclaw:
+    category: "devops"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet vmapp --help"
 ---
 
 # vmapp
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" vmapp <command> [flags]
+cubelet vmapp <command> [flags]
 ```
 
 ## Commands
@@ -28,7 +36,7 @@ cubelet --config "$CUBELET_CONFIG" vmapp <command> [flags]
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" vmapp inspect --name demo-vmapp --env fat
+cubelet vmapp inspect --name demo-vmapp --env fat
 ```
 
 ## `logs`
@@ -49,8 +57,8 @@ cubelet --config "$CUBELET_CONFIG" vmapp inspect --name demo-vmapp --env fat
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" vmapp logs --name demo-vmapp --env fat
-cubelet --config "$CUBELET_CONFIG" vmapp logs --name demo-vmapp --env fat --host 172.28.38.19 --num 200 --output raw
+cubelet vmapp logs --name demo-vmapp --env fat
+cubelet vmapp logs --name demo-vmapp --env fat --host 172.28.38.19 --num 200 --output raw
 ```
 
 ## 适用场景

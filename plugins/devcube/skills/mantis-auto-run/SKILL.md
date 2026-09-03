@@ -1,6 +1,10 @@
 ---
 name: mantis-auto-run
 description: "自动化执行提示：在自动化脚本已生成后，引导用户在质量工程面板本机跑 Playwright(UI)/k6(API)（阶段 07）。在用户提到执行自动化、$ mantis-auto-run、跑脚本、执行报告时使用。"
+metadata:
+  version: 0.4.0
+  openclaw:
+    category: "qa"
 ---
 
 # mantis-auto-run（自动化执行）

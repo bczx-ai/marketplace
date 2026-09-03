@@ -1,14 +1,23 @@
 ---
 name: mantis-test-case-library
-description: "agent 需要通过 cubelet 管理 Mantis 测试管理用例库，包括查询/创建用例库、查看目录树、新增目录、导入 Excel/XMind 用例，或批量新增用例并关联需求。"
+description: "Use when agent 需要通过 cubelet 管理 Mantis 测试管理用例库，包括查询/创建用例库、查看目录树、新增目录、导入 Excel/XMind 用例，或批量新增用例并关联需求。"
+metadata:
+  version: 0.2.6
+  openclaw:
+    category: "qa"
+    domain: "mantis"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet case --help"
 ---
 
 # case
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" case <command> [flags]
+cubelet case <command> [flags]
 ```
 
 ## Commands
@@ -45,7 +54,7 @@ cubelet --config "$CUBELET_CONFIG" case <command> [flags]
 
 ## 返回读取规则
 
-cubelet --config "$CUBELET_CONFIG" 直接命令输出统一是 envelope：
+cubelet 直接命令输出统一是 envelope：
 
 - `ok`：布尔值；只有 `true` 才继续读取业务字段
 - `error`：错误文本；`ok=false` 时优先把它反馈给用户
@@ -76,12 +85,12 @@ cubelet --config "$CUBELET_CONFIG" 直接命令输出统一是 envelope：
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" case librarySearch --projectId 8143
-cubelet --config "$CUBELET_CONFIG" case librarySearch --projectId 8143 --name lq0001
-cubelet --config "$CUBELET_CONFIG" case librarySearch --projectId 8143 --share=true
+cubelet case librarySearch --projectId 8143
+cubelet case librarySearch --projectId 8143 --name lq0001
+cubelet case librarySearch --projectId 8143 --share=true
 ```
 
-返回示例：`cubelet --config "$CUBELET_CONFIG" case librarySearch --projectId 8143`。返回数量会随项目变化，agent 不能按固定位置判断目标库。
+返回示例：`cubelet case librarySearch --projectId 8143`。返回数量会随项目变化，agent 不能按固定位置判断目标库。
 
 ```json
 {
@@ -104,7 +113,7 @@ cubelet --config "$CUBELET_CONFIG" case librarySearch --projectId 8143 --share=t
 }
 ```
 
-返回示例：`cubelet --config "$CUBELET_CONFIG" case librarySearch --projectId 8143 --name lq0001`
+返回示例：`cubelet case librarySearch --projectId 8143 --name lq0001`
 
 ```json
 {
@@ -143,8 +152,8 @@ Agent 取值：
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" case libraryAdd --projectId 8143 --name agent示例用例库
-cubelet --config "$CUBELET_CONFIG" case libraryAdd --projectId 8143 --name agent示例用例库 --share --description "agent 创建示例"
+cubelet case libraryAdd --projectId 8143 --name agent示例用例库
+cubelet case libraryAdd --projectId 8143 --name agent示例用例库 --share --description "agent 创建示例"
 ```
 
 返回字段形态示例；`data.id` 由后端生成：
@@ -176,10 +185,10 @@ Agent 取值：
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" case folderTree --libraryId 323600757682245
+cubelet case folderTree --libraryId 323600757682245
 ```
 
-返回示例：`cubelet --config "$CUBELET_CONFIG" case folderTree --libraryId 323600757682245`
+返回示例：`cubelet case folderTree --libraryId 323600757682245`
 
 ```json
 {
@@ -252,10 +261,10 @@ Agent 取值：
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" case folderAdd --libraryId 323600757682245 --parentId 323600757727301 --name agent-folderAdd-20260710
+cubelet case folderAdd --libraryId 323600757682245 --parentId 323600757727301 --name agent-folderAdd-20260710
 ```
 
-返回示例：`cubelet --config "$CUBELET_CONFIG" case folderAdd --libraryId 323600757682245 --parentId 323600757727301 --name agent-folderAdd-20260710`
+返回示例：`cubelet case folderAdd --libraryId 323600757682245 --parentId 323600757727301 --name agent-folderAdd-20260710`
 
 ```json
 {
@@ -296,11 +305,11 @@ Agent 取值：
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" case addBatchAndRelateDemand --file ./cases-relate-demand.json
-cubelet --config "$CUBELET_CONFIG" case addBatchAndRelateDemand --payload '{"libraryId":323600757682245,"parentNodeId":326087293272133,"marsCaseGptDTOS":[{"name":"agent-folderAdd目录下新增用例-20260710","priority":"P1","steps":{"type":"text","text":{"description":"在新建目录下新增用例","expected_results":"用例新增成功"}}}],"relateDemandIds":[101782]}'
+cubelet case addBatchAndRelateDemand --file ./cases-relate-demand.json
+cubelet case addBatchAndRelateDemand --payload '{"libraryId":323600757682245,"parentNodeId":326087293272133,"marsCaseGptDTOS":[{"name":"agent-folderAdd目录下新增用例-20260710","priority":"P1","steps":{"type":"text","text":{"description":"在新建目录下新增用例","expected_results":"用例新增成功"}}}],"relateDemandIds":[101782]}'
 ```
 
-返回示例：`cubelet --config "$CUBELET_CONFIG" case addBatchAndRelateDemand --payload ...`
+返回示例：`cubelet case addBatchAndRelateDemand --payload ...`
 
 ```json
 {
@@ -342,8 +351,8 @@ Agent 取值：
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" case import --projectId 8143 --file ./cases.xlsx --library 323600757682245
-cubelet --config "$CUBELET_CONFIG" case import --projectId 8143 --file ./login.xmind --library 323600757682245
+cubelet case import --projectId 8143 --file ./cases.xlsx --library 323600757682245
+cubelet case import --projectId 8143 --file ./login.xmind --library 323600757682245
 ```
 
 返回示例：

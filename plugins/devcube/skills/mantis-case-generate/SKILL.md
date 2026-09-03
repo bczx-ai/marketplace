@@ -1,6 +1,10 @@
 ---
 name: mantis-case-generate
 description: "功能用例生成：基于已固化的测试设计生成 tests/cases/**/*.cases.yaml 功能用例草稿（用例标题与步骤描述须为中文）并写入 .brain-quality 会话状态（阶段 05）。在用户提到功能用例生成、$ mantis-case-generate、cases.yaml、回归用例时使用。"
+metadata:
+  version: 0.2.0
+  openclaw:
+    category: "qa"
 ---
 
 # mantis-case-generate（功能用例生成）

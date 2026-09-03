@@ -1,14 +1,23 @@
 ---
 name: monitor-health
-description: "DevCube：监控域健康检查查询能力。用于通过 cubelet 查询业务应用在指定毫秒时间区间内的健康检查时序数据，并理解健康检查时间点与心跳值的含义。"
+description: "Cubelet：监控域健康检查查询能力。用于通过 cubelet 查询业务应用在指定毫秒时间区间内的健康检查时序数据，并理解健康检查时间点与心跳值的含义。"
+metadata:
+  version: 0.1.0
+  openclaw:
+    category: "monitor"
+    domain: "monitor"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet health --help"
 ---
 
 # health
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和输出格式。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和输出格式。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" health <command> [flags]
+cubelet health <command> [flags]
 ```
 
 ## Commands
@@ -48,10 +57,10 @@ cubelet --config "$CUBELET_CONFIG" health <command> [flags]
 
 ```bash
 # 查询 prd 环境下 cube-base 的健康检查数据
-cubelet --config "$CUBELET_CONFIG" health check --app cube-base --start 1776340140000 --end 1776340740000
+cubelet health check --app cube-base --start 1776340140000 --end 1776340740000
 
 # 显式指定环境
-cubelet --config "$CUBELET_CONFIG" health check --app cube-base --start 1776340140000 --end 1776340740000 --env test
+cubelet health check --app cube-base --start 1776340140000 --end 1776340740000 --env test
 ```
 
 返回字段说明：

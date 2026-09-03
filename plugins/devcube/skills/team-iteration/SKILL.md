@@ -1,16 +1,24 @@
 ---
 name: team-iteration
-description: "需要查询项目迭代列表，控制是否隐藏已结束迭代。"
+description: "Use when需要查询项目迭代列表，控制是否隐藏已结束迭代。"
+metadata:
+  version: 0.1.0
+  openclaw:
+    category: "project-management"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet team --help"
 ---
 
 # team-iteration
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和只读命令使用规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和只读命令使用规则。
 
 ## `iterationlist`
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid <项目ID> [flags]
+cubelet team iterationlist --projectid <项目ID> [flags]
 ```
 
 - `--projectid`：必填，项目 ID
@@ -20,9 +28,9 @@ cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid <项目ID> [fl
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid 6625
-cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid 6625 --name V12
-cubelet --config "$CUBELET_CONFIG" team iterationlist --projectid 6625 --isHide=false
+cubelet team iterationlist --projectid 6625
+cubelet team iterationlist --projectid 6625 --name V12
+cubelet team iterationlist --projectid 6625 --isHide=false
 ```
 
 ## 注意

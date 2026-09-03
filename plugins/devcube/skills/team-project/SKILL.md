@@ -1,16 +1,24 @@
 ---
 name: team-project
-description: "需要查询当前用户可见项目、按名称或编号过滤，或发现项目允许创建的组件和事项类型。"
+description: "Use when需要查询当前用户可见项目、按名称或编号过滤，或发现项目允许创建的组件和事项类型。"
+metadata:
+  version: 0.2.0
+  openclaw:
+    category: "project-management"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet team --help"
 ---
 
 # team-project
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和只读命令使用规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和只读命令使用规则。
 
 ## `projectlist`
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team projectlist [flags]
+cubelet team projectlist [flags]
 ```
 
 - `--query`：可选，项目名称或项目编号模糊查询
@@ -20,9 +28,9 @@ cubelet --config "$CUBELET_CONFIG" team projectlist [flags]
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team projectlist
-cubelet --config "$CUBELET_CONFIG" team projectlist --query TEST
-cubelet --config "$CUBELET_CONFIG" team projectlist --query 紫 --currentPage 1 --pageSize 20
+cubelet team projectlist
+cubelet team projectlist --query TEST
+cubelet team projectlist --query 紫 --currentPage 1 --pageSize 20
 ```
 
 ## 注意
@@ -35,7 +43,7 @@ cubelet --config "$CUBELET_CONFIG" team projectlist --query 紫 --currentPage 1 
 取得项目 ID 后，查询该项目允许创建的组件和事项类型：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team projectmenus --projectid <项目ID>
+cubelet team projectmenus --projectid <项目ID>
 ```
 
 - 第一层 `type=1` 表示可创建组件

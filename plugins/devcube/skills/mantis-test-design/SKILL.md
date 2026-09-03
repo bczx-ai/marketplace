@@ -1,6 +1,14 @@
 ---
 name: mantis-test-design
 description: "测试设计：基于 @ 需求文件或 Cube 事项生成测试设计草稿（摘要、脑图、场景、覆盖矩阵，用户可见文案须为中文），并写入项目 .brain-quality 会话状态（阶段 04）。在用户提到测试设计、$ mantis-test-design、质量设计、需求转测试设计时使用。"
+metadata:
+  version: 0.2.0
+  openclaw:
+    category: "qa"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet team getissue --help"
 ---
 
 # mantis-test-design（测试设计）
@@ -18,6 +26,17 @@ description: "测试设计：基于 @ 需求文件或 Cube 事项生成测试设
 **不再使用** `brain-workspace-server quality upsert-draft` 或 `{sessionId}-quality.json`（Brain 内核已移除 quality CLI）。
 
 扩展任务 prompt 会给出具体 `state.json` 路径（形如 `.brain-quality/sessions/<sessionId>/state.json`）。`<sessionId>` 以该路径为准。
+
+## 会话绑定（最高优先级）
+
+本 Skill 可能由质量工程扩展命令调用，也可能由用户直接调用。两种入口都必须把结果写入**当前 Brain 会话**，禁止通过历史文件推断会话。
+
+1. 先读取运行时注入的 `BRAIN_SESSION_ID`。在 Brain 会话中不得手工设置或覆盖这个变量。
+2. 若任务 prompt 明确给出“会话质量状态文件”路径，使用该精确路径；同时校验路径中的会话 ID 与 `BRAIN_SESSION_ID` 一致。两者不一致时立即停止并报告绑定冲突。
+3. 若 prompt 没有给出状态文件路径，必须使用 `.brain-quality/sessions/${BRAIN_SESSION_ID}/state.json`。`BRAIN_SESSION_ID` 为空时立即停止并报告当前运行环境缺少会话上下文。
+4. 写入前后都必须校验 `state.json.sessionId` 等于当前会话 ID。状态文件不存在时，只能在上述精确路径创建，不能先扫描其它会话寻找模板。
+
+禁止使用 `find`、`rg`、`ls`、文件修改时间、需求标题、事项 ID、最近打开记录或 transcript 扫描来选择会话；禁止读取或写入其它会话的 `state.json`。这类“猜一个最像的会话”的行为会把面板和聊天拆开，是错误而不是降级策略。
 
 ## 语言（强制）
 
@@ -64,7 +83,7 @@ description: "测试设计：基于 @ 需求文件或 Cube 事项生成测试设
 
 ## Workflow
 
-1. **读取需求** — 先读 `state.json` 的 `source`。若 `source.sourceType === "cube-item"`，用 `source.cubeItemId` 执行 `cubelet --config "$CUBELET_CONFIG" team getissue`，**勿**要求用户再次 `@` 需求文件；否则读用户 `@` 的文件或 prompt 内嵌需求上下文（看板触发时 prompt 已含 Team 详情，**以 prompt 为唯一事实源**）。
+1. **读取需求** — 先读 `state.json` 的 `source`。若 `source.sourceType === "cube-item"`，用 `source.cubeItemId` 执行 `cubelet team getissue`，**勿**要求用户再次 `@` 需求文件；否则读用户 `@` 的文件或 prompt 内嵌需求上下文（看板触发时 prompt 已含 Team 详情，**以 prompt 为唯一事实源**）。
 2. **产出设计资产** — 写入 `tests/design/<domain>/<feature>.design.md`（中文正文）。
 3. **更新会话状态** — 读取现有 `state.json`，合并更新后写回（见下节）。`stages.design.status` **保持** `"pending"`。
 4. **说明下一步** — 告知用户可在右侧 **质量工程** 面板继续编辑；需要功能用例时点 **「生成功能用例」**（产品会自动固化设计并提交 Agent）。

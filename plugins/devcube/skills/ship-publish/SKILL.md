@@ -1,14 +1,22 @@
 ---
 name: ship-publish
-description: "DevCube：单应用发布相关能力，包括快速发布、创建发布单、dry-run 预览和发布状态查询。"
+description: "Cubelet：单应用发布相关能力，包括快速发布、创建发布单、dry-run 预览和发布状态查询。"
+metadata:
+  version: 0.1.0
+  openclaw:
+    category: "devops"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet publish --help"
 ---
 
 # publish
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" publish <command> [flags]
+cubelet publish <command> [flags]
 ```
 
 ## Commands
@@ -46,13 +54,14 @@ cubelet --config "$CUBELET_CONFIG" publish <command> [flags]
 
 - 使用 `--config-file` 或 `--config-content` 时，`--config-label` 是必填的。
 - 这是写命令；如果不是明确要执行发布，优先先跑一次 `--dry-run`。
+- 如果 `BRAIN_SESSION_ID` 存在且非空，且配置里提供 `cubelet.front_url`，创建、执行或查询发布后会额外通过 `brain-workspace-server session-artifacts --payload ...` 上报发布单页面链接；若当前响应没有 `access_urls`，会再查一次 `cubelet publish status` 对应状态接口补齐 ingress 访问地址产物。
 
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" publish quick --app demo-app --branch release/20260401 --env dev --wait
-cubelet --config "$CUBELET_CONFIG" publish quick --app demo-app --branch master --env dev --dry-run
-cubelet --config "$CUBELET_CONFIG" publish quick --app demo-app --branch master --env dev --config-file ./application.yaml --config-label application.yaml
+cubelet publish quick --app demo-app --branch release/20260401 --env dev --wait
+cubelet publish quick --app demo-app --branch master --env dev --dry-run
+cubelet publish quick --app demo-app --branch master --env dev --config-file ./application.yaml --config-label application.yaml
 ```
 
 ## `create`
@@ -68,8 +77,8 @@ cubelet --config "$CUBELET_CONFIG" publish quick --app demo-app --branch master 
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" publish create --app demo-app --branch release/20260401 --env dev
-cubelet --config "$CUBELET_CONFIG" publish create --app demo-app --branch master --env dev --name "发布单-灰度验证"
+cubelet publish create --app demo-app --branch release/20260401 --env dev
+cubelet publish create --app demo-app --branch master --env dev --name "发布单-灰度验证"
 ```
 
 ## `status`
@@ -82,8 +91,8 @@ cubelet --config "$CUBELET_CONFIG" publish create --app demo-app --branch master
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" publish status --id 10001
-cubelet --config "$CUBELET_CONFIG" publish status --id 10001 --env dev
+cubelet publish status --id 10001
+cubelet publish status --id 10001 --env dev
 ```
 
 ## 常见搭配

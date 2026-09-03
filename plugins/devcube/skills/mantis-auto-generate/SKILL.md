@@ -1,6 +1,10 @@
 ---
 name: mantis-auto-generate
 description: "自动化用例生成：基于已固化的功能用例生成 Playwright(UI) / k6(API) 脚本草稿并写入 .brain-quality 会话状态（阶段 06）。在用户提到自动化用例生成、$ mantis-auto-generate、spec.js、UI/API 自动化脚本时使用。"
+metadata:
+  version: 0.4.0
+  openclaw:
+    category: "qa"
 ---
 
 # mantis-auto-generate（自动化用例生成）
