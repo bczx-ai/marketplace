@@ -1,14 +1,22 @@
 ---
 name: ship-workflow
-description: "DevCube：发布流程相关能力，包括执行当前阶段和读取最新流程日志。"
+description: "Cubelet：发布流程相关能力，包括执行当前阶段和读取最新流程日志。"
+metadata:
+  version: 0.1.0
+  openclaw:
+    category: "devops"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet workflow --help"
 ---
 
 # workflow
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" workflow <command> [flags]
+cubelet workflow <command> [flags]
 ```
 
 ## Commands
@@ -37,8 +45,8 @@ cubelet --config "$CUBELET_CONFIG" workflow <command> [flags]
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" workflow run --publish-id 10001
-cubelet --config "$CUBELET_CONFIG" workflow run --publish-id 10001 --stage 部署 --app demo-app
+cubelet workflow run --publish-id 10001
+cubelet workflow run --publish-id 10001 --stage 部署 --app demo-app
 ```
 
 ## `logs`
@@ -60,8 +68,8 @@ cubelet --config "$CUBELET_CONFIG" workflow run --publish-id 10001 --stage 部�
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" workflow logs --publish-id 10001
-cubelet --config "$CUBELET_CONFIG" workflow logs --publish-id 10001 --app demo-app --output raw
+cubelet workflow logs --publish-id 10001
+cubelet workflow logs --publish-id 10001 --app demo-app --output raw
 ```
 
 ## 常见搭配

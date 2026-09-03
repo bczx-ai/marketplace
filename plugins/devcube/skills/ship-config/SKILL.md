@@ -1,14 +1,22 @@
 ---
 name: ship-config
-description: "DevCube：应用配置管理能力，包括查询配置、创建配置、查看版本和创建新版本。"
+description: "Cubelet：应用配置管理能力，包括查询配置、创建配置、查看版本和创建新版本。"
+metadata:
+  version: 0.1.0
+  openclaw:
+    category: "devops"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet config --help"
 ---
 
 # config
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和写操作安全规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和写操作安全规则。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" config <command> [flags]
+cubelet config <command> [flags]
 ```
 
 ## Commands
@@ -32,8 +40,8 @@ cubelet --config "$CUBELET_CONFIG" config <command> [flags]
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" config list --app demo-app --env dev
-cubelet --config "$CUBELET_CONFIG" config list --app demo-app --env dev --config-name application.yaml
+cubelet config list --app demo-app --env dev
+cubelet config list --app demo-app --env dev --config-name application.yaml
 ```
 
 ## `create`
@@ -58,8 +66,8 @@ cubelet --config "$CUBELET_CONFIG" config list --app demo-app --env dev --config
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" config create --app demo-app --env dev --file ./application.yaml --label application.yaml
-cubelet --config "$CUBELET_CONFIG" config create --app demo-app --env dev --data 'key: value' --label application.yaml
+cubelet config create --app demo-app --env dev --file ./application.yaml --label application.yaml
+cubelet config create --app demo-app --env dev --data 'key: value' --label application.yaml
 ```
 
 ## `versions`
@@ -67,7 +75,7 @@ cubelet --config "$CUBELET_CONFIG" config create --app demo-app --env dev --data
 按配置 ID 查询版本历史。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" config versions --config-id 10001
+cubelet config versions --config-id 10001
 ```
 
 ## `create-version`
@@ -82,8 +90,8 @@ cubelet --config "$CUBELET_CONFIG" config versions --config-id 10001
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" config create-version --config-id 10001 --file ./application.yaml
-cubelet --config "$CUBELET_CONFIG" config create-version --config-id 10001 --data 'new_key: new_value' --version v2
+cubelet config create-version --config-id 10001 --file ./application.yaml
+cubelet config create-version --config-id 10001 --data 'new_key: new_value' --version v2
 ```
 
 ## 常见搭配

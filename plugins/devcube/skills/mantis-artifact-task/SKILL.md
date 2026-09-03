@@ -1,14 +1,23 @@
 ---
 name: mantis-artifact-task
 description: "用于操作 Cubelet Mantis 制品扫描任务，包括 artifactTask list、run、status、result、log、stop。"
+metadata:
+  version: 0.2.0
+  openclaw:
+    category: "qa"
+    domain: "mantis"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet artifactTask --help"
 ---
 
 # artifactTask
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和读写安全规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和读写安全规则。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask <command> [flags]
+cubelet artifactTask <command> [flags]
 ```
 
 ## 真实接口
@@ -60,8 +69,8 @@ cubelet --config "$CUBELET_CONFIG" artifactTask <command> [flags]
 ### list
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask list
-cubelet --config "$CUBELET_CONFIG" artifactTask list --name login
+cubelet artifactTask list
+cubelet artifactTask list --name login
 ```
 
 ```json
@@ -87,7 +96,7 @@ cubelet --config "$CUBELET_CONFIG" artifactTask list --name login
 `scan-range=2` 扫描仓库最新制品，必须传 `repo-info`；`scan-range=1` 指定制品，必须传 `product-list`。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask create \
+cubelet artifactTask create \
   --name login-image-scan \
   --repo-instance-id harbor-prod \
   --plan-id 7001 \
@@ -113,7 +122,7 @@ cubelet --config "$CUBELET_CONFIG" artifactTask create \
 ### run
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask run --task-id 6001
+cubelet artifactTask run --task-id 6001
 ```
 
 ```json
@@ -127,7 +136,7 @@ cubelet --config "$CUBELET_CONFIG" artifactTask run --task-id 6001
 ### status
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask status --task-id 6001 --exec-id 8001
+cubelet artifactTask status --task-id 6001 --exec-id 8001
 ```
 
 ```json
@@ -145,7 +154,7 @@ cubelet --config "$CUBELET_CONFIG" artifactTask status --task-id 6001 --exec-id 
 ### result
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask result --exec-id 8001
+cubelet artifactTask result --exec-id 8001
 ```
 
 ```json
@@ -169,8 +178,8 @@ cubelet --config "$CUBELET_CONFIG" artifactTask result --exec-id 8001
 ### log
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask log --detail-id 9001
-cubelet --config "$CUBELET_CONFIG" --output raw artifactTask log --detail-id 9001
+cubelet artifactTask log --detail-id 9001
+cubelet --output raw artifactTask log --detail-id 9001
 ```
 
 ```json
@@ -186,7 +195,7 @@ cubelet --config "$CUBELET_CONFIG" --output raw artifactTask log --detail-id 900
 ### stop
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" artifactTask stop --task-id 6001
+cubelet artifactTask stop --task-id 6001
 ```
 
 ```json

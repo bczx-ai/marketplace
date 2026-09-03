@@ -1,14 +1,23 @@
 ---
 name: monitor-trace
-description: "DevCube：监控域调用链查询能力，包括查询业务应用调用链接口性能指标、接口请求列表、调用链详情和慢查询列表。"
+description: "Cubelet：监控域调用链查询能力，包括查询业务应用调用链接口性能指标、接口请求列表、调用链详情和慢查询列表。"
+metadata:
+  version: 0.4.0
+  openclaw:
+    category: "monitor"
+    domain: "monitor"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet trace --help"
 ---
 
 # trace
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和输出格式。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和输出格式。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" trace <command> [flags]
+cubelet trace <command> [flags]
 ```
 
 ## Commands
@@ -48,13 +57,13 @@ cubelet --config "$CUBELET_CONFIG" trace <command> [flags]
 
 ```bash
 # 查询 prd 环境下 seraph-metadata 应用的接口性能指标（默认环境）
-cubelet --config "$CUBELET_CONFIG" trace interfacePerf --app seraph-metadata --start 1776043865402 --end 1776045665402
+cubelet trace interfacePerf --app seraph-metadata --start 1776043865402 --end 1776045665402
 
 # 显式指定环境
-cubelet --config "$CUBELET_CONFIG" trace interfacePerf --app seraph-metadata --start 1776043865402 --end 1776045665402 --env prd
+cubelet trace interfacePerf --app seraph-metadata --start 1776043865402 --end 1776045665402 --env prd
 
 # 查询 dev 环境
-cubelet --config "$CUBELET_CONFIG" trace interfacePerf --app demo-app --start 1776043865402 --end 1776045665402 --env dev
+cubelet trace interfacePerf --app demo-app --start 1776043865402 --end 1776045665402 --env dev
 ```
 
 返回字段说明：
@@ -92,16 +101,16 @@ cubelet --config "$CUBELET_CONFIG" trace interfacePerf --app demo-app --start 17
 
 ```bash
 # 查询 prd 环境下 cube-base 应用某接口的调用链请求列表
-cubelet --config "$CUBELET_CONFIG" trace searchSpan --app cube-base --start 1776043865402 --end 1776045665402 --operation "GET /base/Filter/getFilterById/{id}"
+cubelet trace searchSpan --app cube-base --start 1776043865402 --end 1776045665402 --operation "GET /base/Filter/getFilterById/{id}"
 
 # 只查询耗时大于 500ms 的请求
-cubelet --config "$CUBELET_CONFIG" trace searchSpan --app cube-base --start 1776043865402 --end 1776045665402 --operation "GET /base/Filter/getFilterById/{id}" --minDuration 500
+cubelet trace searchSpan --app cube-base --start 1776043865402 --end 1776045665402 --operation "GET /base/Filter/getFilterById/{id}" --minDuration 500
 
 # 只查询包含错误的追踪记录
-cubelet --config "$CUBELET_CONFIG" trace searchSpan --app cube-base --start 1776043865402 --end 1776045665402 --operation "GET /base/Filter/getFilterById/{id}" --queryErrorTrace true
+cubelet trace searchSpan --app cube-base --start 1776043865402 --end 1776045665402 --operation "GET /base/Filter/getFilterById/{id}" --queryErrorTrace true
 
 # 查询 dev 环境
-cubelet --config "$CUBELET_CONFIG" trace searchSpan --app demo-app --start 1776043865402 --end 1776045665402 --operation "POST /api/v1/orders" --env dev
+cubelet trace searchSpan --app demo-app --start 1776043865402 --end 1776045665402 --operation "POST /api/v1/orders" --env dev
 ```
 
 返回字段说明：
@@ -120,7 +129,7 @@ cubelet --config "$CUBELET_CONFIG" trace searchSpan --app demo-app --start 17760
 
 常用参数：
 
-- `--traceId`：调用链 ID（必填，可通过 `cubelet --config "$CUBELET_CONFIG" trace interfacePerf` 结果或告警通知信息获取）
+- `--traceId`：调用链 ID（必填，可通过 `cubelet trace interfacePerf` 结果或告警通知信息获取）
 - `--env`：逻辑环境名称（可选；环境约定见上文）
 
 调用说明：
@@ -134,10 +143,10 @@ cubelet --config "$CUBELET_CONFIG" trace searchSpan --app demo-app --start 17760
 
 ```bash
 # 查询 prd 环境下指定 traceId 的调用链详情
-cubelet --config "$CUBELET_CONFIG" trace detail --traceId af65e343bdfcbbc0a1d046c235a419b6
+cubelet trace detail --traceId af65e343bdfcbbc0a1d046c235a419b6
 
 # 显式指定环境
-cubelet --config "$CUBELET_CONFIG" trace detail --traceId af65e343bdfcbbc0a1d046c235a419b6 --env prd
+cubelet trace detail --traceId af65e343bdfcbbc0a1d046c235a419b6 --env prd
 ```
 
 返回字段说明：
@@ -217,10 +226,10 @@ cubelet --config "$CUBELET_CONFIG" trace detail --traceId af65e343bdfcbbc0a1d046
 
 ```bash
 # 查询 prd 环境下 cube-base 应用最近一段时间的慢查询列表
-cubelet --config "$CUBELET_CONFIG" trace slowQuery --app cube-base --start 1776306480000 --end 1776307080000
+cubelet trace slowQuery --app cube-base --start 1776306480000 --end 1776307080000
 
 # 显式指定筛选阈值和环境
-cubelet --config "$CUBELET_CONFIG" trace slowQuery --app cube-base --start 1776306480000 --end 1776307080000 --minDuration 500 --env prd
+cubelet trace slowQuery --app cube-base --start 1776306480000 --end 1776307080000 --minDuration 500 --env prd
 ```
 
 返回字段说明：

@@ -1,14 +1,22 @@
 ---
 name: team-kanban
-description: "需要查询事项看板列表，或查看指定事项看板的泳道、状态和事项卡片数据。"
+description: "Use when需要查询事项看板列表，或查看指定事项看板的泳道、状态和事项卡片数据。"
+metadata:
+  version: 0.1.0
+  openclaw:
+    category: "project-management"
+    requires:
+      bins:
+        - cubelet
+    cliHelp: "cubelet team --help"
 ---
 
 # team-kanban
 
-> **PREREQUISITE:** 先阅读 [DevCube 公共规则](../devcube/SKILL.md)，确认配置文件、全局 flag 和只读命令使用规则。
+> **PREREQUISITE:** 先阅读 `../shared/SKILL.md`，确认配置文件、全局 flag 和只读命令使用规则。
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team <command> [flags]
+cubelet team <command> [flags]
 ```
 
 ## Commands
@@ -27,9 +35,9 @@ cubelet --config "$CUBELET_CONFIG" team <command> [flags]
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team kanbanlist
-cubelet --config "$CUBELET_CONFIG" team kanbanlist --name 需求
-cubelet --config "$CUBELET_CONFIG" team kanbanlist --name 事项看板 --currentPage 2 --pageSize 10
+cubelet team kanbanlist
+cubelet team kanbanlist --name 需求
+cubelet team kanbanlist --name 事项看板 --currentPage 2 --pageSize 10
 ```
 
 ## `kanbandatas`
@@ -39,7 +47,7 @@ cubelet --config "$CUBELET_CONFIG" team kanbanlist --name 事项看板 --current
 示例：
 
 ```bash
-cubelet --config "$CUBELET_CONFIG" team kanbandatas --id 503
+cubelet team kanbandatas --id 503
 ```
 
 ## 注意
