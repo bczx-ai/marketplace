@@ -1,6 +1,6 @@
 ---
 name: mantis-test-design
-description: "测试设计：基于 @ 需求文件或 Cube 事项生成测试设计草稿（摘要、脑图、场景、覆盖矩阵，用户可见文案须为中文），并写入项目 .brain-quality 会话状态（阶段 04）。在用户提到测试设计、$ mantis-test-design、质量设计、需求转测试设计时使用。"
+description: "测试设计：基于上传的 PRD、@ 需求文件或 Cube 事项生成测试设计草稿（摘要、脑图、场景、覆盖矩阵，用户可见文案须为中文），并写入项目 .brain-quality 测试需求状态（阶段 04）。在用户提到测试设计、$ mantis-test-design、质量设计、需求转测试设计时使用。"
 metadata:
   version: 0.2.0
   openclaw:
@@ -13,30 +13,31 @@ metadata:
 
 # mantis-test-design（测试设计）
 
-在 Brain **质量工程扩展**（`devcube.quality-engineering`）中完成 **阶段 04：测试设计**。产出写入项目工作区测试资产，并更新会话状态文件；**不得**把阶段标记为 `confirmed`。
+在 Brain **质量工程扩展**（`devcube.quality-engineering`）中完成 **阶段 04：测试设计**。产出写入项目工作区测试资产，并更新测试需求状态文件；**不得**把阶段标记为 `confirmed`。
 
 ## 数据边界（强制）
 
 | 路径 | 用途 |
 | --- | --- |
 | `tests/design/**/*.md` | 测试设计交付物 |
-| `.brain-quality/sessions/<sessionId>/state.json` | 当前会话质量工程状态（**唯一 sidecar**） |
+| `.brain-quality/project/<编号>-<标题>.json` | 当前测试需求的质量工程状态（**唯一 sidecar**） |
+| `.brain-quality/prd/<编号>-<标题>.<扩展名>` | 当前测试需求的需求文档（PRD，只读），路径记在状态文件的 `prd.path` |
 | `.brain-quality/targets/project.json` | 项目默认 UI/API 地址（只读，勿在本阶段修改） |
 
 **不再使用** `brain-workspace-server quality upsert-draft` 或 `{sessionId}-quality.json`（Brain 内核已移除 quality CLI）。
 
-扩展任务 prompt 会给出具体 `state.json` 路径（形如 `.brain-quality/sessions/<sessionId>/state.json`）。`<sessionId>` 以该路径为准。
+扩展任务 prompt 会给出具体的测试需求状态文件路径（形如 `.brain-quality/project/001-登录.json`）。以该路径为准。
 
-## 会话绑定（最高优先级）
+## 测试需求绑定（最高优先级）
 
-本 Skill 可能由质量工程扩展命令调用，也可能由用户直接调用。两种入口都必须把结果写入**当前 Brain 会话**，禁止通过历史文件推断会话。
+测试需求与会话无关：同一个测试需求可以在任意会话里继续做，一条会话也可以换着做不同的测试需求。用哪个，由人在质量工程面板顶部的「测试需求」选择框里决定，扩展把选中的那个写进任务 prompt。
 
-1. 先读取运行时注入的 `BRAIN_SESSION_ID`。在 Brain 会话中不得手工设置或覆盖这个变量。
-2. 若任务 prompt 明确给出“会话质量状态文件”路径，使用该精确路径；同时校验路径中的会话 ID 与 `BRAIN_SESSION_ID` 一致。两者不一致时立即停止并报告绑定冲突。
-3. 若 prompt 没有给出状态文件路径，必须使用 `.brain-quality/sessions/${BRAIN_SESSION_ID}/state.json`。`BRAIN_SESSION_ID` 为空时立即停止并报告当前运行环境缺少会话上下文。
-4. 写入前后都必须校验 `state.json.sessionId` 等于当前会话 ID。状态文件不存在时，只能在上述精确路径创建，不能先扫描其它会话寻找模板。
+1. 任务 prompt 给出了「测试需求状态文件」路径：只用这个精确路径。
+2. prompt 没有给出路径：**立即停止**，回复「请先在质量工程面板顶部选好测试需求，再从面板或命令触发」。不要自己挑一个。
+3. 写入前后都校验 `state.json.reqId` 等于文件名去掉 `.json`（例如 `001-登录`）。不一致时立即停止并报告。
+4. 状态文件不存在时，只能在上述精确路径创建，不能先扫描别的测试需求找模板。
 
-禁止使用 `find`、`rg`、`ls`、文件修改时间、需求标题、事项 ID、最近打开记录或 transcript 扫描来选择会话；禁止读取或写入其它会话的 `state.json`。这类“猜一个最像的会话”的行为会把面板和聊天拆开，是错误而不是降级策略。
+禁止用 `find`、`rg`、`ls`、文件修改时间、需求标题、事项 ID、最近打开记录或 transcript 扫描来选测试需求；禁止读写 prompt 指定之外的 `.brain-quality/project/*.json`。「猜一个最像的」会把面板和聊天拆开，是错误而不是降级策略。
 
 ## 语言（强制）
 
@@ -83,20 +84,21 @@ metadata:
 
 ## Workflow
 
-1. **读取需求** — 先读 `state.json` 的 `source`。若 `source.sourceType === "cube-item"`，用 `source.cubeItemId` 执行 `cubelet team getissue`，**勿**要求用户再次 `@` 需求文件；否则读用户 `@` 的文件或 prompt 内嵌需求上下文（看板触发时 prompt 已含 Team 详情，**以 prompt 为唯一事实源**）。
+1. **读取需求** — 状态文件有 `prd.path`（prompt 里也会写「需求文档（PRD）」）时，先完整读这个文件，它是需求正文的首要来源；pdf、docx 用可用工具转成文本再读，读不了就停止并说明。然后读 `state.json` 的 `source`。若 `source.sourceType === "cube-item"`，用 `source.cubeItemId` 执行 `cubelet team getissue`，**勿**要求用户再次 `@` 需求文件；否则读用户 `@` 的文件或 prompt 内嵌需求上下文（看板触发时 prompt 已含 Team 详情，**以 prompt 为唯一事实源**）。
 2. **产出设计资产** — 写入 `tests/design/<domain>/<feature>.design.md`（中文正文）。
-3. **更新会话状态** — 读取现有 `state.json`，合并更新后写回（见下节）。`stages.design.status` **保持** `"pending"`。
+3. **更新测试需求状态** — 读取 prompt 指定的状态文件，合并更新后写回（见下节）。`stages.design.status` **保持** `"pending"`。
 4. **说明下一步** — 告知用户可在右侧 **质量工程** 面板继续编辑；需要功能用例时点 **「生成功能用例」**（产品会自动固化设计并提交 Agent）。
 
 ## 更新 state.json
 
-1. 若文件不存在，以如下骨架创建（`projectId` / `sessionId` 与 Brain 当前会话一致）：
+1. 若文件不存在，以如下骨架创建（`reqId` 等于文件名去掉 `.json`，`title` 是编号后面那段）：
 
 ```json
 {
   "version": 1,
   "projectId": "<projectId>",
-  "sessionId": "<sessionId>",
+  "reqId": "001-登录",
+  "title": "登录",
   "context": { "branch": "", "env": "" },
   "stages": {
     "design": { "status": "pending" },
@@ -111,7 +113,7 @@ metadata:
 }
 ```
 
-2. 合并写入（保留 `source`、`context`、`stages.run`、既有 `audit`）：
+2. 合并写入（保留 `reqId`、`title`、`prd`、`source`、`context`、`stages.run`、既有 `audit`）：
 
 ```json
 {
@@ -134,7 +136,7 @@ metadata:
 
 3. 写回时：`revision` 在现有值上 **+1**；`updatedAt` 设为当前 ISO 时间；`audit` 末尾追加 `{ "at": "<ISO>", "by": "agent", "action": "skill:mantis-test-design:draft" }`（保留最近 200 条）。
 
-4. **只改** `stages.design` 与 `trace.reqIds` / `trace.scenarioIds`；不要清空 `source`，不要改 `stages.cases` / `stages.scripts` / `stages.run`（扩展在触发本 skill 前可能已重置下游阶段）。
+4. **只改** `stages.design` 与 `trace.reqIds` / `trace.scenarioIds`；不要清空 `source` 和 `prd`，不要改 `stages.cases` / `stages.scripts` / `stages.run`（扩展在触发本 skill 前可能已重置下游阶段）。
 
 ## Rules
 
@@ -143,4 +145,4 @@ metadata:
 - **MUST NOT** 设置 `stages.design.status` 为 `"confirmed"`；固化由产品在「生成功能用例」等下一动作前自动完成。
 - **MUST NOT** 调用已移除的 `quality:*` RPC / `brain-workspace-server quality` CLI。
 - **MUST NOT** 要求用户人工确认阶段。
-- 发现当前需求与旧设计不一致时，以**当前需求**为准覆盖本会话状态（看板 re-trigger 时扩展会重置 design 为 pending）。
+- 发现当前需求与旧设计不一致时，以**当前需求**为准覆盖这个测试需求的状态（看板 re-trigger 时扩展会重置 design 为 pending）。
