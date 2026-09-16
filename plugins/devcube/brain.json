@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "升级质量工程原生扩展至 devcube.quality-engineering 0.2.8，修复新会话面板首次启动失败、会话状态绑定和阶段产物刷新问题；同步 cube-cli skills、shared 前置规则与 mantis 质量工程流程。",
+  "releaseNotes": "升级质量工程原生扩展至 devcube.quality-engineering 0.2.9：测试需求与会话解耦（.brain-quality/project/），面板可选择和新建测试需求并上传 PRD；Agent 任务通过技能链接加载 mantis 技能，提示词改为纯文本分段结构；运行报告按面板 1MB 上限装配，超限时保留失败用例明细；同步 mantis-test-design、mantis-case-generate、mantis-auto-generate 技能。",
   "compatibility": { "brain": ">=1.1.2" },
   "components": {
     "extensions": [{ "path": "quality-engineering" }],

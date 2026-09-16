@@ -1,6 +1,6 @@
 ---
 name: mantis-auto-generate
-description: "自动化用例生成：基于已固化的功能用例生成 Playwright(UI) / k6(API) 脚本草稿并写入 .brain-quality 会话状态（阶段 06）。在用户提到自动化用例生成、$ mantis-auto-generate、spec.js、UI/API 自动化脚本时使用。"
+description: "自动化用例生成：基于已固化的功能用例生成 Playwright(UI) / k6(API) 脚本草稿并写入 .brain-quality 测试需求状态（阶段 06）。在用户提到自动化用例生成、$ mantis-auto-generate、spec.js、UI/API 自动化脚本时使用。"
 metadata:
   version: 0.4.0
   openclaw:
@@ -17,7 +17,7 @@ metadata:
 | --- | --- |
 | `tests/ui/**/*.spec.js` | Playwright UI 脚本 |
 | `tests/api/**/*.spec.js` | k6 API 脚本 |
-| `.brain-quality/sessions/<sessionId>/state.json` | 会话质量状态 |
+| `.brain-quality/project/<编号>-<标题>.json` | 当前测试需求的质量状态（路径以任务 prompt 为准，没给就停止） |
 | `.brain-quality/targets/project.json` | 项目默认 UI/API 地址（只读参考） |
 
 **不再使用** `brain-workspace-server quality upsert-draft` 或 `{sessionId}-quality.json`。
