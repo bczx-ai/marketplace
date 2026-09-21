@@ -1,0 +1,1020 @@
+{
+  "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
+  "schemaVersion": 1,
+  "publisherId": "devcube",
+  "releaseNotes": "占位",
+  "compatibility": {
+    "brain": ">=2.0.0"
+  },
+  "components": {
+    "extensions": [{ "path": "design" }], "rules": [
+      {
+        "key": "design-html-first"
+      },
+      {
+        "key": "design-ask-in-chat"
+      }
+    ],
+    "skills": [
+      {
+        "key": "8-bit-orbit-video-template"
+      },
+      {
+        "key": "ad-creative"
+      },
+      {
+        "key": "after-hours-editorial-template"
+      },
+      {
+        "key": "agent-browser"
+      },
+      {
+        "key": "ai-music-album"
+      },
+      {
+        "key": "algorithmic-art"
+      },
+      {
+        "key": "apple-hig"
+      },
+      {
+        "key": "article-magazine"
+      },
+      {
+        "key": "artifacts-builder"
+      },
+      {
+        "key": "audio-jingle"
+      },
+      {
+        "key": "blog-post"
+      },
+      {
+        "key": "brainstorming"
+      },
+      {
+        "key": "brand-extract"
+      },
+      {
+        "key": "brand-guidelines"
+      },
+      {
+        "key": "brandkit"
+      },
+      {
+        "key": "brutalist-skill"
+      },
+      {
+        "key": "canvas-design"
+      },
+      {
+        "key": "card-twitter"
+      },
+      {
+        "key": "card-xiaohongshu"
+      },
+      {
+        "key": "chat-motion-overlay"
+      },
+      {
+        "key": "clinical-case-report"
+      },
+      {
+        "key": "codex-interactive-capability-map"
+      },
+      {
+        "key": "color-expert"
+      },
+      {
+        "key": "competitive-ads-extractor"
+      },
+      {
+        "key": "contact-widget"
+      },
+      {
+        "key": "copywriting"
+      },
+      {
+        "key": "creative-director"
+      },
+      {
+        "key": "critique"
+      },
+      {
+        "key": "d3-visualization"
+      },
+      {
+        "key": "dashboard"
+      },
+      {
+        "key": "data-report"
+      },
+      {
+        "key": "dating-web"
+      },
+      {
+        "key": "dcf-valuation"
+      },
+      {
+        "key": "deck-framework"
+      },
+      {
+        "key": "deck-guizang-editorial"
+      },
+      {
+        "key": "deck-open-slide-canvas"
+      },
+      {
+        "key": "deck-swiss-international"
+      },
+      {
+        "key": "design-brief"
+      },
+      {
+        "key": "design-consultation"
+      },
+      {
+        "key": "design-loop"
+      },
+      {
+        "key": "design-md"
+      },
+      {
+        "key": "design-review"
+      },
+      {
+        "key": "digital-eguide"
+      },
+      {
+        "key": "digits-fintech-swiss-template"
+      },
+      {
+        "key": "doc"
+      },
+      {
+        "key": "doc-kami-parchment"
+      },
+      {
+        "key": "docs-page"
+      },
+      {
+        "key": "docx"
+      },
+      {
+        "key": "domain-name-brainstormer"
+      },
+      {
+        "key": "ecommerce-image-workflow"
+      },
+      {
+        "key": "editorial-burgundy-principles-template"
+      },
+      {
+        "key": "email-marketing"
+      },
+      {
+        "key": "emil-design-eng"
+      },
+      {
+        "key": "emilkowalski-motion"
+      },
+      {
+        "key": "eng-runbook"
+      },
+      {
+        "key": "enhance-prompt"
+      },
+      {
+        "key": "export-download-debugging"
+      },
+      {
+        "key": "fal-3d"
+      },
+      {
+        "key": "fal-generate"
+      },
+      {
+        "key": "fal-image-edit"
+      },
+      {
+        "key": "fal-kling-o3"
+      },
+      {
+        "key": "fal-lip-sync"
+      },
+      {
+        "key": "fal-realtime"
+      },
+      {
+        "key": "fal-restore"
+      },
+      {
+        "key": "fal-train"
+      },
+      {
+        "key": "fal-tryon"
+      },
+      {
+        "key": "fal-upscale"
+      },
+      {
+        "key": "fal-video-edit"
+      },
+      {
+        "key": "fal-vision"
+      },
+      {
+        "key": "faq-page"
+      },
+      {
+        "key": "field-notes-editorial-template"
+      },
+      {
+        "key": "figma-code-connect-components"
+      },
+      {
+        "key": "figma-create-design-system-rules"
+      },
+      {
+        "key": "figma-create-new-file"
+      },
+      {
+        "key": "figma-generate-design"
+      },
+      {
+        "key": "figma-generate-library"
+      },
+      {
+        "key": "figma-implement-design"
+      },
+      {
+        "key": "figma-use"
+      },
+      {
+        "key": "finance-report"
+      },
+      {
+        "key": "flowai-live-dashboard-template"
+      },
+      {
+        "key": "flutter-animating-apps"
+      },
+      {
+        "key": "frame-bold-poster"
+      },
+      {
+        "key": "frame-bold-signal"
+      },
+      {
+        "key": "frame-build-minimal"
+      },
+      {
+        "key": "frame-creative-voltage"
+      },
+      {
+        "key": "frame-data-chart-nyt"
+      },
+      {
+        "key": "frame-data-rollup"
+      },
+      {
+        "key": "frame-decision-tree"
+      },
+      {
+        "key": "frame-electric-studio"
+      },
+      {
+        "key": "frame-flowchart-sticky"
+      },
+      {
+        "key": "frame-glitch-title"
+      },
+      {
+        "key": "frame-kinetic-type"
+      },
+      {
+        "key": "frame-light-leak-cinema"
+      },
+      {
+        "key": "frame-liquid-bg-hero"
+      },
+      {
+        "key": "frame-logo-outro"
+      },
+      {
+        "key": "frame-macos-notification"
+      },
+      {
+        "key": "frame-nyt-graph"
+      },
+      {
+        "key": "frame-pentagram-stat"
+      },
+      {
+        "key": "frame-play-mode"
+      },
+      {
+        "key": "frame-product-promo"
+      },
+      {
+        "key": "frame-product-promo-30s"
+      },
+      {
+        "key": "frame-swiss-grid"
+      },
+      {
+        "key": "frame-takram-organic"
+      },
+      {
+        "key": "frame-vignelli"
+      },
+      {
+        "key": "frame-warm-grain"
+      },
+      {
+        "key": "frontend-design"
+      },
+      {
+        "key": "frontend-dev"
+      },
+      {
+        "key": "frontend-skill"
+      },
+      {
+        "key": "frontend-slides"
+      },
+      {
+        "key": "fs-creative-voltage"
+      },
+      {
+        "key": "fs-editorial-forest"
+      },
+      {
+        "key": "fs-electric-studio"
+      },
+      {
+        "key": "fs-emerald-editorial"
+      },
+      {
+        "key": "fs-notebook-tabs"
+      },
+      {
+        "key": "full-page-screenshot"
+      },
+      {
+        "key": "gamified-app"
+      },
+      {
+        "key": "gif-sticker-maker"
+      },
+      {
+        "key": "github-dashboard"
+      },
+      {
+        "key": "gpt-tasteskill"
+      },
+      {
+        "key": "gsap-core"
+      },
+      {
+        "key": "gsap-frameworks"
+      },
+      {
+        "key": "gsap-performance"
+      },
+      {
+        "key": "gsap-plugins"
+      },
+      {
+        "key": "gsap-react"
+      },
+      {
+        "key": "gsap-scrolltrigger"
+      },
+      {
+        "key": "gsap-timeline"
+      },
+      {
+        "key": "gsap-utils"
+      },
+      {
+        "key": "guizang-ppt"
+      },
+      {
+        "key": "hand-drawn-diagrams"
+      },
+      {
+        "key": "hatch-pet"
+      },
+      {
+        "key": "hps-academic-paper"
+      },
+      {
+        "key": "hps-bauhaus"
+      },
+      {
+        "key": "hps-memphis-pop"
+      },
+      {
+        "key": "hps-retro-tv"
+      },
+      {
+        "key": "hps-true-blueprint"
+      },
+      {
+        "key": "hps-y2k-chrome"
+      },
+      {
+        "key": "hr-onboarding"
+      },
+      {
+        "key": "html-ppt"
+      },
+      {
+        "key": "html-ppt-course-module"
+      },
+      {
+        "key": "html-ppt-graphify-dark-graph"
+      },
+      {
+        "key": "html-ppt-hermes-cyber-terminal"
+      },
+      {
+        "key": "html-ppt-knowledge-arch-blueprint"
+      },
+      {
+        "key": "html-ppt-obsidian-claude-gradient"
+      },
+      {
+        "key": "html-ppt-pitch-deck"
+      },
+      {
+        "key": "html-ppt-presenter-mode-reveal"
+      },
+      {
+        "key": "html-ppt-product-launch"
+      },
+      {
+        "key": "html-ppt-retro-quarterly-review"
+      },
+      {
+        "key": "html-ppt-taste-brutalist"
+      },
+      {
+        "key": "html-ppt-taste-editorial"
+      },
+      {
+        "key": "html-ppt-tech-sharing"
+      },
+      {
+        "key": "html-ppt-testing-safety-alert"
+      },
+      {
+        "key": "html-ppt-weekly-report"
+      },
+      {
+        "key": "html-ppt-xhs-pastel-card"
+      },
+      {
+        "key": "html-ppt-xhs-white-editorial"
+      },
+      {
+        "key": "html-ppt-zhangzara-8-bit-orbit"
+      },
+      {
+        "key": "html-ppt-zhangzara-biennale-yellow"
+      },
+      {
+        "key": "html-ppt-zhangzara-block-frame"
+      },
+      {
+        "key": "html-ppt-zhangzara-blue-professional"
+      },
+      {
+        "key": "html-ppt-zhangzara-bold-poster"
+      },
+      {
+        "key": "html-ppt-zhangzara-broadside"
+      },
+      {
+        "key": "html-ppt-zhangzara-capsule"
+      },
+      {
+        "key": "html-ppt-zhangzara-cartesian"
+      },
+      {
+        "key": "html-ppt-zhangzara-cobalt-grid"
+      },
+      {
+        "key": "html-ppt-zhangzara-coral"
+      },
+      {
+        "key": "html-ppt-zhangzara-creative-mode"
+      },
+      {
+        "key": "html-ppt-zhangzara-daisy-days"
+      },
+      {
+        "key": "html-ppt-zhangzara-editorial-tri-tone"
+      },
+      {
+        "key": "html-ppt-zhangzara-grove"
+      },
+      {
+        "key": "html-ppt-zhangzara-long-table"
+      },
+      {
+        "key": "html-ppt-zhangzara-mat"
+      },
+      {
+        "key": "html-ppt-zhangzara-monochrome"
+      },
+      {
+        "key": "html-ppt-zhangzara-neo-grid-bold"
+      },
+      {
+        "key": "html-ppt-zhangzara-peoples-platform"
+      },
+      {
+        "key": "html-ppt-zhangzara-pin-and-paper"
+      },
+      {
+        "key": "html-ppt-zhangzara-pink-script"
+      },
+      {
+        "key": "html-ppt-zhangzara-playful"
+      },
+      {
+        "key": "html-ppt-zhangzara-raw-grid"
+      },
+      {
+        "key": "html-ppt-zhangzara-retro-windows"
+      },
+      {
+        "key": "html-ppt-zhangzara-retro-zine"
+      },
+      {
+        "key": "html-ppt-zhangzara-sakura-chroma"
+      },
+      {
+        "key": "html-ppt-zhangzara-scatterbrain"
+      },
+      {
+        "key": "html-ppt-zhangzara-signal"
+      },
+      {
+        "key": "html-ppt-zhangzara-soft-editorial"
+      },
+      {
+        "key": "html-ppt-zhangzara-stencil-tablet"
+      },
+      {
+        "key": "html-ppt-zhangzara-studio"
+      },
+      {
+        "key": "html-ppt-zhangzara-vellum"
+      },
+      {
+        "key": "huashu-annual-letter"
+      },
+      {
+        "key": "huashu-bento-insight"
+      },
+      {
+        "key": "huashu-golden-circle"
+      },
+      {
+        "key": "huashu-keynote-black"
+      },
+      {
+        "key": "huashu-luxe-whitespace"
+      },
+      {
+        "key": "huashu-pentagram-grid"
+      },
+      {
+        "key": "huashu-slides"
+      },
+      {
+        "key": "huashu-sparkline-arc"
+      },
+      {
+        "key": "huashu-takram-soft-tech"
+      },
+      {
+        "key": "hyperframes"
+      },
+      {
+        "key": "ib-pitch-book"
+      },
+      {
+        "key": "image-enhancer"
+      },
+      {
+        "key": "image-poster"
+      },
+      {
+        "key": "image-to-code-skill"
+      },
+      {
+        "key": "imagegen"
+      },
+      {
+        "key": "imagegen-frontend-mobile"
+      },
+      {
+        "key": "imagegen-frontend-web"
+      },
+      {
+        "key": "imagen"
+      },
+      {
+        "key": "impeccable-design-polish"
+      },
+      {
+        "key": "invoice"
+      },
+      {
+        "key": "kami-deck"
+      },
+      {
+        "key": "kami-landing"
+      },
+      {
+        "key": "kanban-board"
+      },
+      {
+        "key": "last30days"
+      },
+      {
+        "key": "library-curator"
+      },
+      {
+        "key": "live-artifact"
+      },
+      {
+        "key": "live-dashboard"
+      },
+      {
+        "key": "login-flow"
+      },
+      {
+        "key": "magazine-poster"
+      },
+      {
+        "key": "marketing-psychology"
+      },
+      {
+        "key": "meeting-notes"
+      },
+      {
+        "key": "minimalist-skill"
+      },
+      {
+        "key": "minimax-docx"
+      },
+      {
+        "key": "minimax-pdf"
+      },
+      {
+        "key": "mobile-app"
+      },
+      {
+        "key": "mobile-onboarding"
+      },
+      {
+        "key": "mockup-device-3d"
+      },
+      {
+        "key": "motion-frames"
+      },
+      {
+        "key": "nanobanana-ppt"
+      },
+      {
+        "key": "open-design-landing"
+      },
+      {
+        "key": "open-design-landing-deck"
+      },
+      {
+        "key": "orbit-general"
+      },
+      {
+        "key": "orbit-github"
+      },
+      {
+        "key": "orbit-gmail"
+      },
+      {
+        "key": "orbit-linear"
+      },
+      {
+        "key": "orbit-notion"
+      },
+      {
+        "key": "output-skill"
+      },
+      {
+        "key": "paywall-upgrade-cro"
+      },
+      {
+        "key": "pdf"
+      },
+      {
+        "key": "pixelbin-media"
+      },
+      {
+        "key": "plan-design-review"
+      },
+      {
+        "key": "platform-design"
+      },
+      {
+        "key": "pm-spec"
+      },
+      {
+        "key": "poster-hero"
+      },
+      {
+        "key": "ppt-keynote"
+      },
+      {
+        "key": "pptx"
+      },
+      {
+        "key": "pptx-generator"
+      },
+      {
+        "key": "pptx-html-fidelity-audit"
+      },
+      {
+        "key": "pr-feedback-quality-gate"
+      },
+      {
+        "key": "pricing-page"
+      },
+      {
+        "key": "redesign-skill"
+      },
+      {
+        "key": "reference-design-contract"
+      },
+      {
+        "key": "release-notes-one-pager"
+      },
+      {
+        "key": "remotion"
+      },
+      {
+        "key": "replicate"
+      },
+      {
+        "key": "replit-deck"
+      },
+      {
+        "key": "research-decision-room"
+      },
+      {
+        "key": "resume-modern"
+      },
+      {
+        "key": "review-animations"
+      },
+      {
+        "key": "saas-landing"
+      },
+      {
+        "key": "screenshot"
+      },
+      {
+        "key": "screenshots-marketing"
+      },
+      {
+        "key": "shadcn-ui"
+      },
+      {
+        "key": "shader-dev"
+      },
+      {
+        "key": "simple-deck"
+      },
+      {
+        "key": "slack-gif-creator"
+      },
+      {
+        "key": "slides"
+      },
+      {
+        "key": "social-carousel"
+      },
+      {
+        "key": "social-media-dashboard"
+      },
+      {
+        "key": "social-media-matrix-tracker-template"
+      },
+      {
+        "key": "social-reddit-card"
+      },
+      {
+        "key": "social-spotify-card"
+      },
+      {
+        "key": "social-x-post-card"
+      },
+      {
+        "key": "soft-skill"
+      },
+      {
+        "key": "sora"
+      },
+      {
+        "key": "speech"
+      },
+      {
+        "key": "sprite-animation"
+      },
+      {
+        "key": "stitch-loop"
+      },
+      {
+        "key": "stitch-skill"
+      },
+      {
+        "key": "swiftui-design"
+      },
+      {
+        "key": "swiss-creative-mode-template"
+      },
+      {
+        "key": "swiss-user-research-video-template"
+      },
+      {
+        "key": "taste-skill"
+      },
+      {
+        "key": "taste-skill-v1"
+      },
+      {
+        "key": "team-okrs"
+      },
+      {
+        "key": "theme-factory"
+      },
+      {
+        "key": "threejs"
+      },
+      {
+        "key": "trading-analysis-dashboard-template"
+      },
+      {
+        "key": "tweaks"
+      },
+      {
+        "key": "ui-skills"
+      },
+      {
+        "key": "ui-ux-pro-max"
+      },
+      {
+        "key": "ve-midnight-editorial"
+      },
+      {
+        "key": "ve-terminal-mono"
+      },
+      {
+        "key": "velar-luxury-real-estate"
+      },
+      {
+        "key": "venice-audio-music"
+      },
+      {
+        "key": "venice-audio-speech"
+      },
+      {
+        "key": "venice-image-edit"
+      },
+      {
+        "key": "venice-image-generate"
+      },
+      {
+        "key": "venice-video"
+      },
+      {
+        "key": "vfx-text-cursor"
+      },
+      {
+        "key": "video-downloader"
+      },
+      {
+        "key": "video-hyperframes"
+      },
+      {
+        "key": "video-shortform"
+      },
+      {
+        "key": "waitlist-page"
+      },
+      {
+        "key": "web-artifacts-builder"
+      },
+      {
+        "key": "web-clone"
+      },
+      {
+        "key": "web-design-guidelines"
+      },
+      {
+        "key": "web-prototype"
+      },
+      {
+        "key": "web-prototype-taste-brutalist"
+      },
+      {
+        "key": "web-prototype-taste-editorial"
+      },
+      {
+        "key": "web-prototype-taste-soft"
+      },
+      {
+        "key": "webgl-aurora-veil"
+      },
+      {
+        "key": "webgl-caustic-pool"
+      },
+      {
+        "key": "webgl-depth-gallery"
+      },
+      {
+        "key": "webgl-distortion-grain"
+      },
+      {
+        "key": "webgl-experience"
+      },
+      {
+        "key": "webgl-halftone-drift"
+      },
+      {
+        "key": "webgl-holographic-foil"
+      },
+      {
+        "key": "webgl-horizontal-parallax"
+      },
+      {
+        "key": "webgl-liquid-iridescence"
+      },
+      {
+        "key": "webgl-liquid-metal"
+      },
+      {
+        "key": "webgl-neon-grid"
+      },
+      {
+        "key": "webgl-particle-galaxy"
+      },
+      {
+        "key": "webgl-pixel-reveal-gallery"
+      },
+      {
+        "key": "webgl-raymarched-hero"
+      },
+      {
+        "key": "webgl-voronoi-cells"
+      },
+      {
+        "key": "weekly-update"
+      },
+      {
+        "key": "weread-year-in-review-video-template"
+      },
+      {
+        "key": "wireframe-annotated"
+      },
+      {
+        "key": "wireframe-greybox"
+      },
+      {
+        "key": "wireframe-mobile-flow"
+      },
+      {
+        "key": "wireframe-sketch"
+      },
+      {
+        "key": "worker-visualizer"
+      },
+      {
+        "key": "wpds"
+      },
+      {
+        "key": "writing-guidelines"
+      },
+      {
+        "key": "x-research"
+      },
+      {
+        "key": "youtube-clipper"
+      }
+    ]
+  }
+}
