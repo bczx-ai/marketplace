@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="academic-paper">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>像顶级期刊综述作者那样，写一套学术综述演示文稿 - 学术研究</title>
+<style>
+/* hps-academic-paper :: webfonts (Google Fonts @import only — no other external deps) */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+</style>
+<style>
+/* ============================================================
+   TOKEN SHEET — academic-paper, LOCKED.
+   Ported from lewislulu/html-ppt-skill assets/themes/academic-paper.css
+   on top of the upstream assets/base.css variable contract.
+   All three font slots are serif: Latin Modern Roman (local LaTeX
+   font when installed) → Playfair Display → Noto Serif SC → Georgia.
+   ============================================================ */
+:root{
+  --bg:#fdfcf8; --bg-soft:#f7f5ed; --surface:#ffffff; --surface-2:#f5f3ea;
+  --border:rgba(20,20,20,.14); --border-strong:rgba(20,20,20,.35);
+  --text-1:#0a0a0a; --text-2:#333333; --text-3:#707070;
+  --accent:#1a3a7a; --accent-2:#0a0a0a; --accent-3:#8a1a1a;
+  --good:#1a5a2a; --warn:#8a6a1a; --bad:#8a1a1a;
+  --grad:linear-gradient(135deg,#1a3a7a,#0a0a0a);
+  --grad-soft:linear-gradient(135deg,#e8edf8,#f5f3ea);
+  --radius:0px; --radius-sm:0px; --radius-lg:0px;
+  --shadow:none;
+  --shadow-lg:0 1px 2px rgba(0,0,0,.1);
+  --font-sans:'Latin Modern Roman','Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-serif:'Latin Modern Roman','Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-mono:'JetBrains Mono',SFMono-Regular,Menlo,monospace;
+  --font-display:'Latin Modern Roman','Playfair Display','Noto Serif SC',Georgia,serif;
+  --letter-tight:-.01em; --letter-normal:0;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+</style>
+<style>
+/* ============================================================
+   BASE + SLIDE SYSTEM — horizontal scroll-snap deck.
+   One <section class="slide"> = exactly one viewport screen.
+   Designed at 16:9 (1280×720 baseline), fluid to the viewport.
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font-serif);
+  font-weight:400;line-height:1.6;letter-spacing:var(--letter-normal);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden}
+img,svg,video{max-width:100%;display:block}
+code,kbd,pre,samp{font-family:var(--font-mono)}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+.deck{display:flex;width:100vw;height:100vh;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
+.deck::-webkit-scrollbar{display:none}
+.slide{position:relative;flex:0 0 100vw;height:100vh;scroll-snap-align:start;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:72px 96px;overflow:hidden}
+
+/* ============ TYPOGRAPHY ============ */
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin:0}
+.kicker{font-size:clamp(14px,1.4vw,17px);font-weight:400;font-style:italic;color:var(--accent);
+  letter-spacing:0;text-transform:none;margin:0 0 12px}
+.h1{font-family:var(--font-display);font-size:clamp(40px,5vw,64px);line-height:1.12;font-weight:700;letter-spacing:var(--letter-tight);margin:0 0 18px;color:var(--text-1)}
+.h2{font-family:var(--font-display);font-size:clamp(30px,3.8vw,48px);line-height:1.15;font-weight:700;letter-spacing:var(--letter-tight);margin:0 0 14px;color:var(--text-1)}
+.h3{font-size:clamp(21px,2.4vw,30px);line-height:1.25;font-weight:700;margin:0 0 10px}
+.h4{font-size:clamp(16px,1.7vw,21px);line-height:1.35;font-weight:700;margin:0 0 8px}
+.lede{font-size:clamp(16px,1.7vw,21px);line-height:1.6;color:var(--text-2);font-weight:400;max-width:64ch;margin:0}
+.dim{color:var(--text-2)}
+.dim2{color:var(--text-3)}
+.mono{font-family:var(--font-mono)}
+.serif{font-family:var(--font-serif)}
+
+/* ============ LAYOUT PRIMITIVES ============ */
+.row{display:flex;gap:24px;align-items:center}
+.row.wrap{flex-wrap:wrap}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.center{display:flex;align-items:center;justify-content:center;text-align:center}
+.mt-s{margin-top:8px}.mt-m{margin-top:18px}.mt-l{margin-top:32px}
+
+/* ============ CARDS / PILLS (paper skin: hairline border, zero radius, no shadow) ============ */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card-soft{background:var(--surface-2)}
+.card-accent{border-top:2px solid var(--text-1)}
+.pill{display:inline-block;padding:4px 14px;border-radius:0;font-size:13px;font-weight:400;font-style:italic;
+  background:transparent;color:var(--text-2);border:1px solid var(--border-strong)}
+.pill-accent{color:var(--accent);border-color:var(--accent)}
+.divider-accent{height:2px;width:100%;background:var(--text-1)}
+
+/* ============ ACADEMIC DEVICES (theme signature) ============ */
+/* Double rule — the LaTeX titlepage device: heavy line over hairline. */
+.rule{height:1px;background:var(--border-strong);border:0;margin:0}
+.rule-double{height:0;border:0;border-top:2px solid var(--text-1);position:relative;margin:0}
+.rule-double::after{content:"";position:absolute;left:0;right:0;top:3px;border-top:1px solid var(--text-1)}
+/* Abstract block — italic body, vertical hairlines like a quoted environment. */
+.abstract{font-style:italic;color:var(--text-2);font-size:clamp(15px,1.55vw,19px);line-height:1.7;
+  padding:18px 28px;border-top:1px solid var(--border-strong);border-bottom:1px solid var(--border-strong)}
+.abstract b{font-style:normal;font-weight:700;color:var(--text-1)}
+/* Citation anchor — link-blue, underlined, [n] in mono. */
+.cite{font-family:var(--font-mono);font-size:.78em;color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-style:normal}
+/* Figure environment with numbered caption. */
+.figure{border:1px solid var(--border);background:var(--surface);padding:26px 28px}
+.figcaption{font-size:clamp(13px,1.3vw,15px);color:var(--text-2);margin-top:14px;font-style:italic}
+.figcaption b{font-style:normal;font-weight:700;color:var(--text-1)}
+/* Booktabs table — heavy top/bottom rules, hairline midrule, no vertical rules. */
+.booktabs{border-collapse:collapse;width:100%;font-size:clamp(14px,1.45vw,18px)}
+.booktabs th,.booktabs td{padding:10px 16px;text-align:left;border:0}
+.booktabs td.num,.booktabs th.num{text-align:right;font-variant-numeric:tabular-nums}
+.booktabs thead th{border-top:2px solid var(--text-1);border-bottom:1px solid var(--text-1);font-weight:700}
+.booktabs tbody tr:last-child td{border-bottom:2px solid var(--text-1)}
+.booktabs .best{font-weight:700;color:var(--accent)}
+/* Footnote — hairline rule over small print. */
+.footnote{font-size:13px;color:var(--text-3);border-top:1px solid var(--border-strong);padding-top:10px;max-width:48ch}
+/* References list — hanging [n] labels. */
+.references{list-style:none;margin:0;padding:0;font-size:clamp(14px,1.45vw,17px);color:var(--text-2)}
+.references li{padding:7px 0 7px 52px;position:relative;line-height:1.55}
+.references li>.cite{position:absolute;left:0;top:9px;text-decoration:none}
+.references i{color:var(--text-1)}
+
+/* ============ DECK CHROME ============ */
+.deck-header{position:fixed;top:24px;left:48px;right:48px;display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;color:var(--text-3);font-style:italic;z-index:10;pointer-events:none}
+.deck-footer{position:fixed;bottom:24px;left:48px;right:48px;display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;color:var(--text-3);z-index:10;pointer-events:none}
+.theme-chip{font-family:var(--font-mono);font-size:11px;font-style:normal;letter-spacing:.04em}
+.progress-bar{position:fixed;left:0;right:0;bottom:0;height:2px;z-index:20;pointer-events:none}
+.progress-bar>span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s var(--ease)}
+
+/* ============ SLIDE-LOCAL COMPONENTS ============ */
+.section-num{position:absolute;right:72px;bottom:40px;font-size:clamp(120px,17vw,220px);font-weight:700;line-height:.9;
+  color:var(--surface-2);letter-spacing:-.02em;z-index:0;pointer-events:none;font-family:var(--font-display)}
+.slide>*{position:relative;z-index:1}
+.kpi .num{font-size:clamp(34px,4vw,52px);font-weight:700;letter-spacing:var(--letter-tight);line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .lbl{font-size:14px;color:var(--text-3);margin-top:6px}
+.stat-big{font-size:clamp(100px,14vw,190px);font-weight:700;line-height:1;letter-spacing:-.02em;margin:0;font-variant-numeric:tabular-nums}
+.bar-chart{display:flex;align-items:flex-end;gap:26px;height:240px;margin-top:46px;max-width:780px;
+  border-bottom:2px solid var(--text-1);padding:0 12px}
+.bar-chart .bar{flex:1;background:var(--accent);border-radius:0;position:relative;min-height:14px}
+.bar-chart .bar.muted{background:var(--surface-2);border:1px solid var(--border-strong)}
+.bar-chart .bar span{position:absolute;bottom:-32px;left:0;right:0;text-align:center;font-size:13px;font-style:italic;color:var(--text-3)}
+.bar-chart .bar em{position:absolute;top:-30px;left:0;right:0;text-align:center;font-size:14px;font-weight:700;font-style:normal;color:var(--text-1);font-variant-numeric:tabular-nums}
+.toc-list{list-style:none;margin:0;padding:0;counter-reset:toc;max-width:760px}
+.toc-list li{counter-increment:toc;display:flex;align-items:baseline;gap:18px;padding:16px 4px;
+  border-bottom:1px solid var(--border);font-size:clamp(18px,2vw,25px)}
+.toc-list li::before{content:counter(toc) ".";font-weight:700;color:var(--accent);min-width:34px;font-variant-numeric:tabular-nums}
+.toc-list li .dim2{margin-left:auto;font-size:.7em;font-style:italic}
+.quote{font-family:var(--font-serif);font-size:clamp(28px,3.4vw,44px);line-height:1.4;font-weight:400;font-style:italic;max-width:26ch;margin:0}
+.check{list-style:none;padding:0;margin:0;font-size:clamp(15px,1.5vw,19px)}
+.check li{padding:9px 0 9px 32px;position:relative;color:var(--text-2)}
+.check li::before{content:"";position:absolute;left:2px;top:13px;width:14px;height:14px;
+  border:1.5px solid var(--text-1);background:transparent}
+.check li::after{content:"";position:absolute;left:6px;top:16px;width:8px;height:4px;
+  border-left:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:rotate(-45deg)}
+
+/* ============ SPEAKER NOTES (hidden from audience) ============ */
+.notes{display:none!important}
+
+/* ============ ANIMATIONS (restrained entry effects) ============ */
+@keyframes kf-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes kf-fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.anim-rise-in{animation:kf-rise .8s var(--ease) both}
+.anim-fade-up{animation:kf-fade-up .6s var(--ease) both}
+.anim-stagger-list>*{opacity:0;animation:kf-rise .6s var(--ease) both}
+.anim-stagger-list>*:nth-child(1){animation-delay:.05s}
+.anim-stagger-list>*:nth-child(2){animation-delay:.15s}
+.anim-stagger-list>*:nth-child(3){animation-delay:.25s}
+.anim-stagger-list>*:nth-child(4){animation-delay:.35s}
+.anim-stagger-list>*:nth-child(n+5){animation-delay:.45s}
+@media (prefers-reduced-motion: reduce){
+  .anim-rise-in,.anim-fade-up,.anim-stagger-list>*{animation:none;opacity:1;transform:none}
+  .progress-bar>span{transition:none}
+}
+
+/* ============ PRINT ============ */
+@media print{
+  body{overflow:visible}
+  .deck{display:block;width:auto;height:auto;overflow:visible}
+  .slide{width:100vw;height:100vh;page-break-after:always}
+  .deck-header,.deck-footer,.progress-bar{display:none!important}
+}
+</style>
+<style id="od-no-pager">.deck-controls,#counter,.deck-counter{display:none!important}</style>
+</head>
+<body>
+
+<div class="deck-header"><span>LLM 的组合泛化 · 一篇综述</span><span class="theme-chip" id="theme-chip">academic-paper</span></div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 · layout: cover (LaTeX titlepage: double rule above, hairline below) -->
+  <section class="slide" data-title="标题">
+    <p class="kicker">学术研究 · 供课题组评审的综述演示文稿</p>
+    <div class="rule-double" style="max-width:880px"></div>
+    <h1 class="h1 anim-rise-in" style="margin-top:30px;max-width:20ch">大语言模型中的组合泛化：已知与未知</h1>
+    <p class="lede" style="margin-bottom:26px">63 项研究（2019–2026）的领域地图、它们反复发现的缺口，以及仍然悬而未决的问题。</p>
+    <hr class="rule" style="max-width:880px">
+    <p class="dim2 mt-m" style="font-style:italic">为 PI 评审准备 &nbsp;·&nbsp; 草稿 v3 &nbsp;·&nbsp; NLP 与推理实验室 &nbsp;·&nbsp; 2026 年 7 月</p>
+    <div class="notes">标题页遵循 LaTeX 标题页语法：定位行用斜体眉标，标题上方双线，下方支撑行，发丝级细线，然后是小字号徽章行。全篇衬线体，纸白底上的墨色。</div>
+  </section>
+
+  <!-- 2 · layout: toc (numbered outline with hairline rules) -->
+  <section class="slide" data-title="提纲">
+    <p class="kicker">提纲</p>
+    <h2 class="h2">目录</h2>
+    <ol class="toc-list mt-m anim-stagger-list">
+      <li>领域地图：组合性如何被测试 <span class="dim2">3 分钟</span></li>
+      <li>缺口：系统性泛化在哪里失效 <span class="dim2">6 分钟</span></li>
+      <li>方法与证据：63 项研究说明了什么 <span class="dim2">7 分钟</span></li>
+      <li>贡献、开放问题与讨论 <span class="dim2">4 分钟</span></li>
+    </ol>
+    <div class="notes">论文演讲的提纲读起来像目录：编号条目、发丝级分隔线、斜体小字的时长栏。</div>
+  </section>
+
+  <!-- 3 · layout: section-divider -->
+  <section class="slide" data-title="第 1 节">
+    <span class="section-num">1</span>
+    <p class="eyebrow">第一节</p>
+    <h2 class="h2" style="max-width:18ch">领域地图：组合性如何被测试</h2>
+    <div class="divider-accent mt-m" style="max-width:240px"></div>
+    <div class="notes">章节分隔页：页边留白处是超大的幽灵数字，章节标题下方一道墨线。</div>
+  </section>
+
+  <!-- 4 · layout: abstract + contributions (two-column) -->
+  <section class="slide" data-title="摘要">
+    <p class="kicker">§1 · 引言</p>
+    <h2 class="h2">摘要与缺口</h2>
+    <div class="grid g2 mt-l">
+      <div class="abstract anim-fade-up">
+        <b>摘要。</b> 自 SCAN <span class="cite">[1]</span> 首次显示 seq2seq 模型无法把已知基元重组为新命令以来，十年的基准测试——COGS、CFQ、COGNATE——一直在追问规模能否弥合这一缺口。我们综合了 2019–2026 年间的 63 项研究，发现缺口会收窄但不会消失：即便是 700 亿参数的指令微调模型，在留出组合上的准确率也比同分布任务低 <b>28–41 个百分点</b>。没有任何架构改动或规模提升消除了它。
+      </div>
+      <div>
+        <ul class="check">
+          <li>缺口是系统性的，而非噪声：它横跨 6 个基准族与 11 个模型族反复出现</li>
+          <li>规模能缩小缺口但不消除它——曲线会弯折，却从不触及零</li>
+          <li>按单位算力计，上下文示例比参数量的帮助更大</li>
+          <li>尚无已发表方法能完全区分记忆与真正的重组</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">摘要区：两段发丝级细线之间是斜体正文，加粗领起词，引用标记为链接蓝。右侧是方框勾选式的贡献清单。</div>
+  </section>
+
+  <!-- 5 · layout: stat-highlight -->
+  <section class="slide center" data-title="头条结果">
+    <p class="kicker">头条数字</p>
+    <p class="stat-big anim-rise-in" style="color:var(--accent)">34pp</p>
+    <p class="lede mt-m" style="max-width:44ch">从同分布到留出新颖组合的准确率中位降幅，汇总自所综述的 63 项研究。</p>
+    <p class="footnote mt-l" style="text-align:left">† 63 项研究 · 11 个模型族（350M–70B 参数）· 6 个基准族 · 缺口随规模缩小但从未归零（最小观测值：9pp，来自最大模型、最佳提示策略）。</p>
+    <div class="notes">一个数字撑起整页，使用链接蓝墨色。带发丝级细线的剑号脚注是学术标志：头条数字随附支撑计数。</div>
+  </section>
+
+  <!-- 6 · layout: method figure (inline SVG diagram) -->
+  <section class="slide" data-title="方法">
+    <p class="kicker">§2 · 方法</p>
+    <h2 class="h2">系统性切分编码流程</h2>
+    <div class="figure mt-m" style="max-width:880px">
+      <svg viewBox="0 0 800 190" role="img" aria-label="综述编码流程示意图" style="width:100%;height:auto">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0a0a0a"/>
+          </marker>
+        </defs>
+        <g font-family="Georgia,serif" font-size="15" fill="#0a0a0a">
+          <rect x="10" y="55" width="160" height="56" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+          <text x="90" y="79" text-anchor="middle">提取</text>
+          <text x="90" y="98" text-anchor="middle">基元与切分</text>
+          <rect x="240" y="55" width="160" height="56" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+          <text x="320" y="79" text-anchor="middle">归一化</text>
+          <text x="320" y="98" text-anchor="middle">指标定义</text>
+          <rect x="470" y="55" width="160" height="56" fill="#e8edf8" stroke="#1a3a7a" stroke-width="1.5"/>
+          <text x="550" y="79" text-anchor="middle" fill="#1a3a7a">汇总</text>
+          <text x="550" y="98" text-anchor="middle" fill="#1a3a7a">缺口估计</text>
+          <rect x="660" y="20" width="130" height="50" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+          <text x="725" y="50" text-anchor="middle">规模趋势</text>
+          <rect x="660" y="100" width="130" height="50" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.5"/>
+          <text x="725" y="130" text-anchor="middle">方法趋势</text>
+          <line x1="170" y1="83" x2="236" y2="83" stroke="#0a0a0a" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="400" y1="83" x2="466" y2="83" stroke="#0a0a0a" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="630" y1="70" x2="656" y2="50" stroke="#0a0a0a" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="630" y1="96" x2="656" y2="120" stroke="#0a0a0a" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="640" y="38" font-style="italic" font-size="13" fill="#333333">按规模</text>
+          <text x="640" y="142" font-style="italic" font-size="13" fill="#333333">按设计</text>
+        </g>
+      </svg>
+      <p class="figcaption"><b>图 1：</b> 63 项研究都被重新编码到同一个共享指标上——留出系统性切分的准确率减去难度匹配的 i.i.d. 切分准确率——因此在汇总之前，缺口大小可在 SCAN、COGS 与 CFQ 类基准之间比较。</p>
+    </div>
+    <div class="notes">图表是墨线 SVG 方框配衬线标签，绝不用截图。编号斜体图注是必需的——每张图都必须可被引用。</div>
+  </section>
+
+  <!-- 7 · layout: chart-bar (CSS bars, Figure 2) -->
+  <section class="slide" data-title="结果">
+    <p class="kicker">§3 · 证据</p>
+    <h2 class="h2">缺口随规模缩小，但在零之上趋于平缓</h2>
+    <div class="bar-chart">
+      <div class="bar muted" style="height:98%"><em>41pp</em><span>350M</span></div>
+      <div class="bar muted" style="height:78%"><em>33pp</em><span>1.3B</span></div>
+      <div class="bar muted" style="height:60%"><em>26pp</em><span>7B</span></div>
+      <div class="bar muted" style="height:48%"><em>19pp</em><span>13B</span></div>
+      <div class="bar" style="height:30%"><em>12pp</em><span>70B</span></div>
+    </div>
+    <p class="figcaption" style="margin-top:52px;max-width:760px"><b>图 2：</b> 按参数量统计的平均留出准确率缺口（i.i.d. 减系统性切分），汇总自 6 个基准族及 63 项研究中报告了干净规模扫描的 34 项。链接蓝标注的 70B 点是已报告的最好结果——仍有 12 个百分点，而非零。</p>
+    <div class="notes">用论文语法呈现的结果图：柔和的斜线灰柱陪衬一根蓝色主柱，坐落在粗墨色坐标轴上，下方带编号图注。纯 CSS——不使用图表库。</div>
+  </section>
+
+  <!-- 8 · layout: booktabs table (Table 1) -->
+  <section class="slide" data-title="对比">
+    <p class="kicker">§3 · 对比</p>
+    <h2 class="h2">哪些干预手段真正改变了缺口</h2>
+    <div class="mt-l" style="max-width:880px">
+      <table class="booktabs">
+        <thead>
+          <tr><th>干预手段</th><th class="num">研究数</th><th class="num">Δ缺口中位数</th><th class="num">最佳情形</th><th>稳健性</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>仅扩大规模（参数量 ×10）</td><td class="num">19</td><td class="num">−6pp</td><td class="num">−11pp</td><td class="dim2">一致，次线性</td></tr>
+          <tr><td>数据增强</td><td class="num">14</td><td class="num">−9pp</td><td class="num">−17pp</td><td class="dim2">依基准而异</td></tr>
+          <tr><td>思维链提示</td><td class="num">11</td><td class="num">−8pp</td><td class="num">−15pp</td><td class="dim2">对措辞敏感</td></tr>
+          <tr><td><b>结构化解码（与我们的工作接近）</b></td><td class="num best">9</td><td class="num best">−15pp</td><td class="num best">−22pp</td><td class="dim2">最稳健，但大规模验证最少</td></tr>
+        </tbody>
+      </table>
+      <p class="figcaption"><b>表 1：</b> 结构化解码方法的缺口中位降幅最大（−15pp），但只出现在 63 项研究中的 9 项里，且没有一项超过 130 亿参数——证据基础真实但单薄，因此我们将其标注为「有前景」而非「已证实」。</p>
+    </div>
+    <div class="notes">Booktabs 规范：顶线与底线加粗，表头下方一道发丝线，绝不使用竖线。最优数字用强调蓝加粗，许可条款用斜体小字。</div>
+  </section>
+
+  <!-- 9 · layout: big-quote (reviewer epigraph) -->
+  <section class="slide center" data-title="引言">
+    <p class="quote anim-fade-up">「这个领域不断用新的基准名称重新发现同一个缺口。缺的不是又一个排行榜——而是缺口本身的共享度量单位。」</p>
+    <p class="eyebrow mt-l">— 匿名评审人，ICLR 2026 领域主席笔记</p>
+    <div class="notes">题词页：一段斜体衬线引文，出处用小号大写风格。在学术演示文稿中，引言即引用，因此要精确标明来源。</div>
+  </section>
+
+  <!-- 10 · layout: conclusions + future work -->
+  <section class="slide" data-title="结论">
+    <p class="kicker">§4 · 讨论</p>
+    <h2 class="h2">贡献与下一个问题</h2>
+    <div class="grid g2 mt-l">
+      <div class="card card-accent">
+        <h4 class="h4">本综述的贡献</h4>
+        <ul class="check">
+          <li>覆盖 6 个基准族的统一缺口指标——此前的综述比较的是分数，而非缺口</li>
+          <li>首个在匹配切分流程下跨越 350M–70B 的规模扫描</li>
+          <li>一张排序的干预手段表，显示结构化解码有前景但验证不足，尚未证实</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4 class="h4">我们未能回答的开放问题</h4>
+        <ul class="check">
+          <li>缺口在任何可行规模下能归零，还是存在下限？</li>
+          <li>结构化解码 −15pp 的中位效果能否在 130 亿参数以上保持？</li>
+          <li>残余缺口衡量的是重组失败，还是基准带来的假象？</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footnote mt-l">我们的主张是更好的测量方式，而非解决了问题：70B 处的 12pp 下限仍无法解释。编码数据集与切分流程可应要求提供。</p>
+    <div class="notes">结语以两张带线的卡片呈现——左侧是粗顶线下的主张，右侧是开放问题。产物链接脚注表明可复现性。</div>
+  </section>
+
+  <!-- 11 · layout: thanks + references -->
+  <section class="slide" data-title="参考文献">
+    <p class="kicker">谢谢 · 欢迎提问</p>
+    <h2 class="h2">讨论与部分参考文献</h2>
+    <ol class="references mt-m anim-stagger-list" style="max-width:920px">
+      <li><span class="cite">[1]</span> <i>Lake 与 Baroni。</i> 无系统性的泛化：SCAN。 <i>ICML</i>, 2018.</li>
+      <li><span class="cite">[2]</span> <i>Kim 与 Linzen。</i> COGS：基于语义解释的组合泛化挑战。 <i>EMNLP</i>, 2020.</li>
+      <li><span class="cite">[3]</span> <i>Keysers 等。</i> 衡量组合泛化：CFQ。 <i>ICLR</i>, 2020.</li>
+      <li><span class="cite">[4]</span> <i>完整的 63 项研究编码表与切分流程</i> — 可向通讯作者索取。</li>
+    </ol>
+    <hr class="rule mt-l" style="max-width:920px">
+    <p class="dim2 mt-m" style="font-style:italic">NLP 与推理实验室 · ← → 翻页，#/6 直达图 1</p>
+    <div class="notes">论文演讲以参考文献收尾，并被改造成行动号召：悬挂式 [n] 链接蓝标签，动作用斜体。链接行用小字。</div>
+  </section>
+
+</div>
+
+<div class="deck-footer"><span>hps-academic-paper · MIT · 基于 lewislulu/html-ppt-skill</span><span id="counter">1 / 11</span></div>
+<div class="progress-bar"><span id="bar"></span></div>
+
+<script>
+(function () {
+  var deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('counter');
+  var bar = document.getElementById('bar');
+  var active = 0;
+  var lastKeyEvent = null;
+
+  function clamp(i) { return Math.max(0, Math.min(slides.length - 1, i)); }
+
+  function paint(i) {
+    counter.textContent = (i + 1) + ' / ' + slides.length;
+    bar.style.width = (((i + 1) / slides.length) * 100) + '%';
+  }
+
+  // Hash routing: #/N (1-based). replaceState keeps back-button clean and
+  // never throws inside a srcdoc iframe thanks to the try/catch.
+  function setHash(i) {
+    try { history.replaceState(null, '', '#/' + (i + 1)); } catch (_) { /* sandboxed */ }
+  }
+  function fromHash() {
+    var m = (location.hash || '').match(/^#\/(\d+)/);
+    return m ? clamp(parseInt(m[1], 10) - 1) : 0;
+  }
+
+  function go(i, instant) {
+    active = clamp(i);
+    deck.scrollTo({ left: active * deck.clientWidth, behavior: instant ? 'auto' : 'smooth' });
+    paint(active);
+    setHash(active);
+  }
+
+  function syncFromScroll() {
+    var i = Math.round(deck.scrollLeft / deck.clientWidth);
+    if (i !== active && i >= 0 && i < slides.length) { active = i; paint(i); setHash(i); }
+  }
+
+  function onKey(e) {
+    if (e === lastKeyEvent) return; // dedupe: same Event passes both listeners
+    lastKeyEvent = e;
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(active + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(active - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+  }
+
+  // Listen on both window and document in capture phase so keys work no
+  // matter which element holds focus inside a host iframe.
+  window.addEventListener('keydown', onKey, true);
+  document.addEventListener('keydown', onKey, true);
+  deck.addEventListener('scroll', function () { window.requestAnimationFrame(syncFromScroll); }, { passive: true });
+  window.addEventListener('hashchange', function () { go(fromHash()); });
+  window.addEventListener('resize', function () { go(active, true); });
+
+  // Auto-focus so arrow keys work without a click.
+  document.body.setAttribute('tabindex', '-1');
+  document.body.style.outline = 'none';
+  function focusDeck() {
+    try { window.focus(); document.body.focus({ preventScroll: true }); } catch (_) { /* sandboxed */ }
+  }
+  document.addEventListener('mousedown', focusDeck);
+  window.addEventListener('load', focusDeck);
+
+  go(fromHash(), true);
+  paint(active);
+  focusDeck();
+})();
+</script>
+
+</body>
+</html>

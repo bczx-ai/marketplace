@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>临床病例报告 — 下壁 STEMI 合并心源性休克</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #111;
+      background: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+
+    /* ── Document Header ───────────────────────────────────────────── */
+    .doc-header {
+      border-top: 3px solid #111;
+      border-bottom: 1px solid #111;
+      padding: 16px 0 14px;
+      margin-bottom: 28px;
+    }
+    .doc-header h1 {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    .doc-header .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px 16px;
+      margin-top: 10px;
+    }
+    .doc-header .meta-item {
+      font-size: 12.5px;
+    }
+    .doc-header .meta-item .label {
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 10px;
+      color: #555;
+      display: block;
+    }
+
+    /* ── Section Headings ──────────────────────────────────────────── */
+    h2 {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #333;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      margin: 28px 0 12px;
+    }
+
+    /* ── Body Text ─────────────────────────────────────────────────── */
+    p { margin-bottom: 10px; }
+    ul, ol { padding-left: 22px; margin-bottom: 10px; }
+    li { margin-bottom: 5px; }
+    strong { font-weight: bold; }
+
+    /* ── Critical Alert Box ────────────────────────────────────────── */
+    .alert {
+      background: #fff8f8;
+      border-left: 4px solid #c00;
+      border: 1px solid #f5c6c6;
+      border-left: 4px solid #c00;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    .alert .alert-label {
+      font-weight: bold;
+      color: #c00;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.6px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ── Tables ────────────────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    th {
+      background: #f4f4f4;
+      font-weight: bold;
+      text-align: left;
+      padding: 7px 10px;
+      border: 1px solid #ccc;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    td {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #fafafa; }
+    .val-high { color: #c00; font-weight: bold; }
+    .val-low  { color: #c00; font-weight: bold; }
+    .val-normal { color: #1a6b1a; }
+
+    /* ── Differential List ─────────────────────────────────────────── */
+    .differential-item {
+      margin-bottom: 12px;
+      padding-left: 14px;
+      border-left: 3px solid #e0e0e0;
+    }
+    .differential-item .dx-title {
+      font-weight: bold;
+      font-size: 13.5px;
+    }
+    .differential-item .dx-likelihood {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      padding: 1px 6px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .likely   { background: #fce8e8; color: #c00; }
+    .possible { background: #fff4e0; color: #a06000; }
+    .unlikely { background: #f0f0f0; color: #555; }
+
+    /* ── Plan Items ────────────────────────────────────────────────── */
+    .plan-block {
+      margin-bottom: 18px;
+    }
+    .plan-block .plan-title {
+      font-weight: bold;
+      font-size: 13.5px;
+      margin-bottom: 6px;
+      padding: 5px 10px;
+      background: #f4f4f4;
+      border-left: 3px solid #555;
+    }
+
+    /* ── Risk Score ────────────────────────────────────────────────── */
+    .risk-score {
+      display: inline-block;
+      background: #fff3f3;
+      border: 1px solid #f5c6c6;
+      border-radius: 3px;
+      padding: 6px 12px;
+      font-size: 13px;
+      margin: 8px 0 12px;
+    }
+    .risk-score strong { color: #c00; }
+
+    /* ── Footer ────────────────────────────────────────────────────── */
+    .doc-footer {
+      margin-top: 40px;
+      padding-top: 12px;
+      border-top: 1px solid #ccc;
+      font-size: 11px;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── Print ─────────────────────────────────────────────────────── */
+    @media print {
+      body { padding: 16px 20px; font-size: 12px; }
+      .alert { border-left: 3px solid #c00; }
+      .plan-block .plan-title { background: none; border-left: 2px solid #333; }
+      h2 { margin-top: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Document Header ─────────────────────────────────────── -->
+  <div class="doc-header" data-od-id="header">
+    <h1>临床病例报告</h1>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="label">患者</span>
+        58 岁男性
+      </div>
+      <div class="meta-item">
+        <span class="label">场景</span>
+        急诊科
+      </div>
+      <div class="meta-item">
+        <span class="label">专科</span>
+        急诊 / 心内科
+      </div>
+      <div class="meta-item">
+        <span class="label">格式</span>
+        SOAP
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Chief Complaint ──────────────────────────────────────── -->
+  <section data-od-id="chief-complaint">
+    <h2>主诉</h2>
+    <p>
+      胸骨后剧烈疼痛 2 小时，放射至左臂与下颌，伴大量出汗与恶心。
+    </p>
+  </section>
+
+  <!-- ── History of Present Illness ──────────────────────────── -->
+  <section data-od-id="hpi">
+    <h2>现病史</h2>
+    <p>
+      患者为 58 岁男性，既往有高血压、2 型糖尿病与高脂血症，因胸骨后压榨样剧痛（强度 9/10）2 小时来急诊就诊。疼痛于约 14:30 休息状态下突然发作，放射至左臂与下颌。
+    </p>
+    <p>
+      疼痛伴大量出汗、恶心，并呕吐一次，呕吐物不含血。患者否认呼吸困难、心悸及晕厥前症状。无胸膜性疼痛成分，不随体位变化，服抗酸药不能缓解。
+    </p>
+    <p>
+      患者此前从未出现过这类疼痛。否认近期旅行、长时间制动或下肢肿胀。到院前未服用任何硝酸酯类药物。今晨已服用常规药物。吸烟史 30 包年（每日 10 支，仍在吸），偶尔饮酒。其父 62 岁时死于心肌梗死。
+    </p>
+  </section>
+
+  <!-- ── PMH / Medications / Allergies ────────────────────────── -->
+  <section data-od-id="pmh">
+    <h2>既往病史</h2>
+    <ul>
+      <li>高血压 — 8 年前确诊，正在治疗</li>
+      <li>2 型糖尿病 — 5 年前确诊，口服降糖药治疗中</li>
+      <li>高脂血症 — 5 年前确诊，他汀治疗中</li>
+      <li>无既往心脏病史。无心肌梗死病史。</li>
+      <li>无卒中、外周血管疾病或肾脏疾病史</li>
+    </ul>
+
+    <p style="margin-top:14px"><strong>目前用药：</strong></p>
+    <ul>
+      <li>二甲双胍 1g 口服，每日两次</li>
+      <li>氨氯地平 5mg 口服，每日一次</li>
+      <li>阿托伐他汀 40mg 口服，每晚</li>
+    </ul>
+
+    <p style="margin-top:14px"><strong>过敏史：</strong>
+      无已知药物过敏。无已知食物过敏。
+    </p>
+
+    <p style="margin-top:14px"><strong>个人史：</strong>
+      与家人同住，家庭支持良好。目前吸烟 — 每日 10 支，30 包年。饮酒：偶尔，每周少于 14 个单位。
+    </p>
+  </section>
+
+  <!-- ── Vital Signs ───────────────────────────────────────────── -->
+  <section data-od-id="vitals">
+    <h2>生命体征</h2>
+
+    <div class="alert">
+      <span class="alert-label">⚠ 危急 — 启动导管室</span>
+      II、III、aVF 导联 ST 段抬高 ≥3mm，I、aVL 导联出现镜像改变。患者符合 STEMI 标准。门球时间目标：&lt;90 分钟。
+    </div>
+
+    <table>
+      <caption>生命体征</caption>
+      <thead>
+        <tr>
+          <th scope="col">项目</th>
+          <th scope="col">数值</th>
+          <th scope="col">参考范围</th>
+          <th scope="col">状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>血压（收缩压/舒张压）</td>
+          <td class="val-low">88 / 60 mmHg</td>
+          <td>90–140 / 60–90 mmHg</td>
+          <td class="val-low">⬇ 低血压</td>
+        </tr>
+        <tr>
+          <td>心率</td>
+          <td class="val-high">112 bpm</td>
+          <td>60–100 bpm</td>
+          <td class="val-high">⬆ 心动过速</td>
+        </tr>
+        <tr>
+          <td>呼吸频率</td>
+          <td class="val-high">22 breaths/min</td>
+          <td>12–20 breaths/min</td>
+          <td class="val-high">⬆ 偏高</td>
+        </tr>
+        <tr>
+          <td>血氧饱和度（SpO₂）— 未吸氧</td>
+          <td class="val-low">94%</td>
+          <td>≥96%</td>
+          <td class="val-low">⬇ 偏低</td>
+        </tr>
+        <tr>
+          <td>体温</td>
+          <td class="val-normal">37.1°C</td>
+          <td>36.5–37.5°C</td>
+          <td class="val-normal">正常</td>
+        </tr>
+        <tr>
+          <td>格拉斯哥昏迷评分</td>
+          <td class="val-normal">15 / 15</td>
+          <td>15</td>
+          <td class="val-normal">正常</td>
+        </tr>
+        <tr>
+          <td>毛细血管再充盈时间</td>
+          <td class="val-high">3 seconds</td>
+          <td>&lt;2 seconds</td>
+          <td class="val-high">⬆ 延长</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ── Physical Examination ──────────────────────────────────── -->
+  <section data-od-id="examination">
+    <h2>体格检查</h2>
+
+    <p><strong>一般情况：</strong>
+      出汗、面色苍白，明显不适。对人物、地点、时间定向力完整。呈急性病容。
+    </p>
+    <p><strong>心血管：</strong>
+      颈静脉压在胸骨角上方约 4cm，升高。心音 S1 + S2 存在，未闻及杂音及附加音。外周脉搏可触及，双侧偏弱。外周毛细血管再充盈 3 秒。无外周水肿。
+    </p>
+    <p><strong>呼吸：</strong>
+      呼吸频率 22 次/分。双肺呼吸音可闻。双肺底可闻及细湿啰音，右侧多于左侧。无哮鸣音。右肺底叩诊浊音。无辅助呼吸肌参与。
+    </p>
+    <p><strong>腹部：</strong>
+      腹软、不胀、无压痛。无脏器肿大。肠鸣音存在且正常。无肾区叩击痛。
+    </p>
+    <p><strong>神经系统：</strong>
+      GCS 15/15。双侧瞳孔等大等圆，3mm，对光反射存在。无局灶性神经功能缺损。颅神经大致正常。
+    </p>
+    <p><strong>皮肤 / 周围：</strong>
+      面色苍白、出汗。无皮疹、无黄疸、无发绀。
+    </p>
+  </section>
+
+  <!-- ── Investigations ────────────────────────────────────────── -->
+  <section data-od-id="investigations">
+    <h2>检查</h2>
+
+    <p><strong>12 导联心电图：</strong></p>
+    <div class="alert">
+      <span class="alert-label">心电图 — 符合 STEMI 标准</span>
+      窦性心动过速，112 次/分。II、III、aVF 导联 ST 段抬高 3mm。I、aVL 导联出现镜像性 ST 段压低。PR 间期与 QRS 形态其余正常。无左束支传导阻滞。已开右胸导联（V3R–V6R）以排除右室梗死。
+    </div>
+
+    <p style="margin-top:14px"><strong>实验室结果：</strong></p>
+    <table>
+      <caption>实验室结果</caption>
+      <thead>
+        <tr>
+          <th scope="col">检查项目</th>
+          <th scope="col">结果</th>
+          <th scope="col">参考范围</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>肌钙蛋白 I（高敏）</td>
+          <td class="val-high">2400 ng/L ⬆</td>
+          <td>&lt;40 ng/L</td>
+        </tr>
+        <tr>
+          <td>CK-MB</td>
+          <td class="val-high">48 U/L ⬆</td>
+          <td>&lt;25 U/L</td>
+        </tr>
+        <tr>
+          <td>BNP（B 型钠尿肽）</td>
+          <td class="val-high">520 pg/mL ⬆</td>
+          <td>&lt;100 pg/mL</td>
+        </tr>
+        <tr>
+          <td>血红蛋白</td>
+          <td class="val-normal">13.8 g/dL</td>
+          <td>13.5–17.5 g/dL</td>
+        </tr>
+        <tr>
+          <td>白细胞</td>
+          <td>11.2 × 10⁹/L</td>
+          <td>4.0–11.0 × 10⁹/L</td>
+        </tr>
+        <tr>
+          <td>血小板</td>
+          <td class="val-normal">224 × 10⁹/L</td>
+          <td>150–400 × 10⁹/L</td>
+        </tr>
+        <tr>
+          <td>钠</td>
+          <td class="val-normal">138 mmol/L</td>
+          <td>135–145 mmol/L</td>
+        </tr>
+        <tr>
+          <td>钾</td>
+          <td class="val-normal">4.1 mmol/L</td>
+          <td>3.5–5.0 mmol/L</td>
+        </tr>
+        <tr>
+          <td>肌酐</td>
+          <td class="val-normal">98 µmol/L</td>
+          <td>62–106 µmol/L</td>
+        </tr>
+        <tr>
+          <td>eGFR</td>
+          <td class="val-normal">72 mL/min/1.73m²</td>
+          <td>≥60 mL/min/1.73m²</td>
+        </tr>
+        <tr>
+          <td>血糖（随机）</td>
+          <td class="val-high">9.4 mmol/L ⬆</td>
+          <td>4.0–7.8 mmol/L</td>
+        </tr>
+        <tr>
+          <td>HbA1c</td>
+          <td class="val-high">7.8% ⬆</td>
+          <td>&lt;7.0%（糖尿病目标值）</td>
+        </tr>
+        <tr>
+          <td>总胆固醇</td>
+          <td class="val-high">5.9 mmol/L ⬆</td>
+          <td>&lt;5.2 mmol/L</td>
+        </tr>
+        <tr>
+          <td>低密度脂蛋白胆固醇</td>
+          <td class="val-high">3.8 mmol/L ⬆</td>
+          <td>&lt;2.0 mmol/L（高危目标值）</td>
+        </tr>
+        <tr>
+          <td>INR</td>
+          <td class="val-normal">1.1</td>
+          <td>0.8–1.2</td>
+        </tr>
+        <tr>
+          <td>乳酸</td>
+          <td class="val-high">2.8 mmol/L ⬆</td>
+          <td>&lt;2.0 mmol/L</td>
+        </tr>
+        <tr>
+          <td>动脉血 pH</td>
+          <td class="val-low">7.31 ⬇</td>
+          <td>7.35–7.45</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>胸部 X 线（床旁前后位）：</strong>
+      轻度心影增大。肺血管淤血伴上叶血管再分布。右侧少量胸腔积液。无气胸。纵隔无增宽。
+    </p>
+    <p><strong>床旁超声心动图（急诊）：</strong>
+      下壁及下侧壁运动减弱。估测射血分数 40%。无心包积液。本次受限检查未见明显瓣膜病变。右心室似轻度扩大 — 待正式右心评估。
+    </p>
+  </section>
+
+  <!-- ── Assessment ────────────────────────────────────────────── -->
+  <section data-od-id="assessment">
+    <h2>评估</h2>
+
+    <p>
+      <strong>主要诊断：</strong>
+      下壁 ST 段抬高型心肌梗死（STEMI），合并心源性休克。根据下壁导联受累判断，最可能的罪犯血管为右冠状动脉（RCA）。
+    </p>
+
+    <div class="risk-score">
+      <strong>Killip 分级：IV 级</strong> — 心源性休克（低血压 + 终末器官灌注不足）。
+      <strong>休克指数：1.27</strong> （心率/收缩压 — 正常 &lt;0.7）
+    </div>
+
+    <p style="margin-top:4px"><strong>鉴别诊断：</strong></p>
+
+    <div class="differential-item">
+      <span class="dx-title">1. 下壁 STEMI — RCA 供血区</span>
+      <span class="dx-likelihood likely">最可能</span>
+      <p style="margin-top:6px; font-size:13px;">
+        II、III、aVF 导联 ST 段抬高，I、aVL 导联镜像性压低，是下壁 STEMI 的标志性心电图表现。肌钙蛋白 I 升高（正常上限的 60 倍）及床旁超声示下壁运动减弱，证实存在持续性心肌损伤。心源性休克（收缩压 88、乳酸升高至 2.8、BNP 520）提示显著的血流动力学受损。启动补液治疗前，必须用右胸导联排除右心室受累。
+      </p>
+    </div>
+
+    <div class="differential-item">
+      <span class="dx-title">2. A 型主动脉夹层</span>
+      <span class="dx-likelihood possible">已考虑，可能性较低</span>
+      <p style="margin-top:6px; font-size:13px;">
+        剧烈胸痛放射至下颌，使夹层进入鉴别诊断。但疼痛性质为压榨样而非撕裂样，无脉搏短绌，无肢体缺血，胸片无纵隔增宽。心电图与肌钙蛋白的变化模式更符合原发性急性冠脉综合征。夹层可能性较低，但若在心电图对照后临床疑虑仍存，未行 CT 主动脉造影则无法完全排除。
+      </p>
+    </div>
+
+    <div class="differential-item">
+      <span class="dx-title">3. 大面积肺栓塞</span>
+      <span class="dx-likelihood unlikely">不太可能</span>
+      <p style="margin-top:6px; font-size:13px;">
+        血流动力学不稳定与低 SpO₂ 与大面积肺栓塞相符。但患者无肺栓塞危险因素（无近期旅行、制动或深静脉血栓史），心电图表现为下壁 ST 段抬高，而非右心负荷过重或 S1Q3T3 图形，肌钙蛋白升高也符合急性冠脉综合征的动态变化。床旁超声的主要发现是下壁运动减弱，而非右室扩大。肺栓塞可能性不大。
+      </p>
+    </div>
+
+    <div class="differential-item">
+      <span class="dx-title">4. NSTEMI / 不稳定型心绞痛</span>
+      <span class="dx-likelihood unlikely">已排除</span>
+      <p style="margin-top:6px; font-size:13px;">
+        相邻两个下壁导联 ST 段抬高 ≥1mm，结合肌钙蛋白升高幅度，符合完整 STEMI 标准。心电图表现已排除 NSTEMI。
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Management Plan ───────────────────────────────────────── -->
+  <section data-od-id="plan">
+    <h2>治疗方案</h2>
+
+    <div class="plan-block">
+      <div class="plan-title">1. 立即 — 血运重建（优先）</div>
+      <ul>
+        <li>启动心导管室 — 门球时间目标 &lt;90 分钟</li>
+        <li>对罪犯病变（RCA）行直接经皮冠状动脉介入治疗（PCI）— 优于溶栓的首选策略</li>
+        <li>紧急心内科会诊 — 立即通知介入心脏病学医师</li>
+        <li>在任何补液之前完成右胸导联（V3R–V6R），以排除右室心肌梗死</li>
+      </ul>
+    </div>
+
+    <div class="plan-block" style="border-left:3px solid #e6a817;padding-left:12px;">
+      <div class="plan-title" style="color:#b07a00;">⚠ 用药安全核查 — 开方前确认</div>
+      <ul>
+        <li><strong>已知（来自本例）：</strong> 无记录在案的药物过敏；eGFR 72 mL/min/1.73m²（目前肾功能保留 — 在使用造影剂及急性病期间需密切监测）；无正在使用的抗凝药记录；患者为男性，58 岁</li>
+        <li><strong>未提供体重</strong> — 按体重给药的方案（如肝素负荷量）应遵循 <em>本院处方集/方案</em>，并在确认体重后执行</li>
+        <li><strong>出血风险未评估</strong> — 双联抗血小板治疗前，确认无活动性出血、近期手术或既往颅内出血</li>
+        <li><strong>肝功能未记录</strong> — 在大剂量他汀与 ACE 抑制剂启用前复核</li>
+        <li><strong>妊娠状态不适用</strong> （患者为男性，58 岁）</li>
+        <li><em>以下所有剂量均为教学/模拟用途。给药前请对照本院处方集、最新指南与完整患者情况核实。</em></li>
+      </ul>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-title">2. 抗血小板与抗凝</div>
+      <ul>
+        <li>阿司匹林 300mg 口服负荷量 — 立即，随后 75mg 口服每日一次</li>
+        <li>替格瑞洛 180mg 口服负荷量 — 立即，随后 90mg 口服每日两次（按 ESC 指南，STEMI 中优于氯吡格雷）</li>
+        <li>普通肝素 — PCI 前按导管室方案静脉负荷</li>
+        <li>PCI 前不给予 GPIIb/IIIa 抑制剂；可由术者酌情术中考虑</li>
+      </ul>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-title">3. 心源性休克</div>
+      <ul>
+        <li>在右胸导联结果复核前暂缓静脉补液 — 若存在右室梗死，谨慎试用 250mL 生理盐水负荷</li>
+        <li>若补液后平均动脉压仍 &lt;65mmHg：在确认体重与浓度后，按本院血管活性药物输注方案开始去甲肾上腺素输注；滴定至平均动脉压 ≥65mmHg</li>
+        <li>申请 ICU/CCU 床位 — PCI 后高依赖监护</li>
+        <li>若 PCI 后休克难以纠正，考虑主动脉内球囊反搏或 Impella 装置 — 由心内科酌情决定</li>
+      </ul>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-title">4. 呼吸 / 氧合</div>
+      <ul>
+        <li>仅在低氧（SpO₂ &lt;94%）或呼吸窘迫时给氧 — 使用维持 SpO₂ 94–98% 所需的最低流量装置（鼻导管或简易面罩）；血氧正常的 STEMI 不常规给予高流量氧（可能加重缺血）</li>
+        <li>若肺水肿加重且血流动力学允许：呋塞米 40mg 静脉一次</li>
+        <li>若 SpO₂ 降至 90% 以下，或初始措施后呼吸窘迫仍加重，按本院方案升级为非重复呼吸面罩、CPAP 或气管插管</li>
+      </ul>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-title">5. 监测</div>
+      <ul>
+        <li>持续 12 导联心电监护与脉搏血氧监测</li>
+        <li>鉴于血流动力学不稳定，置入动脉导管持续监测血压</li>
+        <li>入院后 3 小时与 6 小时复查肌钙蛋白</li>
+        <li>PCI 后立即及 1 小时后复查心电图</li>
+        <li>经导尿管每小时记录尿量 — 目标 ≥0.5mL/kg/h</li>
+        <li>严格记录出入量</li>
+        <li>每 2 小时监测血糖 — 目标 6–10 mmol/L</li>
+      </ul>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-title">6. 二级预防（病情稳定后开始）</div>
+      <ul>
+        <li>β 受体阻滞剂：比索洛尔 — <strong>待完全稳定后再用</strong>：休克纠正、停用血管升压药/正性肌力药、血容量正常、无心动过缓或心脏传导阻滞、收缩压 &gt;100mmHg 且心率 &lt;110 次/分；心源性休克/Killip IV 级早期使用 β 受体阻滞剂可能恶化血流动力学。稳定后经心内科评估，以 1.25mg 口服每日一次起始。</li>
+        <li>ACE 抑制剂：雷米普利 1.25mg 口服每日一次 — 若能耐受则在 24 小时内开始；数周内逐步加量</li>
+        <li>他汀：阿托伐他汀 80mg 口服每晚 — 无论基线胆固醇如何，均使用高强度他汀</li>
+        <li>糖尿病：暂停二甲双胍 — 肾功能与造影剂暴露风险。若肌酐稳定，术后 48 小时恢复</li>
+        <li>双联抗血小板治疗：阿司匹林 75mg + 替格瑞洛 90mg 每日两次，PCI 后至少 12 个月</li>
+        <li>出院前转介心脏康复</li>
+        <li>戒烟咨询与药物戒烟转介</li>
+        <li>6–8 周复查超声心动图，重新评估射血分数</li>
+      </ul>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-title">7. 去向</div>
+      <ul>
+        <li>PCI 后收入冠心病监护病房（CCU）</li>
+        <li>预计住院时间：若 PCI 后病程顺利为 3–5 天</li>
+        <li>通知近亲属 — 病情严重性沟通</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <div class="doc-footer">
+    <span>由 Open Design 生成 — clinical-case-report 技能</span>
+    <span>仅供教学与文档用途</span>
+  </div>
+
+</body>
+</html>

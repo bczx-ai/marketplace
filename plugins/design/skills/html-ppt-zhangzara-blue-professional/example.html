@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>像幕僚长那样，做一场季度业务回顾 - 企业战略</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fdfae7;
+      --primary: #1e2bfa;
+      --text: #111111;
+      --text-muted: #6b6b6b;
+      --text-light: #9a9a9a;
+      --accent-light: rgba(30, 43, 250, 0.08);
+      --accent-medium: rgba(30, 43, 250, 0.15);
+      --border: rgba(30, 43, 250, 0.2);
+      --card-bg: rgba(30, 43, 250, 0.04);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Slide container */
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      /* Asymmetric padding: extra bottom space to clear the fixed
+         slide-counter (left) and nav-controls (right). Without this,
+         cards/grids that fill slide-content overlap the nav chrome. */
+      padding: 3.5vw 4vw 8.5vh 4vw;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(40px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+      z-index: 10;
+    }
+
+    .slide.prev {
+      transform: translateX(-40px);
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    h4 {
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+    }
+
+    p, li {
+      font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* Slide header bar */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5vh;
+      flex-shrink: 0;
+    }
+
+    .slide-header h4 {
+      margin: 0;
+    }
+
+    .slide-header .tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--primary);
+      background: var(--accent-light);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    /* Slide content area */
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /* Navigation */
+    .nav-controls {
+      position: fixed;
+      bottom: 2.5vh;
+      right: 3vw;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      z-index: 100;
+    }
+
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 1.1rem;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary);
+      color: var(--bg);
+      border-color: var(--primary);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .slide-counter {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      position: fixed;
+      bottom: 2.5vh;
+      left: 3vw;
+      z-index: 100;
+    }
+
+    .progress-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--primary);
+      transition: width 0.4s ease;
+      z-index: 100;
+    }
+
+    /* Decorative elements */
+    .accent-line {
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .accent-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ============================================================
+       LAYOUT 1: Cover / Title Slide
+       ============================================================ */
+    .layout-cover {
+      justify-content: center;
+      align-items: flex-start;
+      padding-left: 8vw;
+    }
+
+    .layout-cover h1 {
+      max-width: 55vw;
+      margin-bottom: 1.5rem;
+      line-height: 1.05;
+    }
+
+    .layout-cover .subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 40vw;
+      margin-bottom: 3rem;
+      font-weight: 400;
+    }
+
+    .layout-cover .meta {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+    }
+
+    .layout-cover .cover-decoration {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 35vw;
+      height: 100vh;
+      background: var(--accent-light);
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .layout-cover .cover-dots {
+      position: absolute;
+      bottom: 12vh;
+      right: 8vw;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      opacity: 0.25;
+    }
+
+    .layout-cover .cover-dots .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    /* ============================================================
+       LAYOUT 2: Agenda / Table of Contents
+       ============================================================ */
+    .layout-agenda .agenda-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 1rem 3rem;
+      margin-top: 1rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .agenda-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      transition: background 0.2s ease;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .agenda-item:hover {
+      background: var(--card-bg);
+    }
+
+    .agenda-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      min-width: 36px;
+    }
+
+    .agenda-item h3 {
+      margin-bottom: 0.3rem;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+    }
+
+    .agenda-item p {
+      font-size: clamp(0.8rem, 1vw, 0.95rem);
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       LAYOUT 3: Key Metrics (3 large callouts)
+       Cards size to their content; the row centers vertically
+       inside the remaining slide-content area.
+       ============================================================ */
+    .layout-metrics .slide-content {
+      justify-content: flex-start;
+    }
+
+    .layout-metrics .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      align-items: stretch;
+    }
+
+    .metric-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1.5rem 1.6rem;
+      border-radius: 14px;
+      border: 1.5px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    .metric-card .metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 3.4vw, 3rem);
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .metric-card .metric-label {
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .metric-card .metric-desc {
+      font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .metric-card .metric-supports {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin: 0.2rem 0 0;
+      padding: 0.7rem 0 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .metric-card .metric-supports li {
+      font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+      color: var(--text-muted);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.45;
+    }
+
+    .metric-card .metric-supports li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-light);
+    }
+
+    .metric-card .metric-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    .metric-change.positive { color: #059669; }
+    .metric-change.negative { color: #dc2626; }
+
+    /* ============================================================
+       LAYOUT 4: Data Dashboard (6 stat grid)
+       Cells have natural height with stat at top + name + small
+       context line. Grid is auto-sized; the row stays in the upper
+       portion of slide-content with the bottom-padding reserved
+       for nav chrome.
+       ============================================================ */
+    .layout-dashboard .slide-content {
+      justify-content: flex-start;
+    }
+
+    .layout-dashboard .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .stat-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1.4rem 1.5rem;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+    }
+
+    .stat-cell .stat-top {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .stat-cell .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .stat-cell .stat-unit {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .stat-cell .stat-name {
+      font-size: clamp(0.85rem, 1vw, 0.95rem);
+      color: var(--text);
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    .stat-cell .stat-context {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      line-height: 1.4;
+      padding-top: 0.4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ============================================================
+       LAYOUT 5: Two Column Split
+       Left = numbered insight list, Right = pull-quote + supporting
+       stats. Both columns size to their content with natural rhythm
+       (gap-based spacing, no forced height-distribution).
+       ============================================================ */
+    .layout-split .slide-content {
+      justify-content: flex-start;
+    }
+
+    .layout-split .split-body {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 3.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .split-left, .split-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .split-right {
+      padding-left: 2.5rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .insight-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin: 0;
+      counter-reset: insight;
+    }
+
+    .insight-list li {
+      position: relative;
+      padding-left: 2.6rem;
+      font-size: clamp(0.88rem, 1.05vw, 1rem);
+      color: var(--text);
+      line-height: 1.55;
+      counter-increment: insight;
+    }
+
+    .insight-list li::before {
+      content: counter(insight, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.05em;
+      line-height: 1.7;
+    }
+
+    .split-highlight {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.15rem, 1.55vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+      padding: 1.3rem 1.5rem;
+      background: var(--accent-light);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .split-highlight cite {
+      display: block;
+      margin-top: 0.7rem;
+      font-style: normal;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .mini-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-top: 0.4rem;
+    }
+
+    .mini-stat {
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+    }
+
+    .mini-stat .mini-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .mini-stat .mini-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      line-height: 1.35;
+    }
+
+    /* ============================================================
+       LAYOUT 6: Horizontal Bar Ranking
+       ============================================================ */
+    .layout-bars .bars-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .bar-item {
+      display: grid;
+      grid-template-columns: minmax(180px, 30%) 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 0;
+    }
+
+    .bar-label {
+      font-size: clamp(0.8rem, 1.1vw, 1rem);
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .bar-track {
+      height: 28px;
+      background: var(--accent-light);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 6px;
+      transition: width 0.8s ease;
+    }
+
+    .bar-pct {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      min-width: 45px;
+      text-align: right;
+    }
+
+    .bar-note {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+    }
+
+    /* ============================================================
+       LAYOUT 7: Quote / Highlight
+       ============================================================ */
+    .layout-quote {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .layout-quote .quote-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 8rem;
+      font-weight: 700;
+      color: var(--primary);
+      opacity: 0.15;
+      line-height: 0.5;
+      margin-bottom: 1rem;
+    }
+
+    .layout-quote blockquote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--text);
+      max-width: 65vw;
+      margin-bottom: 2rem;
+    }
+
+    .layout-quote .quote-source {
+      font-size: clamp(0.85rem, 1.1vw, 1rem);
+      color: var(--text-muted);
+    }
+
+    .layout-quote .quote-source strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .layout-quote .quote-decoration {
+      position: absolute;
+      top: 10vh;
+      left: 5vw;
+      width: 80px;
+      height: 80px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+    }
+
+    .layout-quote .quote-decoration-2 {
+      position: absolute;
+      bottom: 12vh;
+      right: 6vw;
+      width: 60px;
+      height: 60px;
+      background: var(--accent-light);
+      border-radius: 50%;
+    }
+
+    /* ============================================================
+       LAYOUT 8: Timeline / Process Flow
+       ============================================================ */
+    .layout-timeline .timeline-track {
+      display: flex;
+      gap: 1.5rem;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .timeline-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .timeline-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 28px;
+      right: -0.75rem;
+      width: 1.5rem;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .step-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .timeline-step:nth-child(2) .step-circle { opacity: 0.85; }
+    .timeline-step:nth-child(3) .step-circle { opacity: 0.7; }
+    .timeline-step:nth-child(4) .step-circle { opacity: 0.55; }
+
+    .step-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-desc {
+      font-size: clamp(0.75rem, 1vw, 0.9rem);
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 220px;
+    }
+
+    /* ============================================================
+       LAYOUT 9: Detailed Analysis (bullets with sub-items)
+       ============================================================ */
+    .layout-detail .detail-body {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem 3rem;
+      flex: 1;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+
+    .detail-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .detail-block {
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+    }
+
+    .detail-block h3 {
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .detail-block ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .detail-block ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      padding-bottom: 0.4rem;
+      font-size: clamp(0.78rem, 1vw, 0.9rem);
+      line-height: 1.5;
+    }
+
+    .detail-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .detail-block ul li:last-child {
+      padding-bottom: 0;
+    }
+
+    /* ============================================================
+       LAYOUT 10: Closing / CTA
+       ============================================================ */
+    .layout-closing {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .layout-closing h1 {
+      margin-bottom: 1rem;
+    }
+
+    .layout-closing .closing-sub {
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 45vw;
+      margin-bottom: 2.5rem;
+    }
+
+    .layout-closing .cta-btn {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--primary);
+      padding: 0.9rem 2.2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .layout-closing .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 43, 250, 0.25);
+    }
+
+    .layout-closing .closing-contact {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .layout-closing .closing-decoration {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .layout-closing .closing-decoration-2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      height: 360px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* Keyboard hint */
+    .keyboard-hint {
+      position: fixed;
+      bottom: 2.5vh;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      color: var(--text-light);
+      z-index: 100;
+      opacity: 0.6;
+    }
+
+    /* Responsive adjustments for very small heights */
+    @media (max-height: 700px) {
+      .slide { padding: 2.5vh 3vw; }
+      .layout-agenda .agenda-grid { gap: 0.8rem 2rem; }
+      .agenda-item { padding: 0.8rem; }
+      .metric-card { padding: 1rem; }
+      .layout-bars .bars-container { gap: 0.5rem; }
+      .bar-item { padding: 0.4rem 0; }
+      .detail-block { padding: 0.8rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="deck">
+
+    <!-- SLIDE 1: Cover -->
+    <div class="slide layout-cover active">
+      <div class="cover-decoration"></div>
+      <div class="cover-dots">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="accent-line"></div>
+      <h1>FY26 Q2 季度<br>业务回顾</h1>
+      <p class="subtitle">Open Design：哪些推进了、哪些停滞了，以及下半年资源重新配置的诉求。</p>
+      <p class="meta">执行委员会  ·  机密</p>
+    </div>
+
+    <!-- SLIDE 2: Agenda -->
+    <div class="slide layout-agenda">
+      <div class="slide-header">
+        <h4>目录</h4>
+        <span class="tag">概览</span>
+      </div>
+      <div class="slide-content">
+        <div class="accent-line"></div>
+        <div class="agenda-grid">
+          <div class="agenda-item">
+            <span class="agenda-num">01</span>
+            <div>
+              <h3>结论</h3>
+              <p>本季度一句话：采用量在复利增长，付费转化却停滞了。</p>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <span class="agenda-num">02</span>
+            <div>
+              <h3>证据</h3>
+              <p>十二个数字，解释为什么增长超出计划，而收入准备度落后。</p>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <span class="agenda-num">03</span>
+            <div>
+              <h3>选项</h3>
+              <p>三条缩小 BYOK 到付费之间差距的路径，按每美元预期提升排序。</p>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <span class="agenda-num">04</span>
+            <div>
+              <h3>风险</h3>
+              <p>计划会在哪里断裂：贡献者集中、供应商敞口、渠道依赖。</p>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <span class="agenda-num">05</span>
+            <div>
+              <h3>决策诉求</h3>
+              <p>请委员会今天批准的具体资源重新配置。</p>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <span class="agenda-num">06</span>
+            <div>
+              <h3>负责人与时间表</h3>
+              <p>每条工作流的责任人是谁，以及下次评审的关卡日期。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Key Metrics -->
+    <div class="slide layout-metrics">
+      <div class="slide-header">
+        <h4>结论</h4>
+        <span class="tag">推进了什么</span>
+      </div>
+      <div class="slide-content">
+        <h2>社区增长超出计划；变现准备度没有</h2>
+        <div class="metrics-row">
+          <div class="metric-card">
+            <div class="metric-value">68K</div>
+            <div class="metric-label">GitHub star，上季度是 61K</div>
+            <div class="metric-desc">在没有付费投放的情况下自然采用加速，动力来自两条自行传播的集成讨论帖。</div>
+            <ul class="metric-supports">
+              <li>以 3K 超出 65K 的季度计划</li>
+              <li>发布以来单季最快增长</li>
+              <li>这波高峰背后没有付费获客投入</li>
+            </ul>
+            <div class="metric-change positive">
+              <span>&uarr;</span> 本季度 +7K star，超出计划
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">312</div>
+            <div class="metric-label">持续合并代码的活跃贡献者</div>
+            <div class="metric-desc">插件目录几乎翻倍，贡献者基数却基本持平，说明社区天花板已经不远。</div>
+            <ul class="metric-supports">
+              <li>+8 名贡献者，计划是 +40</li>
+              <li>前 5 名贡献者现在贡献 40% 的已合并 PR</li>
+              <li>首次合并的上手时间大幅改善</li>
+            </ul>
+            <div class="metric-change negative">
+              <span>&rarr;</span> 比 Q2 计划少 32 名贡献者
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">6%</div>
+            <div class="metric-label">添加了任意付费连接器的 BYOK 用户</div>
+            <div class="metric-desc">从免费本地使用到付费面的转化，是本季度相对进入 Q2 时所设目标最明显的缺口。</div>
+            <ul class="metric-supports">
+              <li>本季度目标是 15%</li>
+              <li>企业试点洽谈：开启 3 个，成交 0 个</li>
+              <li>根因见下一页的拆解</li>
+            </ul>
+            <div class="metric-change negative">
+              <span>&darr;</span> 比我们在 Q1 设的目标低 9 个百分点
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Dashboard -->
+    <div class="slide layout-dashboard">
+      <div class="slide-header">
+        <h4>证据</h4>
+        <span class="tag">看数字</span>
+      </div>
+      <div class="slide-content">
+        <h2>委员会该记住的十二个数字</h2>
+        <div class="stats-grid">
+          <div class="stat-cell">
+            <div class="stat-top">
+              <span class="stat-num">232</span>
+              <span class="stat-unit">个，在目录里</span>
+            </div>
+            <div class="stat-name">已发布社区插件</div>
+            <div class="stat-context">上季度是 134 个，发布以来目录增长最快的一次。</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-top">
+              <span class="stat-num">142</span>
+              <span class="stat-unit">个，开箱可用</span>
+            </div>
+            <div class="stat-name">可用设计系统</div>
+            <div class="stat-context">上季度是 96 套，来自 GitHub、Figma 和本地文件导入。</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-top">
+              <span class="stat-num">4.8</span>
+              <span class="stat-unit">天（中位数）</span>
+            </div>
+            <div class="stat-name">贡献者首次合并 PR 所需时间</div>
+            <div class="stat-context">四月新版上手指南发布后，从 9.1 天降下来。</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-top">
+              <span class="stat-num">21</span>
+              <span class="stat-unit">零配置</span>
+            </div>
+            <div class="stat-name">支持的编码 agent</div>
+            <div class="stat-context">从 PATH 自动探测；本季度没有变化，是稳定的地基。</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-top">
+              <span class="stat-num">3</span>
+              <span class="stat-unit">开启，0 成交</span>
+            </div>
+            <div class="stat-name">企业试点洽谈</div>
+            <div class="stat-context">三个都在积极推进；还没有一个进入签约试点。</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-top">
+              <span class="stat-num">-18%</span>
+              <span class="stat-unit">每活跃工作区</span>
+            </div>
+            <div class="stat-name">季度基础设施成本</div>
+            <div class="stat-context">BYOK 让托管成本在使用量增长时保持低位，腾出可重新配置的预算。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Two Column -->
+    <div class="slide layout-split">
+      <div class="slide-header">
+        <h4>什么停滞了</h4>
+        <span class="tag">根因</span>
+      </div>
+      <div class="slide-content">
+        <h2>漏斗断在从「已安装」到「已付费」的交接处</h2>
+        <div class="split-body">
+          <div class="split-left">
+            <ul class="insight-list">
+              <li>大多数新用户本地安装、接上自己的模型密钥，然后始终没遇到一个请他们升级的时刻。</li>
+              <li>当工作区超出单个 BYOK 连接器所能承载时，产品里没有任何提醒。</li>
+              <li>企业买家要求 SSO、席位管理和支持 SLA——这些今天一个都没有。</li>
+              <li>三个在谈的企业客户都卡在采购环节，而不是产品兴趣上。</li>
+              <li>本季度的增长高峰来自单条外部讨论帖，而不是可复制的渠道。</li>
+            </ul>
+          </div>
+          <div class="split-right">
+            <div class="split-highlight">
+              「我们的漏斗不是在顶端断的，而是断在从『已安装』到『离不开我们』的交接处。」
+              <cite>产品负责人，Open Design</cite>
+            </div>
+            <div class="mini-stat-row">
+              <div class="mini-stat">
+                <div class="mini-val">0</div>
+                <div class="mini-label">目前的应用内升级提示</div>
+              </div>
+              <div class="mini-stat">
+                <div class="mini-val">3</div>
+                <div class="mini-label">企业客户对 SSO / SLA 的要求</div>
+              </div>
+              <div class="mini-stat">
+                <div class="mini-val">1</div>
+                <div class="mini-label">本季度增长背后的渠道</div>
+              </div>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
+              这些都不是需求问题，而是资源问题：团队里目前没有人对激活负责。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Bar Chart -->
+    <div class="slide layout-bars">
+      <div class="slide-header">
+        <h4>选项</h4>
+        <span class="tag">资源重新配置</span>
+      </div>
+      <div class="slide-content">
+        <h2>三条缩小差距的路径，按每美元预期提升排序</h2>
+        <div class="bars-container">
+          <div class="bar-item">
+            <div class="bar-label">BYOK 设置时的应用内升级提示</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 82%"></div>
+            </div>
+            <div class="bar-pct">82</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">企业打包 — SSO、席位、SLA</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 74%"></div>
+            </div>
+            <div class="bar-pct">74</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">付费连接器市场分成</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 61%"></div>
+            </div>
+            <div class="bar-pct">61</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">面向团队的按用量托管档</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 55%"></div>
+            </div>
+            <div class="bar-pct">55</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">直接触达前 200 个工作区</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 47%"></div>
+            </div>
+            <div class="bar-pct">47</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">付费设计系统市场</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 33%"></div>
+            </div>
+            <div class="bar-pct">33</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">首页栏位的赞助插件位</div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 21%"></div>
+            </div>
+            <div class="bar-pct">21</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Quote -->
+    <div class="slide layout-quote">
+      <div class="quote-decoration"></div>
+      <div class="quote-decoration-2"></div>
+      <div class="quote-mark">&ldquo;</div>
+      <blockquote>
+        我们不需要更多漏斗顶端。我们需要两名工程师投入激活，资金来自暂停两个季度的付费获客。
+      </blockquote>
+      <p class="quote-source"><strong>增长负责人</strong>— Open Design，Q2 规划评审</p>
+    </div>
+
+    <!-- SLIDE 8: Timeline -->
+    <div class="slide layout-timeline">
+      <div class="slide-header">
+        <h4>决策诉求</h4>
+        <span class="tag">路线图</span>
+      </div>
+      <div class="slide-content">
+        <h2>今天的批准会启动什么</h2>
+        <div class="timeline-track">
+          <div class="timeline-step">
+            <div class="step-circle">1</div>
+            <div class="step-title">批准资源重新配置</div>
+            <div class="step-desc">把每季度 $180K 从付费获客转到一个专门的激活小组，下个 sprint 生效。</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-circle">2</div>
+            <div class="step-title">组建小组</div>
+            <div class="step-desc">两名工程师和一名 PM 从增长营销转入产品，向产品负责人汇报。</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-circle">3</div>
+            <div class="step-title">交付并衡量</div>
+            <div class="step-desc">上线升级提示与企业打包；按 10% 关卡每周跟踪转化。</div>
+          </div>
+          <div class="timeline-step">
+            <div class="step-circle">4</div>
+            <div class="step-title">继续 / 停止评审</div>
+            <div class="step-desc">如果到 Q4 QBR 转化率过 10%，小组继续拨款；否则把预算退回获客。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: Detail -->
+    <div class="slide layout-detail">
+      <div class="slide-header">
+        <h4>风险与负责人</h4>
+        <span class="tag">批准之前</span>
+      </div>
+      <div class="slide-content">
+        <h2>什么可能让这个计划崩掉，以及谁负责</h2>
+        <div class="detail-body">
+          <div class="detail-col">
+            <div class="detail-block">
+              <h3>贡献者集中</h3>
+              <ul>
+                <li>前 5 名贡献者贡献 40% 的已合并代码</li>
+                <li>核心维护者没有成文的接替安排</li>
+                <li>缓解措施：本季度把二级维护者路径正式化</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3>供应商定价敞口</h3>
+              <ul>
+                <li>BYOK 的节省取决于两家模型供应商当前的定价</li>
+                <li>一次定价调整就可能抹掉 18% 的基础设施成本收益</li>
+                <li>缓解措施：让至少三家供应商保持生产环境同等可用</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3>渠道依赖</h3>
+              <ul>
+                <li>本季度的 star 增长只追溯到一条外部讨论帖</li>
+                <li>高峰背后没有可复制的获客动作</li>
+                <li>缓解措施：小组同时负责一个轻量推荐循环</li>
+              </ul>
+            </div>
+          </div>
+          <div class="detail-col">
+            <div class="detail-block">
+              <h3>产品负责人 — 激活小组</h3>
+              <ul>
+                <li>负责 10% 转化关卡与每周汇报</li>
+                <li>交付升级提示与企业打包</li>
+                <li>在月度管理层同步会上汇报进展</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3>平台工程负责人 — 供应商多元化</h3>
+              <ul>
+                <li>负责三家供应商同等可用的承诺</li>
+                <li>主持季度定价与可靠性评审</li>
+                <li>上报任何单一供应商依赖风险</li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h3>CFO / 运营 — 预算与关卡跟踪</h3>
+              <ul>
+                <li>负责 $180K 重新配置及其回收标准</li>
+                <li>对照两季度试点窗口跟踪支出</li>
+                <li>为 Q4 QBR 准备继续 / 停止材料</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: Closing -->
+    <div class="slide layout-closing">
+      <div class="closing-decoration"></div>
+      <div class="closing-decoration-2"></div>
+      <div class="accent-line" style="margin: 0 auto 1.5rem;"></div>
+      <h1>批准资源重新配置</h1>
+      <p class="closing-sub">每季度 $180K，从付费获客转入两人激活小组，并在 Q4 QBR 设 10% 转化关卡。</p>
+      <a href="#" class="cta-btn">批准资源重新配置</a>
+      <p class="closing-contact">幕僚长办公室  ·  下次评审：FY26 Q4 QBR</p>
+    </div>
+
+  </div>
+
+  <!-- Navigation -->
+  <div class="slide-counter"><span id="current">1</span> / <span id="total">10</span></div>
+  <div class="keyboard-hint">使用方向键浏览</div>
+  <div class="progress-bar" id="progress"></div>
+  <div class="nav-controls">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" aria-label="上一页">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)" aria-label="下一页">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const currentEl = document.getElementById('current');
+    const totalEl = document.getElementById('total');
+    const progressEl = document.getElementById('progress');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let current = 0;
+    const total = slides.length;
+    totalEl.textContent = total;
+
+    function updateSlide() {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active', 'prev');
+        if (i === current) {
+          slide.classList.add('active');
+        } else if (i < current) {
+          slide.classList.add('prev');
+        }
+      });
+      currentEl.textContent = current + 1;
+      progressEl.style.width = ((current + 1) / total * 100) + '%';
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    function changeSlide(dir) {
+      const next = current + dir;
+      if (next >= 0 && next < total) {
+        current = next;
+        updateSlide();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        changeSlide(-1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        current = 0;
+        updateSlide();
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        current = total - 1;
+        updateSlide();
+      }
+    });
+
+    // Touch support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        changeSlide(diff > 0 ? 1 : -1);
+      }
+    }, { passive: true });
+
+    updateSlide();
+  </script>
+
+</body>
+</html>

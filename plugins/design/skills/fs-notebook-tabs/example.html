@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>像顶级论文导师那样，为计算机科学毕业设计答辩 - 学生课业</title>
+<style>
+/* === FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap');
+
+/* ===========================================
+   DESIGN TOKENS — Notebook Tabs theme
+   Cream paper card on dark ground, colorful
+   index tabs on the right edge, binder holes
+   on the left. Bodoni Moda + DM Sans.
+   All values authored at 1920×1080 stage size.
+   =========================================== */
+:root {
+    /* Colors */
+    --bg-outer: #2d2d2d;          /* dark desk behind the notebook */
+    --bg-page: #f8f6f1;           /* cream paper */
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b6358;
+    --rule: #d8d2c4;              /* hairline rules on paper */
+    --tab-1: #98d4bb;             /* Mint */
+    --tab-2: #c7b8ea;             /* Lavender */
+    --tab-3: #f4b8c5;             /* Pink */
+    --tab-4: #a8d8ea;             /* Sky */
+    --tab-5: #ffe6a7;             /* Cream */
+
+    /* Stage */
+    --stage-bg: var(--bg-outer);
+    --slide-bg: var(--bg-outer);
+
+    /* Typography */
+    --font-display: 'Bodoni Moda', 'Didot', serif;
+    --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+    --title-size: 150px;
+    --h2-size: 84px;
+    --subtitle-size: 30px;
+    --body-size: 26px;
+    --label-size: 17px;
+
+    /* Paper geometry (inside the 1920×1080 stage) */
+    --paper-top: 56px;
+    --paper-bottom: 56px;
+    --paper-left: 120px;
+    --paper-right: 150px;       /* leaves room for the tabs */
+    --paper-pad-x: 110px;
+    --paper-pad-y: 78px;
+
+    /* Motion */
+    --ease-page: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-normal: 0.7s;
+}
+
+/* === BASE === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES
+   (full viewport-base.css, inlined)
+   Slides are authored at 1920×1080 and scaled as a whole.
+   =========================================== */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+.deck-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg, #000);
+}
+.deck-stage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    transform-origin: 0 0;
+    background: var(--slide-bg, #fff);
+}
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: var(--slide-bg, #fff);
+}
+.slide.active,
+.slide.visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+img, video, canvas, svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+.deck-controls {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+@media print {
+    html, body { width: 1920px; height: auto; overflow: visible; background: #fff; }
+    .deck-viewport { position: static; overflow: visible; background: #fff; }
+    .deck-stage { position: static; width: auto; height: auto; transform: none !important; background: none; }
+    .slide {
+        position: relative; display: block !important;
+        visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;
+        width: 1920px; height: 1080px;
+        break-after: page; page-break-after: always;
+    }
+    .slide:last-child { break-after: auto; page-break-after: auto; }
+    .deck-controls { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+    /* no movement: reveals fade only, chart bars render at full height */
+    .reveal { transform: none !important; }
+    .bar { transform: none !important; }
+}
+
+/* ===========================================
+   THE NOTEBOOK — paper card, binder holes, tabs
+   =========================================== */
+.paper {
+    position: absolute;
+    top: var(--paper-top);
+    bottom: var(--paper-bottom);
+    left: var(--paper-left);
+    right: var(--paper-right);
+    background: var(--bg-page);
+    border-radius: 8px;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.25),
+        0 18px 50px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    /* faint paper grain via layered gradients */
+    background-image:
+        linear-gradient(rgba(26, 26, 26, 0.018) 1px, transparent 1px),
+        linear-gradient(180deg, var(--bg-page), var(--bg-page));
+    background-size: 100% 44px, 100% 100%;
+    z-index: 1; /* paper sits above the tucked tab roots */
+}
+
+/* Binder holes — punched circles on the left margin */
+.holes {
+    position: absolute;
+    left: 38px;
+    top: 90px;
+    bottom: 90px;
+    width: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 3;
+}
+.holes span {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--bg-outer);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.7),
+        0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+/* Margin rule echoing a real notebook's red line */
+.margin-rule {
+    position: absolute;
+    left: 92px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--tab-3);
+    opacity: 0.55;
+    z-index: 2;
+}
+
+/* Index tabs — vertical labels protruding past the right paper edge.
+   Positioned against the stage so 12px of each tab root tucks UNDER
+   the paper (.paper has z-index: 1, tabs have z-index: 0). */
+.tabs {
+    position: absolute;
+    right: calc(var(--paper-right) - 44px); /* 44px sticks out past the paper edge */
+    top: calc(var(--paper-top) + 60px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 0; /* tucked behind the paper edge */
+}
+.tab {
+    writing-mode: vertical-rl;
+    font-family: var(--font-body);
+    font-size: var(--label-size);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 26, 26, 0.78);
+    width: 56px;
+    height: 158px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    opacity: 0.82;
+    transform: translateX(-6px);
+    transition: transform 0.45s var(--ease-page), opacity 0.45s var(--ease-page);
+}
+.tab-1 { background: var(--tab-1); }
+.tab-2 { background: var(--tab-2); }
+.tab-3 { background: var(--tab-3); }
+.tab-4 { background: var(--tab-4); }
+.tab-5 { background: var(--tab-5); }
+.tab.on { opacity: 1; transform: translateX(0); box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.35); }
+
+/* Content area inside the paper */
+.page {
+    position: absolute;
+    inset: 0;
+    padding: var(--paper-pad-y) var(--paper-pad-x) var(--paper-pad-y) 150px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+/* === PAGE CHROME — running head + baseline === */
+.runhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-body);
+    font-size: var(--label-size);
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 18px;
+    margin-bottom: 40px;
+}
+.runhead .no { font-weight: 700; color: var(--text-primary); }
+.baseline {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    font-size: 15px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+}
+
+/* === TYPOGRAPHY === */
+.display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--title-size);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+.h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--h2-size);
+    line-height: 1.04;
+    color: var(--text-primary);
+}
+.kicker {
+    font-family: var(--font-body);
+    font-size: var(--label-size);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+}
+.kicker .chip {
+    display: inline-block;
+    width: 30px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 12px;
+    vertical-align: baseline;
+}
+.lede {
+    font-family: var(--font-body);
+    font-size: var(--subtitle-size);
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 980px;
+}
+
+/* === ENTRANCE ANIMATION === */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity var(--duration-normal) var(--ease-page),
+                transform var(--duration-normal) var(--ease-page);
+}
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(1), .reveal.d1 { transition-delay: 0.08s; }
+.reveal:nth-child(2), .reveal.d2 { transition-delay: 0.18s; }
+.reveal:nth-child(3), .reveal.d3 { transition-delay: 0.28s; }
+.reveal:nth-child(4), .reveal.d4 { transition-delay: 0.38s; }
+.reveal:nth-child(5), .reveal.d5 { transition-delay: 0.48s; }
+.reveal:nth-child(6), .reveal.d6 { transition-delay: 0.58s; }
+
+/* === COVER === */
+.cover-meta {
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 20px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 44px;
+}
+.cover-swatches { display: flex; gap: 10px; }
+.cover-swatches i {
+    width: 44px; height: 18px; border-radius: 4px; display: inline-block;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+.cover-edition {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 34px;
+    color: var(--text-secondary);
+    margin-top: 26px;
+}
+
+/* === CONTENTS (index page) === */
+.toc { display: flex; flex-direction: column; margin-top: 8px; }
+.toc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 26px;
+    padding: 26px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-family: var(--font-body);
+}
+.toc-row:last-child { border-bottom: none; }
+.toc-chip { width: 38px; height: 16px; border-radius: 4px; flex: none; align-self: center; }
+.toc-no {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    width: 64px;
+    flex: none;
+}
+.toc-title { font-family: var(--font-display); font-size: 40px; font-weight: 400; color: var(--text-primary); }
+.toc-dots { flex: 1; border-bottom: 2px dotted var(--rule); transform: translateY(-9px); }
+.toc-pg { font-size: 22px; letter-spacing: 0.18em; color: var(--text-secondary); }
+
+/* === SECTION DIVIDER === */
+.divider-no {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 430px;
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text-primary);
+}
+.divider-wrap { display: flex; align-items: center; gap: 90px; flex: 1; }
+.divider-side .h2 { margin-bottom: 24px; }
+.divider-bar { width: 120px; height: 16px; border-radius: 4px; margin-bottom: 34px; }
+
+/* === BULLETS === */
+.points { display: flex; flex-direction: column; gap: 30px; margin-top: 10px; }
+.point { display: flex; gap: 30px; align-items: flex-start; max-width: 1180px; }
+.point .pin {
+    flex: none;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+}
+.point .pin svg { width: 26px; height: 26px; }
+.point h3 { font-family: var(--font-display); font-size: 36px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+.point p { font-family: var(--font-body); font-size: var(--body-size); line-height: 1.5; color: var(--text-secondary); }
+
+/* === QUOTE === */
+.quote-mark {
+    font-family: var(--font-display);
+    font-size: 220px;
+    line-height: 0.6;
+    color: var(--tab-2);
+    margin-bottom: 12px;
+}
+.quote-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 66px;
+    line-height: 1.25;
+    color: var(--text-primary);
+    max-width: 1280px;
+}
+.quote-attr {
+    font-family: var(--font-body);
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 44px;
+}
+
+/* === BIG STAT === */
+.stat-wrap { display: flex; align-items: center; gap: 90px; flex: 1; }
+.stat-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 300px;
+    line-height: 0.9;
+    color: var(--text-primary);
+}
+.stat-num .unit {
+    display: block;
+    font-size: 120px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+    margin-top: 18px;
+    color: var(--text-secondary);
+}
+.stat-side { max-width: 560px; border-left: 4px solid var(--tab-1); padding-left: 44px; }
+.stat-side h3 { font-family: var(--font-display); font-size: 40px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary); }
+.stat-side p { font-family: var(--font-body); font-size: var(--body-size); line-height: 1.55; color: var(--text-secondary); }
+
+/* === BAR CHART (pure CSS) === */
+.chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 70px;
+    height: 480px;
+    margin-top: 30px;
+    padding: 0 30px;
+    border-bottom: 2px solid var(--text-primary);
+}
+.bar-group { display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; flex: 1; }
+.bar {
+    width: 130px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.1);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.9s var(--ease-page);
+}
+.slide.visible .bar { transform: scaleY(1); }
+.slide.visible .bar.b2 { transition-delay: 0.15s; }
+.slide.visible .bar.b3 { transition-delay: 0.3s; }
+.slide.visible .bar.b4 { transition-delay: 0.45s; }
+.bar-val {
+    position: absolute;
+    top: -44px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--text-primary);
+}
+.bar-label {
+    font-family: var(--font-body);
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 18px;
+}
+
+/* === COMPARISON === */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 16px; flex: 1; align-content: start; }
+.col {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 44px 48px;
+    background: rgba(255, 255, 255, 0.45);
+}
+.col.hot { border: 2px solid var(--text-primary); box-shadow: 8px 8px 0 var(--tab-4); }
+.col h3 {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 26px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+}
+.col ul { list-style: none; }
+.col li {
+    font-family: var(--font-body);
+    font-size: 25px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    padding: 10px 0 10px 34px;
+    position: relative;
+}
+.col li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 22px;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    background: var(--rule);
+}
+.col.hot li::before { background: var(--tab-4); }
+.col.hot li { color: var(--text-primary); }
+
+/* === PRINCIPLE GRID 2×2 === */
+.grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 12px; flex: 1; align-content: start; }
+.gcard {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 36px 40px;
+    background: rgba(255, 255, 255, 0.45);
+    position: relative;
+    overflow: hidden;
+}
+.gcard::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 12px;
+    background: var(--edge, var(--tab-1));
+}
+.gcard h3 { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+.gcard p { font-family: var(--font-body); font-size: 23px; line-height: 1.5; color: var(--text-secondary); }
+.gcard .gno {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+/* === CLOSING === */
+.close-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.close-wrap .display em { font-style: italic; font-weight: 400; }
+.close-links { display: flex; gap: 56px; margin-top: 60px; }
+.lk {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 22px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    border-bottom: 3px solid var(--tab-3);
+    padding-bottom: 8px;
+}
+.lk svg { width: 26px; height: 26px; }
+
+/* === DECK CONTROLS (outside the scaled stage) === */
+.deck-controls {
+    font-family: var(--font-body);
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    color: rgba(248, 246, 241, 0.55);
+    background: rgba(26, 26, 26, 0.55);
+    border: 1px solid rgba(248, 246, 241, 0.18);
+    padding: 8px 18px;
+    border-radius: 999px;
+    user-select: none;
+}
+.deck-controls .cur { color: var(--tab-1); font-weight: 700; }
+</style>
+<style id="od-no-pager">.deck-controls,#counter,.deck-counter{display:none!important}</style>
+</head>
+<body>
+<div class="deck-viewport">
+    <main class="deck-stage" id="deckStage" aria-label="幻灯片">
+
+        <!-- === SLIDE 1: COVER (Intro) === -->
+        <section class="slide active visible">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 01 号</span><span>计算机科学毕业设计答辩 · 计算机科学系</span></div>
+                    <div class="close-wrap">
+                        <p class="kicker reveal d1"><span class="chip" style="background: var(--tab-1);"></span>一款私密的端侧预测键盘</p>
+                        <h1 class="display reveal d2">端侧<br>预测 <em style="font-weight:400;">键盘</em></h1>
+                        <p class="cover-edition reveal d3">TypeAhead — 毕业论文答辩，计算机科学系</p>
+                        <div class="cover-meta reveal d4">
+                            <span>Jordan Ames</span><span>·</span><span>指导教师：Elena Cho 教授</span><span>·</span>
+                            <span class="cover-swatches"><i style="background:var(--tab-1)"></i><i style="background:var(--tab-2)"></i><i style="background:var(--tab-3)"></i><i style="background:var(--tab-4)"></i><i style="background:var(--tab-5)"></i></span>
+                        </div>
+                    </div>
+                    <div class="baseline"><span>封面</span><span>答辩日期：2026 年 5 月 14 日</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1 on">引言</span><span class="tab tab-2">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 2: CONTENTS (Intro) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 02 号</span><span>目录</span></div>
+                    <h2 class="h2 reveal d1" style="margin-bottom: 30px;">答辩路线图</h2>
+                    <div class="toc">
+                        <div class="toc-row reveal d2"><span class="toc-chip" style="background:var(--tab-2)"></span><span class="toc-no">i.</span><span class="toc-title">问题——云键盘泄露击键</span><span class="toc-dots"></span><span class="toc-pg">第 03 页</span></div>
+                        <div class="toc-row reveal d3"><span class="toc-chip" style="background:var(--tab-3)"></span><span class="toc-no">ii.</span><span class="toc-title">证据——准确率、延迟、隐私</span><span class="toc-dots"></span><span class="toc-pg">第 06 页</span></div>
+                        <div class="toc-row reveal d4"><span class="toc-chip" style="background:var(--tab-4)"></span><span class="toc-no">iii.</span><span class="toc-title">贡献——四件新东西</span><span class="toc-dots"></span><span class="toc-pg">第 08 页</span></div>
+                        <div class="toc-row reveal d5"><span class="toc-chip" style="background:var(--tab-5)"></span><span class="toc-no">iv.</span><span class="toc-title">局限与委员会问答</span><span class="toc-dots"></span><span class="toc-pg">第 10 页</span></div>
+                    </div>
+                    <div class="baseline"><span>目录</span><span>02 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1 on">引言</span><span class="tab tab-2">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 3: SECTION DIVIDER (Craft) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 03 号</span><span>第 i 节</span></div>
+                    <div class="divider-wrap">
+                        <div class="divider-no reveal d1">01</div>
+                        <div class="divider-side">
+                            <div class="divider-bar reveal d2" style="background: var(--tab-2);"></div>
+                            <h2 class="h2 reveal d3">问题——<br>击键离开了手机</h2>
+                            <p class="lede reveal d4" style="margin-top: 22px; max-width: 660px;">每一款主流移动键盘（Gboard、SwiftKey）都会把原始击键发送到云服务器做下一词预测——这已是集体诉讼盯上的隐私隐患。</p>
+                        </div>
+                    </div>
+                    <div class="baseline"><span>问题</span><span>03 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2 on">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 4: BULLETS (Craft) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 04 号</span><span>第 i 节 · 问题</span></div>
+                    <p class="kicker reveal d1"><span class="chip" style="background: var(--tab-2);"></span>三条设计原则</p>
+                    <h2 class="h2 reveal d2" style="font-size: 64px; margin-bottom: 34px;">TypeAhead：端侧、<br>联邦、自适应</h2>
+                    <div class="points">
+                        <div class="point reveal d3">
+                            <span class="pin" style="background: var(--tab-1);"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/></svg></span>
+                            <div><h3>端侧推理</h3><p>一个 210 万参数的 transformer 完全通过 Core ML / NNAPI 在端侧运行。没有任何击键离开手机——经 40 小时输入的抓包验证。</p></div>
+                        </div>
+                        <div class="point reveal d4">
+                            <span class="pin" style="background: var(--tab-2);"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5"><path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
+                            <div><h3>联邦微调</h3><p>个性化在本地夜间训练，只同步加密的梯度增量——与 Gboard 联邦学习同一类协议，在毕业设计的规模上重建。</p></div>
+                        </div>
+                        <div class="point reveal d5">
+                            <span class="pin" style="background: var(--tab-3);"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+                            <div><h3>自适应词表</h3><p>按用户构建的 trie 会依据输入历史重新排序候选，因此姓名、俚语与术语大约在 200 次击键内浮现，而无需重训基础模型。</p></div>
+                        </div>
+                    </div>
+                    <div class="baseline"><span>问题</span><span>04 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2 on">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 5: QUOTE (Craft) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 05 号</span><span>第 i 节 · 问题</span></div>
+                    <div class="close-wrap">
+                        <div class="quote-mark reveal d1">&ldquo;</div>
+                        <p class="quote-text reveal d2">问题不在于端侧模型能否预测文本——而在于它能否在不牺牲隐私的前提下，做到和云端一样好。</p>
+                        <p class="quote-attr reveal d3">— Elena Cho 教授，论文指导教师</p>
+                    </div>
+                    <div class="baseline"><span>引言</span><span>05 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2 on">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 6: BIG STAT (Numbers) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 06 号</span><span>第 ii 节 · 证据</span></div>
+                    <div class="stat-wrap">
+                        <div class="stat-num reveal d1">94.2<span class="unit">% 前三命中率</span></div>
+                        <div class="stat-side reveal d2">
+                            <h3>端侧准确率</h3>
+                            <p>在 12 位志愿者输入者、5 万次击键的留出集上评估，TypeAhead 与 Gboard 的云端模型（95.1%）相差不到 0.9 个百分点——而模型小了 40 倍。</p>
+                        </div>
+                    </div>
+                    <div class="baseline"><span>证据</span><span>06 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2">问题</span><span class="tab tab-3 on">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 7: BAR CHART (Numbers) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 07 号</span><span>第 ii 节 · 证据</span></div>
+                    <p class="kicker reveal d1"><span class="chip" style="background: var(--tab-3);"></span>延迟基准 — Pixel 7，冷缓存</p>
+                    <h2 class="h2 reveal d2" style="font-size: 58px;">18ms 打败 340ms 的云端往返</h2>
+                    <div class="chart">
+                        <div class="bar-group"><div class="bar b1" style="height: 8%; background: var(--tab-1);"><span class="bar-val">18ms</span></div><div class="bar-label">TypeAhead（我们的）</div></div>
+                        <div class="bar-group"><div class="bar b2" style="height: 16%; background: var(--tab-2);"><span class="bar-val">34ms</span></div><div class="bar-label">SwiftKey（端侧）</div></div>
+                        <div class="bar-group"><div class="bar b3" style="height: 45%; background: var(--tab-3);"><span class="bar-val">120ms</span></div><div class="bar-label">Gboard（云端）</div></div>
+                        <div class="bar-group"><div class="bar b4" style="height: 90%; background: var(--tab-4);"><span class="bar-val">340ms</span></div><div class="bar-label">GPT-4o API（云端）</div></div>
+                    </div>
+                    <div class="baseline"><span>证据</span><span>07 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2">问题</span><span class="tab tab-3 on">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 8: COMPARISON (Plan) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 08 号</span><span>第 iii 节 · 贡献</span></div>
+                    <h2 class="h2 reveal d1" style="font-size: 58px; margin-bottom: 26px;">现有键盘 — 对比 TypeAhead</h2>
+                    <div class="compare">
+                        <div class="col reveal d2">
+                            <h3>云键盘（Gboard、SwiftKey）</h3>
+                            <ul>
+                                <li>击键离开设备</li>
+                                <li>没有离线个性化</li>
+                                <li>网络传输的中位延迟 120–340ms</li>
+                                <li>对独立审计不透明</li>
+                            </ul>
+                        </div>
+                        <div class="col hot reveal d3">
+                            <h3>TypeAhead（本论文）</h3>
+                            <ul>
+                                <li>100% 端侧推理，无网络调用</li>
+                                <li>联邦个性化，仅加密增量</li>
+                                <li>中位延迟 18ms，无需射频</li>
+                                <li>开放评测工具链 + 完整权重已发布</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="baseline"><span>贡献</span><span>08 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4 on">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 9: PRINCIPLE GRID (Plan) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 09 号</span><span>第 iii 节 · 贡献</span></div>
+                    <h2 class="h2 reveal d1" style="font-size: 58px; margin-bottom: 26px;">本论文的四项贡献</h2>
+                    <div class="grid4">
+                        <div class="gcard reveal d2" style="--edge: var(--tab-1);"><div class="gno">贡献 i</div><h3>210 万参数 transformer</h3><p>一个量化到 8 位的 transformer，体积 6.8MB，在 2021 年的中端手机上推理不到 20ms。</p></div>
+                        <div class="gcard reveal d3" style="--edge: var(--tab-2);"><div class="gno">贡献 ii</div><h3>联邦更新协议</h3><p>一种梯度增量同步协议，在 Wi-Fi 与充电状态下夜间完成个性化，已验证传输过程中不泄露任何原始文本。</p></div>
+                        <div class="gcard reveal d4" style="--edge: var(--tab-3);"><div class="gno">贡献 iii</div><h3>隐私-效用基准</h3><p>一套可复现的 12 人、5 万击键评测工具，在准确率、延迟与耗电上比较端侧与云键盘。</p></div>
+                        <div class="gcard reveal d5" style="--edge: var(--tab-4);"><div class="gno">贡献 iv</div><h3>开放权重与代码</h3><p>完整模型权重、训练脚本与评测工具链已发布，供本系后续毕业设计在此基础上继续。</p></div>
+                    </div>
+                    <div class="baseline"><span>贡献</span><span>09 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4 on">发现</span><span class="tab tab-5">答辩</span>
+            </div>
+        </section>
+
+        <!-- === SLIDE 10: CLOSING (End) === -->
+        <section class="slide">
+            <div class="paper">
+                <div class="holes"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="margin-rule"></div>
+                <div class="page">
+                    <div class="runhead"><span class="no">第 10 号</span><span>局限与答辩</span></div>
+                    <div class="close-wrap">
+                        <h2 class="display reveal d1" style="font-size: 132px;">能扩展——<br><em>但有边界。</em></h2>
+                        <div class="close-links reveal d2">
+                            <span class="lk"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>局限：只测了 8 种语言，而非 40+</span>
+                            <span class="lk"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>局限：夜间同步带来 +3% 的耗电</span>
+                        </div>
+                        <p class="lede reveal d3" style="margin-top: 56px; font-size: 22px;">委员会提出的问题：若再给六个月，TypeAhead 的联邦协议可推广到任何键盘词表——制约因素是各语言的训练数据，而非架构。</p>
+                    </div>
+                    <div class="baseline"><span>答辩</span><span>10 / 10</span></div>
+                </div>
+            </div>
+            <div class="tabs" aria-hidden="true">
+                <span class="tab tab-1">引言</span><span class="tab tab-2">问题</span><span class="tab tab-3">证据</span><span class="tab tab-4">发现</span><span class="tab tab-5 on">答辩</span>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- Page counter lives outside the scaled stage -->
+<div class="deck-controls" aria-hidden="true"><span class="cur" id="pageCur">1</span>&nbsp;/&nbsp;<span id="pageTotal">10</span></div>
+
+<script>
+/* ===========================================
+   SLIDE PRESENTATION CONTROLLER
+   Fixed 1920×1080 stage, scaled uniformly to the viewport.
+   Navigation: ← → Space PageUp/PageDown Home/End, wheel,
+   touch swipe. Current slide is mirrored into the URL hash.
+   =========================================== */
+(function () {
+    'use strict';
+
+    var STAGE_W = 1920;
+    var STAGE_H = 1080;
+
+    var stage = document.getElementById('deckStage');
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var pageCur = document.getElementById('pageCur');
+    var pageTotal = document.getElementById('pageTotal');
+    var current = 0;
+    var wheelLockUntil = 0;
+
+    pageTotal.textContent = String(slides.length);
+
+    /* --- Stage scaling: one transform, letterbox as needed --- */
+    function fitStage() {
+        var factor = Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H);
+        var x = (window.innerWidth - STAGE_W * factor) / 2;
+        var y = (window.innerHeight - STAGE_H * factor) / 2;
+        stage.style.transform = 'translate(' + x + 'px, ' + y + 'px) scale(' + factor + ')';
+    }
+
+    /* --- Hash routing: #/3 means slide index 3 (0-based) --- */
+    function indexFromHash() {
+        var m = /^#\/(\d+)$/.exec(window.location.hash);
+        if (!m) return null;
+        var idx = parseInt(m[1], 10);
+        return isNaN(idx) ? null : idx;
+    }
+
+    function show(index, skipHash) {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+        slides.forEach(function (slide, i) {
+            slide.classList.toggle('active', i === current);
+            slide.classList.toggle('visible', i === current);
+        });
+        pageCur.textContent = String(current + 1);
+        if (!skipHash) {
+            var target = '#/' + current;
+            if (window.location.hash !== target) {
+                window.history.replaceState(null, '', target);
+            }
+        }
+    }
+
+    function next() { show(current + 1); }
+    function prev() { show(current - 1); }
+
+    /* --- Keyboard --- */
+    document.addEventListener('keydown', function (e) {
+        if (e.target && e.target.getAttribute && e.target.getAttribute('contenteditable')) return;
+        switch (e.key) {
+            case 'ArrowRight':
+            case 'ArrowDown':
+            case ' ':
+            case 'PageDown':
+                e.preventDefault(); next(); break;
+            case 'ArrowLeft':
+            case 'ArrowUp':
+            case 'PageUp':
+                e.preventDefault(); prev(); break;
+            case 'Home':
+                e.preventDefault(); show(0); break;
+            case 'End':
+                e.preventDefault(); show(slides.length - 1); break;
+        }
+    });
+
+    /* --- Mouse wheel (debounced) --- */
+    document.addEventListener('wheel', function (e) {
+        var now = Date.now();
+        if (now < wheelLockUntil) return;
+        if (Math.abs(e.deltaY) < 12) return;
+        wheelLockUntil = now + 650;
+        if (e.deltaY > 0) { next(); } else { prev(); }
+    }, { passive: true });
+
+    /* --- Touch swipe --- */
+    var touchX = null;
+    document.addEventListener('touchstart', function (e) {
+        if (e.touches.length === 1) touchX = e.touches[0].clientX;
+    }, { passive: true });
+    document.addEventListener('touchend', function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) < 40) return;
+        if (dx < 0) { next(); } else { prev(); }
+    }, { passive: true });
+
+    /* --- Hash navigation (back/forward, deep links) --- */
+    window.addEventListener('hashchange', function () {
+        var idx = indexFromHash();
+        if (idx !== null && idx !== current) show(idx, true);
+    });
+
+    window.addEventListener('resize', fitStage);
+
+    fitStage();
+    var initial = indexFromHash();
+    show(initial !== null ? initial : 0, initial === null);
+})();
+</script>
+
+</body>
+</html>

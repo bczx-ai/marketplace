@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>欢迎来到 Northwind — Maya 的入职计划</title>
+<style>
+  :root {
+    --bg: #fbf9f4;
+    --paper: #ffffff;
+    --ink: #14110e;
+    --muted: #6b6760;
+    --line: #ece6d8;
+    --accent: #c2521a;
+    --accent-soft: #fbe6d6;
+    --positive: #2c8a4f;
+    --display: 'Georgia', 'Times New Roman', serif;
+    --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 14.5px; line-height: 1.55; }
+  .wrap { max-width: 1080px; margin: 28px auto; padding: 0 32px 64px; }
+
+  /* Cover */
+  .cover { padding: 36px 40px; background: var(--ink); color: var(--paper); border-radius: 16px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+  .cover .eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-soft); }
+  .cover h1 { font-family: var(--display); font-size: 38px; line-height: 1.05; letter-spacing: -0.01em; margin: 8px 0 12px; }
+  .cover .meta { display: flex; gap: 28px; font-size: 13px; color: rgba(255,255,255,0.74); }
+  .cover .meta strong { color: var(--paper); display: block; font-weight: 600; font-size: 14px; }
+  .cover-art { width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #ec8b5b); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 56px; color: var(--paper); }
+
+  section { margin-top: 44px; }
+  h2 { font-family: var(--display); font-size: 22px; margin: 0 0 6px; letter-spacing: -0.005em; }
+  .section-sub { color: var(--muted); margin: 0 0 18px; font-size: 13.5px; }
+
+  /* Day 1 */
+  .day-one { padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+  .schedule { display: grid; grid-template-columns: 110px 1fr; gap: 0; }
+  .schedule-row { display: contents; }
+  .schedule-row .time { padding: 12px 0; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .schedule-row .item { padding: 12px 0; border-top: 1px solid var(--line); }
+  .schedule-row:first-child .time, .schedule-row:first-child .item { border-top: none; }
+  .schedule-row .item strong { display: block; font-weight: 600; }
+  .schedule-row .item span { color: var(--muted); font-size: 13px; }
+
+  /* Week timeline */
+  .week { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .day { padding: 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; gap: 12px; min-height: 200px; }
+  .day-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .day-name { font-family: var(--display); font-size: 16px; font-weight: 700; }
+  .day-date { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .activity { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; }
+  .activity .dot { flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 6px; }
+  .activity small { display: block; color: var(--muted); margin-top: 2px; font-size: 11.5px; }
+
+  /* 30/60/90 */
+  .milestones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .milestone { padding: 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+  .milestone .badge { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); letter-spacing: 0.06em; margin-bottom: 10px; }
+  .milestone h3 { font-family: var(--display); font-size: 18px; margin: 0 0 12px; }
+  .milestone ul { padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+  .milestone li::marker { color: var(--accent); }
+
+  /* Resources & checklist */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .panel { padding: 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+  .panel h3 { font-family: var(--display); font-size: 17px; margin: 0 0 12px; }
+  .resource { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); align-items: center; font-size: 13.5px; }
+  .resource:first-of-type { border-top: none; padding-top: 0; }
+  .resource .icon { width: 28px; height: 28px; background: var(--accent-soft); border-radius: 7px; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+  .resource .meta { color: var(--muted); font-family: var(--mono); font-size: 11px; }
+  .check { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px dashed var(--line); }
+  .check:first-of-type { border-top: none; padding-top: 0; }
+  .check .box { flex: 0 0 18px; width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: transparent; }
+  .check.done .box { background: var(--positive); border-color: var(--positive); color: var(--paper); }
+  .check strong { display: block; font-weight: 600; }
+  .check span { color: var(--muted); font-size: 12.5px; }
+
+  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .cover { grid-template-columns: 1fr; text-align: center; }
+    .cover-art { margin: 0 auto; }
+    .week { grid-template-columns: 1fr 1fr; }
+    .milestones { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="cover">
+    <div>
+      <div class="eyebrow">入职计划 · 30/60/90</div>
+      <h1>欢迎你，Maya。让这 90 天过得有章法。</h1>
+      <div class="meta">
+        <div><strong>岗位</strong>产品设计师 · 增长小组</div>
+        <div><strong>入职日期</strong>2025 年 11 月 4 日（周一）</div>
+        <div><strong>主管</strong>Alvaro Méndez</div>
+        <div><strong>入职伙伴</strong>Sasha Lin</div>
+      </div>
+    </div>
+    <div class="cover-art">M</div>
+  </div>
+
+  <section>
+    <h2>第 1 天 · 周一</h2>
+    <p class="section-sub">扎实的一天：和团队喝杯咖啡，拿到能用的笔记本电脑，下午 5 点前在文档站提交第一个 commit。</p>
+    <div class="day-one">
+      <div class="schedule">
+        <div class="schedule-row"><div class="time">09:00</div><div class="item"><strong>与 Alvaro 的启动会</strong><span>欢迎、首周导览、期望对齐。3 号办公室（或 Zoom）。</span></div></div>
+        <div class="schedule-row"><div class="time">10:00</div><div class="item"><strong>与 Devon 完成 IT 配置</strong><span>笔记本电脑、门禁卡、SSO、Slack、Figma、Linear、GitHub。带两张带照片的证件。</span></div></div>
+        <div class="schedule-row"><div class="time">11:30</div><div class="item"><strong>与 Sasha（伙伴）喝咖啡</strong><span>不成文的规矩、遇到问题该找谁、哪家午饭好吃。</span></div></div>
+        <div class="schedule-row"><div class="time">12:30</div><div class="item"><strong>团队午餐 · Northwind 食堂</strong><span>增长小组全员参加，没有议程。</span></div></div>
+        <div class="schedule-row"><div class="time">14:00</div><div class="item"><strong>阅读与探索</strong><span>手册、上季度的设计评审录像、Figma 组件库。</span></div></div>
+        <div class="schedule-row"><div class="time">16:00</div><div class="item"><strong>提交「我存在」PR</strong><span>把你自己加到文档站的团队页面，这就算你的第一个 commit。</span></div></div>
+        <div class="schedule-row"><div class="time">17:00</div><div class="item"><strong>与 Alvaro 的日终同步</strong><span>15 分钟。哪些地方让人困惑，哪些没有。有用的话明天继续。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>第一周时间线</h2>
+    <p class="section-sub">每天两项活动，其余都是加分项。</p>
+    <div class="week">
+      <div class="day">
+        <div class="day-head"><div class="day-name">周一</div><div class="day-date">11 月 4 日</div></div>
+        <div class="activity"><span class="dot"></span><div><strong>启动会 + 配置</strong><small>Alvaro · 09:00</small></div></div>
+        <div class="activity"><span class="dot"></span><div><strong>提交团队页 PR</strong><small>Sasha 可以帮忙评审</small></div></div>
+      </div>
+      <div class="day">
+        <div class="day-head"><div class="day-name">周二</div><div class="day-date">11 月 5 日</div></div>
+        <div class="activity"><span class="dot"></span><div><strong>设计系统导览</strong><small>Yuko · 10:00</small></div></div>
+        <div class="activity"><span class="dot"></span><div><strong>旁听用户研究访谈</strong><small>11:00，与 Sam</small></div></div>
+      </div>
+      <div class="day">
+        <div class="day-head"><div class="day-name">周三</div><div class="day-date">11 月 6 日</div></div>
+        <div class="activity"><span class="dot"></span><div><strong>小组周会</strong><small>09:30</small></div></div>
+        <div class="activity"><span class="dot"></span><div><strong>挑一个入门任务</strong><small>从「good first issues」列表里挑</small></div></div>
+      </div>
+      <div class="day">
+        <div class="day-head"><div class="day-name">周四</div><div class="day-date">11 月 7 日</div></div>
+        <div class="activity"><span class="dot"></span><div><strong>参加设计评审</strong><small>14:00。只听就好。</small></div></div>
+        <div class="activity"><span class="dot"></span><div><strong>与上级的上级 1:1</strong><small>Avi · 16:00</small></div></div>
+      </div>
+      <div class="day">
+        <div class="day-head"><div class="day-name">周五</div><div class="day-date">11 月 8 日</div></div>
+        <div class="activity"><span class="dot"></span><div><strong>周末复盘</strong><small>给 Alvaro 写 15 分钟的总结</small></div></div>
+        <div class="activity"><span class="dot"></span><div><strong>可选：全员大会演示</strong><small>17:00 · 会后小酌</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>30 · 60 · 90 天里程碑</h2>
+    <p class="section-sub">每个节点三个成果，我们会分别在与 Alvaro 对应的 1:1 中回顾。</p>
+    <div class="milestones">
+      <div class="milestone">
+        <span class="badge">第 30 天</span>
+        <h3>站稳脚跟</h3>
+        <ul>
+          <li>把一个小的端到端设计改动上线到生产环境。</li>
+          <li>梳理清楚每个例会以及它存在的理由。</li>
+          <li>与每位跨职能伙伴见面（工程、产品、研究、市场）。</li>
+        </ul>
+      </div>
+      <div class="milestone">
+        <span class="badge">第 60 天</span>
+        <h3>独立负责一个功能</h3>
+        <ul>
+          <li>主导新版入职流程重设计——自己负责规格说明。</li>
+          <li>第一次作为主讲人主持设计评审。</li>
+          <li>起草一项流程改进，并发布给团队。</li>
+        </ul>
+      </div>
+      <div class="milestone">
+        <span class="badge">第 90 天</span>
+        <h3>带团队往前走</h3>
+        <ul>
+          <li>把一个你从研究一路带到上线的功能交付出去。</li>
+          <li>指导过别人——哪怕是非正式的。</li>
+          <li>在全员大会上抛出过一个鲜明观点，并且安然活了下来。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>值得收藏的东西</h2>
+    <p class="section-sub">打开这些链接，存进浏览器，然后忘掉这个页面。</p>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>资源</h3>
+        <div class="resource"><div class="icon">📘</div><div><strong>Northwind 手册</strong></div><div class="meta">handbook.nw</div></div>
+        <div class="resource"><div class="icon">💬</div><div><strong>#growth-squad</strong></div><div class="meta">Slack</div></div>
+        <div class="resource"><div class="icon">🎨</div><div><strong>设计库 v3.4</strong></div><div class="meta">Figma</div></div>
+        <div class="resource"><div class="icon">📊</div><div><strong>增长看板</strong></div><div class="meta">grafana.nw</div></div>
+        <div class="resource"><div class="icon">💸</div><div><strong>薪酬与福利</strong></div><div class="meta">Rippling</div></div>
+        <div class="resource"><div class="icon">📅</div><div><strong>入职日历</strong></div><div class="meta">cal.nw/onboard</div></div>
+      </div>
+      <div class="panel">
+        <h3>当以下都成立时，你就算就位了…</h3>
+        <div class="check done"><div class="box">✓</div><div><strong>笔记本电脑、SSO 与门禁卡全流程可用。</strong><span>包括 Slack、Figma、Linear、GitHub、1Password。</span></div></div>
+        <div class="check done"><div class="box">✓</div><div><strong>你已经见过小组里的每一个人。</strong><span>咖啡、散步或 15 分钟 Zoom——你定。</span></div></div>
+        <div class="check"><div class="box"></div><div><strong>你已经提交了第一个 PR。</strong><span>再小也算。Sasha 会帮你。</span></div></div>
+        <div class="check"><div class="box"></div><div><strong>你能在日历上找到任何会议。</strong><span>也知道哪些可以推掉。</span></div></div>
+        <div class="check"><div class="box"></div><div><strong>你能自在地问蠢问题。</strong><span>这一条最重要。我们是认真的。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Northwind 人事运营 · 入职计划模板 v3.1</span>
+    <span>2025 年 10 月更新</span>
+  </footer>
+</div>
+</body>
+</html>

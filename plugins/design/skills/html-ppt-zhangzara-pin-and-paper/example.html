@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>像明星生物学专业学生那样，把野外研究毕业设计做成答辩演示文稿 - 学生课业</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+<script src="assets/deck-stage.js"></script>
+
+<!-- reusable safety pin svg, used via <use href="#pin"> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- closed safety pin: coil on right, shaft sweeping left, clasp cap on the left holding the point -->
+    <symbol id="pin" viewBox="0 0 360 110">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- coiled spring (one continuous loop) -->
+        <path d="M312 38 C 296 32, 290 50, 304 58 C 320 66, 340 60, 342 44 C 344 28, 322 18, 300 24"/>
+        <!-- top shaft running from coil to clasp -->
+        <path d="M300 24 C 240 14, 140 14, 70 30"/>
+        <!-- bottom shaft (the part holding the point) curving back under -->
+        <path d="M312 56 C 250 78, 150 82, 80 70"/>
+        <!-- clasp cap (oval) covering where the two shafts meet on the left -->
+        <ellipse cx="58" cy="50" rx="24" ry="14"/>
+      </g>
+    </symbol>
+
+    <!-- open safety pin: clasp lifted, sharp point exposed pointing left -->
+    <symbol id="pin-open" viewBox="0 0 360 130">
+      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- coiled spring -->
+        <path d="M312 48 C 296 42, 290 60, 304 68 C 320 76, 340 70, 342 54 C 344 38, 322 28, 300 34"/>
+        <!-- top shaft -->
+        <path d="M300 34 C 240 24, 140 24, 70 40"/>
+        <!-- bottom shaft (the pointed one), now extending past where the clasp would be, into a sharp point -->
+        <path d="M312 66 C 250 90, 150 96, 80 86 L 24 78 L 38 70 M24 78 L 38 88"/>
+        <!-- clasp, lifted above where the point used to sit -->
+        <ellipse cx="82" cy="32" rx="22" ry="12" transform="rotate(-18 82 32)"/>
+      </g>
+    </symbol>
+
+    <!-- arrow for process flow -->
+    <symbol id="arr" viewBox="0 0 32 32">
+      <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 16 H26 M19 9 L26 16 L19 23"/>
+      </g>
+    </symbol>
+
+    <!-- small inline mark for the top-chrome lockup -->
+    <symbol id="mark" viewBox="0 0 32 16">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="26" cy="8" r="5"/>
+        <path d="M21 8 H 6 M6 5 L 3 8 L 6 11"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<script type="application/json" id="speaker-notes">[]</script>
+</head>
+<body>
+
+<deck-stage>
+
+  <!-- ============ 01 COVER ============ -->
+  <section class="slide s-cover" data-screen-label="01 封面" data-om-validate="false">
+    <svg class="pin-1" viewBox="0 0 360 110"><use href="#pin"/></svg>
+    <svg class="pin-2" viewBox="0 0 360 130"><use href="#pin-open"/></svg>
+    <div class="stage">
+      <div class="super">野外生物学方向的高年级毕业设计</div>
+      <h1>传粉者，<br/><em>被高价挤出。</em></h1>
+      <div class="row">
+        <div class="who">汇报人： <span class="underline-thin">Maya Ortiz, B.S. Biology '26</span>
+          <small>指导教师：Elena Cho 博士 · 生态与进化生物学系</small>
+        </div>
+        <div class="date">14 · V · 2026</div>
+      </div>
+    </div>
+    <div class="handwritten">
+      <span class="underline">面向：</span> 答辩委员会。<br/>
+      六个样点。七次走访。一个清晰的信号。
+    </div>
+  </section>
+
+  <!-- ============ 02 AGENDA ============ -->
+  <section class="slide s-agenda" data-screen-label="02 议程" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 毕业设计答辩</span>
+      <span class="meta"><span>Bio 4900</span><span>2026 年春季</span></span>
+    </div>
+    <h2>本次<br/><em>内容一览。</em></h2>
+    <div class="list">
+      <div class="row">
+        <span class="num">01</span>
+        <span class="lab">待解的问题</span>
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <span class="meta">背景 · 3 分钟</span>
+      </div>
+      <div class="row">
+        <span class="num">02</span>
+        <span class="lab">调查设计</span>
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <span class="meta">方法 · 4 分钟</span>
+      </div>
+      <div class="row">
+        <span class="num">03</span>
+        <span class="lab">数据说明了什么</span>
+        <svg class="pin" viewBox="0 0 360 130"><use href="#pin-open"/></svg>
+        <span class="meta">证据 · 5 分钟</span>
+      </div>
+      <div class="row">
+        <span class="num">04</span>
+        <span class="lab">贡献与后续</span>
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <span class="meta">收尾 · 3 分钟</span>
+      </div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>02 / 11</span></div>
+  </section>
+
+  <!-- ============ 03 NOTECARDS ============ -->
+  <section class="slide s-notes" data-screen-label="03 原则" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 原则</span>
+      <span class="meta"><span>Ortiz Capstone</span><span>阶段 II</span></span>
+    </div>
+    <div class="head">
+      <h2>我们坚守的 <em>三项承诺。</em></h2>
+      <div class="sub">钉在野外记录本上方。每条样带、每只记录的蜜蜂，在进入数据集之前都要对照这三条检查。</div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <span class="num">准则 · 01</span>
+        <h3>统一<br/>样带标准。</h3>
+        <p>同样的 200 米路线、同样的上午 10 点到下午 2 点窗口、同样的六个城市样点——从围栏社区花园到公路中央分隔带绿化。</p>
+        <div class="scribble">&mdash; 同一条路线， <span class="underline">每次都一样</span>.</div>
+      </div>
+      <div class="card alt">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <span class="num">准则 · 02</span>
+        <h3>记录每一次<br/>走访，而不只是命中。</h3>
+        <p>零计数观测与目击记录同样严谨，因此「没有」在模型中也有真正的权重。</p>
+        <div class="scribble">每个样点七次走访，全部记录在案。</div>
+      </div>
+      <div class="card alt2">
+        <svg class="pin" viewBox="0 0 360 130"><use href="#pin-open"/></svg>
+        <span class="num">准则 · 03</span>
+        <h3>每一份<br/>鉴定都要复核两次。</h3>
+        <p>每张标本照片在物种标签写入数据集之前，都要由 Cho 博士的实验室做二次判定。</p>
+        <div class="scribble">412 份标本，逐一复核。</div>
+      </div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>03 / 11</span></div>
+  </section>
+
+  <!-- ============ 04 SECTION DIVIDER ============ -->
+  <section class="slide s-sec ink" data-screen-label="04 章节 · 方向" data-om-validate="false">
+    <div class="marker">第二部分</div>
+    <div class="label">为什么城市<br/>蜜蜂在变少</div>
+    <svg class="pin-big" viewBox="0 0 360 110"><use href="#pin"/></svg>
+    <h2>把下降<br/>趋势<br/><em>说清楚。</em></h2>
+    <div class="scribble">&mdash; 翻开下一页——</div>
+    <div class="footer"><span>Ortiz Capstone</span><span>04 / 11</span></div>
+  </section>
+
+  <!-- ============ 05 NOTICE ============ -->
+  <section class="slide s-notice" data-screen-label="05 发现 · 明细" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 发现 · 明细</span>
+      <span class="meta"><span>Ortiz Capstone</span><span>阶段 III</span></span>
+    </div>
+    <div class="head">
+      <div class="pre">观察 · 05<br/>为什么这很重要</div>
+      <h2>自 2019 年以来，三次全市调查都显示传粉者数量在下降——但没有任何一次能分离出 <em>究竟是哪种</em> 城市特征在推动这一下降。</h2>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <h3>已知的情况</h3>
+        <p><strong>区域计数在下滑</strong> ——连续三次全市调查指向同一方向，但分辨率太粗，无法解释原因。</p>
+        <ul>
+          <li><strong>全市调查（2019、2021、2023）</strong> 显示野生蜜蜂目击量持续下降。</li>
+          <li><strong>原生植被覆盖在收缩</strong>，填充式开发把庭院换成草皮与铺装。</li>
+          <li><strong>更暖、更干的夏天</strong> 正在改变整座城市的开花时间。</li>
+        </ul>
+        <div class="src">三次既往调查，一个未解问题</div>
+      </div>
+      <div class="col b">
+        <h3>证据不足的地方</h3>
+        <div class="meta">粗糙 · 全市尺度 · 每年一次走访。</div>
+        <p>现有调查每年只在全市尺度采样一次，因此分不清围栏小花园与公路中央分隔带——城市梯度的两端被平均在了一起。</p>
+        <p>这意味着没人能说清，是植物多样性、铺装覆盖，还是别的什么在推动下降。</p>
+        <div class="src">没有样点级分辨率，也没有重复走访</div>
+      </div>
+      <div class="col">
+        <h3>这份毕业设计的贡献</h3>
+        <ul>
+          <li><strong>覆盖完整城市梯度的六个样点</strong>，十个星期内各走访七次。</li>
+          <li><strong>一个把</strong> 不透水面覆盖与开花多样性作为独立预测因子的模型。</li>
+          <li><strong>一套可复制的流程</strong>，下一届学生明年春天就能接手重复。</li>
+        </ul>
+        <div class="src">六个样点 · 七次走访 · 一个生长季</div>
+      </div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>05 / 11</span></div>
+  </section>
+
+  <!-- ============ 06 CHART ============ -->
+  <section class="slide s-chart ink" data-screen-label="06 访花曲线" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 各访花率，按样点</span>
+      <span class="meta"><span>阶段 III</span><span>证据</span></span>
+    </div>
+    <svg class="pin-deco" viewBox="0 0 360 130"><use href="#pin-open"/></svg>
+    <div class="left">
+      <h2>走访量下降<br/>63%<br/><em>，到仲夏。</em></h2>
+      <p>六个样点合计，每十分钟观测的传粉者访问量从五月初平均 14 次，降到七月中旬约 5 次——而铺装最多、人流最大的样点下降最快。</p>
+      <div class="legend">
+        <div class="li"><i style="background:rgba(239,229,106,.5)"></i> 社区花园（铺装最少）</div>
+        <div class="li"><i style="background:#F5ECA0"></i> 混合住宅庭院</div>
+        <div class="li"><i style="background:#EFE56A"></i> 公路中央分隔带与停车场（铺装最多）</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="yhead">每 10 分钟计数的传粉者访问量</div>
+      <div class="plot">
+        <div class="yticks">
+          <span>14</span><span>10.5</span><span>7</span><span>3.5</span><span>0</span>
+        </div>
+        <div class="gline" style="top:0%"></div>
+        <div class="gline" style="top:25%"></div>
+        <div class="gline" style="top:50%"></div>
+        <div class="gline" style="top:75%"></div>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="#1F3A8A" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2,1.5"
+            points="0,8 16,8 32,7 48,8 64,7 80,8 100,8" />
+          <polyline fill="none" stroke="#2D4FB8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
+            points="0,8 16,24 32,36 48,44 64,50 80,54 100,56" />
+          <polyline fill="none" stroke="#1F3A8A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+            points="0,8 16,40 32,58 48,70 64,78 80,82 100,85" />
+        </svg>
+      </div>
+      <div class="xticks">
+        <span>V1</span><span>V2</span><span>V3</span><span>V4</span><span>V5</span><span>V6</span><span>V7</span>
+      </div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>06 / 11</span></div>
+  </section>
+
+  <!-- ============ 07 PROCESS ============ -->
+  <section class="slide s-process" data-screen-label="07 流程" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 野外流程</span>
+      <span class="meta"><span>Ortiz Capstone</span><span>阶段 IV</span></span>
+    </div>
+    <div class="head">
+      <h2>从 <em>样带</em><br/>到数据集，<br/>五步走完。</h2>
+      <div class="sub">同一套流程在六个样点各重复七次，从五月初到七月中旬。</div>
+    </div>
+    <div class="flow">
+      <div class="node">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <div class="n">1</div>
+        <h3>踏勘</h3>
+        <p>先走一遍 200 米样带，标记开花斑块并设定固定观测点。</p>
+        <svg class="arr" viewBox="0 0 32 32"><use href="#arr"/></svg>
+      </div>
+      <div class="node alt">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <div class="n">2</div>
+        <h3>观测</h3>
+        <p>在每个点位做十分钟定时计数，记录每次访问，以及在野外可辨认的物种。</p>
+        <svg class="arr" viewBox="0 0 32 32"><use href="#arr"/></svg>
+      </div>
+      <div class="node alt2">
+        <svg class="pin" viewBox="0 0 360 130"><use href="#pin-open"/></svg>
+        <div class="n">3</div>
+        <h3>采集</h3>
+        <p>对不确定的标本用网捕并拍照，送实验室确认；健康昆虫就地放归。</p>
+        <svg class="arr" viewBox="0 0 32 32"><use href="#arr"/></svg>
+      </div>
+      <div class="node alt">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <div class="n">4</div>
+        <h3>核验</h3>
+        <p>每个拍照标本都由 Cho 博士的实验室交叉核对后，才写入物种标签。</p>
+        <svg class="arr" viewBox="0 0 32 32"><use href="#arr"/></svg>
+      </div>
+      <div class="node">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <div class="n">5</div>
+        <h3>建模</h3>
+        <p>计数输入广义线性模型，以不透水覆盖与开花多样性作为预测因子。</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <span>第 1 步 · 踏勘</span>
+      <span>第 2 步 · 观测</span>
+      <span>第 3 步 · 采集</span>
+      <span>第 4 步 · 核验</span>
+      <span>第 5 步 · 建模</span>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>07 / 11</span></div>
+  </section>
+
+  <!-- ============ 08 LEDGER ============ -->
+  <section class="slide s-matrix" data-screen-label="08 对比" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 三种研究设计，并排比较</span>
+      <span class="meta"><span>Ortiz Capstone</span><span>阶段 IV</span></span>
+    </div>
+    <div class="head">
+      <h2>这套设计<br/><em>的</em> 价值<br/>所在。</h2>
+      <div class="sub">对照四个杠杆打分，它们决定一项调查能否真正把因果从相关中分离出来。</div>
+    </div>
+    <div class="table">
+      <div class="cell head-row">杠杆</div>
+      <div class="cell head-row">全市调查</div>
+      <div class="cell head-row">单样点研究</div>
+      <div class="cell head-row">本毕业设计</div>
+
+      <div class="cell row-label">样点级分辨率</div>
+      <div class="cell"><span class="pill no">全市平均</span></div>
+      <div class="cell"><span class="pill no">仅一个样点</span></div>
+      <div class="cell"><span class="pill yes">六样点梯度</span></div>
+
+      <div class="cell row-label">每样点重复走访</div>
+      <div class="cell"><span class="pill no">每年一次</span></div>
+      <div class="cell"><span class="pill yes">每周</span></div>
+      <div class="cell"><span class="pill yes">7 次走访，10 周</span></div>
+
+      <div class="cell row-label">盲法鉴定核验</div>
+      <div class="cell"><span class="pill no">仅野外判定</span></div>
+      <div class="cell"><span class="pill part">单一复核人</span></div>
+      <div class="cell"><span class="pill yes">实验室复核</span></div>
+
+      <div class="cell row-label last">控制铺装覆盖</div>
+      <div class="cell last"><span class="pill no">未建模</span></div>
+      <div class="cell last"><span class="pill no">未建模</span></div>
+      <div class="cell last"><span class="pill yes">GLM 协变量</span></div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>08 / 11</span></div>
+  </section>
+
+  <!-- ============ 09 STATS ============ -->
+  <section class="slide s-stats" data-screen-label="09 数字" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 数字一览</span>
+      <span class="meta"><span>阶段 III</span><span>证据</span></span>
+    </div>
+    <div class="head">
+      <h2>论据，<br/><em>用数字说话。</em></h2>
+      <div class="sub">来自六个城市样点、十周野外工作的三个数字——每一次计数都在当天记录。</div>
+    </div>
+    <div class="grid">
+      <div class="stat">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <div class="big">6</div>
+        <h3>城市样点<br/>已调查</h3>
+        <p>从围栏社区花园到公路中央分隔带绿化，覆盖从全铺装到全种植的完整梯度。</p>
+      </div>
+      <div class="stat alt">
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+        <div class="big">412</div>
+        <h3>标本<br/>已记录并鉴定</h3>
+        <p>每份拍照标本都在 Cho 博士的实验室交叉核对后，才写入物种标签。</p>
+      </div>
+      <div class="stat alt2">
+        <svg class="pin" viewBox="0 0 360 130"><use href="#pin-open"/></svg>
+        <div class="big">63<small>%</small></div>
+        <h3>走访量下降，<br/>5 月到 7 月</h3>
+        <p>在铺装最多的样点，每十分钟计数的传粉者访问量从 14 次降到约 5 次。</p>
+      </div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>09 / 11</span></div>
+  </section>
+
+  <!-- ============ 10 QUOTE ============ -->
+  <section class="slide s-quote" data-screen-label="10 声音" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 委员会反馈</span>
+      <span class="meta"><span>阶段 III</span><span>证据</span></span>
+    </div>
+    <div class="panel">
+      <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+      <div class="qmark">"</div>
+      <div>
+        <blockquote>这是我们项目第一份真正把铺装覆盖与开花多样性分开的数据集——这是实实在在的方法学贡献，而不只是一次好看的调查。</blockquote>
+        <div class="who">Elena Cho 博士
+          <small>指导教师 · 生态与进化生物学系</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>10 / 11</span></div>
+  </section>
+
+  <!-- ============ 11 CTA ============ -->
+  <section class="slide s-cta" data-screen-label="11 下一步" data-om-validate="false">
+    <div class="top">
+      <span class="lockup"><svg><use href="#mark"/></svg> 后续</span>
+      <span class="meta"><span>Ortiz Capstone</span><span>阶段 V</span></span>
+    </div>
+    <div class="stage">
+      <div class="pane l">
+        <div class="super">六个样点 · 十周 · 一个清晰的信号</div>
+        <h2>答案是：<br/>铺装，<br/><em>不是植物。</em></h2>
+        <p>不透水面覆盖——而不是开花多样性——是这六个样点上传粉者下降的最强预测因子。铺装越多，访问越少，与有多少开花物种无关。</p>
+        <svg class="pin" viewBox="0 0 360 110"><use href="#pin"/></svg>
+      </div>
+      <div class="pane r">
+        <h3>接下来往哪走</h3>
+        <div class="step">
+          <div class="n">1</div>
+          <div>
+            <h4>投稿《本科生研究期刊》</h4>
+            <p>6 月 1 日前把稿件初稿交给 Cho 博士；目标是校园期刊的秋季刊。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div>
+            <h4>在春季研讨会上报告</h4>
+            <p>5 月 22 日的海报场次——同样的六样点图表和 GLM，压缩到一块三英尺展板上。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div>
+            <h4>把流程交给下一届</h4>
+            <p>局限：一个生长季、六个样点、单座城市——下一届将重复样带，检验这一规律是否成立。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>Ortiz Capstone</span><span>11 / 11</span></div>
+  </section>
+
+</deck-stage>
+
+</body>
+</html>

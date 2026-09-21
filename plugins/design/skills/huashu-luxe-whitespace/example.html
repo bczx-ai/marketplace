@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>像高端行业战略伙伴一样写奢侈品市场进入演示文稿 — 咨询</title>
+<style>
+  /* ============================================================
+     Luxe Whitespace
+     Locked design tokens — re-theme by changing VALUES only.
+     70%+ whitespace, Inter 200–600, one warm gold (#D4A574),
+     hairline gradients, ultra-thin floating numerals.
+     Based on huashu-design ppt-build by huashu (alchaincyf).
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+
+  :root {
+    --bg:       #FAFAF8;   /* warm off-white page             */
+    --ink:      #2A2A2A;   /* primary ink                     */
+    --gold:     #D4A574;   /* THE warm gold — the only accent */
+    --hairline: #E0DCD6;   /* gradient hairline separators    */
+    --rule:     #EEECE8;   /* horizontal section rules        */
+    --track:    #EEECEA;   /* comparison bar track            */
+    --bar:      #D8D5D0;   /* baseline / losing bar           */
+    --muted:    #696963;   /* metric names / strong captions  */
+    --soft:     #74746E;   /* subtitles                       */
+    --faint:    #B8B4AE;   /* tertiary captions               */
+    --ghost:    #C8C4BC;   /* brand text / source notes       */
+    --body:     #6E6E68;   /* insight body copy               */
+    --sans: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    background: #EFEEEA;
+    font-family: var(--sans);
+    overflow: hidden;
+  }
+
+  /* ---- fixed 1920×1080 stage, letterboxed by fit() ---- */
+  #stage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 1920px;
+    height: 1080px;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center center;
+    background: var(--bg);
+    box-shadow: 0 0 80px rgba(0,0,0,0.06);
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background: var(--bg);
+    color: var(--ink);
+    overflow: hidden;
+    padding: 64px 96px 48px 96px;
+    flex-direction: column;
+  }
+  .slide.active { display: flex; }
+
+  /* ---- entrance: staggered rise, transform/opacity only ---- */
+  @keyframes slide-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .slide.active > * { animation: slide-rise 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .slide.active > *:nth-child(2) { animation-delay: 0.07s; }
+  .slide.active > *:nth-child(3) { animation-delay: 0.14s; }
+  .slide.active > *:nth-child(4) { animation-delay: 0.21s; }
+
+  /* ---- page chrome: eyebrow row + bottom brand mark ---- */
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .eyebrow {
+    font-size: 10px; font-weight: 400;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--faint);
+  }
+  .source-note {
+    font-size: 10px; font-weight: 300;
+    color: var(--ghost);
+    text-align: right; line-height: 1.6;
+  }
+
+  .bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 24px;
+    margin-top: auto;
+  }
+  .insight-text {
+    font-size: 13px; font-weight: 300;
+    color: var(--body); line-height: 1.8;
+    max-width: 640px;
+  }
+  .insight-text strong { font-weight: 500; color: #666; }
+  .brand-mark { display: flex; align-items: center; gap: 16px; }
+  .brand-line { width: 32px; height: 1px; background: var(--gold); opacity: 0.6; }
+  .brand-text {
+    font-size: 10px; font-weight: 400;
+    letter-spacing: 3px; color: var(--ghost);
+    text-transform: uppercase;
+  }
+
+  /* ---- title block (hairline-ruled) ---- */
+  .title-area { padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+  .main-title {
+    font-size: 40px; font-weight: 200;
+    letter-spacing: -0.5px; line-height: 1.2;
+    color: var(--ink);
+  }
+  .main-title .mid { font-weight: 400; }
+  .main-title .gold-dot { color: var(--gold); font-weight: 300; font-size: 48px; }
+  .subtitle {
+    font-size: 14px; font-weight: 300;
+    color: var(--soft); margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ---- signature: vertical gradient hairline separators ---- */
+  .v-hairline {
+    width: 1px; align-self: stretch;
+    background: linear-gradient(to bottom, transparent, var(--hairline) 50%, transparent);
+  }
+
+  /* ---- ultra-thin floating numerals ---- */
+  .metric-value {
+    font-size: 120px; font-weight: 200;
+    letter-spacing: -4px; line-height: 1;
+    color: var(--ink);
+  }
+  .metric-value .dot { color: var(--gold); font-weight: 300; }
+  .metric-unit {
+    font-size: 28px; font-weight: 200;
+    color: var(--gold); vertical-align: super;
+    margin-left: 2px; opacity: 0.8;
+  }
+  .metric-name {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); margin-top: 16px; margin-bottom: 8px;
+  }
+  .metric-category {
+    font-size: 11px; font-weight: 300;
+    color: var(--faint); letter-spacing: 0.5px;
+  }
+
+  /* ---- hero data: metric card columns ---- */
+  .hero-data {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .metric-card {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative;
+    padding: 32px 24px;
+  }
+  .metric-card::after {
+    content: '';
+    position: absolute; right: 0; top: 25%;
+    height: 50%; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--hairline) 50%, transparent);
+  }
+  .metric-card:last-child::after { display: none; }
+
+  /* ---- signature: gold-vs-grey comparison bars ---- */
+  .comparison-group { margin-top: 24px; width: 280px; }
+  .comp-row { display: flex; align-items: center; margin-bottom: 8px; gap: 8px; }
+  .comp-label {
+    font-size: 11px; font-weight: 400; color: var(--muted);
+    width: 80px; text-align: right; flex-shrink: 0;
+  }
+  .comp-track {
+    flex: 1; height: 2px; background: var(--track);
+    border-radius: 1px; position: relative;
+  }
+  .comp-fill { height: 100%; border-radius: 1px; background: var(--bar); }
+  .comp-fill.gold { background: var(--gold); height: 3px; margin-top: -0.5px; }
+  .comp-val {
+    font-size: 11px; font-weight: 500; color: var(--muted);
+    width: 44px; flex-shrink: 0;
+  }
+  .comp-val.gold { color: var(--gold); }
+
+  /* ---- cover ---- */
+  .cover-body {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    position: relative;
+  }
+  .cover-title {
+    font-size: 104px; font-weight: 200;
+    letter-spacing: -2px; line-height: 1.15;
+    color: var(--ink);
+  }
+  .cover-title .gold-dot { color: var(--gold); font-weight: 300; }
+  .cover-sub {
+    font-size: 16px; font-weight: 300;
+    color: var(--soft); margin-top: 32px;
+    letter-spacing: 2px;
+  }
+  .cover-rule {
+    width: 64px; height: 1px; background: var(--gold);
+    opacity: 0.7; margin-top: 48px;
+  }
+  .cover-year {
+    position: absolute; right: 0; bottom: -24px;
+    font-size: 280px; font-weight: 200;
+    letter-spacing: -10px; line-height: 1;
+    color: var(--ink); opacity: 0.05;
+    pointer-events: none;
+  }
+
+  /* ---- contents ---- */
+  .toc { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1100px; }
+  .toc-row {
+    display: flex; align-items: baseline; gap: 48px;
+    padding: 26px 0; border-bottom: 1px solid var(--rule);
+  }
+  .toc-row:first-child { border-top: 1px solid var(--rule); }
+  .toc-num {
+    font-size: 32px; font-weight: 200;
+    color: var(--gold); width: 72px;
+    letter-spacing: -1px; flex-shrink: 0;
+  }
+  .toc-title { font-size: 22px; font-weight: 300; color: var(--ink); letter-spacing: 0.5px; }
+  .toc-desc { font-size: 12px; font-weight: 300; color: var(--faint); margin-left: auto; letter-spacing: 1px; }
+
+  /* ---- big number hero ---- */
+  .big-hero {
+    flex: 1; display: flex;
+    align-items: center; justify-content: center; gap: 96px;
+  }
+  .big-number {
+    font-size: 240px; font-weight: 200;
+    letter-spacing: -10px; line-height: 0.95;
+    color: var(--ink);
+  }
+  .big-number .dot { color: var(--gold); font-weight: 300; }
+  .big-number .unit {
+    font-size: 56px; font-weight: 200;
+    color: var(--gold); vertical-align: super; opacity: 0.8;
+    letter-spacing: 0;
+  }
+  .big-side { max-width: 380px; }
+  .big-side-label {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 20px;
+  }
+  .big-side-text {
+    font-size: 15px; font-weight: 300;
+    color: var(--body); line-height: 2;
+  }
+  .big-side-text strong { font-weight: 500; color: #666; }
+  .big-side-rule { width: 40px; height: 1px; background: var(--gold); opacity: 0.6; margin-bottom: 20px; }
+
+  /* ---- horizontal channel bars (chart page) ---- */
+  .channel-list { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 40px; max-width: 1240px; margin: 0 auto; width: 100%; }
+  .channel-row { display: flex; align-items: center; gap: 32px; }
+  .channel-name { width: 200px; font-size: 15px; font-weight: 300; color: var(--ink); flex-shrink: 0; }
+  .channel-name small { display: block; font-size: 10px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--faint); margin-top: 4px; }
+  .channel-track { flex: 1; height: 2px; background: var(--track); position: relative; }
+  .channel-fill { position: absolute; left: 0; top: 0; height: 2px; background: var(--bar); }
+  .channel-fill.gold { background: linear-gradient(to right, var(--gold), rgba(212,165,116,0.35)); height: 3px; top: -0.5px; }
+  .channel-val { width: 150px; text-align: right; font-size: 32px; font-weight: 200; letter-spacing: -1px; color: var(--ink); flex-shrink: 0; }
+  .channel-val .dot { color: var(--gold); font-weight: 300; }
+  .channel-val small { font-size: 12px; font-weight: 300; color: var(--faint); letter-spacing: 0; margin-left: 6px; }
+
+  /* ---- timeline ---- */
+  .timeline { flex: 1; display: flex; align-items: center; }
+  .tl-col {
+    flex: 1; position: relative;
+    padding: 0 40px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .tl-col::after {
+    content: '';
+    position: absolute; right: 0; top: 15%;
+    height: 70%; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--hairline) 50%, transparent);
+  }
+  .tl-col:last-child::after { display: none; }
+  .tl-year {
+    font-size: 88px; font-weight: 200;
+    letter-spacing: -3px; line-height: 1;
+  }
+  .tl-col:nth-child(1) .tl-year { color: var(--ghost); }
+  .tl-col:nth-child(2) .tl-year { color: var(--faint); }
+  .tl-col:nth-child(3) .tl-year { color: var(--muted); }
+  .tl-col:nth-child(4) .tl-year { color: var(--ink); }
+  .tl-col:nth-child(4) .tl-year .dot { color: var(--gold); font-weight: 300; }
+  .tl-title { font-size: 16px; font-weight: 500; color: var(--ink); letter-spacing: 0.5px; }
+  .tl-text { font-size: 13px; font-weight: 300; color: var(--body); line-height: 1.9; }
+  .tl-rule { width: 32px; height: 1px; background: var(--gold); opacity: 0.6; }
+
+  /* ---- quote ---- */
+  .quote-body {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+  }
+  .quote-hairline { width: 1px; height: 88px; background: linear-gradient(to bottom, transparent, var(--gold)); opacity: 0.7; }
+  .quote-text {
+    font-size: 52px; font-weight: 200;
+    line-height: 1.6; letter-spacing: 0.5px;
+    color: var(--ink); max-width: 1240px;
+    margin: 56px 0;
+  }
+  .quote-text .gold { color: var(--gold); font-weight: 300; }
+  .quote-attr {
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--faint);
+  }
+  .quote-attr strong { font-weight: 500; color: var(--muted); }
+
+  /* ---- two-column before / after ---- */
+  .duo { flex: 1; display: flex; align-items: stretch; gap: 0; }
+  .duo-col { flex: 1; padding: 48px 64px; display: flex; flex-direction: column; justify-content: center; }
+  .duo-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--faint); margin-bottom: 36px;
+  }
+  .duo-col.after .duo-label { color: var(--gold); }
+  .duo-item { margin-bottom: 36px; }
+  .duo-item:last-child { margin-bottom: 0; }
+  .duo-num { font-size: 56px; font-weight: 200; letter-spacing: -2px; line-height: 1; color: var(--ghost); }
+  .duo-col.after .duo-num { color: var(--ink); }
+  .duo-col.after .duo-num .dot { color: var(--gold); font-weight: 300; }
+  .duo-num .unit { font-size: 20px; font-weight: 200; vertical-align: super; margin-left: 2px; }
+  .duo-col.after .duo-num .unit { color: var(--gold); opacity: 0.8; }
+  .duo-cap { font-size: 12px; font-weight: 400; letter-spacing: 1px; color: var(--soft); margin-top: 10px; }
+
+  /* ---- stats grid 2×2 ---- */
+  .stats-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    position: relative;
+  }
+  .stats-grid::before {
+    content: '';
+    position: absolute; left: 50%; top: 8%;
+    height: 84%; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--hairline) 50%, transparent);
+  }
+  .stats-grid::after {
+    content: '';
+    position: absolute; top: 50%; left: 8%;
+    width: 84%; height: 1px;
+    background: linear-gradient(to right, transparent, var(--hairline) 50%, transparent);
+  }
+  .stat-cell { text-align: center; padding: 32px; }
+  .stat-num {
+    font-size: 96px; font-weight: 200;
+    letter-spacing: -3px; line-height: 1;
+    color: var(--ink);
+  }
+  .stat-num .dot { color: var(--gold); font-weight: 300; }
+  .stat-num .unit { font-size: 26px; font-weight: 200; color: var(--gold); vertical-align: super; opacity: 0.8; }
+  .stat-cap {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--muted); margin-top: 18px;
+  }
+  .stat-sub { font-size: 11px; font-weight: 300; color: var(--faint); margin-top: 6px; }
+
+  /* ---- closing ---- */
+  .closing-body {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+  }
+  .closing-title {
+    font-size: 120px; font-weight: 200;
+    letter-spacing: -2px; line-height: 1.2;
+    color: var(--ink);
+  }
+  .closing-title .gold-dot { color: var(--gold); font-weight: 300; }
+  .closing-sub {
+    font-size: 14px; font-weight: 300;
+    color: var(--soft); margin-top: 40px;
+    letter-spacing: 3px; text-transform: uppercase;
+  }
+  .closing-rule { width: 64px; height: 1px; background: var(--gold); opacity: 0.7; margin-top: 48px; }
+
+  /* ---- deck runtime: slide-dot indicator / counter / key hint ---- */
+  #dots {
+    position: absolute; top: 32px; right: 96px;
+    display: flex; gap: 6px; align-items: center;
+    z-index: 30;
+  }
+  .slide-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--hairline);
+    transition: width 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+                background-color 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+                border-radius 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .slide-dot.active { background: var(--gold); width: 16px; border-radius: 2px; }
+
+  #counter {
+    position: absolute; right: 32px; bottom: 12px;
+    z-index: 30;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 2px; color: var(--faint);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 6px 16px;
+    background: rgba(250,250,248,0.9);
+  }
+  #counter b { color: var(--gold); font-weight: 400; }
+
+  #keyhint {
+    position: absolute; left: 32px; bottom: 12px;
+    z-index: 30;
+    font-size: 10px; font-weight: 300;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ghost);
+  }
+  #keyhint b { color: var(--faint); font-weight: 400; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+</style>
+<style id="od-no-pager">.deck-controls,#counter,.deck-counter{display:none!important}</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ① Cover -->
+  <section class="slide active" data-screen-label="01 封面">
+    <div class="top-row">
+      <div class="eyebrow">咨询 · 市场进入</div>
+      <div class="source-note">机密 · 客户领导层简报<br>2026 · 为 Aurelia Holdings 准备</div>
+    </div>
+    <div class="cover-body">
+      <div class="cover-year">26</div>
+      <div class="cover-title">Aurelia 在亚洲<span class="gold-dot">.</span></div>
+      <div class="cover-sub">面向大中华区、日本与韩国的分阶段高端护肤市场进入战略</div>
+      <div class="cover-rule"></div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">两座旗舰城市、一个数字旗舰，以及 24 个月的分阶段推进 —— 在不稀释品牌资产的前提下，最快通向亚洲 $34M 收入的路径。<strong>机密 · 仅供指导委员会使用</strong>.</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ② Contents -->
+  <section class="slide" data-screen-label="02 目录">
+    <div class="top-row">
+      <div class="eyebrow">目录</div>
+      <div class="source-note">Aurelia 市场进入评审<br>7 个章节</div>
+    </div>
+    <div class="title-area">
+      <div class="main-title">本次战略评审，<span class="mid">简述</span><span class="gold-dot">.</span></div>
+      <div class="subtitle">从统领观点到指导委员会的请求 —— 七个章节的阅读地图</div>
+    </div>
+    <div class="toc">
+      <div class="toc-row"><span class="toc-num">01</span><span class="toc-title">统领观点</span><span class="toc-desc">论点</span></div>
+      <div class="toc-row"><span class="toc-num">02</span><span class="toc-title">增长在哪里</span><span class="toc-desc">诊断</span></div>
+      <div class="toc-row"><span class="toc-num">03</span><span class="toc-title">市场路径</span><span class="toc-desc">渠道选项</span></div>
+      <div class="toc-row"><span class="toc-num">04</span><span class="toc-title">分阶段计划</span><span class="toc-desc">路线图</span></div>
+      <div class="toc-row"><span class="toc-num">05</span><span class="toc-title">要守住的定位</span><span class="toc-desc">定位</span></div>
+      <div class="toc-row"><span class="toc-num">06</span><span class="toc-title">会改变什么</span><span class="toc-desc">之前 / 之后</span></div>
+      <div class="toc-row"><span class="toc-num">07</span><span class="toc-title">我们需要你做什么</span><span class="toc-desc">请求</span></div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">建议阅读顺序：先看论点，再看分阶段计划与请求。</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ③ Big number -->
+  <section class="slide" data-screen-label="03 统领观点">
+    <div class="top-row">
+      <div class="eyebrow">第 01 章 · 统领观点</div>
+      <div class="source-note">Euromonitor Prestige Beauty 2026<br>Kantar Worldpanel APAC</div>
+    </div>
+    <div class="big-hero">
+      <div class="big-number">18<span class="dot">.</span>6<span class="unit">B¥</span></div>
+      <div class="big-side">
+        <div class="big-side-rule"></div>
+        <div class="big-side-label">高端护肤 TAM</div>
+        <div class="big-side-text">中国一线城市、日本都市与首尔共同构成一个 <strong>¥18.6B 的高端护肤池</strong>，每年增长 14%。Aurelia 目前份额为 0% —— 统领观点很简单：<strong>先赢下两座旗舰城市，再去追二十座</strong>.</div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">来源：Euromonitor Prestige Beauty 2026，Kantar Worldpanel APAC 奢侈品追踪。</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ④ Three-metric data theater (upstream master) -->
+  <section class="slide" data-screen-label="04 增长在哪里">
+    <div class="top-row">
+      <div class="eyebrow">第 02 章 · 增长在哪里</div>
+      <div class="source-note">来源：Aurelia 消费者调研，n=2,400<br>渠道拆分为方向性示意</div>
+    </div>
+    <div class="title-area">
+      <div class="main-title">三个细分承载了 <span class="mid">90% 的机会</span><span class="gold-dot">.</span></div>
+      <div class="subtitle">复购寻求者、护肤科技采用者与礼赠买家 —— 已做规模测算与渠道映射</div>
+    </div>
+    <div class="hero-data">
+      <div class="metric-card">
+        <div class="metric-value">42<span class="metric-unit">%</span></div>
+        <div class="metric-name">复购寻求者</div>
+        <div class="metric-category">35–54 岁 · 皮肤科级护理流程</div>
+        <div class="comparison-group">
+          <div class="comp-row"><span class="comp-label">专柜</span><div class="comp-track"><div class="comp-fill gold" style="width: 100%;"></div></div><span class="comp-val gold">38%</span></div>
+          <div class="comp-row"><span class="comp-label">RED / 抖音</span><div class="comp-track"><div class="comp-fill" style="width: 76%;"></div></div><span class="comp-val">29%</span></div>
+          <div class="comp-row"><span class="comp-label">水疗礼赠</span><div class="comp-track"><div class="comp-fill" style="width: 60%;"></div></div><span class="comp-val">23%</span></div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">31<span class="metric-unit">%</span></div>
+        <div class="metric-name">护肤科技寻求者</div>
+        <div class="metric-category">25–34 岁 · 懂成分</div>
+        <div class="comparison-group">
+          <div class="comp-row"><span class="comp-label">RED / 抖音</span><div class="comp-track"><div class="comp-fill gold" style="width: 100%;"></div></div><span class="comp-val gold">52%</span></div>
+          <div class="comp-row"><span class="comp-label">DTC 站点</span><div class="comp-track"><div class="comp-fill" style="width: 65%;"></div></div><span class="comp-val">34%</span></div>
+          <div class="comp-row"><span class="comp-label">Sephora</span><div class="comp-track"><div class="comp-fill" style="width: 27%;"></div></div><span class="comp-val">14%</span></div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">27<span class="metric-unit">%</span></div>
+        <div class="metric-name">礼赠买家</div>
+        <div class="metric-category">45 岁以上 · 节庆礼赠</div>
+        <div class="comparison-group">
+          <div class="comp-row"><span class="comp-label">百货公司</span><div class="comp-track"><div class="comp-fill gold" style="width: 100%;"></div></div><span class="comp-val gold">61%</span></div>
+          <div class="comp-row"><span class="comp-label">免税</span><div class="comp-track"><div class="comp-fill" style="width: 67%;"></div></div><span class="comp-val">27%</span></div>
+          <div class="comp-row"><span class="comp-label">企业礼赠</span><div class="comp-track"><div class="comp-fill" style="width: 19%;"></div></div><span class="comp-val">12%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">三个细分都在 <strong>成分透明度与专柜体验</strong> 上超出均值 —— 诊断结论：制约 Aurelia 的是渠道，而不是产品。</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ⑤ Output mix -->
+  <section class="slide" data-screen-label="05 市场路径">
+    <div class="top-row">
+      <div class="eyebrow">第 03 章 · 市场路径</div>
+      <div class="source-note">渠道经济模型，第 1–3 年混合<br>示意性收入潜力</div>
+    </div>
+    <div class="title-area">
+      <div class="main-title">四条进入路径，<span class="mid">一个明确的领跑者</span><span class="gold-dot">.</span></div>
+      <div class="subtitle">旗舰专柜承载品牌故事，数字渠道承载触达 —— 金色标出推荐的领头渠道</div>
+    </div>
+    <div class="channel-list">
+      <div class="channel-row">
+        <div class="channel-name">旗舰百货专柜<small>Lane Crawford / SKP / Isetan</small></div>
+        <div class="channel-track"><div class="channel-fill gold" style="width: 100%;"></div></div>
+        <div class="channel-val">42<span class="dot">.</span>0<small>%</small></div>
+      </div>
+      <div class="channel-row">
+        <div class="channel-name">天猫奢品 + 微信<small>DTC 数字旗舰</small></div>
+        <div class="channel-track"><div class="channel-fill" style="width: 77%;"></div></div>
+        <div class="channel-val">27<span class="dot">.</span>5<small>%</small></div>
+      </div>
+      <div class="channel-row">
+        <div class="channel-name">Sephora / 乐天多品牌<small>批发</small></div>
+        <div class="channel-track"><div class="channel-fill" style="width: 55%;"></div></div>
+        <div class="channel-val">19<span class="dot">.</span>8<small>%</small></div>
+      </div>
+      <div class="channel-row">
+        <div class="channel-name">直播与 KOL 礼赠投放<small>小红书 / 抖音</small></div>
+        <div class="channel-track"><div class="channel-fill" style="width: 30%;"></div></div>
+        <div class="channel-val">10<span class="dot">.</span>7<small>%</small></div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">旗舰专柜与天猫数字旗舰共同承载 <strong>第三年收入的 70%</strong> —— 另外两个渠道服务于触达与礼赠场景，而非品牌建设。</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ⑥ Timeline -->
+  <section class="slide" data-screen-label="06 分阶段计划">
+    <div class="top-row">
+      <div class="eyebrow">第 04 章 · 分阶段计划</div>
+      <div class="source-note">24 个月市场进入路线图<br>每个阶段都有闸门评审</div>
+    </div>
+    <div class="title-area">
+      <div class="main-title">三座城市，<span class="mid">二十四个月</span><span class="gold-dot">.</span></div>
+      <div class="subtitle">滩头、验证、规模化、防守 —— 每个阶段都由指导委员会评审把关</div>
+    </div>
+    <div class="timeline">
+      <div class="tl-col">
+        <div class="tl-year">P1</div>
+        <div class="tl-rule"></div>
+        <div class="tl-title">滩头：上海 + 东京</div>
+        <div class="tl-text">开出两个旗舰专柜与天猫数字旗舰；在进一步投入之前验证价格与售罄率。</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-year">P2</div>
+        <div class="tl-rule"></div>
+        <div class="tl-title">验证：售罄率闸门</div>
+        <div class="tl-text">在两座城市停留两个季度；售罄率达到品类均值 3 倍后才批准首尔。</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-year">P3</div>
+        <div class="tl-rule"></div>
+        <div class="tl-title">规模化：加入首尔与批发</div>
+        <div class="tl-text">滩头通过闸门后，增设乐天旗舰专柜与 Sephora 批发门店。</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-year">P4<span class="dot">.</span></div>
+        <div class="tl-rule"></div>
+        <div class="tl-title">防守：区域扩张</div>
+        <div class="tl-text">扩展到另外六座一线城市，并在竞争对手进入前锁定专柜的排他位置。</div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">每道闸门都贯穿计划始终：<strong>上一阶段通过售罄率评审之前，下一阶段不得启动</strong> —— 同时保护资本与品牌资产。</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ⑦ Quote -->
+  <section class="slide" data-screen-label="07 要守住的定位">
+    <div class="top-row">
+      <div class="eyebrow">第 05 章 · 要守住的定位</div>
+      <div class="source-note">品牌定位工作坊<br>客户领导层 + 创意委员会</div>
+    </div>
+    <div class="quote-body">
+      <div class="quote-hairline"></div>
+      <div class="quote-text">Aurelia 不是又一个西方进口品牌 —— 它是 <span class="gold">临床级的法国配方</span>,<br>以亚洲最挑剔的买家本来就习惯的方式呈现：按预约、按成分、按故事。</div>
+      <div class="quote-attr"><strong>定位陈述</strong> · 已与客户领导层达成一致</div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">每一份专柜话术、包装说明与 KOL 简报，都是为了守住这一句话。</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ⑧ Two-column comparison -->
+  <section class="slide" data-screen-label="08 会改变什么">
+    <div class="top-row">
+      <div class="eyebrow">第 06 章 · 会改变什么</div>
+      <div class="source-note">转型之前对比第 1–3 阶段之后<br>预测，第三年</div>
+    </div>
+    <div class="title-area">
+      <div class="main-title">从仅本土 <span class="mid">到三城布局</span><span class="gold-dot">.</span></div>
+      <div class="subtitle">同一个品牌，为亚洲配置资源 —— 前后对比收入、门店与渠道组合</div>
+    </div>
+    <div class="duo">
+      <div class="duo-col">
+        <div class="duo-label">仅本土 · 之前</div>
+        <div class="duo-item"><div class="duo-num">$0<span class="unit">M Asia</span></div><div class="duo-cap">未确认亚洲收入</div></div>
+        <div class="duo-item"><div class="duo-num">0<span class="unit">家门店</span></div><div class="duo-cap">没有旗舰店</div></div>
+        <div class="duo-item"><div class="duo-num">1<span class="unit">个渠道</span></div><div class="duo-cap">仅美国 / 欧盟批发</div></div>
+      </div>
+      <div class="v-hairline"></div>
+      <div class="duo-col after">
+        <div class="duo-label">三城布局 · 之后</div>
+        <div class="duo-item"><div class="duo-num">$34<span class="unit">M Asia</span></div><div class="duo-cap">第三年亚洲收入，分阶段</div></div>
+        <div class="duo-item"><div class="duo-num">3<span class="unit">家门店</span></div><div class="duo-cap">上海、东京、首尔旗舰店</div></div>
+        <div class="duo-item"><div class="duo-num">4<span class="unit">个渠道</span></div><div class="duo-cap">专柜、DTC、批发、直播</div></div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">分阶段计划把亚洲零收入变成 <strong>第三年的 $34M</strong>，且没有任何一次计划外的市场进入。</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ⑨ Open numbers grid -->
+  <section class="slide" data-screen-label="09 我们需要你做什么">
+    <div class="top-row">
+      <div class="eyebrow">第 07 章 · 我们需要你做什么</div>
+      <div class="source-note">第 1 阶段资源请求<br>批准后即启动上海 + 东京的建设</div>
+    </div>
+    <div class="title-area">
+      <div class="main-title">四个数字，<span class="mid">一个指导决策</span><span class="gold-dot">.</span></div>
+      <div class="subtitle">这是第 1 阶段的资源请求 —— 之后的每一步都由售罄率评审把关</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-cell">
+        <div class="stat-num">4<span class="unit">.2M</span></div>
+        <div class="stat-cap">第 1 阶段资本开支</div>
+        <div class="stat-sub">专柜建设，上海 + 东京</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">9</div>
+        <div class="stat-cap">待招岗位</div>
+        <div class="stat-sub">区域总经理、2 位专柜总监、6 位美容顾问</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">6</div>
+        <div class="stat-cap">开业所需月数</div>
+        <div class="stat-sub">从签约到专柜开业</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">3<span class="unit">.1x</span></div>
+        <div class="stat-cap">第三年 ROI</div>
+        <div class="stat-sub">基于第 1 阶段资本，基准情形</div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">在本周的指导会议上批准第 1 阶段资本与招聘计划 —— <strong>必须在 30 天内开工，才能赶上 Q2 的开业窗口</strong>.</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <!-- ⑩ Closing -->
+  <section class="slide" data-screen-label="10 结语">
+    <div class="top-row">
+      <div class="eyebrow">咨询 · 市场进入</div>
+      <div class="source-note">指导委员会简报<br>2026 · 请求决策</div>
+    </div>
+    <div class="closing-body">
+      <div class="closing-title">批准第 1 阶段<span class="gold-dot">.</span></div>
+      <div class="closing-sub">上海 · 东京 · 24 个月路线图</div>
+      <div class="closing-rule"></div>
+    </div>
+    <div class="bottom-section">
+      <div class="insight-text">本周就签核 $4.2M 的第 1 阶段建设 —— Q2 的开业窗口 30 天后关闭。<strong>下一步：指导委员会投票，周五</strong>.</div>
+      <div class="brand-mark"><div class="brand-line"></div><span class="brand-text">Aurelia 战略评审</span></div>
+    </div>
+  </section>
+
+  <div id="dots"></div>
+  <div id="counter">01 <b>/</b> 10</div>
+  <div id="keyhint"><b>← →</b> 空格导航 · <b>#/N</b> 跳转</div>
+</div>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var counter = document.getElementById('counter');
+  var dotsWrap = document.getElementById('dots');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+  var dots = [];
+
+  // build the gold slide-dot indicator (signature device, top-right)
+  for (var d = 0; d < total; d++) {
+    var dot = document.createElement('span');
+    dot.className = 'slide-dot';
+    dotsWrap.appendChild(dot);
+    dots.push(dot);
+  }
+
+  // fit(): scale the fixed 1920×1080 canvas into the viewport (letterbox)
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  // go(i): activate slide i, sync dots + counter + hash (#/N, 1-indexed)
+  function go(i, skipHash) {
+    current = Math.max(0, Math.min(total - 1, i));
+    for (var k = 0; k < total; k++) {
+      slides[k].classList.toggle('active', k === current);
+      dots[k].classList.toggle('active', k === current);
+    }
+    counter.innerHTML = pad(current + 1) + ' <b>/</b> ' + pad(total);
+    if (!skipHash) {
+      var target = '#/' + (current + 1);
+      if (location.hash !== target) {
+        try { history.replaceState(null, '', target); }
+        catch (err) { location.hash = target; }
+      }
+    }
+  }
+
+  function fromHash() {
+    var m = location.hash.match(/^#\/(\d+)$/);
+    if (m) {
+      var n = parseInt(m[1], 10);
+      if (n >= 1 && n <= total) { go(n - 1, true); return; }
+    }
+    go(0, true);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+      case ' ':
+      case 'PageDown':
+        e.preventDefault();
+        go(current + 1);
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+      case 'PageUp':
+        e.preventDefault();
+        go(current - 1);
+        break;
+      case 'Home':
+        e.preventDefault();
+        go(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        go(total - 1);
+        break;
+    }
+  });
+
+  // click: left third of the window goes back, the rest goes forward
+  stage.addEventListener('click', function (e) {
+    if (e.clientX < window.innerWidth / 3) { go(current - 1); }
+    else { go(current + 1); }
+  });
+
+  window.addEventListener('hashchange', fromHash);
+  window.addEventListener('resize', fit);
+
+  fit();
+  fromHash();
+})();
+</script>
+
+</body>
+</html>

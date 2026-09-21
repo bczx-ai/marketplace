@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quartz — 技术写作者的安静工作空间</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas: #FBFBFA;
+      --surface: #FFFFFF;
+      --ink: #1A1A19;
+      --muted: #787774;
+      --hairline: #EAEAEA;
+      --pale-red-bg: #FDEBEC; --pale-red-fg: #9F2F2D;
+      --pale-blue-bg: #E1F3FE; --pale-blue-fg: #1F6C9F;
+      --pale-green-bg: #EDF3EC; --pale-green-fg: #346538;
+      --pale-yellow-bg: #FBF3DB; --pale-yellow-fg: #956400;
+      --display: 'Instrument Serif', 'Newsreader', 'Lyon Text', Georgia, serif;
+      --sans: 'Inter Tight', 'Switzer', 'SF Pro Display', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+    /* ============ NAV (floating pill) ============ */
+    .nav {
+      position: sticky; top: 16px; z-index: 50;
+      margin: 16px auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 920px;
+      padding: 10px 14px 10px 20px;
+      background: rgba(251,251,250,0.78);
+      backdrop-filter: saturate(140%) blur(16px);
+      -webkit-backdrop-filter: saturate(140%) blur(16px);
+      border: 1px solid var(--hairline);
+      border-radius: 999px;
+    }
+    .nav .brand { font-family: var(--display); font-size: 22px; letter-spacing: -0.01em; }
+    .nav .brand em { font-style: italic; color: var(--muted); }
+    .nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+    .nav ul a { color: var(--ink); text-decoration: none; font-size: 13.5px; font-weight: 500; }
+    .nav ul a:hover { color: var(--muted); }
+    .nav .cta {
+      font: 500 13px/1 var(--sans);
+      padding: 9px 14px; border-radius: 999px;
+      background: var(--ink); color: var(--canvas);
+      border: 1px solid var(--ink);
+      transition: transform 200ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav .cta:active { transform: scale(0.98); }
+
+    /* ============ HERO (asymmetric, eyebrow + serif display) ============ */
+    .hero { padding: 96px 0 80px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+      padding: 5px 11px; border: 1px solid var(--hairline);
+      border-radius: 999px; background: var(--surface);
+    }
+    .eyebrow .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--pale-green-fg); }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin: 22px 0 0;
+      max-width: 16ch;
+      font-weight: 400;
+    }
+    .hero h1 em { font-style: italic; color: var(--muted); }
+    .hero .lede {
+      font-size: 18.5px; color: var(--muted);
+      max-width: 52ch; margin: 24px 0 36px;
+      line-height: 1.55;
+    }
+    .hero .actions { display: flex; gap: 12px; align-items: center; }
+    .btn {
+      font: 500 14px/1 var(--sans);
+      padding: 13px 22px; border-radius: 8px;
+      cursor: pointer; transition: transform 200ms cubic-bezier(0.16,1,0.3,1), box-shadow 200ms ease;
+    }
+    .btn-primary { background: var(--ink); color: var(--canvas); border: 1px solid var(--ink); }
+    .btn-primary:hover { background: #2A2A28; }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--hairline); }
+    .btn-link { background: transparent; border: none; color: var(--ink); padding: 13px 0; font: 500 14px/1 var(--sans); cursor: pointer; }
+    .btn-link::after { content: ' →'; color: var(--muted); }
+
+    .keystroke {
+      font-family: var(--mono); font-size: 11.5px;
+      padding: 3px 7px; border: 1px solid var(--hairline);
+      border-radius: 4px; background: var(--surface);
+      color: var(--muted);
+    }
+
+    /* ============ BENTO (uneven grid, hairline only) ============ */
+    .bento {
+      padding: 72px 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: minmax(180px, auto);
+      gap: 0;
+      border: 1px solid var(--hairline);
+      background: var(--hairline);
+    }
+    .bento-grid > .cell {
+      background: var(--surface);
+      padding: 28px 30px;
+    }
+    .cell--hero { grid-column: span 4; grid-row: span 2; padding: 36px 40px; }
+    .cell--tall { grid-column: span 2; grid-row: span 2; }
+    .cell--wide { grid-column: span 4; }
+    .cell--small { grid-column: span 2; }
+    .cell h3 { font-family: var(--display); font-size: 26px; font-weight: 400; letter-spacing: -0.02em; margin: 0 0 8px; line-height: 1.15; }
+    .cell h4 { font-size: 14px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.005em; }
+    .cell p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.6; max-width: 38ch; }
+    .cell .num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 22px; }
+
+    .chip {
+      display: inline-block; font-family: var(--mono); font-size: 10.5px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 999px; margin-right: 6px;
+    }
+    .chip--green { background: var(--pale-green-bg); color: var(--pale-green-fg); }
+    .chip--blue { background: var(--pale-blue-bg); color: var(--pale-blue-fg); }
+    .chip--red { background: var(--pale-red-bg); color: var(--pale-red-fg); }
+    .chip--yellow { background: var(--pale-yellow-bg); color: var(--pale-yellow-fg); }
+
+    .doclines {
+      font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.85;
+      border-top: 1px dashed var(--hairline); padding-top: 14px; margin-top: 20px;
+    }
+    .doclines b { color: var(--ink); font-weight: 500; }
+
+    /* ============ CONTRAST BLOCK (no card, hairline only) ============ */
+    .contrast {
+      padding: 88px 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .contrast .columns {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    }
+    .contrast h2 {
+      font-family: var(--display); font-size: clamp(34px, 4.4vw, 56px);
+      line-height: 1.05; letter-spacing: -0.025em; margin: 0;
+      max-width: 14ch; font-weight: 400;
+    }
+    .contrast .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--hairline); margin-top: 24px; }
+    .contrast .pair > div { padding: 22px 0; border-bottom: 1px solid var(--hairline); }
+    .contrast .pair > div + div { border-left: 1px solid var(--hairline); padding-left: 22px; }
+    .contrast .pair > div:nth-child(odd) { padding-right: 22px; }
+    .contrast .pair .label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 8px; }
+    .contrast .pair p { margin: 0; font-size: 14.5px; line-height: 1.55; }
+    .contrast .pair .strike { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+
+    /* ============ PRICING band (no card overuse) ============ */
+    .pricing { padding: 88px 0; border-top: 1px solid var(--hairline); }
+    .pricing-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 36px; }
+    .pricing-head h2 { font-family: var(--display); font-size: clamp(32px, 4vw, 48px); margin: 0; font-weight: 400; letter-spacing: -0.02em; line-height: 1.05; max-width: 18ch; }
+    .pricing-head p { color: var(--muted); margin: 0; max-width: 38ch; font-size: 14.5px; }
+    .tiers { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--hairline); }
+    .tier { padding: 32px 28px; }
+    .tier + .tier { border-left: 1px solid var(--hairline); }
+    .tier h3 { font-family: var(--display); font-size: 24px; font-weight: 400; margin: 0 0 4px; letter-spacing: -0.01em; }
+    .tier .sub { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+    .tier .price { font-family: var(--display); font-size: 44px; letter-spacing: -0.025em; line-height: 1; margin-bottom: 18px; font-weight: 400; }
+    .tier .price small { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-left: 6px; }
+    .tier ul { list-style: none; padding: 0; margin: 0 0 24px; }
+    .tier ul li { font-size: 13.5px; padding: 8px 0; border-top: 1px solid var(--hairline); color: var(--ink); }
+    .tier ul li:first-child { border-top: none; }
+    .tier ul li::before { content: '— '; color: var(--muted); }
+    .tier .btn { width: 100%; }
+    .tier--highlight { background: var(--canvas); position: relative; }
+    .tier--highlight::after {
+      content: 'recommended';
+      position: absolute; top: 16px; right: 16px;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--pale-green-fg); background: var(--pale-green-bg);
+      padding: 3px 8px; border-radius: 999px;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 32px 0;
+      font-family: var(--mono); font-size: 11.5px; color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    footer .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 880px) {
+      .nav ul { display: none; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .cell--hero, .cell--tall, .cell--wide, .cell--small { grid-column: span 1; grid-row: auto; }
+      .contrast .columns, .pricing-head, .tiers { grid-template-columns: 1fr; display: block; }
+      .tier + .tier { border-left: none; border-top: 1px solid var(--hairline); }
+      .pricing-head p { margin-top: 12px; }
+    }
+
+    /* ============ MOTION (entry, subtle) ============ */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav" data-od-id="topnav">
+    <span class="brand">Quartz<em> · 工作空间</em></span>
+    <ul>
+      <li><a href="#bento">功能面</a></li>
+      <li><a href="#contrast">它不是什么</a></li>
+      <li><a href="#pricing">方案</a></li>
+      <li><a href="#changelog">更新日志</a></li>
+    </ul>
+    <button class="cta">打开工作空间</button>
+  </header>
+
+  <main>
+    <section class="wrap hero reveal" data-od-id="hero">
+      <span class="eyebrow"><span class="dot"></span>目前内测中 · 构建 0.4.7</span>
+      <h1>一个安静的地方，写下那些 <em>没人读的文档</em>，并让人真的去读。</h1>
+      <p class="lede">Quartz 是为技术写作者准备的工作空间 —— 他们更愿意交付一份干净的更新日志，而不是去赢 Notion 模板大赛。列提纲、起草、评审、发布 —— 全程不用离开键盘。</p>
+      <div class="actions">
+        <button class="btn btn-primary">申请访问权限</button>
+        <button class="btn-link">阅读手册</button>
+        <span class="keystroke">⌘ K</span>
+      </div>
+    </section>
+
+    <section class="wrap bento reveal" id="bento" data-od-id="bento">
+      <div class="bento-grid">
+        <div class="cell cell--hero">
+          <span class="num">01 / 提纲</span>
+          <span class="chip chip--green">编辑器</span>
+          <h3>一份兼作打字机的提纲。</h3>
+          <p>拖动标题即可重构结构。把某个标题切到专注模式，页面其余部分便淡成一根细线。没有浮动工具栏，没有弹窗宾果 —— 只有你正在输入的那一行。</p>
+          <div class="doclines">
+            <b>↳</b> ⌘ ⇧ O   切换提纲<br>
+            <b>↳</b> ⌘ J     专注模式<br>
+            <b>↳</b> ⌘ ⏎     发布草稿
+          </div>
+        </div>
+        <div class="cell cell--tall" data-od-id="bento-review">
+          <span class="num">02 / 评审</span>
+          <span class="chip chip--blue">评审</span>
+          <h4 style="margin-top: 14px;">行内评审，不开 Slack 串</h4>
+          <p>评审人留下的评论串锚定在某一行，解决后即归档 —— 不会在两周后来一句「这是在说啥」而丢掉上下文。</p>
+        </div>
+        <div class="cell cell--small" data-od-id="bento-export">
+          <span class="num">03 / 导出</span>
+          <h4>永远输出 Markdown</h4>
+          <p>导出可以往返：在 Quartz 中打开的文档，写出的 .md 与读入时完全一致。</p>
+        </div>
+        <div class="cell cell--small" data-od-id="bento-history">
+          <span class="num">04 / 历史</span>
+          <span class="chip chip--yellow">审计</span>
+          <h4 style="margin-top: 8px;">Git 级历史记录</h4>
+          <p>每次保存都是一次提交。三次按键即可对比两个版本。</p>
+        </div>
+        <div class="cell cell--wide" data-od-id="bento-stack">
+          <span class="num">05 / 技术栈</span>
+          <span class="chip chip--red">集成</span>
+          <h4 style="margin-top: 14px;">与 Linear、GitHub 及你的 CMS 友好协作</h4>
+          <p>Quartz 会识别你正文里的 Linear 工单 ID，并在侧栏显示其父 issue。把已发布的文档推送到 GitHub 仓库或静态站点 —— 不需要插件市场。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap contrast reveal" id="contrast" data-od-id="contrast">
+      <div class="columns">
+        <h2>Quartz 不想当 wiki，也不想当 CMS，更不想当第二大脑。</h2>
+        <div>
+          <div class="pair">
+            <div>
+              <div class="label">不做</div>
+              <p class="strike">从你的提纲自动生成三栏落地页。</p>
+            </div>
+            <div>
+              <div class="label">做</div>
+              <p>按你写的结构，发布你写的内容。</p>
+            </div>
+            <div>
+              <div class="label">不做</div>
+              <p class="strike">推荐 emoji、AI 摘要、「提示」区块。</p>
+            </div>
+            <div>
+              <div class="label">做</div>
+              <p>尊重分页。设好字体排印。然后让开。</p>
+            </div>
+            <div>
+              <div class="label">不做</div>
+              <p class="strike">同步到数据库，然后假装数据库不存在。</p>
+            </div>
+            <div>
+              <div class="label">做</div>
+              <p>把 Markdown 写到磁盘，从磁盘读 Markdown。就这样。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap pricing reveal" id="pricing" data-od-id="pricing">
+      <div class="pricing-head">
+        <h2>写作者一个方案，团队一个方案。其余都是销售电话。</h2>
+        <p>免费十四天。我们不要信用卡，之后也不会给你发邮件 —— 除非你先回信。</p>
+      </div>
+      <div class="tiers">
+        <div class="tier">
+          <h3>Solo</h3>
+          <p class="sub">适合一位很有主见的写作者。</p>
+          <div class="price">$9<small>/ 月</small></div>
+          <ul>
+            <li>文档不限量</li>
+            <li>本地优先、加密同步</li>
+            <li>Markdown 导出与导入</li>
+            <li>三套自定义主题</li>
+          </ul>
+          <button class="btn btn-ghost">开始使用 Solo</button>
+        </div>
+        <div class="tier tier--highlight">
+          <h3>Studio</h3>
+          <p class="sub">适合最多十二人的文档团队。</p>
+          <div class="price">$22<small>/ 席 / 月</small></div>
+          <ul>
+            <li>包含 Solo 的全部内容</li>
+            <li>行内评审与审批</li>
+            <li>GitHub 与 Linear 同步</li>
+            <li>带差异历史的审计日志</li>
+            <li>静态站点发布目标</li>
+          </ul>
+          <button class="btn btn-primary">开始使用 Studio</button>
+        </div>
+        <div class="tier">
+          <h3>出版版</h3>
+          <p class="sub">适合出版商与大型组织。</p>
+          <div class="price">联系<small>我们</small></div>
+          <ul>
+            <li>SSO (SAML, OIDC)</li>
+            <li>自托管部署</li>
+            <li>自定义导出流水线</li>
+            <li>指定支持工程师</li>
+          </ul>
+          <button class="btn btn-ghost">开启对话</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap row">
+      <span>Quartz · 法国波尔多 · v0.4.7 · 2026</span>
+      <span>
+        <a href="#">手册</a> · <a href="#">更新日志</a> · <a href="#">状态</a> · <a href="#">隐私</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection-observer reveal — never window scroll listeners.
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

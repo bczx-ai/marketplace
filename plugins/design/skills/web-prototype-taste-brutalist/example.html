@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FIELD UNIT 04 // 为可读之网而做的器具</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F4F4F0;
+      --paper-2: #EAE8E3;
+      --ink: #060606;
+      --ink-soft: #1A1A18;
+      --hazard: #E61919;
+      --rule: #060606;
+      --display: 'Archivo Black', 'Neue Haas Grotesk', 'Inter', sans-serif;
+      --sans: 'Archivo', 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "tnum", "ss01";
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { background: var(--ink); color: var(--paper); }
+
+    .mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; }
+    .mono-md { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; }
+    .red { color: var(--hazard); }
+    .ink { color: var(--ink); }
+
+    hr.rule { border: 0; border-top: 1px solid var(--ink); margin: 0; }
+    hr.thick { border: 0; border-top: 4px solid var(--ink); margin: 0; }
+    hr.hazard { border: 0; border-top: 1px solid var(--hazard); margin: 0; }
+
+    /* ========= TOP REGISTER STRIP ========= */
+    .strip {
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 8px 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 22px;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 11px;
+    }
+    .strip > div { display: flex; gap: 8px; align-items: baseline; white-space: nowrap; overflow: hidden; }
+    .strip b { color: var(--ink); }
+    .strip span { color: var(--ink-soft); }
+
+    /* ========= NAV ========= */
+    .nav {
+      padding: 14px 22px;
+      display: flex; align-items: baseline; justify-content: space-between;
+      border-bottom: 4px solid var(--ink);
+    }
+    .brand {
+      font-family: var(--display); font-size: 22px; letter-spacing: -0.04em; line-height: 1; text-transform: uppercase;
+    }
+    .brand sup { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; font-weight: 400; vertical-align: top; margin-left: 4px; color: var(--hazard); }
+    .nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; }
+    .nav ul a {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 4px 7px; border: 1px solid var(--ink);
+    }
+    .nav .meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+
+    /* ========= HERO ========= */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      border-bottom: 1px solid var(--ink);
+    }
+    .hero .num {
+      font-family: var(--display);
+      font-size: clamp(220px, 36vw, 540px);
+      line-height: 0.78;
+      letter-spacing: -0.07em;
+      padding: 24px 0 0 22px;
+      color: var(--ink);
+      position: relative;
+      overflow: visible;
+    }
+    .hero .num::after {
+      content: '®';
+      font-size: 0.18em; letter-spacing: 0; vertical-align: top;
+      color: var(--hazard); margin-left: 6px;
+    }
+    .hero .meta-col {
+      border-left: 1px solid var(--ink);
+      padding: 22px;
+      display: flex; flex-direction: column; gap: 22px;
+      font-family: var(--mono);
+    }
+    .hero .meta-col h2 {
+      font-family: var(--display); font-size: clamp(38px, 4.5vw, 64px); line-height: 0.9; letter-spacing: -0.03em;
+      text-transform: uppercase; margin: 0;
+    }
+    .hero .meta-col p { font-family: var(--sans); font-size: 14px; line-height: 1.55; margin: 0; max-width: 38ch; text-align: justify; }
+    .meta-row { display: grid; grid-template-columns: 8ch 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid var(--ink); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .meta-row b { color: var(--hazard); font-weight: 500; }
+
+    .ascii-frame {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 0; color: var(--ink);
+    }
+    .ascii-frame::before { content: '['; color: var(--hazard); }
+    .ascii-frame::after { content: ']'; color: var(--hazard); }
+
+    /* ========= ABSTRACT / LEAD ========= */
+    .abstract {
+      padding: 56px 22px;
+      display: grid;
+      grid-template-columns: 8ch 1fr 30ch;
+      gap: 32px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .abstract .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hazard); padding-top: 6px; }
+    .abstract .body {
+      font-family: var(--sans); font-size: 22px; line-height: 1.4; letter-spacing: -0.012em;
+      max-width: 50ch;
+    }
+    .abstract .body span.drop {
+      font-family: var(--display); font-size: 64px; line-height: 0.85; float: left;
+      margin: 4px 10px -4px 0; letter-spacing: -0.04em; text-transform: uppercase;
+    }
+    .abstract .credits { font-family: var(--mono); font-size: 10.5px; line-height: 1.7; text-transform: uppercase; letter-spacing: 0.1em; }
+    .abstract .credits hr { margin: 8px 0; border: 0; border-top: 1px solid var(--ink); }
+    .abstract .credits b { color: var(--hazard); font-weight: 500; }
+
+    /* ========= MANIFEST (numbered theses) ========= */
+    .manifest { padding: 56px 22px; border-bottom: 4px solid var(--ink); }
+    .manifest h2 {
+      font-family: var(--display);
+      font-size: clamp(56px, 8vw, 120px);
+      line-height: 0.86;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      margin: 0 0 28px;
+      max-width: 16ch;
+    }
+    .manifest h2 em { font-style: normal; color: var(--hazard); }
+    .thesis-list { display: grid; grid-template-columns: 1fr; }
+    .thesis {
+      display: grid;
+      grid-template-columns: 6ch 1fr 14ch;
+      gap: 32px;
+      padding: 22px 0;
+      border-top: 1px solid var(--ink);
+      align-items: baseline;
+    }
+    .thesis:last-child { border-bottom: 1px solid var(--ink); }
+    .thesis .num {
+      font-family: var(--display); font-size: 44px; line-height: 0.9; letter-spacing: -0.04em;
+    }
+    .thesis .num small { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; vertical-align: top; }
+    .thesis h3 {
+      font-family: var(--display); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.05;
+      letter-spacing: -0.025em; text-transform: uppercase; margin: 0 0 8px; max-width: 28ch;
+    }
+    .thesis p { margin: 0; font-size: 14px; line-height: 1.55; max-width: 56ch; color: var(--ink-soft); }
+    .thesis .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      text-align: right; color: var(--hazard);
+    }
+
+    /* ========= INDEX (1px grid) ========= */
+    .index-section { border-bottom: 1px solid var(--ink); }
+    .index-head {
+      padding: 22px;
+      display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .index-head h2 { font-family: var(--display); font-size: clamp(28px, 3vw, 40px); letter-spacing: -0.03em; text-transform: uppercase; line-height: 1; margin: 0; }
+    .index-head .meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+    .index-grid {
+      display: grid;
+      grid-template-columns: 4ch 1.3fr 1fr 1fr 0.8fr 0.8fr;
+      gap: 1px;
+      background: var(--ink);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .index-grid > div { background: var(--paper); padding: 12px 14px; }
+    .index-grid .header { background: var(--ink); color: var(--paper); font-weight: 500; }
+    .index-grid .right { text-align: right; }
+    .index-grid .red { color: var(--hazard); }
+
+    /* ========= SPECIMEN ========= */
+    .specimen { border-bottom: 4px solid var(--ink); padding: 56px 22px; }
+    .specimen-head { display: flex; justify-content: space-between; align-items: baseline; gap: 22px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
+    .specimen-head h2 { font-family: var(--display); font-size: 28px; letter-spacing: -0.03em; text-transform: uppercase; margin: 0; line-height: 1; }
+    .specimen-head .meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+    .spec-row {
+      display: grid;
+      grid-template-columns: 12ch 1fr 12ch;
+      align-items: baseline;
+      gap: 22px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--ink);
+    }
+    .spec-row .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hazard); }
+    .spec-row .glyph { font-family: var(--display); letter-spacing: -0.04em; line-height: 0.95; text-transform: uppercase; }
+    .spec-row .glyph.s1 { font-size: clamp(36px, 5vw, 64px); }
+    .spec-row .glyph.s2 { font-size: clamp(60px, 9vw, 120px); }
+    .spec-row .glyph.s3 { font-size: clamp(120px, 16vw, 220px); }
+    .spec-row .stats { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; text-align: right; line-height: 1.6; }
+
+    /* ========= ALERT BLOCK ========= */
+    .alert {
+      border-bottom: 1px solid var(--ink);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 18ch 1fr;
+      gap: 28px;
+      background:
+        repeating-linear-gradient(135deg, transparent 0 14px, rgba(230,25,25,0.06) 14px 28px);
+    }
+    .alert .label { font-family: var(--display); font-size: 28px; letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; color: var(--hazard); border: 2px solid var(--hazard); padding: 10px 12px; align-self: start; }
+    .alert .body { font-family: var(--sans); font-size: 15.5px; line-height: 1.5; max-width: 64ch; }
+    .alert .body strong { background: var(--ink); color: var(--paper); padding: 0 4px; font-weight: 500; }
+
+    /* ========= COLOPHON ========= */
+    .colophon {
+      padding: 32px 22px 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.85;
+      border-top: 1px solid var(--ink);
+    }
+    .colophon dl { display: grid; grid-template-columns: 16ch 1fr; gap: 6px 16px; margin: 0; }
+    .colophon dt { color: var(--hazard); }
+    .colophon dd { margin: 0; }
+    .colophon .credit { font-family: var(--display); font-size: 38px; letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; color: var(--ink); }
+    .colophon .credit small { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; margin-top: 8px; color: var(--ink-soft); }
+
+    /* ========= RESPONSIVE ========= */
+    @media (max-width: 880px) {
+      .strip { grid-template-columns: 1fr 1fr; gap: 8px 22px; }
+      .strip > div:nth-child(n+5) { display: none; }
+      .nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero .num { font-size: 36vw; }
+      .hero .meta-col { border-left: none; border-top: 1px solid var(--ink); }
+      .abstract { grid-template-columns: 1fr; }
+      .thesis { grid-template-columns: 6ch 1fr; }
+      .thesis .tag { display: none; }
+      .index-grid { grid-template-columns: 4ch 1fr 1fr; font-size: 10px; }
+      .index-grid > div:nth-child(6n+4),
+      .index-grid > div:nth-child(6n+5),
+      .index-grid > div:nth-child(6n) { display: none; }
+      .alert { grid-template-columns: 1fr; }
+      .colophon { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="strip">
+    <div><b>卷</b><span>04 / 现场单元</span></div>
+    <div><b>期</b><span>2026 · 五月 · 季刊</span></div>
+    <div><b>纬度</b><span>44.8404° N</span></div>
+    <div><b>经度</b><span>−0.5805° W</span></div>
+    <div><b>状态</b><span class="red">⬤ 传输中</span></div>
+  </div>
+
+  <header class="nav" data-od-id="topnav">
+    <span class="brand">FIELD/UNIT/04<sup>® 创刊于 2026</sup></span>
+    <ul>
+      <li><a href="#abstract">[ 摘要 ]</a></li>
+      <li><a href="#manifest">[ 宣言 ]</a></li>
+      <li><a href="#index">[ 索引 ]</a></li>
+      <li><a href="#specimen">[ 字样 ]</a></li>
+    </ul>
+    <span class="meta">档案号 <span class="red">04 / 0731</span></span>
+  </header>
+
+  <section class="hero" data-od-id="hero">
+    <div class="num">04</div>
+    <div class="meta-col">
+      <span class="ascii-frame">印刷品 · 为网络而作</span>
+      <h2>为可读之网&nbsp;打造的&nbsp;器具<span class="red">.</span></h2>
+      <p>Field Unit 04 是一本季刊器具：三十二页的写作、字体、基础设施摄影，以及来自实践者工作坊的笔记 —— 他们宁可量两次，也不愿交付一个视差效果。以印刷品与这个界面两种形式发行 —— 字体为 Archivo Black 与 JetBrains Mono。</p>
+      <div>
+        <div class="meta-row"><b>主编</b><span>Q. ALBRECHT</span></div>
+        <div class="meta-row"><b>印厂</b><span>ATELIER NORD-OUEST</span></div>
+        <div class="meta-row"><b>纸张</b><span>FEDRIGONI ARENA · 120GSM</span></div>
+        <div class="meta-row"><b>装订</b><span>锁线 · 裸脊</span></div>
+        <div class="meta-row"><b>版次</b><span>2,400 册 / 编号</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="abstract" id="abstract" data-od-id="abstract">
+    <div class="label">[ 摘要 ]<br>///</div>
+    <div class="body">
+      <span class="drop">网</span>络已经不再被当作文档来阅读，而被当作广告牌来阅读。本期是一次小小的抗议 —— 务实、技术、固执地保持印刷的形态 —— 收录十四篇文章，作者是那些仍然相信一页纸可以承载一条思路、而无需缴纳动画税的写作者、字体设计师与工程师。
+    </div>
+    <div class="credits">
+      <hr>
+      <b>撰稿人</b><br>
+      Q. ALBRECHT (FR)<br>
+      H. NAITŌ (JP)<br>
+      M. ANDREJEVIĆ (HR)<br>
+      P. NWACHUKWU (NG)<br>
+      L. ARROYAVE (CO)<br>
+      <hr>
+      <b>归档于</b><br>
+      字体 · 印刷<br>
+      网络 · 编辑<br>
+      基础设施
+    </div>
+  </section>
+
+  <section class="manifest" id="manifest" data-od-id="manifest">
+    <h2>关于一个更 <em>安静</em> 的网络的六条论点<span class="red">.</span></h2>
+    <div class="thesis-list">
+      <div class="thesis">
+        <div class="num">01<small>/06</small></div>
+        <div>
+          <h3>页面不是舞台，而是一张书桌。</h3>
+          <p>读者坐在桌前。他们不需要幕布，需要的是页边距、一个信得过的栏宽，以及被信任去读超过九个词的段落的尊严。</p>
+        </div>
+        <div class="tag">>>> 字体</div>
+      </div>
+      <div class="thesis">
+        <div class="num">02<small>/06</small></div>
+        <div>
+          <h3>留白不是浪费，是注意力的报酬。</h3>
+          <p>把所有东西都压进一个视口，读者就要用标签页切换来付费。像书一样搭建页面，他们付出的就是时间 —— 那正是你想要的。</p>
+        </div>
+        <div class="tag">>>> 节奏</div>
+      </div>
+      <div class="thesis">
+        <div class="num">03<small>/06</small></div>
+        <div>
+          <h3>如果字体不是页面上最强的信号，那这页就有问题。</h3>
+          <p>图像、动效、渐变、辉光 —— 全都听命于文字。如果这行字在正午的 320 像素屏幕上站不住，项目的其余部分也站不住。</p>
+        </div>
+        <div class="tag">>>> 层级</div>
+      </div>
+      <div class="thesis">
+        <div class="num">04<small>/06</small></div>
+        <div>
+          <h3>网格是契约，不是戏服。</h3>
+          <p>你要么守住契约 —— 要么故意用页面上最响的一行把它打破一次。若只是随意漂移，读者就不再相信这个结构。</p>
+        </div>
+        <div class="tag">>>> 结构</div>
+      </div>
+      <div class="thesis">
+        <div class="num">05<small>/06</small></div>
+        <div>
+          <h3>动效是引用，不是合唱。</h3>
+          <p>一样东西若要动，必须是因为作品本体召唤它动。否则就等于给每个词都加下划线 —— 那是在防着被读。</p>
+        </div>
+        <div class="tag">>>> 动效</div>
+      </div>
+      <div class="thesis">
+        <div class="num">06<small>/06</small></div>
+        <div>
+          <h3>按钮是你唯一被允许的装饰。</h3>
+          <p>让它有分量。让它成为读者伸手去够的东西。然后别碰页面的其余部分。</p>
+        </div>
+        <div class="tag">>>> 组件</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="index-section" id="index" data-od-id="index">
+    <div class="index-head">
+      <h2>第 04 期索引 <span class="red">///</span></h2>
+      <span class="meta">14 篇 · 第 8 — 96 页</span>
+    </div>
+    <div class="index-grid">
+      <div class="header">№</div><div class="header">标题</div><div class="header">作者</div><div class="header">栏目</div><div class="header right">页码</div><div class="header right">时长</div>
+
+      <div>01</div><div>冷金属排字</div><div>H. Naitō</div><div class="red">字体</div><div class="right">8 — 14</div><div class="right">12 分钟</div>
+      <div>02</div><div>没有框架的一年</div><div>Q. Albrecht</div><div>网络</div><div class="right">15 — 23</div><div class="right">18 分钟</div>
+      <div>03</div><div>凸版印刷笔记</div><div>M. Andrejević</div><div class="red">字体</div><div class="right">24 — 31</div><div class="right">14 分钟</div>
+      <div>04</div><div>延迟节食法</div><div>P. Nwachukwu</div><div>基础设施</div><div class="right">32 — 40</div><div class="right">22 分钟</div>
+      <div>05</div><div>每一页都是一封信</div><div>L. Arroyave</div><div class="red">编辑</div><div class="right">41 — 47</div><div class="right">11 分钟</div>
+      <div>06</div><div>文件格式即政治</div><div>Q. Albrecht</div><div>基础设施</div><div class="right">48 — 56</div><div class="right">19 分钟</div>
+      <div>07</div><div>栏宽</div><div>H. Naitō</div><div class="red">字体</div><div class="right">57 — 60</div><div class="right">7 分钟</div>
+      <div>08</div><div>安静地公开工作</div><div>L. Arroyave</div><div class="red">编辑</div><div class="right">61 — 68</div><div class="right">15 分钟</div>
+    </div>
+  </section>
+
+  <section class="specimen" id="specimen" data-od-id="specimen">
+    <div class="specimen-head">
+      <h2>字样 ///</h2>
+      <span class="meta">ARCHIVO BLACK · 1 种风格 · 1 个字重</span>
+    </div>
+    <div class="spec-row">
+      <span class="label">36 / 64</span>
+      <div class="glyph s1">安静的页面，是响亮的论点。</div>
+      <div class="stats">字距 −0.04em<br>行距 0.95<br>全大写</div>
+    </div>
+    <div class="spec-row">
+      <span class="label">60 / 120</span>
+      <div class="glyph s2">把网络印出来。</div>
+      <div class="stats">字距 −0.05em<br>行距 0.88<br>全大写</div>
+    </div>
+    <div class="spec-row">
+      <span class="label">120 / 220</span>
+      <div class="glyph s3">04®</div>
+      <div class="stats">字距 −0.06em<br>行距 0.78<br>登记字形</div>
+    </div>
+  </section>
+
+  <section class="alert" data-od-id="alert">
+    <div class="label">!! 购买<br>第 04 期</div>
+    <div class="body">
+      第 04 期于 <strong>2026 年 6 月 14 日</strong> 从装订厂发货。预购价 <strong>€18 / 含运费</strong>，或订阅四期连环，价格 <strong>€60 / 年</strong>。预购包含：丝网印刷的散页插页、600mm 折页字样海报，以及以同一栏宽排版的全部过往期数数字版。 <span class="red">>>> 预购 · 6 月 14 日发货</span>
+    </div>
+  </section>
+
+  <footer class="colophon" data-od-id="colophon">
+    <dl>
+      <dt>字体</dt><dd>Archivo Black · JetBrains Mono · Archivo</dd>
+      <dt>印厂</dt><dd>Atelier Nord-Ouest · 波尔多</dd>
+      <dt>纸张</dt><dd>Fedrigoni Arena Smooth Extra White 120gsm</dd>
+      <dt>装订</dt><dd>锁线 · 裸脊 · 32 页</dd>
+      <dt>版次</dt><dd>2,400 册编号 · 14 册字母编号作者版</dd>
+      <dt>版权</dt><dd>CC BY-NC-ND 4.0 · 撰稿人作品除外</dd>
+    </dl>
+    <div>
+      <div class="credit">FIELD&nbsp;UNIT&nbsp;04<small>® / 2026 年排版 · 法国波尔多 / © FIELD UNIT EDITIONS</small></div>
+    </div>
+  </footer>
+</body>
+</html>

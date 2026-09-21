@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>像严谨的 COO 一样写经营回顾 — 企业战略</title>
+  <style>
+    :root {
+      --bg: #fafaf9; --fg: #1c1b1a; --muted: #6b6964; --accent: #c96442; --surface: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 18px/1.5 -apple-system, system-ui, sans-serif;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    body::-webkit-scrollbar { display: none; }
+    .slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      padding: 80px 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .slide.title { background: var(--fg); color: var(--bg); }
+    .eyebrow { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+    .slide h1 { font-size: clamp(48px, 7vw, 96px); line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 20px; max-width: 16ch; }
+    .slide h2 { font-size: clamp(32px, 4vw, 48px); letter-spacing: -0.015em; margin: 0 0 20px; max-width: 20ch; }
+    .slide .body { font-size: 22px; color: var(--muted); max-width: 56ch; }
+    .slide.title .body { color: rgba(250,250,249,0.7); }
+    .slide.big-stat .number { font-size: clamp(120px, 22vw, 280px); line-height: 0.9; letter-spacing: -0.04em; color: var(--accent); margin-bottom: 16px; font-weight: 600; }
+    .slide.big-stat .caption { font-size: 24px; color: var(--muted); max-width: 24ch; }
+    .quote-mark { font-family: Georgia, serif; font-size: 200px; line-height: 0.7; color: var(--accent); opacity: 0.18; margin-bottom: -40px; }
+    .quote-text { font-family: Georgia, serif; font-size: 36px; line-height: 1.3; max-width: 26ch; margin: 0 0 28px; }
+    .quote-author { font-size: 14px; color: var(--muted); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; }
+    .grid-3 .pt { border-top: 2px solid var(--accent); padding-top: 16px; }
+    .grid-3 .pt .h { font-size: 18px; font-weight: 500; margin: 0 0 8px; }
+    .grid-3 .pt .p { color: var(--muted); margin: 0; font-size: 16px; }
+    .counter { position: fixed; bottom: 24px; right: 32px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--muted); background: var(--surface); padding: 4px 10px; border-radius: 999px; border: 1px solid #e6e4e0; }
+    .hint { position: fixed; bottom: 24px; left: 32px; font-size: 11px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <section class="slide title" data-od-id="slide-1">
+    <div class="eyebrow" style="color:#c96442;">企业战略 · 经营回顾 · 董事会预读材料</div>
+    <h1>批准该方案：削减 35% 的烧钱，守住开放内核。</h1>
+    <p class="body">Open Design 的 Q2 经营回顾 —— 增长、烧钱，以及通往可持续的具体路径，同时不给我们起步所依赖的 Apache-2.0 项目设门槛。</p>
+  </section>
+  <section class="slide" data-od-id="slide-2">
+    <div class="eyebrow">建议</div>
+    <h2>在不触碰开放内核的前提下，把现金跑道延长到 22 个月。</h2>
+    <p class="body">增长不是问题 —— 76K GitHub star 与 200+ 社区插件已经证明了需求。缺口在成本结构：我们在补贴每个用户的模型调用。解决办法是让 BYOK 成为默认、为自托管企业部署提供付费授权，同时不动开源桌面应用。</p>
+  </section>
+  <section class="slide big-stat" data-od-id="slide-3">
+    <div class="number">42%</div>
+    <div class="caption">自 Q1 上线本地优先的智能体路由以来，云端推理支出已从每月 $187K 降到 $109K。</div>
+  </section>
+  <section class="slide" data-od-id="slide-4">
+    <div class="eyebrow">考虑过的选项</div>
+    <h2>通往可持续的三条路径。</h2>
+    <div class="grid-3">
+      <div class="pt"><h3 class="h">A — 维持现状</h3><p class="p">继续补贴托管推理。烧钱维持在每月 $187K；到 Q4 现金跑道缩至 9 个月。</p></div>
+      <div class="pt"><h3 class="h">B — 默认 BYOK（推荐）</h3><p class="p">默认由用户自带模型密钥。托管推理成本下降约 40%，开源应用完全不变。</p></div>
+      <div class="pt"><h3 class="h">C — 企业自托管授权</h3><p class="p">在 B 的基础上，对托管式自托管部署与支持收费，且不把任何现有功能锁进付费墙。</p></div>
+    </div>
+  </section>
+  <section class="slide" data-od-id="slide-5">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">如果我们为了达成这些数字，把任何现有插件或功能挡进付费墙，就会毁掉造就 200+ 插件生态的开源飞轮 —— 这个风险不值得用那点节省去换。</p>
+    <p class="quote-author">—— 由工程与社区负责人联合提示的风险</p>
+  </section>
+  <section class="slide title" data-od-id="slide-6">
+    <div class="eyebrow" style="color:#c96442;">需在 7 月 23 日董事会前做出决定</div>
+    <h1>批准默认 BYOK 加企业自托管授权。</h1>
+    <p class="body">负责人：Maria Chen（CFO）执行烧钱削减计划 · Alex Osei（平台负责人）在 Q3 交付默认 BYOK · 社区负责人全程保持插件治理完全开放。</p>
+  </section>
+
+  <div class="counter" id="counter">1 / 6</div>
+  <div class="hint">← / → 翻页</div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    let active = 0;
+
+    // Detect the real scroller — when body has `display: flex` + `overflow-x: auto`
+    // the scroller can be body OR documentElement depending on the host (in
+    // particular, the OD srcdoc iframe). Pick whichever actually overflows.
+    function scrollContainers() {
+      return [document.scrollingElement, document.documentElement, document.body]
+        .filter(Boolean)
+        .filter((el, idx, arr) => arr.indexOf(el) === idx);
+    }
+    function overflowX(el) {
+      if (!el) return 0;
+      return Math.max(0, (el.scrollWidth || 0) - (el.clientWidth || 0));
+    }
+    function scrollLeftOf(el) {
+      if (!el) return 0;
+      try { return Number(el.scrollLeft) || 0; } catch (_) { return 0; }
+    }
+    function activeScrollLeft() {
+      return scrollContainers().reduce((best, el) => {
+        const left = scrollLeftOf(el);
+        return Math.abs(left) > Math.abs(best) ? left : best;
+      }, 0);
+    }
+    function scroller() {
+      return scrollContainers().reduce((best, el) => {
+        const bestScore = overflowX(best) + Math.abs(scrollLeftOf(best)) * 2;
+        const score = overflowX(el) + Math.abs(scrollLeftOf(el)) * 2;
+        return score > bestScore ? el : best;
+      }, scrollContainers()[0] || document.documentElement);
+    }
+    function scrollToLeft(left, behavior) {
+      for (const el of scrollContainers()) {
+        try { el.scrollLeft = left; } catch (_) {}
+        try { el.scrollTo({ left, behavior: behavior || 'smooth' }); } catch (_) {}
+      }
+    }
+
+    function go(i) {
+      const next = Math.max(0, Math.min(slides.length - 1, i));
+      active = next;
+      counter.textContent = (next + 1) + ' / ' + slides.length;
+      scrollToLeft(next * window.innerWidth, 'smooth');
+    }
+    function syncFromScroll() {
+      const i = Math.round(activeScrollLeft() / window.innerWidth);
+      if (i !== active && i >= 0 && i < slides.length) {
+        active = i;
+        counter.textContent = (i + 1) + ' / ' + slides.length;
+      }
+    }
+    function onKey(e) {
+      if (e.defaultPrevented) return;
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(active + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(active - 1); }
+      else if (e.key === 'Home') { e.preventDefault(); go(0); }
+      else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+    }
+    // Listen on both window and document in capture phase so the handler
+    // fires regardless of which element holds focus inside the iframe.
+    window.addEventListener('keydown', onKey, true);
+    document.addEventListener('keydown', onKey, true);
+    // And listen for scroll on both surfaces — same reason.
+    document.addEventListener('scroll', syncFromScroll, { passive: true, capture: true });
+    window.addEventListener('scroll', syncFromScroll, { passive: true });
+
+    // Auto-focus body so arrow keys work without a click.
+    document.body.setAttribute('tabindex', '-1');
+    document.body.style.outline = 'none';
+    function focusDeck() { try { window.focus(); document.body.focus({ preventScroll: true }); } catch (_) {} }
+    document.addEventListener('mousedown', focusDeck);
+    window.addEventListener('load', focusDeck);
+    focusDeck();
+  </script>
+
+</body>
+</html>
