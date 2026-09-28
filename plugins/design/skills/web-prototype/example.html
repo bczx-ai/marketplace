@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tomato — 专注计时器</title>
+  <style>
+    :root {
+      --bg: #fafaf9; --fg: #1c1b1a; --muted: #6b6964; --border: #e6e4e0;
+      --accent: #c96442; --surface: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, system-ui, sans-serif; }
+    header, main, footer { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; }
+    .logo { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+    nav a { color: var(--fg); text-decoration: none; margin-left: 24px; font-size: 14px; }
+    nav a:hover { color: var(--accent); }
+    .hero { padding: 96px 0 80px; text-align: center; }
+    .hero h1 { font-size: clamp(44px, 6vw, 76px); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 20px; max-width: 18ch; margin-inline: auto; }
+    .hero p { color: var(--muted); font-size: 19px; max-width: 52ch; margin: 0 auto 32px; }
+    .cta { display: inline-flex; gap: 12px; }
+    button { font: inherit; cursor: pointer; padding: 12px 22px; border-radius: 8px; }
+    .btn-primary { background: var(--accent); color: white; border: 1px solid var(--accent); font-weight: 500; }
+    .btn-secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 56px 0 96px; }
+    @media (max-width: 720px) { .features { grid-template-columns: 1fr; } }
+    .feature { padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+    .feature .icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent); margin-bottom: 16px; opacity: 0.12; }
+    .feature h3 { margin: 0 0 8px; font-size: 17px; letter-spacing: -0.01em; }
+    .feature p { margin: 0; color: var(--muted); font-size: 14px; }
+    .closing { padding: 64px 0 96px; text-align: center; border-top: 1px solid var(--border); }
+    .closing h2 { font-size: 32px; margin: 0 0 12px; letter-spacing: -0.01em; }
+    .closing p { color: var(--muted); margin: 0 0 28px; }
+    footer { padding: 32px; color: var(--muted); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header data-od-id="topnav">
+    <span class="logo">🍅 Tomato</span>
+    <nav>
+      <a href="#features">功能</a>
+      <a href="#pricing">定价</a>
+      <a href="#login">登录</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" data-od-id="hero">
+      <h1>一次只做二十五分钟。</h1>
+      <p>真正能让你放下 Slack 的番茄钟。屏蔽通知、记录每个周期，午饭前多交付一点。</p>
+      <div class="cta">
+        <button class="btn-primary">开始一轮</button>
+        <button class="btn-secondary">看看怎么用</button>
+      </div>
+    </section>
+    <section class="features" id="features">
+      <div class="feature" data-od-id="feature-block">
+        <div class="icon"></div>
+        <h3>屏蔽打开，专注不关</h3>
+        <p>Slack 和邮箱会安静 25 分钟，休息时再带着摘要一起回来。</p>
+      </div>
+      <div class="feature" data-od-id="feature-stats">
+        <div class="icon"></div>
+        <h3>不会说谎的统计</h3>
+        <p>每周回顾会告诉你，哪些天真的交付了，哪些天只是看起来很忙。</p>
+      </div>
+      <div class="feature" data-od-id="feature-team">
+        <div class="icon"></div>
+        <h3>对团队友好的安静</h3>
+        <p>状态自动更新，同事一眼知道什么时候来找你、什么时候该等、什么时候你已经收工。</p>
+      </div>
+    </section>
+    <section class="closing" data-od-id="closing">
+      <h2>别再用会议衡量产出，开始衡量专注。</h2>
+      <p>个人版免费，之后每位队友 $4/月。</p>
+      <button class="btn-primary">免费试用 Tomato</button>
+    </section>
+  </main>
+  <footer>© Tomato Labs · 献给更愿意亲手创造的人。</footer>
+</body>
+</html>

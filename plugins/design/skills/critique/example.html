@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>评审 · magazine-web-ppt 示例演示文稿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #ffffff;
+      --ink: #1a1a1c;
+      --muted: #6b6964;
+      --rule: #e2dfd7;
+      --accent: #c96442;
+      --good: #4a7a3f;
+      --warn: #c96442;
+      --bad: #a83a2a;
+
+      --serif: 'Source Serif 4', Georgia, serif;
+      --sans: 'Inter', -apple-system, system-ui, sans-serif;
+      --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 56px 40px 96px;
+    }
+
+    /* ============ Header ============ */
+    .hd {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 40px;
+    }
+    .hd-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(34px, 4.4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      margin: 0 0 10px;
+    }
+    .hd-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hd-verdict {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: 36ch;
+      text-align: right;
+    }
+    .hd-verdict strong { color: var(--ink); font-style: normal; font-weight: 600; }
+
+    /* ============ Top row: radar + score table ============ */
+    .top {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 48px;
+      margin-bottom: 64px;
+      align-items: center;
+    }
+    @media (max-width: 800px) {
+      .top { grid-template-columns: 1fr; }
+    }
+    .radar-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 24px;
+      text-align: center;
+    }
+    .radar-card .lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .radar-card svg { width: 100%; height: auto; max-width: 300px; }
+    .radar-card .overall {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+    .radar-card .overall .n {
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    /* Score table */
+    .scores { display: flex; flex-direction: column; gap: 14px; }
+    .score-row {
+      display: grid;
+      grid-template-columns: 22ch 1fr 6ch 14ch;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .score-row:first-child { border-top: 0; }
+    .score-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 17px;
+    }
+    .score-name .en {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .score-bar {
+      position: relative;
+      height: 4px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      background: var(--ink);
+    }
+    .score-num {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      text-align: right;
+    }
+    .score-num .denom {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .score-band {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: right;
+    }
+    .band-broken { color: var(--bad); }
+    .band-functional { color: var(--muted); }
+    .band-strong { color: var(--good); }
+    .band-exceptional { color: var(--accent); }
+
+    /* ============ Dimension cards ============ */
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: -0.005em;
+      margin: 64px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-title .en {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      margin-left: 10px;
+    }
+    .dim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 800px) {
+      .dim-grid { grid-template-columns: 1fr; }
+    }
+    .dim {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 22px 24px;
+    }
+    .dim-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .dim-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 19px;
+    }
+    .dim-name .en {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .dim-score {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+    .dim-score .denom {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .dim-evidence {
+      font-family: var(--serif);
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #2d2d30;
+      margin: 10px 0 16px;
+    }
+    .dim-evidence code {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      background: var(--rule);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .dim-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tag-row {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 12px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      color: var(--paper);
+      align-self: start;
+      text-align: center;
+    }
+    .tag-keep { background: var(--good); }
+    .tag-fix { background: var(--warn); }
+    .tag-qw { background: #2c4d6e; }
+
+    /* ============ Action lists ============ */
+    .lists-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+    @media (max-width: 800px) {
+      .lists-grid { grid-template-columns: 1fr; }
+    }
+    .list-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 22px 24px;
+    }
+    .list-head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .list-head.keep { color: var(--good); }
+    .list-head.fix { color: var(--warn); }
+    .list-head.qw { color: #2c4d6e; }
+    .list-head .ct {
+      font-size: 16px;
+      font-family: var(--serif);
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .list-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .list-card li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      font-family: var(--serif);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+    .list-card li::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      border: 1.5px solid var(--rule);
+      margin-top: 4px;
+    }
+    .list-card li code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+      background: var(--bg);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    /* ============ Footer ============ */
+    .ft {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ft .br { color: var(--ink); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ============ Header ============ -->
+    <header class="hd">
+      <div>
+        <div class="hd-meta">
+          <span>五维评审</span>
+          <span>·</span>
+          <span>2026.04.27</span>
+          <span>·</span>
+          <span>OD · 评审技能</span>
+        </div>
+        <h1 class="hd-title">magazine-web-ppt<br>示例演示文稿</h1>
+      </div>
+      <p class="hd-verdict">
+        <strong>综合 7.4 / 10。</strong> 哲学骨架与细节都很扎实——这套演示文稿看起来像同一位设计师做了每一页。创新上刻意保守；功能性丢分，只是因为示例没有附带真实图片。
+      </p>
+    </header>
+
+    <!-- ============ Radar + Score table ============ -->
+    <section class="top">
+      <div class="radar-card">
+        <div class="lbl">评分雷达</div>
+        <!-- Pentagon radar, 5 axes; score grid at 0/2.5/5/7.5/10 -->
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-label="评分雷达图">
+          <defs>
+            <style>
+              .axis { stroke: #e2dfd7; stroke-width: 1; fill: none; }
+              .grid { stroke: #e8e5dd; stroke-width: 1; fill: none; }
+              .grid-mid { stroke: #e2dfd7; stroke-width: 1; fill: none; }
+              .area { fill: rgba(201,100,66,0.18); stroke: #c96442; stroke-width: 1.6; stroke-linejoin: round; }
+              .dot { fill: #c96442; }
+              .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; fill: #6b6964; }
+              .lbl-n { font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; fill: #1a1a1c; }
+            </style>
+          </defs>
+          <!-- Center 150,150. Radius 110 = 10/10. -->
+          <!-- Grid rings 25/50/75/100% of 110 = 27.5 / 55 / 82.5 / 110 -->
+          <!-- Pentagon angles: -90, -18, 54, 126, 198 (deg) measured from center.
+               Order: top=Philosophy, top-right=Hierarchy, bottom-right=Detail,
+                      bottom-left=Function, top-left=Innovation -->
+          <!-- Outer rings (5 sided) -->
+          <polygon class="grid" points="150,40 254.66,116.05 214.69,238.95 85.31,238.95 45.34,116.05" />
+          <polygon class="grid" points="150,67.5 228.47,124.54 198.51,216.71 101.49,216.71 71.53,124.54" />
+          <polygon class="grid-mid" points="150,95 202.33,133.02 182.34,194.48 117.66,194.48 97.67,133.02" />
+          <polygon class="grid" points="150,122.5 176.16,141.51 166.17,172.24 133.83,172.24 123.84,141.51" />
+          <!-- Axes -->
+          <line class="axis" x1="150" y1="150" x2="150" y2="40" />
+          <line class="axis" x1="150" y1="150" x2="254.66" y2="116.05" />
+          <line class="axis" x1="150" y1="150" x2="214.69" y2="238.95" />
+          <line class="axis" x1="150" y1="150" x2="85.31" y2="238.95" />
+          <line class="axis" x1="150" y1="150" x2="45.34" y2="116.05" />
+
+          <!-- Score area · Phil 8 / Hier 7 / Det 8 / Func 6 / Innov 5
+               Distances from center (radius 110):
+               Phil   8 → 88     :  150, 150 - 88           = 150, 62
+               Hier   7 → 77     :  150 + 77*sin(72°),  150 - 77*cos(72°)
+                                  ≈  150 + 73.24,  150 - 23.79
+                                  =  223.24, 126.21
+               Det    8 → 88     :  150 + 88*sin(144°), 150 - 88*cos(144°)
+                                  ≈  150 + 51.72,  150 + 71.20
+                                  =  201.72, 221.20
+               Func   6 → 66     :  150 - 66*sin(36°),  150 + 66*cos(36°)
+                                  ≈  150 - 38.79,  150 + 53.40
+                                  =  111.21, 203.40
+               Innov  5 → 55     :  150 - 55*sin(108°),150 - 55*cos(108°)
+                                  ≈  150 - 52.32,  150 + 17.00
+                                  =  97.68, 167.00
+                                  Wait - cos(108°) is negative, so 150 - 55*(-0.309) = 150 + 17, that's bottom of axis. But Innov axis is top-left. Let me redo.
+                                  Innov axis end point: 45.34, 116.05. Vector from center (150,150): (-104.66, -33.95), magnitude 110.
+                                  At score 5, scale = 5/10 = 0.5: center + 0.5 * (-104.66, -33.95) = 150 - 52.33, 150 - 16.97 = 97.67, 133.03 -->
+          <polygon class="area" points="150,62 223.24,126.21 201.72,221.20 111.21,203.40 97.67,133.03" />
+          <circle class="dot" cx="150" cy="62" r="3" />
+          <circle class="dot" cx="223.24" cy="126.21" r="3" />
+          <circle class="dot" cx="201.72" cy="221.20" r="3" />
+          <circle class="dot" cx="111.21" cy="203.40" r="3" />
+          <circle class="dot" cx="97.67" cy="133.03" r="3" />
+
+          <!-- Axis labels -->
+          <text class="lbl" x="150" y="28" text-anchor="middle">理念</text>
+          <text class="lbl-n" x="150" y="14" text-anchor="middle">8</text>
+          <text class="lbl" x="270" y="116" text-anchor="middle">层级</text>
+          <text class="lbl-n" x="278" y="100" text-anchor="middle">7</text>
+          <text class="lbl" x="220" y="259" text-anchor="middle">细节</text>
+          <text class="lbl-n" x="220" y="275" text-anchor="middle">8</text>
+          <text class="lbl" x="80" y="259" text-anchor="middle">功能</text>
+          <text class="lbl-n" x="80" y="275" text-anchor="middle">6</text>
+          <text class="lbl" x="30" y="116" text-anchor="middle">创新</text>
+          <text class="lbl-n" x="22" y="100" text-anchor="middle">5</text>
+        </svg>
+        <div class="overall">综合 · <span class="n">7.4</span>  / 10 · 档位 <em>优秀</em></div>
+      </div>
+
+      <div class="scores" aria-label="评分明细">
+        <div class="score-row">
+          <div class="score-name">理念一致性<span class="en">理念</span></div>
+          <div class="score-bar"><span class="score-bar-fill" style="width:80%"></span></div>
+          <div class="score-num">8<span class="denom">/10</span></div>
+          <div class="score-band band-strong">优秀</div>
+        </div>
+        <div class="score-row">
+          <div class="score-name">视觉层级<span class="en">层级</span></div>
+          <div class="score-bar"><span class="score-bar-fill" style="width:70%"></span></div>
+          <div class="score-num">7<span class="denom">/10</span></div>
+          <div class="score-band band-strong">优秀</div>
+        </div>
+        <div class="score-row">
+          <div class="score-name">细节执行<span class="en">细节</span></div>
+          <div class="score-bar"><span class="score-bar-fill" style="width:80%"></span></div>
+          <div class="score-num">8<span class="denom">/10</span></div>
+          <div class="score-band band-strong">优秀</div>
+        </div>
+        <div class="score-row">
+          <div class="score-name">功能性<span class="en">功能</span></div>
+          <div class="score-bar"><span class="score-bar-fill" style="width:60%"></span></div>
+          <div class="score-num">6<span class="denom">/10</span></div>
+          <div class="score-band band-functional">合格</div>
+        </div>
+        <div class="score-row">
+          <div class="score-name">创新<span class="en">创新</span></div>
+          <div class="score-bar"><span class="score-bar-fill" style="width:50%"></span></div>
+          <div class="score-num">5<span class="denom">/10</span></div>
+          <div class="score-band band-functional">合格</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Dimension cards ============ -->
+    <h2 class="section-title">维度报告<span class="en">各维度证据</span></h2>
+
+    <div class="dim-grid">
+      <article class="dim">
+        <div class="dim-head">
+          <div class="dim-name">理念一致性<span class="en">理念 · 一致性</span></div>
+          <div class="dim-score">8<span class="denom">/10</span></div>
+        </div>
+        <p class="dim-evidence">
+          9 页的节奏从封面到收尾，读起来是同一个方向（Monocle Editorial）。 <code>chrome</code> 词汇始终停留在同一语域： <em>「一场分享 · 2026.04.22」</em>, <em>「第二幕 · 04 / 09」</em>,
+          <em>「第 06 页 · 金句」</em>。偏移出现在 <code>kicker</code> （第 5 页）—— <em>「第二幕」</em> 是好的，但幻灯片标题 <em>「折叠」</em>
+           是一个单字标题词，会和幕次编号争夺注意力。值得收紧。
+        </p>
+        <div class="dim-tags">
+          <div class="tag-row"><span class="tag tag-keep">保留</span><span>全部 9 页的 chrome / kicker / foot 词汇——这是这套演示文稿的身份。</span></div>
+          <div class="tag-row"><span class="tag tag-fix">修复</span><span>第 5 页：把 kicker 提到 <em>「第二幕 · 折叠」</em>，或缩小标题词以理清层级。</span></div>
+        </div>
+      </article>
+
+      <article class="dim">
+        <div class="dim-head">
+          <div class="dim-name">视觉层级<span class="en">视觉层级</span></div>
+          <div class="dim-score">7<span class="denom">/10</span></div>
+        </div>
+        <p class="dim-evidence">
+          主视觉页（1、5、7、9）堪称范本——衬线标题主导，
+          <code>kicker</code> 与 <code>meta-row</code> 退居其后。正文页大多站得住：第 2 页的数据卡使用 <code>.stat-label</code>
+          （小号等宽）→ <code>.stat-nb</code> （大号衬线）→ <code>.stat-note</code>
+          （无衬线正文），三个层级，互不冲突。失手之处是第 3 页的 
+          <code>callout</code>  ——它的左侧竖线与 
+          <code>.h-xl</code> 标题在视觉上相争，因为两者处于同一 x 坐标、字重也相近。眼睛不知道该先读标题还是先读引文。
+        </p>
+        <div class="dim-tags">
+          <div class="tag-row"><span class="tag tag-keep">保留</span><span>第 2 页的数据卡三层结构——到处照抄。</span></div>
+          <div class="tag-row"><span class="tag tag-fix">修复</span><span>第 3 页：把 <code>callout</code> 缩进 <code>2vw</code>，或把它推到导语之下，让它明显属于更低层级。</span></div>
+        </div>
+      </article>
+
+      <article class="dim">
+        <div class="dim-head">
+          <div class="dim-name">细节执行<span class="en">细节执行</span></div>
+          <div class="dim-score">8<span class="denom">/10</span></div>
+        </div>
+        <p class="dim-evidence">
+          部分地方达到杂志级水准——每一处 <code>.foot</code> 在 9 页之间都按基线对齐； <code>.meta-row</code>
+           通篇使用同一套等宽规格（<code>.16em</code> 字距，全大写）。第 4 页的流水线即使在列数降到 3 时仍保持完美网格。两个真正的失手：（1）第 3 页的图片槽使用 <code>aspect-ratio:16/10</code>，但内部的占位文字居中，在视口宽度 ≤ 1100px 时显得空洞；（2）底部圆点导航在第 5 页与页脚文字重叠，因为主视觉的居中网格吃掉了纵向空间。
+        </p>
+        <div class="dim-tags">
+          <div class="tag-row"><span class="tag tag-keep">保留</span><span>等宽 <code>.foot</code> 规格——这是演示文稿的装饰音，不要改字距。</span></div>
+          <div class="tag-row"><span class="tag tag-fix">修复</span><span>第 5 页主视觉网格：把内部内容高度限制在 <code>min-height:78vh</code>，让页脚避开圆点导航。</span></div>
+        </div>
+      </article>
+
+      <article class="dim">
+        <div class="dim-head">
+          <div class="dim-name">功能性<span class="en">功能性</span></div>
+          <div class="dim-score">6<span class="denom">/10</span></div>
+        </div>
+        <p class="dim-evidence">
+          键盘 / 滚轮 / 触摸导航在宿主 iframe 内工作正常（已验证：←/→/PageUp/PageDown 均可翻页）。ESC 打开索引总览，圆点点击有效。最大的失手是示例没有附带 <em>真实图片</em>  ——第 3 页在本该放产品截图的地方显示了一个虚线 <code>.img-slot</code> 占位框，对示例文件来说这是对的做法，但意味着用户无法判断版式在全保真下是否站得住。第二个失手： <code>iframe</code> 沙箱在示例卡中只开 
+          <code>allow-scripts</code>，因此 WebGL 背景能加载，但 iframe 内的圆点导航要先点一下，键盘导航才能获得焦点。
+        </p>
+        <div class="dim-tags">
+          <div class="tag-row"><span class="tag tag-keep">保留</span><span>修了 5 个缺陷的导航脚本（真实滚动容器检测、捕获阶段监听器）——久经验证且稳定。</span></div>
+          <div class="tag-row"><span class="tag tag-fix">修复</span><span>添加一个 <code>data:</code>  URI 占位图（1×1 彩色渐变），让第 3 页的版式在任何宽度下都能读出来。</span></div>
+        </div>
+      </article>
+
+      <article class="dim">
+        <div class="dim-head">
+          <div class="dim-name">创新<span class="en">创新性</span></div>
+          <div class="dim-score">5<span class="denom">/10</span></div>
+        </div>
+        <p class="dim-evidence">
+          创新上刻意保守——这是歸藏的 guizang-ppt-skill 的移植，卖点在于 
+          <em>可预期性</em>，而不是新奇。双 WebGL 背景（暗色下的 Holographic Dispersion、亮色下的 Spiral Vortex）是唯一真正挣到的时刻；幻灯片主题切换时的交叉淡入细腻且时机到位。但其余一切（版式词汇、chrome / foot 模式、主题预设）都忠实复刻自上游。没有那种让观众想「往前倾身」并截图分享的惊喜。就其宣称的用途（Monocle Editorial 方向）而言，这是合适的；对一场 AI 演示日的演示文稿来说，则错失了一次机会。
+        </p>
+        <div class="dim-tags">
+          <div class="tag-row"><span class="tag tag-keep">保留</span><span>双着色器交叉淡入——这是这套演示文稿唯一的「魔法」，而且物有所值。</span></div>
+          <div class="tag-row"><span class="tag tag-qw">速赢</span><span>给每套演示文稿加一个 <em>字体层面</em> 的瞬间——例如收尾页上一个打破网格的超大斜体 <code>em</code>  kicker。</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============ Action lists ============ -->
+    <h2 class="section-title">行动清单<span class="en">保留 · 修复 · 速赢项</span></h2>
+
+    <div class="lists-grid">
+      <section class="list-card">
+        <div class="list-head keep"><span>保留</span><span class="ct">别弄坏它</span></div>
+        <ul>
+          <li>9 页节奏： <code>hero dark → light → dark → light → hero light → dark → hero dark → light → hero light</code>。这是黄金标准。</li>
+          <li>双 WebGL 背景，以及 <code>1.2s</code> 在明暗幻灯片之间的交叉淡入。</li>
+          <li><code>chrome</code> / <code>kicker</code> / <code>foot</code> 词汇——它们撑起了 Monocle 方向。</li>
+          <li>三层 <code>stat-card</code> 结构，第 2 页（<code>label</code> → <code>nb</code> → <code>note</code>).</li>
+        </ul>
+      </section>
+
+      <section class="list-card">
+        <div class="list-head fix"><span>修复</span><span class="ct">P0 — 视觉代价高</span></div>
+        <ul>
+          <li>第 3 页的标注缩进——目前与 <code>.h-xl</code> 相争；向右推 2vw 或移到导语下方。</li>
+          <li>第 5 页主视觉居中网格——把内容高度限制在 <code>78vh</code>，让页脚不压到圆点导航。</li>
+          <li>第 3 页加一个 <code>data:</code> 渐变占位图，让版式在窄宽度下即使没有真实素材也能读出来。</li>
+          <li>第 5 页的 kicker / 标题：选一个作主导——目前两者在打架。</li>
+        </ul>
+      </section>
+
+      <section class="list-card">
+        <div class="list-head qw"><span>速赢项</span><span class="ct">5–15 分钟，高信号</span></div>
+        <ul>
+          <li>为每一页注入 <code>data-screen-label</code>，用于无障碍与 grep 自检。</li>
+          <li>加一个超大斜体 <em>en</em> 时刻，放在收尾页，制造字体层面的惊喜。</li>
+          <li>把 <code>#hint</code> 遮罩从 <code>opacity:.4</code> 改为 <code>.55</code>，用于主视觉页——目前几乎看不见。</li>
+          <li>加一份打印样式表（每页一张幻灯片），让 PDF 导出也保留这份节奏。</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="ft">
+      <span>OD · 评审技能 · v0.1</span>
+      <span>5 个维度 · 理念 / 层级 / 细节 / 功能 / 创新</span>
+      <span class="br">github.com/alchaincyf/huashu-design</span>
+    </footer>
+  </div>
+</body>
+</html>

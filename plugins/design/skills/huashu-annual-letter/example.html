@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>像使命驱动的 CEO 一样写年度创始人信 — 企业战略</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* ===== Annual Letter design tokens (editorial longform) ===== */
+  --paper: #FBFAF8;                   /* cream paper, every page */
+  --panel: #FFFFFF;                   /* data-card surface */
+  --ink: #232036;                     /* deep ink */
+  --ink-70: rgba(35, 32, 54, 0.72);   /* prose body */
+  --ink-45: rgba(35, 32, 54, 0.46);   /* captions, chrome */
+  --hairline: rgba(35, 32, 54, 0.12); /* all rules */
+  --accent: #635BFF;                  /* Stripe purple — the only accent */
+  --accent-soft: rgba(99, 91, 255, 0.08);
+
+  --serif: "Newsreader", "Source Serif 4", Georgia, serif;
+  --serif-text: "Source Serif 4", "Newsreader", Georgia, serif;
+  --sans: "Inter", -apple-system, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #131120;
+  overflow: hidden;
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+
+/* ===== Stage: fixed 1920×1080 canvas, scaled to fit the viewport ===== */
+#stage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: center center;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* ===== Slides ===== */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 84px 150px 72px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.slide.active { display: flex; flex-direction: column; }
+
+/* ===== Motion: enter only, transform/opacity, staggered ease-out ===== */
+@media (prefers-reduced-motion: no-preference) {
+  .slide.active > * { animation: rise 0.56s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+  .slide.active > :nth-child(2) { animation-delay: 0.06s; }
+  .slide.active > :nth-child(3) { animation-delay: 0.12s; }
+  .slide.active > :nth-child(4) { animation-delay: 0.18s; }
+  .slide.active > :nth-child(5) { animation-delay: 0.24s; }
+  .slide.active > :nth-child(6) { animation-delay: 0.3s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide.active > * { animation: none; }
+}
+
+/* ===== Letter chrome ===== */
+.letterhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+.letterhead strong { color: var(--accent); font-weight: 600; }
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--hairline);
+  padding-top: 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  margin: 52px 0 0;
+}
+.kicker::before { content: ''; width: 44px; height: 3px; background: var(--accent); }
+
+h1, h2 { font-family: var(--serif); font-weight: 500; margin: 0; letter-spacing: -0.01em; }
+.hl { color: var(--accent); }
+.en-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink-70);
+}
+.en-sub b { color: var(--accent); font-weight: 500; }
+
+/* ===== Genre devices ===== */
+.measure { max-width: 980px; }   /* ≈ 65ch publication measure */
+.prose {
+  font-family: var(--serif-text);
+  font-size: 26px;
+  line-height: 1.9;
+  color: var(--ink-70);
+  margin: 0 0 30px;
+}
+.prose strong { color: var(--ink); font-weight: 600; }
+.dropcap::first-letter {
+  font-family: var(--serif);
+  font-size: 108px;
+  line-height: 0.86;
+  font-weight: 500;
+  color: var(--accent);
+  float: left;
+  padding: 10px 18px 0 0;
+}
+.num { font-variant-numeric: tabular-nums; }
+
+.data-card {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-top: 3px solid var(--accent);
+  padding: 26px 28px 24px;
+}
+.data-card .label {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  margin: 0 0 12px;
+}
+.data-card .value {
+  font-family: var(--serif);
+  font-size: 54px;
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0;
+}
+.data-card .value em { font-style: normal; color: var(--accent); }
+.data-card .caption {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-70);
+  margin: 12px 0 0;
+}
+
+.footnote {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-70);
+  margin: 0;
+}
+
+/* ===== UI: counter + key hint ===== */
+#counter {
+  position: fixed;
+  right: 22px;
+  bottom: 18px;
+  z-index: 50;
+  font-family: "Inter", ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(251, 250, 248, 0.95);
+  background: rgba(19, 17, 32, 0.78);
+  border: 1px solid rgba(251, 250, 248, 0.28);
+  border-radius: 999px;
+  padding: 7px 16px;
+  user-select: none;
+}
+#hint {
+  position: fixed;
+  left: 22px;
+  bottom: 18px;
+  z-index: 50;
+  font-family: "Inter", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(251, 250, 248, 0.92);
+  background: rgba(19, 17, 32, 0.78);
+  border: 1px solid rgba(251, 250, 248, 0.28);
+  border-radius: 999px;
+  padding: 7px 14px;
+  user-select: none;
+}
+</style>
+<style id="od-no-pager">.deck-controls,#counter,.deck-counter{display:none!important}</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 01 · Cover masthead -->
+  <section class="slide" data-screen-label="01 报头">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>致我们的社区、贡献者与投资人 · 2026 年 6 月</span></div>
+    <div class="kicker">企业战略 · 一位创始人对这一年的叙述，以及请求</div>
+    <h1 style="font-size:128px; line-height:1.18; margin-top:48px; letter-spacing:-0.012em;">Open <span class="hl">Design</span></h1>
+    <p class="en-sub" style="margin-top:30px;">我们学到了什么、接下来押注什么 —— 以及 <b>一个需要这间屋子里的人做出的决定</b>.</p>
+    <div class="footer"><span>封面</span><span>Apache-2.0 · 本地运行 · BYOK · 无需注册</span></div>
+  </section>
+
+  <!-- 02 · Contents -->
+  <section class="slide" data-screen-label="02 目录">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>目录</span></div>
+    <div class="kicker">这封信的目录</div>
+    <h2 style="font-size:76px; margin-top:36px;">翻到第五页之前你需要知道的四件事</h2>
+    <div class="measure" style="margin-top:56px; max-width:1240px;">
+      <div style="display:flex; align-items:baseline; gap:36px; border-top:1px solid var(--hairline); padding:26px 8px;">
+        <span class="num" style="font-family:var(--serif); font-size:30px; color:var(--accent); width:56px;">I</span>
+        <span style="font-family:var(--serif); font-size:34px; font-weight:500;">答案</span>
+        <span style="font-size:19px; color:var(--ink-70); margin-left:auto;">为什么我们要加倍押注开放、本地与不绑定智能体</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:36px; border-top:1px solid var(--hairline); padding:26px 8px;">
+        <span class="num" style="font-family:var(--serif); font-size:30px; color:var(--accent); width:56px;">II</span>
+        <span style="font-family:var(--serif); font-size:34px; font-weight:500;">证据</span>
+        <span style="font-size:19px; color:var(--ink-70); margin-left:auto;">这笔押注背后的增长、留存与单位经济</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:36px; border-top:1px solid var(--hairline); padding:26px 8px;">
+        <span class="num" style="font-family:var(--serif); font-size:30px; color:var(--accent); width:56px;">III</span>
+        <span style="font-family:var(--serif); font-size:34px; font-weight:500;">风险，以及我们权衡过的选项</span>
+        <span style="font-size:19px; color:var(--ink-70); margin-left:auto;">供应商锁定对比社区所有权</span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:36px; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); padding:26px 8px;">
+        <span class="num" style="font-family:var(--serif); font-size:30px; color:var(--accent); width:56px;">IV</span>
+        <span style="font-family:var(--serif); font-size:34px; font-weight:500;">决定 —— 以及由谁负责</span>
+        <span style="font-size:19px; color:var(--ink-70); margin-left:auto;">我们请求这间屋子里的人批准什么，以及由谁执行</span>
+      </div>
+    </div>
+    <div class="footer"><span>目录</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 03 · Salutation: prose with drop cap + inline data card -->
+  <section class="slide" data-screen-label="03 问候">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>I · 答案</span></div>
+    <div style="display:flex; gap:72px; margin-top:64px;">
+      <div class="measure">
+        <p style="font-family:var(--serif); font-size:34px; font-weight:500; margin:0 0 36px;">亲爱的社区成员、贡献者与投资人：</p>
+        <p class="prose dropcap">今年，行业回答了一个我们绕了两年的问题：LLM 真的能设计，而不只是描述设计吗？Claude Design 在四月证明了可以 —— 随后就把这项能力锁进了封闭的纯云订阅。我们的答案是相反的押注，也是我们请这间屋子再次确认的那一个：<strong>让整套设计工作流保持开源、本地优先、不绑定智能体，让路线图归社区所有 —— 而不是归某一家供应商。</strong></p>
+        <p class="prose">这不是情怀。它会体现在留存、贡献速度，以及接下来几页里的单位经济上。</p>
+      </div>
+      <div style="width:420px; padding-top:96px;">
+        <div class="data-card">
+          <p class="label">GitHub star</p>
+          <p class="value num"><em>76K+</em></p>
+          <p class="caption">Apache-2.0。可 fork、可自托管 —— 任何采用它的企业都是零供应商锁定。</p>
+        </div>
+        <div class="data-card" style="margin-top:28px; border-top-color:var(--hairline);">
+          <p class="label">贡献者</p>
+          <p class="value num">340+</p>
+          <p class="caption">较一年前的 210 位有所增长 —— 贡献的是代码、插件与设计系统，而不只是 issue。</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>问候</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 04 · Display-number anchor -->
+  <section class="slide" data-screen-label="04 数字锚点">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>II · 证据</span></div>
+    <div style="margin:auto 0; text-align:center;">
+      <p style="font-family:var(--sans); font-size:17px; font-weight:500; letter-spacing:0.26em; text-transform:uppercase; color:var(--ink-70); margin:0 0 8px;">最清晰的证据 · GitHub star</p>
+      <p class="num" style="font-family:var(--serif); font-size:252px; font-weight:500; line-height:1.16; color:var(--accent); margin:0;">76K+</p>
+      <p style="font-family:var(--serif); font-size:36px; font-weight:500; margin:18px 0 0;"><span class="hl num">340+</span> 位贡献者 · <span class="hl num">260+</span> 个插件 · <span class="hl num">150</span> 个设计系统</p>
+      <p class="footnote" style="margin-top:26px;">来源：公开 GitHub 数据 · github.com/nexu-io/open-design · Apache-2.0 开源。</p>
+    </div>
+    <div class="footer"><span>锚点</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 05 · Prose + inline data cards -->
+  <section class="slide" data-screen-label="05 正文与数据卡片">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>II · 证据</span></div>
+    <div class="kicker">II · 证据</div>
+    <h2 style="font-size:64px; margin-top:30px;">我们没有自建模型，而是接入了 24 个模型。</h2>
+    <div style="display:flex; gap:72px; margin-top:44px;">
+      <div class="measure" style="max-width:920px;">
+        <p class="prose" style="font-size:24px; line-height:1.8;">第一项承诺是 <strong>桌面端</strong>。设计发生在文件本来就在的地方 —— 本地文件夹、Figma 导出与代码仓库都能就地读取，而智能体拥有终端的全部能力。第二项是 <strong>不绑定智能体</strong>：贡献者机器上已有的 Claude Code、Codex 与 Cursor 已经足够强。我们不重建它们 —— 而是把它们接进一条完整的设计工作流。</p>
+        <p class="prose" style="font-size:24px; line-height:1.8;">第三项最难，也是会复利的一项：<strong>它会随时间学习你</strong>。每一次选择都会沉淀进设计系统、偏好与记忆，于是下一次生成会更贴近团队的本意。正是因为这种复利，董事会该盯的数字是留存，而不是获客。</p>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:24px;">
+        <div class="data-card">
+          <p class="label">编码智能体</p>
+          <p class="value num">24</p>
+          <p class="caption">自动探测 PATH 上的 CLI。零配置。</p>
+        </div>
+        <div class="data-card" style="border-top-color:var(--hairline);">
+          <p class="label">设计系统</p>
+          <p class="value num">150</p>
+          <p class="caption">从 GitHub、Figma 或本地文件导入。</p>
+        </div>
+        <div class="data-card" style="border-top-color:var(--hairline);">
+          <p class="label">月度成本</p>
+          <p class="value num">−80%</p>
+          <p class="caption">对比 Claude Design：$500 → 约 $78。</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>正文 · 卡片</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 06 · Chart: minimal SVG line -->
+  <section class="slide" data-screen-label="06 图表">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>II · 证据</span></div>
+    <div class="kicker">II · 证据</div>
+    <h2 style="font-size:64px; margin-top:30px;">从零到 76K+ star，零市场预算</h2>
+    <div style="display:flex; gap:80px; margin-top:48px; align-items:flex-start;">
+      <svg width="1020" height="440" viewBox="0 0 1020 440" role="img" aria-label="开源以来的 GitHub star 增长曲线">
+        <line x1="40" y1="400" x2="1000" y2="400" stroke="rgba(35,32,54,0.18)" stroke-width="1"/>
+        <path d="M 80 376 C 260 366, 360 330, 520 252 C 680 174, 820 96, 940 56" fill="none" stroke="#635BFF" stroke-width="4" stroke-linecap="round"/>
+        <path d="M 80 376 C 260 366, 360 330, 520 252 C 680 174, 820 96, 940 56 L 940 400 L 80 400 Z" fill="rgba(99,91,255,0.06)" stroke="none"/>
+        <circle cx="80" cy="376" r="7" fill="#FBFAF8" stroke="#635BFF" stroke-width="3"/>
+        <circle cx="520" cy="252" r="7" fill="#FBFAF8" stroke="#635BFF" stroke-width="3"/>
+        <circle cx="940" cy="56" r="8" fill="#635BFF"/>
+        <text x="80" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="rgba(35,32,54,0.72)" style="font-variant-numeric:tabular-nums;">9K</text>
+        <text x="520" y="216" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="rgba(35,32,54,0.72)" style="font-variant-numeric:tabular-nums;">38K</text>
+        <text x="940" y="28" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="600" fill="#635BFF" style="font-variant-numeric:tabular-nums;">76K+</text>
+        <text x="80" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="rgba(35,32,54,0.72)">第一个月</text>
+        <text x="520" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="rgba(35,32,54,0.72)">三个月时</text>
+        <text x="940" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="rgba(35,32,54,0.72)">今天</text>
+      </svg>
+      <div style="width:480px; padding-top:24px;">
+        <p class="prose" style="font-size:24px;">曲线本身并不意外 —— 意外的是它的构成：<strong>340+ 贡献者</strong>、260+ 插件、150 个设计系统。我们没有增长团队；社区就是增长团队 —— 而这正是下一页的那个风险。</p>
+        <p class="footnote">中间点为示意值；终点为当前 GitHub 公开的 76K+ star。</p>
+      </div>
+    </div>
+    <div class="footer"><span>图 01</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 07 · Quote -->
+  <section class="slide" data-screen-label="07 引语">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>III · 风险</span></div>
+    <div style="margin:auto 0; max-width:1420px; position:relative;">
+      <span aria-hidden="true" style="position:absolute; top:-150px; left:-40px; font-family:var(--serif); font-size:420px; line-height:1; color:var(--accent-soft); user-select:none;">“</span>
+      <p style="font-family:var(--serif); font-size:64px; font-weight:500; line-height:1.5; margin:0; position:relative;">我们最大的风险从来不是用户被封闭的竞争对手抢走，而是对那条让 24 个智能体接入的开放管道投入不足 —— 一旦管道断了，整笔押注 <span class="hl">也随之断裂</span>.</p>
+      <p style="font-family:var(--sans); font-size:17px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-70); margin:52px 0 0;">—— Maya Ortiz，平台工程负责人 · Open Design</p>
+    </div>
+    <div class="footer"><span>引语</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 08 · Metrics panorama -->
+  <section class="slide" data-screen-label="08 用数字说话">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>III · 我们权衡过的选项</span></div>
+    <div class="kicker">III · 我们权衡过的选项</div>
+    <h2 style="font-size:64px; margin-top:30px;">支撑这次请求的六个数字</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:48px;">
+      <div class="data-card">
+        <p class="label">GitHub star</p>
+        <p class="value num">76K+</p>
+        <p class="caption">Apache-2.0 开源</p>
+      </div>
+      <div class="data-card" style="border-top-color:var(--hairline);">
+        <p class="label">贡献者</p>
+        <p class="value num">340+</p>
+        <p class="caption">来自全球社区</p>
+      </div>
+      <div class="data-card" style="border-top-color:var(--hairline);">
+        <p class="label">插件</p>
+        <p class="value num"><em>260+</em></p>
+        <p class="caption">原型、幻灯片、海报、看板</p>
+      </div>
+      <div class="data-card" style="border-top-color:var(--hairline);">
+        <p class="label">设计系统</p>
+        <p class="value num">150</p>
+        <p class="caption">从 GitHub / Figma / 本地导入</p>
+      </div>
+      <div class="data-card" style="border-top-color:var(--hairline);">
+        <p class="label">编码智能体</p>
+        <p class="value num">24</p>
+        <p class="caption">自动探测你的 PATH，零配置</p>
+      </div>
+      <div class="data-card" style="border-top-color:var(--hairline);">
+        <p class="label">月度成本</p>
+        <p class="value num">−80%</p>
+        <p class="caption">对比 Claude Design，$500 → 约 $78</p>
+      </div>
+    </div>
+    <p class="footnote" style="margin-top:34px;">我们否决的替代方案是自建封闭模型 —— 纸面利润率更高，但代价是用整个生态去换某一家供应商的路线图。</p>
+    <div class="footer"><span>选项</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 09 · Outlook prose -->
+  <section class="slide" data-screen-label="09 未来一年">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>IV · 决定</span></div>
+    <div class="kicker">IV · 决定</div>
+    <h2 style="font-size:64px; margin-top:30px;">请求：为开放管道出资，而不是封闭模型</h2>
+    <div class="measure" style="margin-top:44px;">
+      <p class="prose" style="font-size:24px; line-height:1.8;">我们请这间屋子批准三件事：<strong>下一财年 $3.2M 的社区资助与基础设施预算</strong>，让本地推理这条路对每位贡献者保持免费；<strong>续承诺 Apache-2.0 授权</strong> 不变，让未来任何一轮融资都无法悄悄把路线图重新关上；以及 <strong>批准与智能体供应商的中立条款</strong> —— 我们同样集成 Claude Code、Codex 与 Cursor，不从任何一家收取排他费用。</p>
+      <p class="prose" style="font-size:24px; line-height:1.8;">要感谢的人太多，无法一一列举。感谢那 340+ 位在仓库里留下代码、插件与设计系统的贡献者，也感谢每一位用一个 star、一个 issue 或一个 PR 投票的你们。接下来这一年我们只做一件事：让开放这一注持续有资金，让路线图留在社区手里。</p>
+    </div>
+    <div class="footer"><span>决定</span><span>Open Design · 年度创始人信</span></div>
+  </section>
+
+  <!-- 10 · Signed closing -->
+  <section class="slide" data-screen-label="10 署名">
+    <div class="letterhead"><span><strong>Open Design</strong> · 年度创始人信</span><span>终</span></div>
+    <div style="margin:auto 0;">
+      <h2 style="font-size:96px; line-height:1.3;">批准开放这一注。<br>我们会 <span class="hl">对交付负责</span>.</h2>
+      <p class="en-sub" style="font-size:30px; margin-top:36px;">开放 · 本地 · <b>智能体原生</b> —— 有问责、有人名、有日期。</p>
+      <div style="margin-top:64px; border-top:1px solid var(--hairline); max-width:640px; padding-top:24px;">
+        <p style="font-family:var(--serif); font-style:italic; font-size:34px; margin:0;">创始人/CEO —— 授权与路线图 · 平台负责人 —— 智能体集成 · 社区负责人 —— 资助计划</p>
+        <p class="footnote" style="margin-top:10px;">请于 6 月 30 日前投票 · github.com/nexu-io/open-design · discord.gg/mHAjSMV6gz</p>
+      </div>
+      <div style="display:inline-flex; align-items:center; gap:18px; margin-top:60px; border:1px solid var(--hairline); border-radius:999px; padding:16px 40px; font-family:var(--sans); font-size:16px; letter-spacing:0.14em; color:var(--ink-45);">
+        <span>←</span><span>→</span><span>空格</span><span style="color:var(--accent);">导航</span><span>·</span><span>#/N</span><span style="color:var(--accent);">跳转</span>
+      </div>
+    </div>
+    <div class="footer"><span>结语</span><span>Open Design · github.com/nexu-io/open-design</span></div>
+  </section>
+
+</div>
+
+<div id="counter">01 / 10</div>
+<div id="hint">←/→ · 空格</div>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var counter = document.getElementById('counter');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+
+  // --- fit(): scale the fixed 1920×1080 canvas into the viewport (letterbox) ---
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+  }
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  // --- go(i): activate slide i, sync counter + hash (#/N, 1-indexed) ---
+  function go(i, skipHash) {
+    current = Math.max(0, Math.min(total - 1, i));
+    for (var k = 0; k < total; k++) {
+      slides[k].classList.toggle('active', k === current);
+    }
+    counter.textContent = pad(current + 1) + ' / ' + pad(total);
+    if (!skipHash) {
+      var target = '#/' + (current + 1);
+      if (location.hash !== target) {
+        try { history.replaceState(null, '', target); }
+        catch (err) { location.hash = target; }
+      }
+    }
+  }
+
+  function fromHash() {
+    var m = location.hash.match(/^#\/(\d+)$/);
+    if (m) {
+      var n = parseInt(m[1], 10);
+      if (n >= 1 && n <= total) { go(n - 1, true); return; }
+    }
+    go(0, true);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+      case ' ':
+      case 'PageDown':
+        e.preventDefault();
+        go(current + 1);
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+      case 'PageUp':
+        e.preventDefault();
+        go(current - 1);
+        break;
+      case 'Home':
+        e.preventDefault();
+        go(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        go(total - 1);
+        break;
+    }
+  });
+
+  // click right two-thirds → next, left third → previous
+  stage.addEventListener('click', function (e) {
+    var x = e.clientX;
+    if (x < window.innerWidth / 3) { go(current - 1); }
+    else { go(current + 1); }
+  });
+
+  window.addEventListener('hashchange', fromHash);
+  window.addEventListener('resize', fit);
+
+  fit();
+  fromHash();
+})();
+</script>
+
+</body>
+</html>

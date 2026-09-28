@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>规格 — Northwind 的双因素认证</title>
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --paper: #ffffff;
+    --ink: #0e1322;
+    --muted: #5a647a;
+    --line: #e2e6ee;
+    --line-strong: #c8cfdb;
+    --accent: #4a36e3;
+    --accent-soft: #ece8ff;
+    --warn: #b8741a;
+    --positive: #1f8a5a;
+    --display: 'Charter', Georgia, serif;
+    --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 14.5px; line-height: 1.6; }
+  .page { max-width: 1080px; margin: 28px auto; padding: 0 32px 64px; }
+
+  header.top { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
+  .top-left { display: flex; align-items: center; gap: 14px; }
+  .crumb { font-family: var(--mono); font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .pill.draft { background: var(--accent-soft); color: var(--accent); }
+  .pill.dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .top-actions { display: flex; gap: 8px; font-size: 12.5px; color: var(--muted); }
+  .top-actions span { padding: 4px 10px; border: 1px solid var(--line); border-radius: 8px; }
+
+  h1 { font-family: var(--display); font-size: 42px; line-height: 1.06; letter-spacing: -0.015em; margin: 8px 0 8px; max-width: 22ch; font-weight: 700; }
+  .summary { font-size: 17px; color: var(--muted); max-width: 64ch; margin: 0 0 28px; }
+  .meta-row { display: flex; gap: 32px; margin: 14px 0 36px; padding: 16px 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; font-size: 13px; }
+  .meta-row span strong { display: block; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; font-weight: 500; }
+
+  section { margin-top: 40px; }
+  h2 { font-family: var(--display); font-size: 24px; margin: 0 0 4px; letter-spacing: -0.005em; }
+  h2 small { display: block; font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 4px; line-height: 1.5; letter-spacing: 0; }
+
+  /* Problem */
+  .problem { display: grid; grid-template-columns: 1.5fr 1fr; gap: 14px; margin-top: 14px; }
+  .panel { padding: 22px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
+  .quote { padding: 22px 24px; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 6px; }
+  .quote .body { font-family: var(--display); font-size: 17px; line-height: 1.5; }
+  .quote .author { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-top: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Goals */
+  .goals { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .goal-list { padding: 22px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
+  .goal-list h3 { font-family: var(--display); font-size: 16px; margin: 0 0 10px; }
+  .goal-list h3 .tick { display: inline-flex; width: 18px; height: 18px; border-radius: 50%; align-items: center; justify-content: center; margin-right: 8px; font-size: 11px; }
+  .goal-list h3 .tick.yes { background: var(--positive); color: white; }
+  .goal-list h3 .tick.no { background: var(--line-strong); color: var(--muted); }
+  .goal-list ul { padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+
+  /* Metrics table */
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  th, td { padding: 12px 18px; text-align: left; font-size: 13.5px; border-bottom: 1px solid var(--line); }
+  th { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: #f8fafd; }
+  tr:last-child td { border-bottom: none; }
+  td.target { font-family: var(--mono); color: var(--accent); font-weight: 600; }
+
+  /* Stories */
+  .stories { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+  .story { padding: 18px 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; }
+  .story-num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 600; font-size: 13px; }
+  .story-text { font-size: 14.5px; }
+  .story-text strong { color: var(--accent); }
+
+  /* Milestones */
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px; }
+  .step { padding: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; position: relative; }
+  .step .badge { display: inline-block; padding: 3px 8px; border-radius: 999px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; background: var(--accent-soft); color: var(--accent); }
+  .step h4 { font-family: var(--display); font-size: 15px; margin: 0 0 6px; }
+  .step .meta { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .step ul { padding-left: 16px; margin: 0; font-size: 13px; display: flex; flex-direction: column; gap: 4px; }
+
+  /* Open questions */
+  .questions { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+  .question { padding: 16px 20px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+  .question p { margin: 0; font-size: 14px; }
+  .assignee { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+  .avatar { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #8473ff); color: white; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+
+  footer { margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  @media (max-width: 880px) {
+    .problem, .goals { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr 1fr; }
+    h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <div class="top-left">
+      <span class="crumb">Northwind / 规格 / 认证</span>
+      <span class="pill draft"><span class="pill dot"></span>草案 v0.4</span>
+    </div>
+    <div class="top-actions">
+      <span>负责人 · Devon Park</span>
+      <span>更新于 · 2025 年 10 月 22 日</span>
+      <span>评审人 · 4</span>
+    </div>
+  </header>
+
+  <h1>为 Northwind 应用加入双因素认证。</h1>
+  <p class="summary">在 Northwind 登录流程中加入 TOTP 与安全密钥两种第二因素，让企业客户能满足其内控要求，也让我们能把三个待定订单从「考虑中」推进到「已批准」。</p>
+
+  <div class="meta-row">
+    <span><strong>小队</strong>身份平台</span>
+    <span><strong>工程负责人</strong>Priya Banerjee</span>
+    <span><strong>设计负责人</strong>Sasha Lin</span>
+    <span><strong>目标上线时间</strong>Q4 末（12 月 18 日）</span>
+    <span><strong>工作量</strong>约 6 工程周</span>
+  </div>
+
+  <section>
+    <h2>问题<small>今天哪里疼，疼在谁身上。</small></h2>
+    <div class="problem">
+      <div class="panel">
+        <p>过去六次企业安全评审中有三次把缺少第二因素列为阻塞项。如今，一封被钓鱼的凭据与装满客户数据的工作区之间只隔着一个密码 —— 对处于 SOC 2 Type II 期望下的租户来说，这不只是观感问题，而是控制面的缺口。</p>
+        <p>这同样影响内部员工：每个拥有生产环境权限的工程师，都与市场团队的只读成员处在同一套认证面上。我们靠的是制度，而不是安全态势。</p>
+      </div>
+      <div class="quote">
+        <div class="body">「我们很喜欢这个产品，但三次安全评审里有两次都提到了缺少 TOTP。加上它我们就能签约。」</div>
+        <div class="author">—— Maya Reddy · Pioneer Robotics CTO</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>目标与非目标<small>本规格交付什么，以及明确留待日后的部分。</small></h2>
+    <div class="goals">
+      <div class="goal-list">
+        <h3><span class="tick yes">✓</span>目标</h3>
+        <ul>
+          <li>所有付费方案支持 TOTP（Authy、1Password、Google Authenticator）。</li>
+          <li>企业版方案支持安全密钥（WebAuthn）。</li>
+          <li>工作区级强制：管理员可要求所有成员启用 2FA。</li>
+          <li>恢复码 —— 可打印、可下载、可重新生成。</li>
+          <li>为设置、变更与移除事件记录审计日志。</li>
+        </ul>
+      </div>
+      <div class="goal-list">
+        <h3><span class="tick no">×</span>非目标</h3>
+        <ul>
+          <li>以短信作为第二因素（NIST 已弃用；不加入）。</li>
+          <li>替代 SSO —— SAML 仍是独立工作流。</li>
+          <li>按操作升级验证（未来规格，由身份团队负责）。</li>
+          <li>为白标部署定制 2FA 品牌语气。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>成功指标<small>我们将在第 30／60／90 天，用下面三个数字来评判这次上线。</small></h2>
+    <table>
+      <thead><tr><th>指标</th><th>基线</th><th>目标（90 天）</th><th>衡量方式</th></tr></thead>
+      <tbody>
+        <tr><td>因 2FA 缺口受阻、现已解除的企业订单</td><td>3 个中 0 个</td><td class="target">3 个中 3 个</td><td>销售过程记录 + 已签合同数</td></tr>
+        <tr><td>成员 2FA 采用率（付费工作区）</td><td>不适用</td><td class="target">≥ 60%</td><td>auth.factor_enrolled events / DAU</td></tr>
+        <tr><td>账号被盗事件（滚动 30 天）</td><td>上季度 4 起</td><td class="target">≤ 1</td><td>安全事件跟踪表（SEV-3+）</td></tr>
+        <tr><td>2FA 找回带来的支持负担</td><td>不适用</td><td class="target">&lt; 工单的 1.5%</td><td>在 Zendesk 中打上「auth-2fa」标签</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>用户故事<small>三类角色，三种动线。</small></h2>
+    <div class="stories">
+      <div class="story">
+        <div class="story-num">1</div>
+        <div class="story-text">作为<strong>工作区管理员</strong>，我希望要求工作区内的所有人启用 2FA，以便通过我们每年的 SOC 2 控制评审。</div>
+      </div>
+      <div class="story">
+        <div class="story-num">2</div>
+        <div class="story-text">作为<strong>日常成员</strong>，我希望在两分钟内绑定一个 TOTP 应用，免得为了重新配置认证被打断工作。</div>
+      </div>
+      <div class="story">
+        <div class="story-num">3</div>
+        <div class="story-text">作为<strong>支持工程师</strong>，我希望有一条清晰的路径来帮助被锁在门外的用户，同时不绕过他们的第二因素，免得把我们刚加上的安全性又抵消掉。</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>上线里程碑<small>四个阶段，每个阶段都在开关后面发布。</small></h2>
+    <div class="timeline">
+      <div class="step">
+        <span class="badge">M1 · 11 月 4 日</span>
+        <h4>TOTP 绑定</h4>
+        <div class="meta">2 工程周</div>
+        <ul><li>设置页界面</li><li>恢复码</li><li>审计日志记录</li></ul>
+      </div>
+      <div class="step">
+        <span class="badge">M2 · 11 月 18 日</span>
+        <h4>登录流程</h4>
+        <div class="meta">1.5 工程周</div>
+        <ul><li>登录中的验证步骤</li><li>可信设备 cookie</li><li>限流</li></ul>
+      </div>
+      <div class="step">
+        <span class="badge">M3 · 12 月 2 日</span>
+        <h4>WebAuthn + 管理员强制</h4>
+        <div class="meta">2 工程周</div>
+        <ul><li>安全密钥（企业版）</li><li>工作区策略</li><li>成员提醒提示</li></ul>
+      </div>
+      <div class="step">
+        <span class="badge">M4 · 12 月 18 日</span>
+        <h4>正式发布 + 沟通</h4>
+        <div class="meta">0.5 工程周</div>
+        <ul><li>更新日志 + 邮件</li><li>帮助中心文章</li><li>销售赋能</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>待解问题<small>已指派。要在 10 月 31 日（周五）前得到答案，才能保住日期。</small></h2>
+    <div class="questions">
+      <div class="question">
+        <p>我们是让成员在 TOTP 与安全密钥之间自选，还是替他们选可用的最强因素？</p>
+        <span class="assignee"><span class="avatar">DP</span>Devon Park · 10 月 28 日</span>
+      </div>
+      <div class="question">
+        <p>可信设备 cookie 的有效期：7 天、30 天，还是由管理员配置？</p>
+        <span class="assignee"><span class="avatar">PB</span>Priya Banerjee · 10 月 29 日</span>
+      </div>
+      <div class="question">
+        <p>成员的 2FA 状态要显示在管理员用户列表中，还是只在审计日志里？</p>
+        <span class="assignee"><span class="avatar">SL</span>Sasha Lin · 10 月 30 日</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Northwind 身份平台 · spec-2fa</span>
+    <span>v0.4 · 2025 年 10 月 22 日</span>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>参考设计契约示例</title>
+  <style>
+    :root {
+      --paper: #f3eee4;
+      --ink: #171614;
+      --muted: #6f675d;
+      --line: #d7cbbb;
+      --accent: #9b4d2d;
+      --accent-soft: #ead6c6;
+      --charcoal: #202623;
+      --green: #486254;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(155, 77, 45, 0.18), transparent 28%),
+        linear-gradient(135deg, #faf7ef 0%, var(--paper) 42%, #dfd5c8 100%);
+      font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+    }
+
+    main {
+      width: min(1160px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 52px 0;
+    }
+
+    .sheet {
+      overflow: hidden;
+      border: 1px solid rgba(23, 22, 20, 0.12);
+      background: rgba(255, 252, 244, 0.82);
+      box-shadow: 0 34px 90px rgba(63, 46, 30, 0.22);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 40px;
+      padding: 56px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(44px, 7vw, 96px);
+      font-weight: 500;
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+    }
+
+    .summary {
+      align-self: end;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      min-height: 520px;
+    }
+
+    aside {
+      padding: 38px;
+      color: #f8f1e7;
+      background:
+        linear-gradient(145deg, rgba(32, 38, 35, 0.96), rgba(39, 54, 47, 0.94)),
+        var(--charcoal);
+    }
+
+    .meter {
+      margin-top: 30px;
+      border-top: 1px solid rgba(248, 241, 231, 0.18);
+    }
+
+    .meter div {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(248, 241, 231, 0.18);
+      color: rgba(248, 241, 231, 0.78);
+      font-size: 14px;
+    }
+
+    .meter strong {
+      color: #fff9ef;
+      font-weight: 800;
+    }
+
+    section {
+      padding: 38px;
+    }
+
+    .cards {
+      display: grid;
+      gap: 18px;
+    }
+
+    article {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 22px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.34);
+    }
+
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    h2 {
+      margin-bottom: 22px;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      color: var(--green);
+      font-size: 16px;
+    }
+
+    article p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .chip {
+      border: 1px solid rgba(155, 77, 45, 0.32);
+      background: var(--accent-soft);
+      color: #69351f;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 820px) {
+      header,
+      .grid,
+      article {
+        grid-template-columns: 1fr;
+      }
+
+      header,
+      aside,
+      section {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="sheet">
+      <header>
+        <div>
+          <p class="eyebrow">参考设计契约</p>
+          <h1>把品味信号变成可落地的设计方向。</h1>
+        </div>
+        <p class="summary">本示例展示了契约的结构：先证据，再边界，最后是可供第二个智能体执行、且无需照搬参考的交接说明。</p>
+      </header>
+      <div class="grid">
+        <aside>
+          <h2>决策立场</h2>
+          <p>产品应当像一张安静的编辑工作台：纸张的暖意、严肃的字排节奏、有触感的区块、单一铜色点缀，以及拒绝千篇一律的霓虹 SaaS 光泽。</p>
+          <div class="meter">
+            <div><span>证据置信度</span><strong>混合</strong></div>
+            <div><span>参考策略</span><strong>借用特质</strong></div>
+            <div><span>下一个产物</span><strong>原型</strong></div>
+          </div>
+        </aside>
+        <section>
+          <h2>契约切片</h2>
+          <div class="cards">
+            <article>
+              <h3>保留</h3>
+              <p>编辑式层级、温暖的米白表面、克制的点缀色、安静的交互状态，以及宽松的笔记密度。</p>
+            </article>
+            <article>
+              <h3>更改</h3>
+              <p>把参考中的品牌标识、主题素材、定价、文案与具体布局，全部替换为用户自己的产品语境。</p>
+            </article>
+            <article>
+              <h3>不要照搬</h3>
+              <p>不逐字复刻截图、不挪用专有 UI 细节、不借用其主张，也不把提示词模板的主题直接当作最终主题。</p>
+            </article>
+          </div>
+          <div class="chip-row" aria-label="设计约束">
+            <span class="chip">一处点缀色</span>
+            <span class="chip">衬线标题</span>
+            <span class="chip">没有紫色辉光</span>
+            <span class="chip">落地素材</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
