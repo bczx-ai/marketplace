@@ -11,6 +11,7 @@
     "longDescription": "在 Brain 中浏览、应用、预览和评审设计资源。",
     "developerName": "DevCube",
     "category": "设计多媒体",
+    "logo": "./assets/icon.svg",
     "capabilities": [
       "Skills",
       "Extensions"
