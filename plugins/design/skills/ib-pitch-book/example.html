@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>像成长股分析师一样写投资人路演书 — 融资路演</title>
+<style>
+  :root {
+    --paper:        oklch(98.5% 0.008 80);
+    --paper-warm:   oklch(96% 0.012 78);
+    --ink:          oklch(18% 0.012 70);
+    --ink-mid:      oklch(38% 0.010 70);
+    --ink-soft:     oklch(56% 0.008 70);
+    --rule:         oklch(86% 0.008 75);
+    --accent:       oklch(48% 0.18 28);   /* deep red ribbon */
+    --gold:         oklch(72% 0.12 78);
+    --teal:         oklch(45% 0.07 200);
+    --neg:          oklch(48% 0.16 28);
+    --pos:          oklch(45% 0.10 165);
+    --serif: 'Iowan Old Style', 'Charter', Georgia, serif;
+    --sans:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono:  ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%; background: var(--ink); color: var(--ink);
+    font-family: var(--sans); font-size: 14px; -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  /* ──────────────────────────────────────────────────────────────────────────
+     Deck framework — horizontal swipe, slide counter, keyboard nav, print
+  ────────────────────────────────────────────────────────────────────────── */
+  .deck {
+    width: 100vw; height: 100vh; overflow: hidden; position: relative;
+    background: linear-gradient(180deg, oklch(14% 0.012 70), oklch(20% 0.012 70));
+    display: flex;
+    flex-direction: column;
+  }
+  .demo-banner {
+    flex: 0 0 auto;
+    z-index: 50;
+    padding: 9px 18px;
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    text-align: center;
+    font-family: var(--sans);
+    color: oklch(90% 0.02 85);
+    background: oklch(22% 0.04 55);
+    border-bottom: 1px solid oklch(35% 0.03 70);
+  }
+  .demo-banner strong { color: oklch(96% 0.03 85); font-weight: 600; }
+  .demo-pill {
+    display: inline-flex;
+    width: max-content;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 8px 11px;
+    border: 1px solid color-mix(in oklch, var(--accent) 45%, var(--rule));
+    background: color-mix(in oklch, var(--accent) 8%, var(--paper));
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .demo-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    display: flex; transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .slide {
+    min-width: 100vw; height: 100vh;
+    background: var(--paper);
+    display: grid; place-items: stretch;
+    position: relative; overflow: hidden;
+  }
+  .slide-inner {
+    width: min(1320px, 92vw);
+    height: min(820px, 86vh);
+    margin: auto;
+    padding: 56px 64px 48px;
+    display: grid; grid-template-rows: auto 1fr auto;
+    background: var(--paper);
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.35), 0 6px 18px -8px rgba(0,0,0,0.25);
+    position: relative;
+    border-top: 6px solid var(--ink);
+  }
+  /* Magazine masthead */
+  .mast {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+  .mast .brand {
+    font-family: var(--serif); font-weight: 500; font-size: 16px;
+    letter-spacing: 0.04em; color: var(--ink); text-transform: none;
+  }
+  .mast .brand i { color: var(--accent); font-style: normal; }
+  .mast .meta { display: flex; gap: 22px; }
+  .mast .meta span::before { content: "· "; color: var(--rule); margin-right: 6px; }
+  .mast .meta span:first-child::before { content: ""; margin: 0; }
+
+  /* Footer */
+  .foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 14px; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .foot .conf {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--sans); letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; font-size: 10.5px;
+  }
+  .foot .conf::before {
+    content: ""; width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+  }
+
+  /* Body region (per slide overrides this) */
+  .body { padding: 28px 0 22px; }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Chrome — counter, nav, print badge
+  ────────────────────────────────────────────────────────────────────────── */
+  .chrome {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px; align-items: center;
+    background: oklch(98% 0.005 80 / 0.92); backdrop-filter: blur(8px);
+    border: 1px solid oklch(86% 0.008 75); border-radius: 999px;
+    padding: 6px 8px; box-shadow: 0 8px 24px -10px rgba(0,0,0,0.35);
+    z-index: 50;
+  }
+  .chrome button {
+    width: 28px; height: 28px; border: 0; border-radius: 999px;
+    background: transparent; cursor: pointer; color: var(--ink);
+    display: grid; place-items: center;
+  }
+  .chrome button:hover { background: oklch(94% 0.008 75); }
+  .chrome .counter {
+    font-family: var(--mono); font-size: 11px; padding: 0 10px; color: var(--ink-mid);
+    letter-spacing: 0.04em;
+  }
+  .chrome .counter .now { color: var(--ink); font-weight: 500; }
+
+  .agent-stamp {
+    position: fixed; top: 18px; right: 18px;
+    background: oklch(98% 0.005 80 / 0.92); backdrop-filter: blur(6px);
+    border: 1px solid oklch(86% 0.008 75); border-radius: 8px;
+    padding: 8px 12px;
+    font-family: var(--sans); font-size: 11px; color: var(--ink-mid);
+    display: flex; gap: 10px; align-items: center;
+    z-index: 50;
+  }
+  .agent-stamp b { color: var(--ink); font-weight: 600; }
+  .agent-stamp .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--pos);
+    box-shadow: 0 0 0 3px oklch(45% 0.10 165 / 0.18);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Typography
+  ────────────────────────────────────────────────────────────────────────── */
+  .eyebrow {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+  }
+  h1.display {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(48px, 6.4vw, 92px); line-height: 0.94;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  h1.display em { font-style: italic; color: var(--accent); }
+  h2.section {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 44px; line-height: 1.04; letter-spacing: -0.012em;
+    color: var(--ink);
+  }
+  h2.section em { font-style: italic; font-weight: 400; color: var(--accent); }
+  h3 {
+    font-family: var(--serif); font-weight: 500; font-size: 22px;
+    line-height: 1.15; letter-spacing: -0.005em; color: var(--ink);
+  }
+  .lede {
+    font-family: var(--serif); font-weight: 300; font-size: 22px;
+    line-height: 1.42; color: var(--ink-mid); max-width: 62ch;
+  }
+  .body-text {
+    font-family: var(--sans); font-size: 13.5px; line-height: 1.55;
+    color: var(--ink-mid); max-width: 64ch;
+  }
+  .kicker {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-soft); font-weight: 500;
+  }
+  .num {
+    font-family: var(--serif); font-weight: 400;
+    font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+  }
+  .mono { font-family: var(--mono); font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 1 — COVER
+  ────────────────────────────────────────────────────────────────────────── */
+  .cover .body {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: end;
+    padding: 24px 0 16px;
+  }
+  .cover .ribbon {
+    display: inline-block; background: var(--accent); color: var(--paper);
+    padding: 6px 14px; font-family: var(--sans); font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .cover h1.display { font-size: clamp(64px, 7.6vw, 116px); }
+  .cover .subhead {
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: 28px; color: var(--ink-mid); margin-top: 18px; line-height: 1.2;
+  }
+  .cover-meta {
+    border-left: 2px solid var(--ink); padding-left: 22px;
+    display: grid; gap: 18px;
+  }
+  .cover-meta .row { display: grid; gap: 4px; }
+  .cover-meta .row .k {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .cover-meta .row .v {
+    font-family: var(--serif); font-size: 18px; color: var(--ink); line-height: 1.3;
+  }
+  .cover .marque {
+    position: absolute; right: 56px; top: 56px;
+    font-family: var(--serif); font-style: italic;
+    font-size: 11px; color: var(--ink-mid); letter-spacing: 0.04em;
+    transform: rotate(-2deg);
+  }
+  .cover .marque::before {
+    content: ""; display: block; width: 60px; height: 1px; background: var(--accent);
+    margin-bottom: 6px; transform: rotate(2deg);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 2 — TOC
+  ────────────────────────────────────────────────────────────────────────── */
+  .toc .body {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start;
+    padding-top: 36px;
+  }
+  .toc .lede { margin-top: 18px; }
+  .toc ol {
+    list-style: none; counter-reset: toc;
+    border-top: 1px solid var(--rule);
+  }
+  .toc ol li {
+    counter-increment: toc;
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 18px; align-items: baseline;
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+  }
+  .toc ol li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em;
+  }
+  .toc ol li .t { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+  .toc ol li .pg { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+  .toc ol li .sub {
+    grid-column: 2 / -1;
+    font-family: var(--sans); font-size: 12px; color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 3 — MARKET CONTEXT
+  ────────────────────────────────────────────────────────────────────────── */
+  .market .body {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 16px;
+    padding-top: 20px;
+  }
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  }
+  .kpi {
+    padding: 12px 14px; display: grid; gap: 3px;
+    border-right: 1px solid var(--rule);
+  }
+  .kpi:last-child { border-right: 0; }
+  .kpi .k {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .kpi .v {
+    font-family: var(--serif); font-size: 31px; line-height: 1; color: var(--ink);
+    margin-top: 2px;
+  }
+  .kpi .v small { font-size: 16px; color: var(--ink-mid); margin-left: 2px; }
+  .kpi .delta {
+    font-family: var(--mono); font-size: 10.5px; margin-top: 4px; letter-spacing: 0.02em;
+  }
+  .kpi .delta.up { color: var(--pos); }
+  .kpi .delta.down { color: var(--neg); }
+  .market-cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 26px; min-height: 0; }
+  .chartbox {
+    border: 1px solid var(--rule); padding: 14px 16px 12px; display: grid; gap: 6px;
+    background: var(--paper-warm);
+  }
+  .chartbox .title { display: flex; justify-content: space-between; align-items: baseline; }
+  .chartbox .title h3 { font-size: 16px; }
+  .chartbox .title .src { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); }
+  .chart svg { width: 100%; height: 150px; display: block; }
+  .legend {
+    display: flex; gap: 16px; font-family: var(--sans); font-size: 11px;
+    color: var(--ink-mid);
+  }
+  .legend .sw { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .sw i { width: 10px; height: 10px; display: inline-block; border-radius: 2px; font-style: normal; }
+  .pull {
+    border-left: 3px solid var(--accent); padding: 4px 0 4px 16px;
+    font-family: var(--serif); font-size: 15px; color: var(--ink); line-height: 1.32;
+  }
+  .market .body-text { font-size: 12.8px; line-height: 1.48; }
+  .market .kicker { font-size: 9.5px; letter-spacing: 0.12em; }
+  .market .num { line-height: 1.05; }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Tables
+  ────────────────────────────────────────────────────────────────────────── */
+  table.fin {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--sans); font-size: 12px;
+  }
+  table.fin th {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft); font-weight: 600;
+    text-align: right; padding: 10px 8px; border-bottom: 1px solid var(--ink);
+  }
+  table.fin th:first-child, table.fin td:first-child { text-align: left; }
+  table.fin td {
+    font-family: var(--mono); font-size: 12px; color: var(--ink);
+    padding: 10px 8px; text-align: right; border-bottom: 1px solid var(--rule);
+    font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+  }
+  table.fin td:first-child {
+    font-family: var(--serif); font-size: 13.5px; color: var(--ink); font-weight: 400;
+  }
+  table.fin tr.target td {
+    background: oklch(96% 0.04 78); font-weight: 500;
+  }
+  table.fin tr.target td:first-child::before {
+    content: "▸ "; color: var(--accent); font-weight: 700;
+  }
+  table.fin tr.summary td {
+    border-top: 1px solid var(--ink); border-bottom: 0;
+    color: var(--ink-mid); font-style: italic;
+  }
+  table.fin tr.summary td:first-child { font-style: italic; color: var(--ink-mid); }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 4 — TRADING COMPS
+  ────────────────────────────────────────────────────────────────────────── */
+  .comps .body { display: grid; grid-template-columns: 1fr 2.4fr; gap: 36px; padding-top: 28px; }
+  .col-narrative h2 { margin-bottom: 14px; }
+  .col-narrative .body-text { margin-top: 14px; }
+  .col-narrative .criteria { margin-top: 22px; display: grid; gap: 8px; }
+  .col-narrative .criteria .t { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  .col-narrative .criteria ul { list-style: none; display: grid; gap: 6px; }
+  .col-narrative .criteria li {
+    font-family: var(--sans); font-size: 12px; color: var(--ink); line-height: 1.4;
+    padding-left: 14px; position: relative;
+  }
+  .col-narrative .criteria li::before {
+    content: "■"; color: var(--accent); position: absolute; left: 0; font-size: 9px; top: 4px;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 5 — PRECEDENT TRANSACTIONS
+  ────────────────────────────────────────────────────────────────────────── */
+  .precedents .body { display: grid; grid-template-rows: auto 1fr; gap: 22px; padding-top: 28px; }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 6 — FOOTBALL FIELD
+  ────────────────────────────────────────────────────────────────────────── */
+  .football .body { display: grid; grid-template-columns: 1fr 1.6fr; gap: 36px; padding-top: 28px; }
+  .ff-chart { display: grid; gap: 14px; padding: 12px 0; }
+  .ff-row { display: grid; grid-template-columns: 200px 1fr 90px; gap: 16px; align-items: center; }
+  .ff-row .label {
+    font-family: var(--serif); font-size: 14px; color: var(--ink); line-height: 1.2;
+  }
+  .ff-row .label small {
+    display: block; font-family: var(--sans); font-size: 10.5px;
+    color: var(--ink-soft); letter-spacing: 0.06em; margin-top: 2px;
+  }
+  .ff-track {
+    height: 22px; background: oklch(94% 0.008 75); position: relative;
+  }
+  .ff-bar {
+    position: absolute; top: 0; bottom: 0; background: var(--ink);
+  }
+  .ff-bar.alt { background: var(--accent); opacity: 0.85; }
+  .ff-bar.alt2 { background: var(--gold); }
+  .ff-tick {
+    position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--accent);
+  }
+  .ff-tick::after {
+    content: "reference line"; position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: 10px; color: var(--accent); white-space: nowrap;
+  }
+  .ff-row .range {
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink); text-align: right;
+  }
+  .ff-axis {
+    display: grid; grid-template-columns: 200px 1fr 90px; gap: 16px;
+    border-top: 1px solid var(--rule); padding-top: 6px; margin-top: 4px;
+  }
+  .ff-axis .ticks {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 7 — DCF + SENSITIVITY
+  ────────────────────────────────────────────────────────────────────────── */
+  .dcf .body { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; padding-top: 28px; }
+  .dcf table.sens {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--mono); font-size: 11.5px;
+  }
+  .dcf table.sens th, .dcf table.sens td {
+    border: 1px solid var(--rule); padding: 8px 6px; text-align: center;
+    font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
+  }
+  .dcf table.sens th {
+    background: var(--paper-warm); font-weight: 600; color: var(--ink-mid);
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.06em;
+  }
+  .dcf table.sens td.h { color: var(--accent); font-weight: 600; }
+  .dcf table.sens td.center { background: oklch(96% 0.04 78); font-weight: 600; color: var(--ink); }
+  .dcf-asm { display: grid; gap: 10px; }
+  .dcf-asm .row {
+    display: grid; grid-template-columns: 1fr auto;
+    border-bottom: 1px dashed var(--rule); padding: 8px 0;
+    align-items: baseline;
+  }
+  .dcf-asm .row .k {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-mid);
+  }
+  .dcf-asm .row .v {
+    font-family: var(--mono); font-size: 13px; color: var(--ink); font-weight: 500;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 8 — STRATEGIC ALTERNATIVES MATRIX
+  ────────────────────────────────────────────────────────────────────────── */
+  .alts .body { display: grid; grid-template-rows: auto 1fr; gap: 18px; padding-top: 28px; }
+  .alts-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .alt {
+    border: 1px solid var(--rule); padding: 22px 24px;
+    display: grid; grid-template-rows: auto auto auto 1fr; gap: 12px;
+    background: var(--paper-warm);
+  }
+  .alt.recommended {
+    background: var(--ink); color: var(--paper);
+    border-color: var(--ink);
+  }
+  .alt .badge {
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-soft); display: flex; gap: 8px; align-items: center;
+  }
+  .alt.recommended .badge { color: var(--gold); }
+  .alt h3 { font-size: 24px; }
+  .alt.recommended h3 { color: var(--paper); }
+  .alt .stat { display: flex; gap: 24px; align-items: baseline; }
+  .alt .stat .v { font-family: var(--serif); font-size: 28px; }
+  .alt .stat .k { font-family: var(--sans); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; text-transform: uppercase; }
+  .alt.recommended .stat .v { color: var(--paper); }
+  .alt.recommended .stat .k { color: oklch(72% 0.012 75); }
+  .alt .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 6px; }
+  .alt .pc .col h4 {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px;
+  }
+  .alt.recommended .pc .col h4 { color: oklch(72% 0.012 75); }
+  .alt .pc ul { list-style: none; display: grid; gap: 4px; }
+  .alt .pc li {
+    font-family: var(--sans); font-size: 11.5px; color: var(--ink); line-height: 1.4;
+    padding-left: 12px; position: relative;
+  }
+  .alt.recommended .pc li { color: var(--paper); }
+  .alt .pc li::before {
+    content: "+"; color: var(--pos); position: absolute; left: 0; font-weight: 600;
+  }
+  .alt .pc .col:nth-child(2) li::before { content: "−"; color: var(--neg); }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 9 — RECOMMENDATION
+  ────────────────────────────────────────────────────────────────────────── */
+  .reco .body { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; padding-top: 28px; }
+  .reco .pull {
+    font-size: 28px; font-family: var(--serif); font-weight: 400;
+    line-height: 1.25; color: var(--ink); border-left-width: 4px;
+  }
+  .reco .pull em { color: var(--accent); font-style: italic; }
+  .reco .next { display: grid; gap: 14px; margin-top: 22px; }
+  .reco .next .step {
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 18px; align-items: baseline;
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+  }
+  .reco .next .step .n {
+    font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em;
+  }
+  .reco .next .step .t { font-family: var(--serif); font-size: 17px; color: var(--ink); }
+  .reco .next .step .when { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+  .timeline { padding: 14px 0; }
+  .timeline svg { width: 100%; height: 200px; display: block; }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     Slide 10 — DISCLAIMER / APPENDIX
+  ────────────────────────────────────────────────────────────────────────── */
+  .disc .body { display: grid; gap: 22px; padding-top: 28px; }
+  .disc .grid {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 56px;
+  }
+  .disc .body-text { font-size: 12.5px; max-width: none; line-height: 1.65; }
+  .disc .body-text p + p { margin-top: 10px; }
+  .disc h3 { margin-bottom: 8px; }
+  .disc .stamp {
+    border: 1px solid var(--ink); padding: 18px;
+    background: var(--paper-warm);
+    display: grid; gap: 10px;
+  }
+  .disc .stamp .lab { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+  .disc .stamp .who { font-family: var(--serif); font-size: 18px; color: var(--ink); }
+  .disc .stamp .det { font-family: var(--sans); font-size: 12px; color: var(--ink-mid); }
+
+  @media print {
+    html, body, .deck { height: auto; overflow: visible; background: white; }
+    .stage { display: block; transform: none !important; transition: none; }
+    .slide { page-break-after: always; height: 100vh; }
+    .chrome, .agent-stamp, .demo-banner { display: none; }
+    .slide-inner { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="agent-stamp">
+  <span class="dot"></span>
+  由 <b>Open Design</b> 生成 · 插件：<b>ib-pitch-book</b>
+</div>
+
+<div class="deck" id="deck">
+<div class="demo-banner" role="note" aria-label="示例演示文稿免责声明">
+  <strong>Open Design 示例演示文稿。</strong> 一份 B 轮融资路演模板：头部开源数据以项目 README 为准（60K+ star · 300+ 贡献者 · 217+ 插件）；融资条款、ARR 以及标注为 demo 的数字均为示意。
+</div>
+<div class="stage" id="stage">
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 1 — COVER
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide cover">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design — Growth Equity</div>
+      <div class="meta"><span>B 轮</span><span>融资路演</span><span>2026 年 7 月</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="ribbon">机密 — 讨论材料</span>
+        <h1 class="display">Open <em>Design</em></h1>
+        <div class="subhead">B 轮融资材料：把拥有 60K star 的开源设计平台带进企业与云层。</div>
+        <div class="demo-pill">示例演示文稿 / 融资条款仅作示意</div>
+      </div>
+      <div class="cover-meta">
+        <div class="row"><span class="k">准备给</span><span class="v">成长股投资人<br/>B 轮，领投 + 跟投</span></div>
+        <div class="row"><span class="k">编制方</span><span class="v">Open Design (nexu-io)<br/>创始与增长团队</span></div>
+        <div class="row"><span class="k">日期</span><span class="v">2026 年 7 月 9 日</span></div>
+        <div class="row"><span class="k">本轮融资</span><span class="v">$28M B 轮，投前估值 $180M</span></div>
+        <div class="row"><span class="k">示例状态</span><span class="v">头部开源数据以项目 README 为准；融资条款、ARR 与估值输出均为占位示意，仅用于 Open Design 演示。</span></div>
+      </div>
+    </div>
+    <div class="marque">B 轮 · 演示文稿 v2</div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>第 1 页 / 共 10 页 · github.com/nexu-io/open-design</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 2 — TABLE OF CONTENTS
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide toc">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮</span><span>讨论材料</span><span>02 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">目录</span>
+        <h2 class="section">投资的理由，<em>论证</em> 分八章</h2>
+        <p class="lede">为成长股投资人在合伙人会议轮次之前准备的讨论材料。</p>
+      </div>
+      <ol>
+        <li><span class="t">市场痛点</span><span class="pg">第 03 页</span><span class="sub">企业级 AI 设计工具封闭、昂贵、数据被锁</span></li>
+        <li><span class="t">对标中的解决方案</span><span class="pg">第 04 页</span><span class="sub">12 家精选 AI 设计与开发工具同业，增长与留存倍数</span></li>
+        <li><span class="t">可比融资</span><span class="pg">第 05 页</span><span class="sub">开源内核融资，结果区间 $0.5–5.0B，2022–2025</span></li>
+        <li><span class="t">估值区间图</span><span class="pg">第 06 页</span><span class="sub">六种估值方法，指示性区间</span></li>
+        <li><span class="t">单位经济与敏感性分析</span><span class="pg">第 07 页</span><span class="sub">5 年明确预测、终值、WACC × g</span></li>
+        <li><span class="t">护城河对比</span><span class="pg">第 08 页</span><span class="sub">自筹 · B 轮 · 战略合作 · 维持现状 —— 优点、缺点、价值</span></li>
+        <li><span class="t">请求与流程时间表</span><span class="pg">第 09 页</span><span class="sub">融资条款、资金用途、指示性里程碑</span></li>
+        <li><span class="t">免责声明与附录</span><span class="pg">第 10 页</span><span class="sub">演示数据声明、方法说明、必要披露</span></li>
+      </ol>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>02 / 10 · 插件：ib-pitch-book · 设计系统：investment-banking</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 3 — MARKET CONTEXT
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide market">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · §1</span><span>市场痛点</span><span>03 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">第 1 节 · 市场痛点</span>
+        <h2 class="section">企业级 AI 设计是 <em>封闭、定价高、数据被锁</em>.</h2>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi"><span class="k">云 AI 设计席位</span><span class="v num">$500<small>/月</small></span><span class="delta down">没有 BYOK，不能自托管</span></div>
+        <div class="kpi"><span class="k">企业设计工具支出</span><span class="v num">$9.4<small>B</small></span><span class="delta up">同比 +21%</span></div>
+        <div class="kpi"><span class="k">年初至今开发工具 VC 交易额</span><span class="v num">$48.2<small>B</small></span><span class="delta up">同比 +22%</span></div>
+        <div class="kpi"><span class="k">成长股待投资金，按行业标记</span><span class="v num">$184<small>B</small></span><span class="delta up">+9%</span></div>
+        <div class="kpi"><span class="k">Open Design 成本对比云</span><span class="v num">~$73<small>/月</small></span><span class="delta up">−80%+</span></div>
+      </div>
+      <div class="market-cols">
+        <div class="chartbox">
+          <div class="title">
+            <h3>Open Design 安装量与 star — 滚动 36 个月</h3>
+            <div class="src">来源：演示数据集 —— 占位示意</div>
+          </div>
+          <div class="chart">
+            <svg viewBox="0 0 600 180" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="oklch(48% 0.18 28)" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="oklch(48% 0.18 28)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <g stroke="oklch(86% 0.008 75)" stroke-width="1">
+                <line x1="0" y1="40" x2="600" y2="40"/>
+                <line x1="0" y1="80" x2="600" y2="80"/>
+                <line x1="0" y1="120" x2="600" y2="120"/>
+                <line x1="0" y1="160" x2="600" y2="160"/>
+              </g>
+              <g font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="9" fill="oklch(56% 0.008 70)">
+                <text x="2" y="38">60K</text>
+                <text x="2" y="78">40K</text>
+                <text x="2" y="118">20K</text>
+                <text x="2" y="158">0</text>
+              </g>
+              <path d="M 0 130 L 50 122 L 100 138 L 150 124 L 200 110 L 250 96 L 300 100 L 350 88 L 400 76 L 450 82 L 500 70 L 560 62 L 600 58 L 600 180 L 0 180 Z" fill="url(#g1)"/>
+              <path d="M 0 130 L 50 122 L 100 138 L 150 124 L 200 110 L 250 96 L 300 100 L 350 88 L 400 76 L 450 82 L 500 70 L 560 62 L 600 58" fill="none" stroke="oklch(48% 0.18 28)" stroke-width="2"/>
+              <line x1="0" y1="100" x2="600" y2="100" stroke="oklch(38% 0.010 70)" stroke-dasharray="4 4" stroke-width="1"/>
+              <text x="540" y="96" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="10" fill="oklch(38% 0.010 70)">30K 标记</text>
+            </svg>
+          </div>
+          <div class="legend">
+            <span class="sw"><i style="background:oklch(48% 0.18 28)"></i> 累计安装量</span>
+            <span class="sw"><i style="background:oklch(38% 0.010 70)"></i> 30K 参考线</span>
+          </div>
+        </div>
+        <div style="display:grid;gap:18px;align-content:start;">
+          <div class="pull">「我们接触的每个企业设计团队都说同一件事：真正好用的云 AI 设计工具，恰恰是他们最不被允许使用的那些。」</div>
+          <p class="body-text">三个信号指向 Open Design 的开放窗口。（i）云 AI 设计平台把买家锁死在单一模型、单一供应商与单一数据驻留姿态上 —— 对受监管的企业 IT 来说是硬性否决。（ii）标记为开源内核与开发工具类别的成长股待投资金已回到接近历史高位，过去 9 个月有 17 支带行业标签的基金在出手。（iii）编码智能体在企业内部的普及已经发生 —— Claude Code、Codex、Cursor 就在机器上 —— 但在此之前，没有任何东西把它们接进完整的设计工作流。</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--rule);padding-top:12px;">
+            <div><div class="kicker">企业试点</div><div class="num" style="font-size:22px;">40 家组织</div></div>
+            <div><div class="kicker">投资人意向</div><div class="num" style="font-size:22px;">12 家机构</div></div>
+            <div><div class="kicker">流程基调</div><div class="num" style="font-size:22px;">定向</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>03 / 10 · 来源：演示数据集 · 头部数据来自 README</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 4 — TRADING COMPARABLES
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide comps">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · §2</span><span>对标中的解决方案</span><span>04 / 10</span></div>
+    </header>
+    <div class="body">
+      <div class="col-narrative">
+        <span class="eyebrow">第 2 节 · 对标中的解决方案</span>
+        <h2 class="section">本轮 <em>融资</em> 该定在什么价。</h2>
+        <p class="body-text">十二家设计与开发工具同业，依据开源内核或智能体原生定位、收入规模与增长特征选出。Open Design 拟定的 <strong>7.2×</strong> 远期 EV/ARR 位于 <strong>同业中位数（8.4×）之下</strong> —— 这个折价是刻意的：它把企业层尚未变现的风险计入价格，而开源分发与增长率已经越过了同业门槛。</p>
+        <div class="criteria">
+          <div class="t">筛选标准</div>
+          <ul>
+            <li>远期 ARR $8M–$140M 或公开市场等效值</li>
+            <li>开源内核、开发工具或智能体原生的产品动线</li>
+            <li>带有免费或开源分发层的产品驱动增长</li>
+            <li>2023 年以来在 A–C 轮定价或已上市</li>
+            <li>记录在案的两份以上独立成长股投资条款清单</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <table class="fin">
+          <thead>
+            <tr>
+              <th>公司</th><th>产品动线</th><th>估值（$M）</th><th>EV（$M）</th><th>ARR '26E（$M）</th><th>毛利（$M）</th><th>EV/ARR</th><th>EV/GP</th><th>同比增长</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Weave Design Cloud</td><td>封闭 SaaS</td><td>384</td><td>421</td><td>52</td><td>33</td><td>8.1×</td><td>12.8×</td><td>+38%</td></tr>
+            <tr><td>Formify Labs</td><td>开源内核</td><td>219</td><td>249</td><td>31</td><td>18</td><td>8.0×</td><td>13.8×</td><td>+44%</td></tr>
+            <tr><td>Palette Systems</td><td>封闭 SaaS</td><td>572</td><td>601</td><td>68</td><td>46</td><td>8.8×</td><td>13.1×</td><td>+31%</td></tr>
+            <tr><td>Nimbus Draft</td><td>开源内核</td><td>196</td><td>173</td><td>22</td><td>13</td><td>7.9×</td><td>13.3×</td><td>+29%</td></tr>
+            <tr><td>Studioflow</td><td>智能体原生</td><td>331</td><td>358</td><td>38</td><td>25</td><td>9.4×</td><td>14.3×</td><td>+52%</td></tr>
+            <tr><td>Bramble UI</td><td>封闭 SaaS</td><td>149</td><td>161</td><td>21</td><td>12</td><td>7.7×</td><td>13.4×</td><td>+27%</td></tr>
+            <tr><td>Vectorem</td><td>开源内核</td><td>201</td><td>212</td><td>27</td><td>17</td><td>7.9×</td><td>12.5×</td><td>+41%</td></tr>
+            <tr class="target"><td>Open Design</td><td>开源内核、智能体原生</td><td>180</td><td>208</td><td>29</td><td>19</td><td>7.2×</td><td>10.9×</td><td>+58%</td></tr>
+            <tr><td>Driftboard</td><td>封闭 SaaS</td><td>412</td><td>439</td><td>62</td><td>39</td><td>7.1×</td><td>11.3×</td><td>+24%</td></tr>
+            <tr><td>Modeliq</td><td>智能体原生</td><td>284</td><td>301</td><td>34</td><td>22</td><td>8.9×</td><td>13.7×</td><td>+47%</td></tr>
+            <tr><td>GridForm</td><td>封闭 SaaS</td><td>112</td><td>119</td><td>17</td><td>9</td><td>7.0×</td><td>13.2×</td><td>+22%</td></tr>
+            <tr><td>InkStack</td><td>开源内核</td><td>354</td><td>373</td><td>43</td><td>27</td><td>8.7×</td><td>13.8×</td><td>+35%</td></tr>
+            <tr class="summary"><td>中位数（不含 Open Design）</td><td>—</td><td>284</td><td>301</td><td>34</td><td>22</td><td>8.4×</td><td>13.3×</td><td>+35%</td></tr>
+            <tr class="summary"><td>均值（不含 Open Design）</td><td>—</td><td>292</td><td>309</td><td>38</td><td>24</td><td>8.1×</td><td>13.2×</td><td>+35%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>04 / 10 · 技能：comps-analysis · 来源：演示数据集</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 5 — PRECEDENT TRANSACTIONS
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide precedents">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · §3</span><span>可比融资</span><span>05 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">第 3 节 · 可比融资</span>
+        <h2 class="section">成长股 <em>已付出</em> 6.8–9.8× ARR 的代价，用于 Open Design 这类平台。</h2>
+        <p class="body-text" style="margin-top:10px;">筛选了 14 笔融资，依据阶段、品类重叠度与披露质量保留 9 笔。以开源内核为主导的轮次相较封闭 SaaS 轮次享有 +1.4× 的溢价，这与免费层复利形成的分发优势一致。</p>
+      </div>
+      <table class="fin">
+        <thead>
+          <tr>
+            <th>日期</th><th>公司</th><th>领投方</th><th>类型</th><th>融资额（$M）</th><th>ARR（$M）</th><th>估值（$M）</th><th>EV/ARR</th><th>EV/Rev</th><th>溢价</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2025 年 3 月</td><td>Quanta Drives Studio</td><td>Accel Growth</td><td>开源内核</td><td>28.4</td><td>10.1</td><td>84</td><td>8.3×</td><td>2.8×</td><td>+38%</td></tr>
+          <tr><td>2024 年 11 月</td><td>Hilltop Sensors AI</td><td>Insight Partners</td><td>开源内核</td><td>17.2</td><td>6.1</td><td>72</td><td>8.9×</td><td>2.8×</td><td>+42%</td></tr>
+          <tr><td>2024 年 9 月</td><td>Marquette Automation</td><td>KKR Growth Fund VI</td><td>封闭 SaaS</td><td>31.4</td><td>11.8</td><td>94</td><td>7.5×</td><td>2.7×</td><td>+27%</td></tr>
+          <tr><td>2024 年 6 月</td><td>Bramwell Design Ops</td><td>Fortive Ventures</td><td>开源内核</td><td>14.9</td><td>5.4</td><td>61</td><td>8.8×</td><td>2.8×</td><td>+44%</td></tr>
+          <tr><td>2024 年 2 月</td><td>Easton Controls Suite</td><td>Carlyle Tech</td><td>封闭 SaaS</td><td>22.1</td><td>9.1</td><td>73</td><td>7.1×</td><td>2.4×</td><td>+24%</td></tr>
+          <tr><td>2023 年 10 月</td><td>Crestmark Robotics</td><td>Emerson Ventures</td><td>开源内核</td><td>26.4</td><td>10.1</td><td>91</td><td>8.6×</td><td>2.6×</td><td>+36%</td></tr>
+          <tr><td>2023 年 7 月</td><td>Driscoll Industrial App</td><td>Apollo Growth</td><td>封闭 SaaS</td><td>19.4</td><td>8.2</td><td>67</td><td>6.9×</td><td>2.4×</td><td>+22%</td></tr>
+          <tr><td>2023 年 4 月</td><td>Yardley Precision Labs</td><td>ABB Ventures</td><td>开源内核</td><td>12.1</td><td>4.6</td><td>54</td><td>8.5×</td><td>2.6×</td><td>+39%</td></tr>
+          <tr class="target"><td>2026 年 7 月</td><td>Open Design</td><td>Vantage Peak Capital</td><td>开源内核</td><td>28.0</td><td>3.2</td><td>180</td><td>7.2×</td><td>—</td><td>拟议</td></tr>
+          <tr><td>2022 年 12 月</td><td>Westgate Automation</td><td>Bain Growth</td><td>封闭 SaaS</td><td>25.1</td><td>10.7</td><td>78</td><td>6.8×</td><td>2.3×</td><td>+19%</td></tr>
+          <tr class="summary"><td>中位数 — 开源内核（n=4）</td><td colspan="2">—</td><td>—</td><td>19.9</td><td>7.2</td><td>76</td><td>8.6×</td><td>2.7×</td><td>+40%</td></tr>
+          <tr class="summary"><td>中位数 — 封闭 SaaS（n=4）</td><td colspan="2">—</td><td>—</td><td>23.6</td><td>9.7</td><td>73</td><td>7.0×</td><td>2.4×</td><td>+23%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>05 / 10 · 来源：演示数据集 · 无实时融资数据</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 6 — FOOTBALL FIELD
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide football">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · §4</span><span>估值区间图</span><span>06 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">第 4 节 · 估值</span>
+        <h2 class="section">六种方法，一个 <em>指示性区间</em>.</h2>
+        <p class="body-text" style="margin-top:14px;">六种方法下的指示性投前估值，并与 A 轮（2025 年 4 月）设定的 $140M 投后标记相交。综合区间 <b>$156M – $204M</b> 投前，意味着拟议的 $180M 落在我们跑过的每一种方法之内。</p>
+        <div class="pull" style="margin-top:18px;">「我们跑过的每一种方法里都有真实的上行空间。这一轮的问题是，哪种结构能用最少的稀释把它抓住。」</div>
+      </div>
+      <div>
+        <div class="ff-chart">
+          <div class="ff-row">
+            <div class="label">上市／非上市可比<small>EV/ARR '26E · 6.8–8.9×</small></div>
+            <div class="ff-track"><div class="ff-bar" style="left:18%;width:32%;"></div><div class="ff-tick" style="left:24%;"></div></div>
+            <div class="range">$156M – $181M</div>
+          </div>
+          <div class="ff-row">
+            <div class="label">可比融资 — 封闭 SaaS<small>EV/ARR · 6.8–7.5×</small></div>
+            <div class="ff-track"><div class="ff-bar" style="left:24%;width:30%;"></div><div class="ff-tick" style="left:24%;"></div></div>
+            <div class="range">$163M – $178M</div>
+          </div>
+          <div class="ff-row">
+            <div class="label">可比融资 — 开源内核<small>EV/ARR · 8.3–8.9×</small></div>
+            <div class="ff-track"><div class="ff-bar alt" style="left:36%;width:34%;"></div><div class="ff-tick" style="left:24%;"></div></div>
+            <div class="range">$178M – $204M</div>
+          </div>
+          <div class="ff-row">
+            <div class="label">DCF（基准情形）<small>WACC 14.0% · g 3.5%</small></div>
+            <div class="ff-track"><div class="ff-bar alt" style="left:30%;width:36%;"></div><div class="ff-tick" style="left:24%;"></div></div>
+            <div class="range">$168M – $198M</div>
+          </div>
+          <div class="ff-row">
+            <div class="label">VC 法<small>退出 ARR × 远期倍数，5 年</small></div>
+            <div class="ff-track"><div class="ff-bar alt2" style="left:22%;width:28%;"></div><div class="ff-tick" style="left:24%;"></div></div>
+            <div class="range">$160M – $186M</div>
+          </div>
+          <div class="ff-row">
+            <div class="label">上一轮锚点<small>A 轮投后</small></div>
+            <div class="ff-track"><div class="ff-bar" style="left:14%;width:24%;background:oklch(56% 0.008 70);"></div><div class="ff-tick" style="left:24%;"></div></div>
+            <div class="range">$140M – $155M</div>
+          </div>
+          <div class="ff-axis">
+            <div></div>
+            <div class="ticks"><span>$120M</span><span>$150M</span><span>$180M</span><span>$210M</span><span>$240M</span></div>
+            <div></div>
+          </div>
+        </div>
+        <div style="margin-top:18px;border-top:1px solid var(--ink);padding-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+          <div><div class="kicker">综合区间</div><div class="num" style="font-size:22px;">$156M – $204M</div></div>
+          <div><div class="kicker">拟议投前</div><div class="num" style="font-size:22px;">$180M</div></div>
+          <div><div class="kicker">隐含投后</div><div class="num" style="font-size:22px;">$208M</div></div>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>06 / 10 · 技能：comps-analysis · dcf-model · vc-method</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 7 — DCF + SENSITIVITY
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide dcf">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · §5</span><span>单位经济与敏感性分析</span><span>07 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">第 5 节 · 单位经济</span>
+        <h2 class="section">一份<em>把活真正干完的现金流折现</em>。</h2>
+        <p class="body-text" style="margin-top:14px;">企业层收入线采用 5 年明确预测，终值用永续增长法。14.0% 的 WACC 融合了 4.4% 无风险利率、5.8% 股权风险溢价、1.35 的早期软件 beta，且无目标杠杆 —— 开源内核模式每个 BYOK 席位的托管成本近乎为零，因此由折现率而非债务能力来承担风险调整。</p>
+        <div class="dcf-asm" style="margin-top:18px;">
+          <div class="row"><span class="k">企业 ARR 复合增长率（FY26–FY30E）</span><span class="v">+64%</span></div>
+          <div class="row"><span class="k">毛利率（终值，BYOK 模式）</span><span class="v">86%</span></div>
+          <div class="row"><span class="k">WACC（基准）</span><span class="v">14.00%</span></div>
+          <div class="row"><span class="k">永续增长（基准）</span><span class="v">3.50%</span></div>
+          <div class="row"><span class="k">隐含企业价值（基准）</span><span class="v">$192M</span></div>
+          <div class="row"><span class="k">隐含投前估值</span><span class="v">$180M</span></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:10px;">敏感性分析 — 隐含投前估值</h3>
+        <table class="sens">
+          <thead>
+            <tr>
+              <th colspan="2" rowspan="2"></th>
+              <th colspan="5">永续增长率</th>
+            </tr>
+            <tr>
+              <th>2.0%</th><th>2.5%</th><th>3.5%</th><th>4.5%</th><th>5.5%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th rowspan="5">WACC</th>
+              <th>12.0%</th><td>$186M</td><td>$194M</td><td>$210M</td><td>$228M</td><td>$249M</td>
+            </tr>
+            <tr><th>13.0%</th><td>$174M</td><td>$181M</td><td>$196M</td><td>$212M</td><td>$231M</td></tr>
+            <tr><th>14.0%</th><td>$163M</td><td>$170M</td><td class="center">$180M</td><td>$199M</td><td>$216M</td></tr>
+            <tr><th>15.0%</th><td>$154M</td><td>$160M</td><td>$172M</td><td>$187M</td><td>$203M</td></tr>
+            <tr><th>16.0%</th><td>$146M</td><td>$151M</td><td>$163M</td><td>$176M</td><td>$191M</td></tr>
+          </tbody>
+        </table>
+        <p class="kicker" style="margin-top:14px;">高亮单元格 = 基准情形 · 所有数值四舍五入到最近的 $1M · 稀释前</p>
+        <div style="margin-top:18px;border-top:1px solid var(--ink);padding-top:12px;">
+          <div class="kicker">BYOK 为模型买到什么</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;font-family:var(--mono);font-size:11px;color:var(--ink-mid);">
+            <span>✓ 没有平台推理成本</span>
+            <span>✓ 规模化后 86% 毛利率</span>
+            <span>✓ 没有按席位的云加价</span>
+            <span>✓ 企业费用是纯毛利</span>
+            <span>✓ 演示来源已标注</span>
+            <span>✓ 敏感性 ±2pp WACC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>07 / 10 · 报告案例：$500 → 约 $73 / 月 · 表格仅作示意</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 8 — STRATEGIC ALTERNATIVES MATRIX
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide alts">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · §6</span><span>护城河对比</span><span>08 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">第 6 节 · 护城河对比</span>
+        <h2 class="section">四条路径，<em>一条</em> 我们建议优先推进。</h2>
+      </div>
+      <div class="alts-grid">
+
+        <div class="alt">
+          <div class="badge">选项 A · 维持现状</div>
+          <h3>继续靠捐赠资助，自然增长</h3>
+          <div class="stat"><span class="v num">~$140M</span><span class="k">指示性估值</span></div>
+          <div class="pc">
+            <div class="col"><h4>支持</h4><ul>
+              <li>保全创始人的完全控制权</li>
+              <li>无稀释，无投资人治理</li>
+              <li>若自然增长自行复利，则独享全部上行</li>
+            </ul></div>
+            <div class="col"><h4>反对</h4><ul>
+              <li>没有资金搭建企业／云层</li>
+              <li>闭源竞争对手在企业销售上的投入更大</li>
+              <li>没有带薪核心团队，贡献者有过劳风险</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="alt recommended">
+          <div class="badge">选项 B · 推荐</div>
+          <h3>$28M B 轮，开源内核保持 Apache-2.0</h3>
+          <div class="stat"><span class="v num">$180M</span><span class="k">投前估值</span></div>
+          <div class="pc">
+            <div class="col"><h4>支持</h4><ul>
+              <li>成长股溢价 + 首年已承诺试点收入约 $1.6M</li>
+              <li>可信且专注开源内核的领投方数量有限 → 流程紧凑可控</li>
+              <li>对长期贡献者与早期支持者而言最清晰的结构</li>
+            </ul></div>
+            <div class="col"><h4>反对</h4><ul>
+              <li>投资人针对开源到企业转化的尽调会多花 6–8 周</li>
+              <li>面向社区信任的沟通需要细致的治理规划</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="alt">
+          <div class="badge">选项 C · 战略合作</div>
+          <h3>云／基础设施伙伴共同投资企业层</h3>
+          <div class="stat"><span class="v num">$150M – $165M</span><span class="k">指示性估值</span></div>
+          <div class="pc">
+            <div class="col"><h4>支持</h4><ul>
+              <li>借助伙伴的企业渠道打开分发</li>
+              <li>把开源内核保留为干净、独立的资产</li>
+            </ul></div>
+            <div class="col"><h4>反对</h4><ul>
+              <li>合作条款与排他性带来复杂性</li>
+              <li>时间表取决于伙伴自身的路线图</li>
+              <li>单一战略投资人带来的治理阴影</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <div class="alt">
+          <div class="badge">选项 D · 过桥／延伸可转债</div>
+          <h3>在 A 轮基础上发可转债，而非定价轮</h3>
+          <div class="stat"><span class="v num">$155M – $170M</span><span class="k">上限，指示性</span></div>
+          <div class="pc">
+            <div class="col"><h4>支持</h4><ul>
+              <li>执行速度快且确定</li>
+              <li>把定价轮的稀释推迟到更晚、更高的估值</li>
+            </ul></div>
+            <div class="col"><h4>反对</h4><ul>
+              <li>募资额低于完整的定价轮</li>
+              <li>可转债悬顶会让后续 C 轮复杂化</li>
+              <li>无法完全支撑企业层建设</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>08 / 10 · 技能：strategic-alternatives</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 9 — RECOMMENDATION & TIMELINE
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide reco">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · §7</span><span>请求</span><span>09 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">第 7 节 · 请求</span>
+        <h2 class="section">$28M，用于搭建 <em>企业与云层</em>.</h2>
+        <p class="pull" style="margin-top:24px;">我们正在推进一轮 <em>定向、为期 4 个月</em> 的流程，目标为 <em>3–5 家专注开源内核的成长型投资人</em>，并备有一家应急的战略跟投方，力争在 <em>2026 年 8 月 28 日</em>.</p>
+        <p class="body-text" style="margin-top:18px;">定向流程能在限定社区披露风险的同时，最大化按拟议 $180M 投前完成交易的概率。战略方的接触被保留在备用状态，以约束定价。若没有条款清单越过约定的估值下限，创始团队完整保留继续靠捐赠资助、完全由社区治理的选择权。</p>
+      </div>
+      <div>
+        <h3>流程时间表（指示性）</h3>
+        <div class="next">
+          <div class="step"><span class="n">01</span><span class="t">创始团队对齐与数据室准备</span><span class="when">4 月 30 日</span></div>
+          <div class="step"><span class="n">02</span><span class="t">投资人演示文稿、指标包与财务模型定稿</span><span class="when">5 月 2 日 – 5 月 22 日</span></div>
+          <div class="step"><span class="n">03</span><span class="t">机密接触、保密协议、首轮介绍会</span><span class="when">5 月 26 日 – 6 月 12 日</span></div>
+          <div class="step"><span class="n">04</span><span class="t">首轮会议 · 选出 2–3 家领投候选</span><span class="when">6 月 30 日</span></div>
+          <div class="step"><span class="n">05</span><span class="t">合伙人会议 · 尽调室 · 推荐人电话</span><span class="when">7 月 1 日 – 7 月 31 日</span></div>
+          <div class="step"><span class="n">06</span><span class="t">条款清单谈判 · 文件编制</span><span class="when">8 月 1 日 – 8 月 26 日</span></div>
+          <div class="step"><span class="n">07</span><span class="t">签署条款清单（或正式终止）</span><span class="when">8 月 28 日</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿</span>
+      <span>09 / 10 · $28M B 轮 · 投前 $180M · 条款仅作示意</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     SLIDE 10 — DISCLAIMERS / APPENDIX
+─────────────────────────────────────────────────────────────────────────── -->
+<section class="slide disc">
+  <div class="slide-inner">
+    <header class="mast">
+      <div class="brand">Open <i>&amp;</i> Design</div>
+      <div class="meta"><span>B 轮 · 附录</span><span>免责声明与来源</span><span>10 / 10</span></div>
+    </header>
+    <div class="body">
+      <div>
+        <span class="eyebrow">附录</span>
+        <h2 class="section">免责声明、来源与<em>方法说明</em>.</h2>
+      </div>
+      <div class="grid">
+        <div>
+          <h3>重要披露</h3>
+          <div class="body-text">
+            <p>本材料由 Open Design 创始团队编制，仅供潜在的 B 轮投资人专用。其目的仅在于提供讨论基础，不构成、也不得被依赖为财务、投资、法律、税务或会计建议。接收者应咨询自己的专业顾问。</p>
+            <p><strong>演示数据声明：</strong> 本作品中的融资规模、投前估值、ARR 数字、投资人名称、流程日期与可比公司数据，均为仅为 Open Design 演示而创建的占位示意。它们并非来自实时条款清单、股权结构表或第三方数据供应商。只有头部开源数据（60K+ star、300+ 贡献者、217+ 插件、129 个设计系统、21 个编码智能体，以及 Apache-2.0 授权）以实际项目 README 为准。</p>
+            <p>在真实融资中，财务分析必须仅源自有据可查的材料，例如经审计的财务报表、经验证的股权结构表、有授权的第三方可比数据，或明确标注的假设。每个数字都应带有来源日期，并在对外分发前可追溯到引证日志。</p>
+            <p>本示例中的可比融资倍数、预测与估值输出均为合成数据，不应被当作事实性的市场观察再次使用。请把这段示例来源块替换为与本次融资对应的引证、时效日期、授权说明，以及创始团队所需的审核状态。</p>
+            <p>所呈现的名义估值输出为指示性内容，意在框定投资人对 B 轮的讨论，不构成进行或不进行任何具体投资的建议。任何投资决定都需要独立法律审查、条款清单谈判与惯例成交条件。</p>
+          </div>
+        </div>
+        <div style="display:grid;gap:14px;">
+          <div class="stamp">
+            <div class="lab">创始团队</div>
+            <div class="who">Open Design — nexu-io</div>
+            <div class="det">github.com/nexu-io/open-design<br/>discord.gg/mHAjSMV6gz · x.com/nexudotio</div>
+          </div>
+          <div class="stamp">
+            <div class="lab">演示来源状态</div>
+            <div class="det" style="font-family:var(--mono);font-size:11px;">合成的 Open Design 演示数据集 · 仅头部开源数据以 README 为准 · 无实时股权结构表或条款清单</div>
+          </div>
+          <div class="stamp">
+            <div class="lab">生成工具</div>
+            <div class="det" style="font-family:var(--mono);font-size:11px;">Open Design · 插件：ib-pitch-book · Apache-2.0 · 本地运行 · BYOK · 无需注册</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span class="conf">Open Design — 示例演示文稿 · 文档结束</span>
+      <span>10 / 10 · github.com/nexu-io/open-design · Apache-2.0</span>
+    </footer>
+  </div>
+</section>
+
+</div><!-- /stage -->
+
+<div class="chrome">
+  <button id="prev" aria-label="上一张">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <span class="counter"><span class="now" id="now">01</span> / <span id="total">10</span></span>
+  <button id="next" aria-label="下一张">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <button id="print" aria-label="打印为 PDF" title="打印 / 另存为 PDF">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+  </button>
+</div>
+
+</div><!-- /deck -->
+
+<script>
+(function(){
+  const stage  = document.getElementById('stage');
+  const slides = stage.querySelectorAll('.slide');
+  const total  = slides.length;
+  const now    = document.getElementById('now');
+  document.getElementById('total').textContent = String(total).padStart(2,'0');
+  let i = 0;
+  function go(n){
+    i = Math.max(0, Math.min(total-1, n));
+    stage.style.transform = `translateX(-${i*100}vw)`;
+    now.textContent = String(i+1).padStart(2,'0');
+  }
+  document.getElementById('prev').onclick = () => go(i-1);
+  document.getElementById('next').onclick = () => go(i+1);
+  document.getElementById('print').onclick = () => window.print();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(i+1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                   { e.preventDefault(); go(i-1); }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End')  go(total-1);
+  });
+  let touchX = 0;
+  stage.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, {passive:true});
+  stage.addEventListener('touchend',   (e) => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 60) go(i + (dx < 0 ? 1 : -1));
+  }, {passive:true});
+})();
+</script>
+
+</body>
+</html>

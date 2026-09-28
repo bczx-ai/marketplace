@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>Kami Parchment · Open Design Studio №26</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Source Serif Pro', 'Noto Serif SC', Georgia, serif;
+    background: #f5f4ed;
+    color: #1f1d18;
+  }
+  .ink-blue { color: #1B365D; }
+  .meta { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  .rule { border-color: #d4d1c5; }
+  .display { font-family: 'Source Serif Pro', 'Noto Serif SC', Georgia, serif; }
+  .h1-display { font-size: clamp(48px, 7vw, 96px); line-height: 1.05; letter-spacing: -0.01em; font-weight: 500; }
+  .tag { display: inline-block; padding: 3px 10px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; background: #efeee5; color: #1B365D; }
+</style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-[920px] mx-auto px-10 py-14">
+
+    <!-- top folio rule -->
+    <header class="flex items-baseline justify-between border-b rule pb-3 text-[11px] meta uppercase tracking-[0.18em]" style="color:#6b665b">
+      <span>KAMI · Open Design</span>
+      <span>第 01 卷 · 第 №26 期 · MMXXVI</span>
+      <span>Apache-2.0</span>
+    </header>
+
+    <!-- kicker -->
+    <div class="mt-12 flex items-baseline gap-3">
+      <span class="tag">工作室来信</span>
+      <span class="meta text-[11px] uppercase tracking-[0.18em]" style="color:#6b665b">柏林 · 北纬 52.5200° · 东经 13.4050°</span>
+    </div>
+
+    <!-- hero headline -->
+    <h1 class="display h1-display mt-4">
+      设计 <span style="font-style:italic" class="ink-blue">智能，</span><br/>
+      在温暖的纸上。
+    </h1>
+
+    <!-- lede -->
+    <p class="mt-8 text-[20px] leading-relaxed max-w-[680px]" style="color:#3a382f">
+      面向编辑类文档与演示文稿的开源设计工作室——由你自己的编程 agent 完成排版。纯白只是屏幕的权宜之计，不是出版的惯例。纸张有温度，字体也是。
+    </p>
+
+    <!-- 3 columns -->
+    <section class="mt-14 grid grid-cols-3 gap-10 border-t rule pt-10">
+      <article>
+        <div class="meta text-[10px] uppercase tracking-[0.18em] ink-blue">01 · 支柱</div>
+        <h2 class="display text-[24px] font-semibold mt-2 leading-snug">是编排，<br/>不是拼装。</h2>
+        <p class="mt-3 text-[14.5px] leading-relaxed" style="color:#3a382f">每一页都靠手工排布。我们不是在拼接区块——我们是在排版。</p>
+      </article>
+      <article>
+        <div class="meta text-[10px] uppercase tracking-[0.18em] ink-blue">02 · 支柱</div>
+        <h2 class="display text-[24px] font-semibold mt-2 leading-snug">一款字体<br/>自会说话。</h2>
+        <p class="mt-3 text-[14.5px] leading-relaxed" style="color:#3a382f">Source Serif Pro 承载全部层级，没有标题与正文的内耗。</p>
+      </article>
+      <article>
+        <div class="meta text-[10px] uppercase tracking-[0.18em] ink-blue">03 · 支柱</div>
+        <h2 class="display text-[24px] font-semibold mt-2 leading-snug">鸣响或低语，<br/>绝不喧哗。</h2>
+        <p class="mt-3 text-[14.5px] leading-relaxed" style="color:#3a382f">发丝级细线、单一强调色、没有投影。页面应当有印刷的质感。</p>
+      </article>
+    </section>
+
+    <!-- pull quote -->
+    <blockquote class="mt-14 border-l-2 pl-5 italic" style="border-color:#1B365D">
+      <p class="text-[22px] leading-snug max-w-[620px]" style="color:#1f1d18">
+        「我们每两周发布一份文档，每一份都是我们真的会拿去印刷的东西。」
+      </p>
+      <footer class="mt-3 text-[12.5px] meta uppercase tracking-[0.16em]" style="color:#6b665b">— 编辑团队 · 柏林，2026</footer>
+    </blockquote>
+
+    <!-- colophon -->
+    <footer class="mt-16 pt-6 border-t rule flex items-baseline justify-between text-[11px] meta uppercase tracking-[0.18em]" style="color:#6b665b">
+      <span>以 Source Serif Pro 与 IBM Plex Mono 排版</span>
+      <span>opendesign.studio</span>
+      <span>№26 / 26</span>
+    </footer>
+  </div>
+</body>
+</html>

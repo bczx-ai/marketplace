@@ -1,0 +1,21 @@
+{
+  "name": "design",
+  "version": "0.1.4",
+  "description": "在 Brain 中浏览、应用、预览和评审设计资源。",
+  "author": {
+    "name": "DevCube"
+  },
+  "interface": {
+    "displayName": "Brain Design",
+    "shortDescription": "在 Brain 中浏览、应用、预览和评审设计资源。",
+    "longDescription": "在 Brain 中浏览、应用、预览和评审设计资源。",
+    "developerName": "DevCube",
+    "category": "设计多媒体",
+    "capabilities": [
+      "Skills",
+      "Extensions"
+    ],
+    "defaultPrompt": "使用 Brain Design 中最匹配的设计 Skill 完成当前任务。"
+  },
+  "skills": "./skills"
+}

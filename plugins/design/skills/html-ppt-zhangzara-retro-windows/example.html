@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>像 CISO 赋能团队那样，交付一场安全意识培训 - 职业培训</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+  :root {
+    --bg-gray: #c0c0c0;
+    --bg-light: #d4d0c8;
+    --bg-dark: #808080;
+    --blue-navy: #000080;
+    --blue-bright: #0000a0;
+    --blue-light: #1084d0;
+    --white: #ffffff;
+    --black: #000000;
+    --text-dark: #222222;
+    --btn-face: #d4d0c8;
+    --btn-highlight: #ffffff;
+    --btn-shadow: #404040;
+    --btn-dark-shadow: #000000;
+    --green-retro: #008000;
+    --red-retro: #800000;
+    --yellow-retro: #808000;
+    --cyan-retro: #008080;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "MS Sans Serif", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+
+  /* === CRT OVERLAY === */
+  .crt-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.03) 0px,
+        rgba(0,0,0,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+  }
+
+  /* === SLIDE SYSTEM === */
+  .slide {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 32px 44px 32px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .slide.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  /* === WINDOW CHROME === */
+  .win-window {
+    background: var(--bg-light);
+    border: 2px solid var(--white);
+    border-right-color: var(--btn-dark-shadow);
+    border-bottom-color: var(--btn-dark-shadow);
+    box-shadow: inset 1px 1px 0 var(--btn-highlight), inset -1px -1px 0 var(--btn-shadow);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    max-height: calc(100vh - 68px);
+  }
+
+  .win-titlebar {
+    background: linear-gradient(90deg, var(--blue-navy) 0%, var(--blue-bright) 100%);
+    color: var(--white);
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .win-titlebar.inactive {
+    background: linear-gradient(90deg, #808080 0%, #a0a0a0 100%);
+  }
+
+  .win-title-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .win-icon {
+    width: 18px;
+    height: 18px;
+    background: var(--white);
+    border: 1px solid var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--blue-navy);
+    font-weight: bold;
+  }
+
+  .win-buttons {
+    display: flex;
+    gap: 3px;
+  }
+
+  .win-btn {
+    width: 20px;
+    height: 18px;
+    background: var(--bg-light);
+    border: 2px solid var(--btn-highlight);
+    border-right-color: var(--btn-dark-shadow);
+    border-bottom-color: var(--btn-dark-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-dark);
+    cursor: pointer;
+    line-height: 1;
+    padding-bottom: 2px;
+  }
+
+  .win-btn:active {
+    border: 2px solid var(--btn-dark-shadow);
+    border-right-color: var(--white);
+    border-bottom-color: var(--white);
+  }
+
+  .win-body {
+    padding: 20px 24px 24px 24px;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* === BUTTONS === */
+  .btn-retro {
+    background: var(--btn-face);
+    border: 2px solid var(--btn-highlight);
+    border-right-color: var(--btn-dark-shadow);
+    border-bottom-color: var(--btn-dark-shadow);
+    padding: 6px 24px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--text-dark);
+    outline: none;
+  }
+
+  .btn-retro:active {
+    border: 2px solid var(--btn-dark-shadow);
+    border-right-color: var(--btn-highlight);
+    border-bottom-color: var(--btn-highlight);
+  }
+
+  .btn-retro:focus {
+    outline: 1px dotted var(--black);
+    outline-offset: -4px;
+  }
+
+  /* === PANELS & GROUP BOXES === */
+  .group-box {
+    border: 2px solid var(--btn-shadow);
+    border-right-color: var(--btn-highlight);
+    border-bottom-color: var(--btn-highlight);
+    padding: 20px 18px 16px 18px;
+    position: relative;
+    background: var(--bg-light);
+  }
+
+  .group-box-title {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background: var(--bg-light);
+    padding: 0 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text-dark);
+  }
+
+  .panel-raised {
+    background: var(--bg-light);
+    border: 2px solid var(--btn-highlight);
+    border-right-color: var(--btn-dark-shadow);
+    border-bottom-color: var(--btn-dark-shadow);
+    padding: 16px;
+  }
+
+  .panel-sunken {
+    background: var(--white);
+    border: 2px solid var(--btn-shadow);
+    border-right-color: var(--btn-highlight);
+    border-bottom-color: var(--btn-highlight);
+    padding: 12px;
+  }
+
+  /* === PROGRESS BAR === */
+  .progress-bar {
+    width: 100%;
+    height: 24px;
+    background: var(--white);
+    border: 2px solid var(--btn-shadow);
+    border-right-color: var(--btn-highlight);
+    border-bottom-color: var(--btn-highlight);
+    padding: 2px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--blue-navy);
+    transition: width 0.5s ease;
+  }
+
+  /* === TEXT STYLES === */
+  .pixel-font {
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  .terminal-font {
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+  }
+
+  .text-center { text-align: center; }
+
+  .text-xl { font-size: 32px; font-weight: bold; }
+  .text-lg { font-size: 22px; }
+  .text-md { font-size: 18px; }
+  .text-sm { font-size: 14px; }
+  .text-xs { font-size: 12px; }
+
+  .text-blue { color: var(--blue-navy); }
+  .text-green { color: var(--green-retro); }
+  .text-red { color: var(--red-retro); }
+  .text-gray { color: #555; }
+
+  /* === LAYOUT UTILITIES === */
+  .flex { display: flex; }
+  .flex-col { flex-direction: column; }
+  .items-center { align-items: center; }
+  .justify-center { justify-content: center; }
+  .justify-between { justify-content: space-between; }
+  .gap-1 { gap: 6px; }
+  .gap-2 { gap: 10px; }
+  .gap-3 { gap: 16px; }
+  .gap-4 { gap: 24px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 18px; }
+
+  .w-full { width: 100%; }
+  .h-full { height: 100%; }
+
+  .mt-1 { margin-top: 6px; }
+  .mt-2 { margin-top: 12px; }
+  .mt-3 { margin-top: 20px; }
+  .mb-1 { margin-bottom: 6px; }
+  .mb-2 { margin-bottom: 12px; }
+  .mb-3 { margin-bottom: 20px; }
+
+  .p-1 { padding: 6px; }
+  .p-2 { padding: 10px; }
+
+  .flex-1 { flex: 1; }
+  .flex-2 { flex: 2; }
+  .shrink-0 { flex-shrink: 0; }
+
+  /* === HORIZONTAL RULE === */
+  hr.retro {
+    border: none;
+    border-top: 1px solid var(--btn-shadow);
+    border-bottom: 1px solid var(--btn-highlight);
+    margin: 14px 0;
+    flex-shrink: 0;
+  }
+
+  /* === LIST STYLES === */
+  ul.retro-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul.retro-list li {
+    padding: 5px 0 5px 22px;
+    position: relative;
+    font-size: 15px;
+  }
+
+  ul.retro-list li::before {
+    content: ">";
+    position: absolute;
+    left: 4px;
+    color: var(--blue-navy);
+    font-weight: bold;
+  }
+
+  /* === CHECKBOX === */
+  .retro-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding: 3px 0;
+  }
+
+  .check-box {
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    border: 2px solid var(--btn-dark-shadow);
+    border-right-color: var(--btn-highlight);
+    border-bottom-color: var(--btn-highlight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  /* === CHART CONTAINERS === */
+  .chart-container {
+    position: relative;
+    height: 100%;
+    min-height: 200px;
+    width: 100%;
+  }
+
+  .chart-container-sm {
+    position: relative;
+    height: 100%;
+    min-height: 160px;
+    width: 100%;
+  }
+
+  /* === NAVIGATION DOTS === */
+  .nav-dots {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .nav-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--bg-gray);
+    border: 2px solid var(--btn-highlight);
+    border-right-color: var(--btn-dark-shadow);
+    border-bottom-color: var(--btn-dark-shadow);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-dot.active {
+    background: var(--blue-navy);
+  }
+
+  .nav-dot.active::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--white);
+  }
+
+  .slide-counter {
+    position: fixed;
+    bottom: 10px;
+    right: 16px;
+    font-size: 12px;
+    color: var(--bg-dark);
+    background: var(--bg-light);
+    padding: 3px 10px;
+    border: 1px solid var(--btn-shadow);
+    z-index: 100;
+  }
+
+  .nav-hint {
+    position: fixed;
+    bottom: 10px;
+    left: 16px;
+    font-size: 16px;
+    color: #505050;
+    z-index: 100;
+    font-family: 'VT323', monospace;
+  }
+
+  /* === TABLE === */
+  table.retro-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  table.retro-table th {
+    background: var(--bg-gray);
+    border: 1px solid var(--btn-shadow);
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  table.retro-table td {
+    border: 1px solid var(--bg-gray);
+    padding: 6px 10px;
+    background: var(--white);
+  }
+
+  table.retro-table tr:nth-child(even) td {
+    background: #f0f0f0;
+  }
+
+  /* === MARQUEE === */
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--white);
+    border: 1px inset var(--bg-gray);
+    padding: 3px 0;
+  }
+
+  .marquee-text {
+    display: inline-block;
+    animation: marquee 14s linear infinite;
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* === TREE VIEW === */
+  .tree-item {
+    font-size: 14px;
+    padding: 2px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tree-icon {
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* === SEPARATOR === */
+  .separator {
+    width: 2px;
+    background: var(--btn-shadow);
+    border-left: 1px solid var(--btn-highlight);
+    margin: 0 12px;
+  }
+
+  /* === SCROLLBAR === */
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-gray);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--bg-gray);
+    border: 2px solid var(--btn-highlight);
+    border-right-color: var(--btn-dark-shadow);
+    border-bottom-color: var(--btn-dark-shadow);
+  }
+
+  /* === HOURGLASS === */
+  .hourglass {
+    font-size: 40px;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .slide { padding: 15px 20px 40px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="crt-overlay"></div>
+
+<!-- ======================== SLIDE 1: TITLE / SPLASH ======================== -->
+<div class="slide active" id="slide-0">
+  <div class="win-window" style="max-width: 720px;">
+    <div class="win-titlebar">
+      <div class="win-title-left">
+        <div class="win-icon">S</div>
+        <span>SECURITY.EXE</span>
+      </div>
+      <div class="win-buttons">
+        <div class="win-btn">_</div>
+        <div class="win-btn">[]</div>
+        <div class="win-btn">X</div>
+      </div>
+    </div>
+    <div class="win-body flex flex-col items-center justify-center" style="padding: 40px;">
+      <div class="hourglass mb-3">&#x1F3A3;</div>
+      <h1 class="pixel-font text-blue text-center" style="font-size: 24px; line-height: 1.8; margin-bottom: 28px;">识破钓鱼邮件</h1>
+
+      <div class="panel-sunken mb-3" style="width: 100%; max-width: 540px;">
+        <div class="marquee-container">
+          <span class="marquee-text">安全意识培训：钓鱼邮件篇 • 使用方向键或导航圆点浏览幻灯片</span>
+        </div>
+      </div>
+
+      <p class="text-sm text-gray text-center mb-3">识别信号、演练流程，以及最初 60 秒该做什么。</p>
+
+      <div class="progress-bar mb-3" style="max-width: 480px;">
+        <div class="progress-fill" style="width: 100%;"></div>
+      </div>
+
+      <div class="flex gap-2 mt-2">
+        <button class="btn-retro">开始</button>
+        <button class="btn-retro">跳过</button>
+        <button class="btn-retro">帮助</button>
+      </div>
+
+      <hr class="retro" style="width: 100%; margin-top: 28px;">
+      <p class="text-xs text-gray">全体员工 • 20 分钟 • 每年必修</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 2: AGENDA ======================== -->
+<div class="slide" id="slide-1">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">A</div><span>AGENDA.TXT</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="shrink-0">
+        <p class="text-lg text-blue" style="font-weight: bold;">今天的钓鱼邮件意识培训</p>
+        <p class="text-sm text-gray mb-1">选择一项即可跳转。使用键盘快捷键可更快操作。</p>
+        <hr class="retro">
+      </div>
+
+      <div class="grid-2 gap-4 flex-1" style="min-height: 0;">
+        <div class="group-box flex flex-col">
+          <span class="group-box-title">主要条目</span>
+          <div class="flex-1 flex flex-col justify-center">
+            <ul class="retro-list">
+              <li>钓鱼邮件为什么仍然得逞</li>
+              <li>按季度统计的拦截量</li>
+              <li>假邮件的 5 个信号</li>
+              <li>按渠道的攻击分布</li>
+              <li>举报指标看板</li>
+            </ul>
+          </div>
+        </div>
+        <div class="group-box flex flex-col">
+          <span class="group-box-title">次要条目</span>
+          <div class="flex-1 flex flex-col justify-center">
+            <ul class="retro-list">
+              <li>最初 60 秒手册</li>
+              <li>现场演练，分步进行</li>
+              <li>举报钓鱼邮件，以及接下来会发生什么</li>
+              <li>练习：3 封样例邮件</li>
+              <li>自由讨论与问答环节</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-raised mt-3 shrink-0 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray">状态：</span>
+          <span class="text-sm text-green" style="font-weight: bold;">就绪</span>
+        </div>
+        <div class="flex items-center gap-5">
+          <div class="retro-check"><div class="check-box">x</div><span>通知参与者</span></div>
+          <div class="retro-check"><div class="check-box"></div><span>录制本次培训</span></div>
+        </div>
+      </div>
+
+      <div class="mt-3 panel-sunken shrink-0">
+        <div class="flex justify-between text-sm text-gray">
+          <span>预计时长：20 分钟</span>
+          <span>最后更新：05/01/2026</span>
+          <span>条目：共 10 项</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 3: EXECUTIVE SUMMARY ======================== -->
+<div class="slide" id="slide-2">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">R</div><span>README.DOC</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="panel-raised mb-3 shrink-0" style="background: var(--white); padding: 18px;">
+        <p class="text-xl text-blue" style="font-size: 24px;">钓鱼邮件为什么仍然得逞</p>
+      </div>
+
+      <div class="flex-1 flex flex-col gap-4" style="min-height: 0;">
+        <p class="text-md" style="line-height: 1.7;">上个季度，在我们安全团队调查的事件中，钓鱼邮件是大多数事件的初始入侵点。攻击者不需要破解什么——他们只需要一名员工，在扫一眼收件箱的那六秒里点下一个链接。本模块要练的，就是拦住那一击的本能反应。</p>
+
+        <div class="grid-2 gap-4 flex-1" style="min-height: 0;">
+          <div class="group-box flex flex-col">
+            <span class="group-box-title">问题</span>
+            <div class="flex-1 flex flex-col justify-center">
+              <p class="text-md" style="line-height: 1.7;">
+                现代钓鱼邮件会冒充真实的同事、供应商，甚至 IT 部门本身。消息在早上 8:58 送到，带着假的日历邀请或发票，专挑你手忙脚乱的时候。一次点击，就可能交出一个密码、一个 MFA 验证码，或一个实时的会话令牌。
+              </p>
+            </div>
+          </div>
+          <div class="group-box flex flex-col">
+            <span class="group-box-title">防御</span>
+            <div class="flex-1 flex flex-col justify-center">
+              <p class="text-md" style="line-height: 1.7;">点之前先停一下。核实发件人真实域名。先悬停看清每个链接再决定是否信任。用 Phish Alert 按钮举报可疑邮件——安全团队会对每份举报做分诊，举报永远不会是错的选择。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-4 mt-4 shrink-0">
+        <div class="panel-sunken flex-1 text-center"><p class="text-xs text-gray mb-1">举报数 / 季度</p><p class="text-md" style="font-weight: bold;">1,340</p></div>
+        <div class="panel-sunken flex-1 text-center"><p class="text-xs text-gray mb-1">举报中位时间</p><p class="text-md" style="font-weight: bold;">4 分 12 秒</p></div>
+        <div class="panel-sunken flex-1 text-center"><p class="text-xs text-gray mb-1">培训完成率</p><p class="text-md" style="font-weight: bold;">96%</p></div>
+        <div class="panel-sunken flex-1 text-center"><p class="text-xs text-gray mb-1">已拦截攻击</p><p class="text-md text-green" style="font-weight: bold;">本季度 312 次</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 4: BAR CHART ======================== -->
+<div class="slide" id="slide-3">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">D</div><span>DATAVIEW.CSV</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="shrink-0 flex justify-between items-center mb-1">
+        <p class="text-lg text-blue" style="font-weight: bold;">按季度统计的拦截量</p>
+        <div class="flex gap-2"><button class="btn-retro text-sm">导出</button><button class="btn-retro text-sm">打印</button></div>
+      </div>
+      <hr class="retro">
+
+      <div class="grid-2 gap-5 flex-1 mt-2" style="min-height: 0;">
+        <div class="panel-raised" style="min-height: 0;">
+          <div class="chart-container"><canvas id="barChart"></canvas></div>
+        </div>
+        <div class="flex flex-col gap-4" style="min-height: 0;">
+          <div class="group-box">
+            <span class="group-box-title">要点</span>
+            <ul class="retro-list">
+              <li>本季度举报 1,340 封钓鱼邮件</li>
+              <li>举报中位时间降到 4 分 12 秒</li>
+              <li>312 次真实攻击在点击之前被拦下</li>
+            </ul>
+          </div>
+          <div class="panel-sunken flex-1" style="overflow: auto;">
+            <table class="retro-table">
+              <tr><th>指标</th><th>数量</th><th>说明</th></tr>
+              <tr><td>举报邮件数</td><td>1,340</td><td class="text-green" style="font-weight: bold;">本季度</td></tr>
+              <tr><td>确认钓鱼</td><td>312</td><td class="text-green" style="font-weight: bold;">已拦截</td></tr>
+              <tr><td>已重置凭证</td><td>6</td><td class="text-green" style="font-weight: bold;">已控制</td></tr>
+              <tr><td>培训完成率</td><td>96%</td><td class="text-green" style="font-weight: bold;">全体员工</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-raised mt-3 shrink-0">
+        <div class="flex justify-between text-sm text-gray">
+          <span>数据来源：Phish Alert 举报日志</span>
+          <span>图表：季度举报量</span>
+          <span>最新：312 次确认拦截</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 5: TWO COLUMN FEATURES ======================== -->
+<div class="slide" id="slide-4">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">F</div><span>FEATURES.INI</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="shrink-0">
+        <p class="text-lg text-blue" style="font-weight: bold;">假邮件的 5 个信号</p>
+        <p class="text-sm text-gray mb-1">上个季度每一封真实钓鱼样例，都至少带有这五个信号中的一个。</p>
+        <hr class="retro">
+      </div>
+
+      <div class="grid-2 gap-5 flex-1 mt-2" style="min-height: 0;">
+        <div class="flex flex-col gap-4" style="min-height: 0;">
+          <div class="group-box flex-1 flex flex-col">
+            <span class="group-box-title">信号出现频率（上季度）</span>
+            <div class="flex-1 flex flex-col justify-around">
+              <div>
+                <div class="retro-check mb-1"><div class="check-box">x</div><span class="text-sm">发件人域名不匹配</span></div>
+                <div class="progress-bar" style="height: 16px;"><div class="progress-fill" style="width: 100%;"></div></div>
+              </div>
+              <div>
+                <div class="retro-check mb-1"><div class="check-box">x</div><span class="text-sm">紧迫或威胁性措辞</span></div>
+                <div class="progress-bar" style="height: 16px;"><div class="progress-fill" style="width: 92%;"></div></div>
+              </div>
+              <div>
+                <div class="retro-check mb-1"><div class="check-box">x</div><span class="text-sm">链接文字掩盖了另一个 URL</span></div>
+                <div class="progress-bar" style="height: 16px;"><div class="progress-fill" style="width: 88%;"></div></div>
+              </div>
+              <div>
+                <div class="retro-check mb-1"><div class="check-box"></div><span class="text-sm">意外的附件或登录页</span></div>
+                <div class="progress-bar" style="height: 16px;"><div class="progress-fill" style="width: 65%;"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-raised shrink-0">
+            <p class="text-sm text-gray mb-1">被这 5 个信号拦下的邮件</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: 86%;"></div></div>
+            <p class="text-lg text-right mt-1" style="font-size: 20px; font-weight: bold;">86%</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4" style="min-height: 0;">
+          <div class="group-box flex-1 flex flex-col">
+            <span class="group-box-title">信号细节</span>
+            <div class="flex-1 flex flex-col justify-around">
+              <div class="panel-sunken"><p class="text-sm" style="line-height: 1.6;"><strong>发件人不匹配：</strong> 显示名写着「IT Help Desk」，但地址是 it-support@secure-mail-verify.com，不是 @company.com。</p></div>
+              <div class="panel-sunken"><p class="text-sm" style="line-height: 1.6;"><strong>紧迫感：</strong> 「你的账户将在 2 小时后停用」或「需立即处理」这类话术，就是在逼你跳过核实。</p></div>
+              <div class="panel-sunken"><p class="text-sm" style="line-height: 1.6;"><strong>隐藏链接：</strong> 按钮写着「Reset Password」，但悬停后显示的是一个仿冒域名，不是 company.com。</p></div>
+              <div class="panel-sunken"><p class="text-sm" style="line-height: 1.6;"><strong>泛化称呼：</strong> 不用你的名字，而写「Dear Valued Employee」，是大规模钓鱼活动的一个强烈信号。</p></div>
+            </div>
+          </div>
+          <div class="flex gap-3 shrink-0">
+            <div class="panel-sunken flex-1 text-center"><p class="text-xs text-gray mb-1">已举报</p><p class="text-lg" style="font-size: 22px; font-weight: bold; color: var(--blue-navy);">1,340</p></div>
+            <div class="panel-sunken flex-1 text-center"><p class="text-xs text-gray mb-1">已确认</p><p class="text-lg" style="font-size: 22px; font-weight: bold; color: var(--blue-navy);">312</p></div>
+            <div class="panel-sunken flex-1 text-center"><p class="text-xs text-gray mb-1">举报前已点击</p><p class="text-lg" style="font-size: 22px; font-weight: bold; color: var(--blue-navy);">6</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 6: PIE CHART ======================== -->
+<div class="slide" id="slide-5">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">G</div><span>GRAPHS.BMP</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="shrink-0">
+        <p class="text-lg text-blue mb-1" style="font-weight: bold;">按渠道的攻击分布</p>
+        <hr class="retro">
+      </div>
+
+      <div class="grid-2 gap-5 flex-1 mt-2" style="min-height: 0;">
+        <div class="panel-raised flex items-center justify-center" style="min-height: 0;">
+          <div class="chart-container"><canvas id="pieChart"></canvas></div>
+        </div>
+        <div class="flex flex-col gap-4" style="min-height: 0;">
+          <div class="group-box">
+            <span class="group-box-title">渠道构成（上季度）</span>
+            <div class="flex justify-between items-center p-2 mb-1" style="background: rgba(0,0,128,0.06);">
+              <span class="text-md"><span style="color: var(--blue-navy);">&#9632;</span> 邮件</span>
+              <span class="text-md" style="font-weight: bold;">61%</span>
+            </div>
+            <div class="flex justify-between items-center p-2 mb-1">
+              <span class="text-md"><span style="color: var(--green-retro);">&#9632;</span> 短信 / SMS（短信钓鱼）</span>
+              <span class="text-md" style="font-weight: bold;">19%</span>
+            </div>
+            <div class="flex justify-between items-center p-2 mb-1" style="background: rgba(0,0,128,0.06);">
+              <span class="text-md"><span style="color: var(--cyan-retro);">&#9632;</span> 电话（语音钓鱼）</span>
+              <span class="text-md" style="font-weight: bold;">13%</span>
+            </div>
+            <div class="flex justify-between items-center p-2">
+              <span class="text-md"><span style="color: var(--yellow-retro);">&#9632;</span> Teams / Slack 聊天</span>
+              <span class="text-md" style="font-weight: bold;">7%</span>
+            </div>
+          </div>
+          <div class="panel-raised flex-1 flex flex-col justify-center">
+            <p class="text-md" style="font-weight: bold; margin-bottom: 8px;">关键洞察</p>
+            <p class="text-sm" style="line-height: 1.6;">邮件仍是最主要的载体，但短信钓鱼与语音钓鱼是今年增长最快的——同样的 5 个信号、同样的最初 60 秒演练，对每个渠道都适用。</p>
+          </div>
+          <div class="panel-sunken shrink-0">
+            <p class="text-sm text-gray">已追踪攻击总数： <strong>1,652</strong>• 覆盖渠道：<strong>4</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 7: METRICS DASHBOARD ======================== -->
+<div class="slide" id="slide-6">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">M</div><span>METRICS.LOG</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="shrink-0">
+        <p class="text-lg text-blue mb-1" style="font-weight: bold;">举报指标看板</p>
+        <hr class="retro">
+      </div>
+
+      <div class="grid-4 gap-4 shrink-0 mt-2">
+        <div class="group-box text-center">
+          <span class="group-box-title">已举报</span>
+          <p class="text-xl" style="font-size: 30px; margin: 10px 0; color: var(--blue-navy);">1,340</p>
+          <p class="text-sm text-green" style="font-weight: bold;">&#9650; +22%</p>
+          <p class="text-xs text-gray mt-1">封邮件，本季度</p>
+        </div>
+        <div class="group-box text-center">
+          <span class="group-box-title">举报中位时间</span>
+          <p class="text-xl" style="font-size: 30px; margin: 10px 0; color: var(--blue-navy);">4 分 12 秒</p>
+          <p class="text-sm text-green" style="font-weight: bold;">▲ 更快</p>
+          <p class="text-xs text-gray mt-1">去年是 11 分</p>
+        </div>
+        <div class="group-box text-center">
+          <span class="group-box-title">培训完成</span>
+          <p class="text-xl" style="font-size: 30px; margin: 10px 0; color: var(--blue-navy);">96%</p>
+          <p class="text-sm text-green" style="font-weight: bold;">&#9650; +4pts</p>
+          <p class="text-xs text-gray mt-1">全体员工</p>
+        </div>
+        <div class="group-box text-center">
+          <span class="group-box-title">已拦截攻击</span>
+          <p class="text-xl" style="font-size: 30px; margin: 10px 0; color: var(--blue-navy);">312</p>
+          <p class="text-sm text-green" style="font-weight: bold;">▲ 已控制</p>
+          <p class="text-xs text-gray mt-1">在任何损失发生前</p>
+        </div>
+      </div>
+
+      <div class="grid-2 gap-5 flex-1 mt-4" style="min-height: 0;">
+        <div class="panel-raised" style="min-height: 0;">
+          <p class="text-sm" style="font-weight: bold; margin-bottom: 10px;">举报趋势（6 个月）</p>
+          <div class="chart-container-sm"><canvas id="lineChart"></canvas></div>
+        </div>
+        <div class="flex flex-col gap-4" style="min-height: 0;">
+          <div class="group-box flex-1">
+            <span class="group-box-title">项目实况</span>
+            <div class="flex-1 flex flex-col justify-around" style="min-height: 0;">
+              <div class="flex justify-between text-sm"><span>已培训员工</span><span style="font-weight: bold;">2,180</span></div>
+              <div class="flex justify-between text-sm"><span>必修模块</span><span class="text-green" style="font-weight: bold;">每年</span></div>
+              <div class="flex justify-between text-sm"><span>每季度发送的模拟钓鱼邮件</span><span style="font-weight: bold;">4,200</span></div>
+              <div class="flex justify-between text-sm"><span>点击率对比去年</span><span style="font-weight: bold;">-64%</span></div>
+              <div class="flex justify-between text-sm"><span>举报到分诊的 SLA</span><span style="font-weight: bold;">15 分钟</span></div>
+            </div>
+          </div>
+          <div class="panel-sunken shrink-0 flex items-center justify-between">
+            <span class="text-sm text-gray">Report Phish 按钮就在你的 Outlook 工具栏里</span>
+            <span class="text-sm text-green" style="font-weight: bold;">● 启用中</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 8: ORG STRUCTURE ======================== -->
+<div class="slide" id="slide-7">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">E</div><span>EXPLORER.EXE</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="shrink-0">
+        <p class="text-lg text-blue mb-1" style="font-weight: bold;">最初 60 秒手册</p>
+        <hr class="retro">
+      </div>
+
+      <div class="grid-2 gap-5 flex-1 mt-2" style="min-height: 0;">
+        <div class="panel-sunken flex flex-col" style="background: var(--white); min-height: 0;">
+          <p class="text-sm text-gray mb-2 shrink-0">C:\SECURITY\PLAYBOOK</p>
+          <div class="flex-1 flex flex-col justify-around" style="overflow: auto;">
+            <div>
+              <div class="tree-item"><span class="tree-icon">-</span>&#128193; <strong>0-15 秒：停</strong></div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 不要点任何链接</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 不要回复或转发</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">-</span>📁 不要打开附件</div>
+              <div class="tree-item" style="padding-left: 44px;"><span class="tree-icon">&nbsp;</span>📄 先截图留证</div>
+              <div class="tree-item" style="padding-left: 44px;"><span class="tree-icon">&nbsp;</span>📄 记下发件人地址</div>
+            </div>
+            <div>
+              <div class="tree-item"><span class="tree-icon">-</span>&#128193; <strong>15-35 秒：核实</strong></div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 悬停链接，看清真实 URL</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 对比发件人域名与 company.com</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 不确定就打电话或用 Teams 确认</div>
+            </div>
+            <div>
+              <div class="tree-item"><span class="tree-icon">-</span>&#128193; <strong>35-60 秒：举报</strong></div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 点击 Report Phish 按钮</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 或转发到 phish@company.com</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 收到确认后再删除</div>
+            </div>
+            <div>
+              <div class="tree-item"><span class="tree-icon">-</span>&#128193; <strong>如果你已经点了</strong></div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 立刻修改密码</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 拨打安全热线</div>
+              <div class="tree-item" style="padding-left: 24px;"><span class="tree-icon">+</span>📁 不追责——快速举报才是关键</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4" style="min-height: 0;">
+          <div class="group-box flex-1 flex flex-col" style="min-height: 0;">
+            <span class="group-box-title">响应手册</span>
+            <div class="flex-1" style="overflow: auto;">
+              <table class="retro-table">
+                <tr><th>步骤</th><th>时间预算</th><th>负责人</th></tr>
+                <tr><td>停</td><td>0-15s</td><td>你</td></tr>
+                <tr><td>核验</td><td>15-35s</td><td>你</td></tr>
+                <tr><td>举报</td><td>35-60s</td><td>你 + 安全团队</td></tr>
+                <tr><td>分诊</td><td>&lt;15 分钟</td><td>安全团队</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="panel-raised flex-1 flex flex-col justify-center">
+            <p class="text-sm" style="font-weight: bold; margin-bottom: 10px;">举报是怎么运作的</p>
+            <p class="text-sm" style="line-height: 1.6; margin-bottom: 10px;">Report Phish 按钮在每个邮箱的工具栏里。一次点击就把邮件送给安全团队、在全公司隔离相同副本，并在你的收件箱里回执确认。</p>
+            <div class="flex gap-2">
+              <span class="text-xs panel-sunken p-1">Outlook 加载项</span>
+              <span class="text-xs panel-sunken p-1">举报按钮</span>
+              <span class="text-xs panel-sunken p-1">IT 热线</span>
+            </div>
+          </div>
+          <div class="panel-sunken shrink-0 flex items-center justify-between">
+            <span class="text-sm text-gray">一份举报的平均分诊时间</span>
+            <span class="text-lg text-blue" style="font-weight: bold;">15 分钟以内</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 9: TIMELINE ======================== -->
+<div class="slide" id="slide-8">
+  <div class="win-window">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">T</div><span>TIMELINE.PRJ</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body">
+      <div class="shrink-0">
+        <p class="text-lg text-blue mb-1" style="font-weight: bold;">现场演练：3 封样例邮件</p>
+        <hr class="retro">
+      </div>
+
+      <div class="flex gap-3 shrink-0 mt-2" style="align-items: stretch;">
+        <div class="win-window flex-1" style="max-width: none;">
+          <div class="win-titlebar inactive"><span style="font-size: 12px;">样例 1</span></div>
+          <div class="p-2">
+            <div class="retro-check mb-1"><div class="check-box">x</div><strong> 「IT 密码即将过期」</strong></div>
+            <ul class="retro-list">
+              <li>发件人：it-help@secure-verify-mail.com</li>
+              <li>链接文字掩盖了仿冒域名</li>
+              <li>判定：钓鱼——举报它</li>
+            </ul>
+          </div>
+        </div>
+        <div class="win-window flex-1" style="max-width: none;">
+          <div class="win-titlebar inactive"><span style="font-size: 12px;">样例 2</span></div>
+          <div class="p-2">
+            <div class="retro-check mb-1"><div class="check-box">x</div><strong> 「发票 #4471 已逾期」</strong></div>
+            <ul class="retro-list">
+              <li>假供应商，真 logo，错域名</li>
+              <li>PDF 附件要求启用宏</li>
+              <li>判定：钓鱼——举报它</li>
+            </ul>
+          </div>
+        </div>
+        <div class="win-window flex-1" style="max-width: none;">
+          <div class="win-titlebar"><span style="font-size: 12px;">样例 3</span></div>
+          <div class="p-2">
+            <div class="retro-check mb-1"><div class="check-box"></div><strong> 「团队站会改时间」</strong></div>
+            <ul class="retro-list">
+              <li>来自真实的 @company.com 同事</li>
+              <li>链接指向你真实的日历工具</li>
+              <li>判定：正常——无需操作</li>
+            </ul>
+          </div>
+        </div>
+        <div class="win-window flex-1" style="max-width: none;">
+          <div class="win-titlebar inactive"><span style="font-size: 12px;">得分</span></div>
+          <div class="p-2">
+            <div class="retro-check mb-1"><div class="check-box"></div><strong> 轮到你了</strong></div>
+            <ul class="retro-list">
+              <li>3 对 3 = 准备好面对真实收件箱</li>
+              <li>3 对 2 = 重看那 5 个信号</li>
+              <li>任何不确定都问安全团队</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-raised mt-4 shrink-0">
+        <p class="text-sm" style="font-weight: bold; margin-bottom: 10px;">检查：不回看，你能说出上面每封样例的信号吗？</p>
+        <div class="flex gap-4 items-center">
+          <div class="flex-1"><div class="progress-bar"><div class="progress-fill" style="width: 55%;"></div></div></div>
+          <div style="text-align: right;"><p class="text-md" style="font-weight: bold;">测验</p><p class="text-xs text-gray">已看过 3 个样例中的 2 个</p></div>
+        </div>
+      </div>
+
+      <div class="grid-3 gap-4 flex-1 mt-4" style="align-content: start;">
+        <div class="group-box text-center">
+          <span class="group-box-title">及格分</span>
+          <p class="text-lg text-yellow-retro" style="font-weight: bold; margin-top: 6px;">3 对 3</p>
+          <p class="text-xs text-gray">钓鱼邮件不给部分分</p>
+        </div>
+        <div class="group-box text-center">
+          <span class="group-box-title">你的下一封真实邮件</span>
+          <p class="text-lg text-green" style="font-weight: bold; margin-top: 6px;">检查它</p>
+          <p class="text-xs text-gray">今天就用上这套演练</p>
+        </div>
+        <div class="group-box text-center">
+          <span class="group-box-title">不确定？</span>
+          <p class="text-lg text-blue" style="font-weight: bold; margin-top: 6px;">举报它</p>
+          <p class="text-xs text-gray">举报永远不会错</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 10: CLOSING ======================== -->
+<div class="slide" id="slide-9">
+  <div class="win-window" style="max-width: 680px;">
+    <div class="win-titlebar">
+      <div class="win-title-left"><div class="win-icon">?</div><span>SHUTDOWN.EXE</span></div>
+      <div class="win-buttons"><div class="win-btn">_</div><div class="win-btn">[]</div><div class="win-btn">X</div></div>
+    </div>
+    <div class="win-body flex flex-col items-center justify-center" style="padding: 40px;">
+      <div style="font-size: 52px; margin-bottom: 20px;">&#x1F6E1;</div>
+      <h2 class="pixel-font text-blue text-center" style="font-size: 20px; margin-bottom: 20px; line-height: 1.8;">停。核实。举报。</h2>
+      <p class="text-md text-center mb-3" style="line-height: 1.7;">
+        你的新默认动作：对每封意外邮件先停一下，点击之前先核实。<br>
+        今天就在你的下一封真实邮件上练一遍这 60 秒演练。
+      </p>
+
+      <div class="panel-sunken mb-3" style="width: 100%; max-width: 520px;">
+        <div class="marquee-container">
+          <span class="marquee-text">Report Phish 按钮 • phish@company.com • 安全热线分机 4357</span>
+        </div>
+      </div>
+
+      <div class="flex gap-4 mb-3 items-center">
+        <div class="text-center"><p class="text-xs text-gray mb-1">举报</p><p class="text-sm" style="font-weight: bold;">Phish Alert 按钮</p></div>
+        <div class="separator"></div>
+        <div class="text-center"><p class="text-xs text-gray mb-1">邮件</p><p class="text-sm" style="font-weight: bold;">phish@company.com</p></div>
+        <div class="separator"></div>
+        <div class="text-center"><p class="text-xs text-gray mb-1">热线</p><p class="text-sm" style="font-weight: bold;">分机 4357 (HELP)</p></div>
+      </div>
+
+      <div class="flex gap-2 mt-2">
+        <button class="btn-retro">举报钓鱼邮件</button>
+        <button class="btn-retro">查看手册</button>
+        <button class="btn-retro">联系安全团队</button>
+      </div>
+
+      <hr class="retro" style="width: 100%; margin-top: 28px;">
+      <p class="text-xs text-gray">安全意识培训 • 全体员工 • 今天就来练这套演练</p>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav-dots" id="navDots"></div>
+<div class="slide-counter" id="slideCounter">1 / 10</div>
+<div class="nav-hint">&lt;-- 使用方向键导航 --&gt;</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((s, i) => {
+    s.classList.toggle('active', i === index);
+  });
+  updateNavDots();
+  updateCounter();
+  if (index === 3) renderBarChart();
+  if (index === 5) renderPieChart();
+  if (index === 6) renderLineChart();
+}
+
+function nextSlide() {
+  if (currentSlide < totalSlides - 1) {
+    currentSlide++;
+    showSlide(currentSlide);
+  }
+}
+
+function prevSlide() {
+  if (currentSlide > 0) {
+    currentSlide--;
+    showSlide(currentSlide);
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    prevSlide();
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    currentSlide = 0;
+    showSlide(currentSlide);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    currentSlide = totalSlides - 1;
+    showSlide(currentSlide);
+  }
+});
+
+const dotsContainer = document.getElementById('navDots');
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => { currentSlide = i; showSlide(i); });
+  dotsContainer.appendChild(dot);
+}
+
+function updateNavDots() {
+  document.querySelectorAll('.nav-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === currentSlide);
+  });
+}
+
+function updateCounter() {
+  document.getElementById('slideCounter').textContent = (currentSlide + 1) + ' / ' + totalSlides;
+}
+
+let barChartInstance = null;
+let pieChartInstance = null;
+let lineChartInstance = null;
+
+function renderBarChart() {
+  const ctx = document.getElementById('barChart');
+  if (!ctx || barChartInstance) return;
+  barChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+      datasets: [{
+        label: 'Reported Emails (hundreds)',
+        data: [7, 9, 11, 13],
+        backgroundColor: ['#000080', '#0000a0', '#1084d0', '#000080'],
+        borderColor: '#000000',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { font: { family: 'MS Sans Serif', size: 12 }, color: '#222' }, grid: { display: false } },
+        y: { ticks: { font: { family: 'MS Sans Serif', size: 12 }, color: '#222' }, grid: { color: '#c0c0c0', lineWidth: 1 }, beginAtZero: true }
+      }
+    }
+  });
+}
+
+function renderPieChart() {
+  const ctx = document.getElementById('pieChart');
+  if (!ctx || pieChartInstance) return;
+  pieChartInstance = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Email', 'Text / SMS (Smishing)', 'Phone Calls (Vishing)', 'Teams / Slack Chat'],
+      datasets: [{
+        data: [61, 19, 13, 7],
+        backgroundColor: ['#000080', '#008000', '#008080', '#808000'],
+        borderColor: '#d4d0c8',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { family: 'MS Sans Serif', size: 12 }, color: '#222', padding: 14 } }
+      }
+    }
+  });
+}
+
+function renderLineChart() {
+  const ctx = document.getElementById('lineChart');
+  if (!ctx || lineChartInstance) return;
+  lineChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [{
+        label: 'Reported Emails',
+        data: [180, 210, 260, 300, 370, 470],
+        borderColor: '#000080',
+        backgroundColor: 'rgba(0,0,128,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointBackgroundColor: '#000080',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        pointRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { font: { family: 'MS Sans Serif', size: 11 }, color: '#222' }, grid: { display: false } },
+        y: { ticks: { font: { family: 'MS Sans Serif', size: 11 }, color: '#222' }, grid: { color: '#d4d0c8' }, beginAtZero: false }
+      }
+    }
+  });
+}
+
+showSlide(0);
+</script>
+
+</body>
+</html>

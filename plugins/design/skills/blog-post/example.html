@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>为什么我们用 Rust 重写了同步引擎 — Filebase</title>
+  <style>
+    :root {
+      --bg: #fafaf9; --fg: #1c1b1a; --muted: #6b6964; --border: #e6e4e0;
+      --accent: #c96442; --surface: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 18px/1.65 Georgia, 'Iowan Old Style', serif; }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 56px 28px 96px; }
+    nav.top { font-family: -apple-system, system-ui, sans-serif; font-size: 13px; color: var(--muted); margin-bottom: 56px; }
+    nav.top a { color: inherit; text-decoration: none; }
+    .eyebrow { font-family: -apple-system, system-ui, sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 14px; }
+    h1 { font-size: clamp(36px, 5vw, 52px); line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 20px; }
+    .byline { font-family: -apple-system, system-ui, sans-serif; font-size: 14px; color: var(--muted); margin: 0 0 40px; display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); opacity: 0.18; }
+    .lede { font-size: 22px; line-height: 1.5; color: var(--fg); margin: 0 0 40px; font-style: italic; }
+    .hero-figure { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--accent), #6b6964); border-radius: 8px; margin-bottom: 48px; opacity: 0.85; }
+    p { margin: 24px 0; }
+    p:first-of-type::first-letter { float: left; font-size: 64px; line-height: 0.9; padding: 6px 10px 0 0; font-weight: 600; color: var(--accent); }
+    h2 { font-size: 28px; letter-spacing: -0.01em; margin: 56px 0 12px; line-height: 1.2; }
+    blockquote { margin: 40px 0; padding: 0 32px; font-size: 24px; line-height: 1.4; color: var(--fg); border-left: 3px solid var(--accent); font-style: italic; }
+    code { font-family: ui-monospace, monospace; background: var(--surface); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; font-size: 0.85em; }
+    pre { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; overflow-x: auto; font: 14px/1.55 ui-monospace, monospace; }
+    figure.numbers { font-family: -apple-system, system-ui, sans-serif; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 40px -24px; padding: 28px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    figure.numbers .stat .value { font-family: Georgia, serif; font-size: 38px; letter-spacing: -0.01em; line-height: 1; }
+    figure.numbers .stat .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
+    .endnote { font-family: -apple-system, system-ui, sans-serif; font-size: 13px; color: var(--muted); margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .endnote a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <article class="wrap" data-od-id="article">
+    <nav class="top"><a href="#">← Filebase 博客</a></nav>
+    <div class="eyebrow">工程</div>
+    <h1>为什么我们用 Rust 重写了同步引擎</h1>
+    <div class="byline">
+      <div class="avatar"></div>
+      <span>Mira Hassan · 2026年4月22日 · 8 分钟阅读</span>
+    </div>
+    <p class="lede">两年来，我们的 Go 同步引擎一直够用。直到视频剪辑师开始出现在客户名单上，那些我们一直礼貌忽略的 GC 停顿，变成了无法再忽略的 bug 报告。</p>
+    <div class="hero-figure" data-od-id="hero-figure"></div>
+
+    <p>这个决定并不突然。我们盯着 GC 停顿分布的变化看了六个月，才承认数据想告诉我们什么。P50 延迟很棒，P99 则是一部恐怖片。真正写信来反馈的，是在活跃剪辑会话中同步 30 GB <code>.psd</code> 文件的客户。</p>
+
+    <p>重写整个同步引擎，听起来正是那种初创公司被告知永远不要做的项目。我们还是做了。下面是过程、让我们意外的地方，以及我会做得不一样的部分。</p>
+
+    <h2>导火索：修不掉的 GC 停顿</h2>
+    <p>Go 的垃圾回收器非常出色，但它本质上是一种取舍。我们的热路径在每次块差异计算时都分配短生命周期的缓冲切片——在我们的规模下，一个重度上传的用户会让回收器跑得足够频繁，P99 停顿悄悄越过了 50ms。</p>
+
+    <p>我们试过常规手段：用 <code>sync.Pool</code> 复用缓冲、调优 <code>GOGC</code>、减少合并路径上的分配。每一项都有一点帮助，但都没能把我们压到 20ms 以下，而我们真正在意的客户需要 5ms 以内。</p>
+
+    <blockquote>「我们在 Go 里修不好这个问题。换一个没有 GC 的东西就能修好。」</blockquote>
+
+    <p>我们的资深工程师 Sasha 在十月的一次会上这么说。他是对的。问题不是要不要离开 Go，而是换到哪儿，以及能保留多少。</p>
+
+    <h2>留下了什么；丢掉了什么</h2>
+    <p>CLI 留在 Go，控制平面留在 Go。在客户笔记本上热循环里做块级差异计算的那部分——换成了 Rust。边界收敛成一层 FFI 接口，带一套小而明确的协议。</p>
+
+    <figure class="numbers">
+      <div class="stat"><div class="value">38ms → 4ms</div><div class="label">P99 同步延迟</div></div>
+      <div class="stat"><div class="value">62%</div><div class="label">内存下降</div></div>
+      <div class="stat"><div class="value">11 周</div><div class="label">从 RFC 到发布</div></div>
+    </figure>
+
+    <p>上面这些数字是真实的，来自生产环境。但脱离上下文同样会误导：Rust 移植不只是去掉 GC，它同时去掉了一层我们从 Go MVP 时代就背着的抽象。</p>
+
+    <h2>我会做得不一样的地方</h2>
+    <p>一件事：FFI 边界。我们为了对称选了 <code>cgo</code>——当你到处都是 Go 的时候，用 Go 调 Rust 感觉是对的。但绑定仪式很脆弱，在写出一层统一处理它们的包装之前，我们因为字符串生命周期错误吃了两次生产事故。</p>
+
+    <p>如果今天重新开始，我会用 <code>uniffi</code>，或者从 schema 生成绑定。教训不是<em>别用 cgo</em>，而是<em>跨越语言族的那一刻，就把边界当成外部 API 对待</em>。</p>
+
+    <div class="endnote">Filebase 正在招聘喜欢写这类文章的工程师。<a href="#">查看开放职位 →</a></div>
+  </article>
+</body>
+</html>

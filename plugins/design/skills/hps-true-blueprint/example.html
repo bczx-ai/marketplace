@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="true-blueprint">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>像首席架构师那样，呈现一份工程蓝图 - 产品管理</title>
+<style>
+/* hps-true-blueprint :: webfonts (Google Fonts @import only — no other external deps) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&display=swap');
+</style>
+<style>
+/* ============================================================
+   TRUE BLUEPRINT — locked token sheet.
+   Ported from lewislulu/html-ppt-skill assets/themes/blueprint.css
+   Blueprint-blue field, white drafting grid, dashed translucent
+   cards, white / ice-blue ink, amber annotations, all-mono type.
+   2px corners. No shadows. THEME IS LOCKED — do not restyle.
+   ============================================================ */
+:root{
+  --bg:#0b3a6f; --bg-soft:#0a3260; --surface:rgba(255,255,255,.06); --surface-2:rgba(255,255,255,.1);
+  --border:rgba(190,220,255,.3); --border-strong:rgba(190,220,255,.55);
+  --text-1:#e8f3ff; --text-2:#b8d4f0; --text-3:#7da8cf;
+  --accent:#ffffff; --accent-2:#aee1ff; --accent-3:#ffd27a;
+  --good:#8ef0a6; --warn:#ffd27a; --bad:#ff8a96;
+  --grad:linear-gradient(135deg,#ffffff,#aee1ff);
+  --grad-soft:linear-gradient(135deg,#0a3260,#0b3a6f);
+  --radius:2px; --radius-sm:2px; --radius-lg:4px;
+  --shadow:none; --shadow-lg:0 16px 40px rgba(0,0,0,.3);
+  --font-sans:'JetBrains Mono','IBM Plex Mono',Menlo,monospace;
+  --font-serif:'JetBrains Mono',Menlo,monospace;
+  --font-mono:'JetBrains Mono',SFMono-Regular,Menlo,monospace;
+  --font-display:'JetBrains Mono',Menlo,monospace;
+  --letter-tight:-.02em; --letter-normal:0;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --grid-line:rgba(255,255,255,.06);
+  --ink:rgba(190,220,255,.45);
+}
+</style>
+<style>
+/* ============================================================
+   BASE + SLIDE SYSTEM — horizontal scroll-snap deck.
+   One <section class="slide"> = exactly one viewport screen.
+   16:9 / 1280×720 baseline, fluid via clamp(). Keep verbatim.
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{color:var(--text-1);font-family:var(--font-sans);
+  font-weight:400;line-height:1.6;letter-spacing:var(--letter-normal);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow:hidden;
+  /* signature: 40px white drafting grid over blueprint blue */
+  background:
+    linear-gradient(var(--grid-line) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px) 0 0/40px 40px,
+    var(--bg)}
+img,svg,video{max-width:100%;display:block}
+code,kbd,pre,samp{font-family:var(--font-mono)}
+
+.deck{display:flex;width:100vw;height:100vh;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
+.deck::-webkit-scrollbar{display:none}
+.slide{position:relative;flex:0 0 100vw;height:100vh;scroll-snap-align:start;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:72px 96px;overflow:hidden}
+
+/* ============ DRAWING FRAME (signature chrome on every slide) ============ */
+.slide::before{content:"";position:absolute;inset:28px;border:1px solid var(--ink);
+  border-radius:var(--radius);pointer-events:none}
+.slide::after{content:"";position:absolute;inset:34px;border:1px dashed rgba(190,220,255,.18);
+  border-radius:var(--radius);pointer-events:none}
+
+/* ============ TYPOGRAPHY ============ */
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3);margin:0}
+.kicker{font-size:13px;font-weight:700;color:var(--accent-2);letter-spacing:.18em;text-transform:uppercase;margin:0 0 12px}
+.h1{font-family:var(--font-display);font-size:clamp(40px,5vw,64px);line-height:1.08;font-weight:800;letter-spacing:var(--letter-tight);margin:0 0 18px;color:var(--text-1);text-transform:uppercase}
+.h2{font-family:var(--font-display);font-size:clamp(30px,3.8vw,48px);line-height:1.12;font-weight:700;letter-spacing:var(--letter-tight);margin:0 0 14px;color:var(--text-1);text-transform:uppercase}
+.h3{font-size:clamp(20px,2.3vw,28px);line-height:1.2;font-weight:700;margin:0 0 10px}
+.h4{font-size:clamp(15px,1.55vw,19px);line-height:1.3;font-weight:700;margin:0 0 8px;letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:clamp(15px,1.55vw,19px);line-height:1.65;color:var(--text-2);font-weight:300;max-width:64ch;margin:0}
+.dim{color:var(--text-2)}
+.dim2{color:var(--text-3)}
+.mono{font-family:var(--font-mono)}
+.gradient-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.annot{color:var(--accent-3)}
+
+/* ============ LAYOUT PRIMITIVES ============ */
+.row{display:flex;gap:24px;align-items:center}
+.row.wrap{flex-wrap:wrap}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.center{display:flex;align-items:center;justify-content:center;text-align:center}
+.mt-s{margin-top:8px}.mt-m{margin-top:18px}.mt-l{margin-top:32px}
+
+/* ============ CARDS / PILLS (dashed translucent — blueprint signature) ============ */
+.card{background:rgba(255,255,255,.04);border:1px dashed var(--ink);border-radius:var(--radius);
+  padding:24px 26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card-soft{background:var(--surface)}
+.card-accent{border-top:2px solid var(--accent-3)}
+.pill{display:inline-block;padding:4px 14px;border-radius:var(--radius);font-size:12px;font-weight:500;
+  background:transparent;color:var(--text-2);border:1px dashed var(--ink);letter-spacing:.06em;text-transform:uppercase}
+.pill-accent{color:var(--accent-3);border-color:rgba(255,210,122,.55)}
+.divider-accent{height:2px;width:96px;background:var(--accent-2);border-radius:0;position:relative}
+.divider-accent::after{content:"";position:absolute;right:-14px;top:-3px;width:8px;height:8px;border:1px solid var(--accent-2);transform:rotate(45deg)}
+
+/* ============ DECK CHROME ============ */
+.deck-header{position:fixed;top:36px;left:48px;right:48px;display:flex;align-items:center;justify-content:space-between;
+  font-size:11px;color:var(--text-3);letter-spacing:.18em;text-transform:uppercase;z-index:10;pointer-events:none}
+.deck-footer{position:fixed;bottom:36px;left:48px;right:48px;display:flex;align-items:center;justify-content:space-between;
+  font-size:11px;color:var(--text-3);letter-spacing:.08em;z-index:10;pointer-events:none}
+.theme-chip{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;text-transform:none;color:var(--accent-2)}
+.progress-bar{position:fixed;left:0;right:0;bottom:0;height:2px;z-index:20;pointer-events:none;background:rgba(255,255,255,.08)}
+.progress-bar>span{display:block;height:100%;width:0;background:var(--accent-2);transition:width .3s var(--ease)}
+
+/* ============ TITLE BLOCK (drawing-sheet cover signature) ============ */
+.title-block{display:grid;grid-template-columns:repeat(4,auto);gap:0;border:1px solid var(--border-strong);
+  border-radius:var(--radius);overflow:hidden;width:max-content;max-width:100%}
+.title-block div{padding:10px 22px;border-right:1px solid var(--border);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.title-block div:last-child{border-right:0}
+.title-block b{display:block;font-size:14px;font-weight:700;color:var(--text-1);letter-spacing:.04em;margin-top:2px}
+
+/* ============ SLIDE-LOCAL COMPONENTS ============ */
+.section-num{position:absolute;right:84px;bottom:64px;font-size:clamp(120px,16vw,210px);font-weight:800;line-height:.9;
+  color:transparent;-webkit-text-stroke:1.5px var(--ink);letter-spacing:-.04em;z-index:0;pointer-events:none}
+.slide>*{position:relative;z-index:1}
+.kpi .num{font-size:clamp(32px,3.8vw,50px);font-weight:800;letter-spacing:var(--letter-tight);line-height:1.1;color:var(--accent)}
+.kpi .lbl{font-size:12px;color:var(--text-2);margin-top:8px;letter-spacing:.06em;text-transform:uppercase;line-height:1.5}
+.stat-big{font-size:clamp(96px,13vw,180px);font-weight:800;line-height:1;letter-spacing:-.04em;margin:0}
+.bar-chart{display:flex;align-items:flex-end;gap:18px;height:230px;margin-top:44px;max-width:820px}
+.bar-chart .bar{flex:1;background:repeating-linear-gradient(45deg,rgba(174,225,255,.35) 0 6px,rgba(174,225,255,.12) 6px 12px);
+  border:1px solid var(--accent-2);border-bottom:2px solid var(--accent-2);border-radius:var(--radius) var(--radius) 0 0;position:relative;min-height:18px}
+.bar-chart .bar.hot{background:repeating-linear-gradient(45deg,rgba(255,210,122,.4) 0 6px,rgba(255,210,122,.14) 6px 12px);border-color:var(--accent-3)}
+.bar-chart .bar span{position:absolute;bottom:-32px;left:0;right:0;text-align:center;font-size:11px;color:var(--text-3);letter-spacing:.04em;text-transform:uppercase}
+.bar-chart .bar em{position:absolute;top:-30px;left:0;right:0;text-align:center;font-size:14px;font-weight:700;font-style:normal;color:var(--text-1)}
+.steps{counter-reset:step}
+.steps .card{padding-top:36px}
+.steps .card::before{counter-increment:step;content:"[" counter(step,decimal-leading-zero) "]";
+  font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--accent-3);
+  position:absolute;top:13px;left:26px;letter-spacing:.08em}
+.quote{font-family:var(--font-mono);font-size:clamp(26px,3.2vw,42px);line-height:1.4;font-weight:700;max-width:28ch;margin:0}
+.check{list-style:none;padding:0;margin:0;font-size:clamp(14px,1.4vw,17px)}
+.check li{padding:8px 0 8px 32px;position:relative;color:var(--text-2)}
+.check li::before{content:"";position:absolute;left:0;top:13px;width:16px;height:16px;border-radius:var(--radius);
+  border:1px dashed var(--accent-2)}
+.check li::after{content:"";position:absolute;left:4px;top:16px;width:8px;height:4px;
+  border-left:2px solid var(--accent-2);border-bottom:2px solid var(--accent-2);transform:rotate(-45deg)}
+.spec-table{width:100%;border-collapse:collapse;font-size:clamp(12px,1.2vw,14px)}
+.spec-table td{padding:9px 14px;border:1px dashed var(--ink);color:var(--text-2)}
+.spec-table td:first-child{color:var(--text-2);text-transform:uppercase;letter-spacing:.08em;font-size:11px;width:34%}
+.spec-table b{color:var(--text-1);font-weight:700}
+
+/* ============ SPEAKER NOTES (hidden from audience) ============ */
+.notes{display:none!important}
+
+/* ============ ANIMATIONS (entry effects, upstream subset) ============ */
+@keyframes kf-rise{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@keyframes kf-fade-up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.anim-rise-in{animation:kf-rise .8s var(--ease) both}
+.anim-fade-up{animation:kf-fade-up .7s var(--ease) both}
+.anim-stagger-list>*{opacity:0;animation:kf-rise .6s var(--ease) both}
+.anim-stagger-list>*:nth-child(1){animation-delay:.05s}
+.anim-stagger-list>*:nth-child(2){animation-delay:.15s}
+.anim-stagger-list>*:nth-child(3){animation-delay:.25s}
+.anim-stagger-list>*:nth-child(4){animation-delay:.35s}
+.anim-stagger-list>*:nth-child(5){animation-delay:.45s}
+.anim-stagger-list>*:nth-child(n+6){animation-delay:.55s}
+
+@media (prefers-reduced-motion: reduce){
+  .anim-rise-in,.anim-fade-up,.anim-stagger-list>*{animation:none;opacity:1;transform:none}
+  .progress-bar>span{transition:none}
+}
+
+/* ============ PRINT ============ */
+@media print{
+  body{overflow:visible}
+  .deck{display:block;width:auto;height:auto;overflow:visible}
+  .slide{width:100vw;height:100vh;page-break-after:always}
+  .deck-header,.deck-footer,.progress-bar{display:none!important}
+}
+</style>
+<style id="od-no-pager">.deck-controls,#counter,.deck-counter{display:none!important}</style>
+</head>
+<body>
+
+<div class="deck-header"><span>Open Design · 图纸集 OD-2026</span><span class="theme-chip">主题：true-blueprint [已锁定]</span></div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 · layout: cover (drawing sheet with title block) -->
+  <section class="slide" data-title="封面">
+    <p class="kicker">// 工程评审 · 产品管理</p>
+    <h1 class="h1 anim-rise-in">像首席架构师那样<br><span class="gradient-text">呈现工程蓝图</span></h1>
+    <p class="lede">面向工程组织的决策简报：沙箱、sidecar 与守护进程如何拼在一起，不变量是什么，以及我们要求每个团队本冲刺签批的那一个不可逆步骤。</p>
+    <div class="title-block mt-l anim-fade-up">
+      <div>图号<b>OD-ARCH-014</b></div>
+      <div>决策<b class="annot">SIDECAR-ONLY IPC</b></div>
+      <div>责任方<b>平台</b></div>
+      <div>日期<b>2026-07-09</b></div>
+    </div>
+    <div class="notes">封面按图纸形式设计：左下角标题栏承载图号、待评审决策、责任团队与评审日期。整套演示文稿就是一份工程文件，供评审会前阅读。</div>
+  </section>
+
+  <!-- 2 · layout: toc (drawing index) -->
+  <section class="slide" data-title="目录">
+    <p class="kicker">// 图纸索引</p>
+    <h2 class="h2">表决前的三张图纸</h2>
+    <div class="grid g3 mt-l anim-stagger-list">
+      <div class="card card-accent"><h4 class="h4">图 01 · 痛点</h4><p class="dim">为什么已有三个插件团队要求绕过守护进程开一扇后门，以及这会让我们付出什么代价。</p></div>
+      <div class="card card-accent"><h4 class="h4">图 02 · 权衡</h4><p class="dim">直接访问守护进程对比仅走 sidecar IPC，在延迟、审计覆盖与影响范围上进行比较。</p></div>
+      <div class="card card-accent"><h4 class="h4">图 03 · 建议</h4><p class="dim">推广路径、让规则自我执行的 CI 关卡，以及我们如何度量它是否守住。</p></div>
+    </div>
+    <div class="notes">目录以图纸索引的形式呈现——每张卡片是图纸集的一个章节，排序让痛点先为权衡分析提供依据，再落到建议。</div>
+  </section>
+
+  <!-- 3 · layout: section-divider -->
+  <section class="slide" data-title="图 01 · 痛点">
+    <span class="section-num">01</span>
+    <p class="eyebrow">图一</p>
+    <h2 class="h2">agent 总能找到<br>那扇后门</h2>
+    <div class="divider-accent mt-m"></div>
+    <div class="notes">章节分隔页：右下角是描边巨型数字，用墨色的 text-stroke 绘制，读起来像一条施工线。为痛点铺垫：例外请求已经在发生。</div>
+  </section>
+
+  <!-- 4 · layout: arch-diagram (inline SVG schematic — no libraries) -->
+  <section class="slide" data-title="架构">
+    <p class="kicker">// 图 01 · 系统示意</p>
+    <h2 class="h2">一扇门进，三个守护进程界面</h2>
+    <svg class="mt-m" viewBox="0 0 980 330" width="100%" style="max-width:980px" role="img" aria-label="Open Design 示意图：agent 沙箱连接 sidecar 代理，再分发到守护进程的 projects、artifacts 与 skills API">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0L10 5L0 10z" fill="#aee1ff"/>
+        </marker>
+      </defs>
+      <g font-family="'JetBrains Mono',monospace" font-size="13" letter-spacing="1">
+        <!-- input -->
+        <rect x="20" y="125" width="170" height="80" fill="rgba(255,255,255,.05)" stroke="#aee1ff" stroke-width="1.5" stroke-dasharray="6 4" rx="2"/>
+        <text x="105" y="160" fill="#e8f3ff" text-anchor="middle" font-weight="700">AGENT 沙箱</text>
+        <text x="105" y="182" fill="#b8d4f0" text-anchor="middle" font-size="11">隔离 · 无文件系统、无数据库</text>
+        <!-- sidecar -->
+        <rect x="300" y="100" width="240" height="130" fill="rgba(255,255,255,.07)" stroke="#ffffff" stroke-width="2" rx="2"/>
+        <text x="420" y="145" fill="#ffffff" text-anchor="middle" font-weight="800" font-size="16">SIDECAR</text>
+        <text x="420" y="170" fill="#b8d4f0" text-anchor="middle" font-size="11">唯一进出的代理</text>
+        <text x="420" y="192" fill="#ffd27a" text-anchor="middle" font-size="11">校验 · 转发 · 记录</text>
+        <!-- domains -->
+        <rect x="700" y="20"  width="180" height="74" fill="rgba(255,255,255,.05)" stroke="#aee1ff" stroke-width="1.5" stroke-dasharray="6 4" rx="2"/>
+        <text x="790" y="50" fill="#e8f3ff" text-anchor="middle" font-weight="700">PROJECTS API</text>
+        <text x="790" y="72" fill="#b8d4f0" text-anchor="middle" font-size="11">RUNTIME_DATA_DIR 所有者</text>
+        <rect x="700" y="128" width="180" height="74" fill="rgba(255,255,255,.05)" stroke="#aee1ff" stroke-width="1.5" stroke-dasharray="6 4" rx="2"/>
+        <text x="790" y="158" fill="#e8f3ff" text-anchor="middle" font-weight="700">ARTIFACTS API</text>
+        <text x="790" y="180" fill="#b8d4f0" text-anchor="middle" font-size="11">守护进程自有存储</text>
+        <rect x="700" y="236" width="180" height="74" fill="rgba(255,255,255,.05)" stroke="#aee1ff" stroke-width="1.5" stroke-dasharray="6 4" rx="2"/>
+        <text x="790" y="266" fill="#e8f3ff" text-anchor="middle" font-weight="700">SKILLS 与 PLUGINS</text>
+        <text x="790" y="288" fill="#b8d4f0" text-anchor="middle" font-size="11">注册表 · 状态</text>
+        <!-- connectors -->
+        <path d="M190 165 H292" stroke="#aee1ff" stroke-width="1.5" fill="none" marker-end="url(#arr)"/>
+        <path d="M540 140 C620 130 630 70 692 60"  stroke="#aee1ff" stroke-width="1.5" stroke-dasharray="2 5" fill="none" marker-end="url(#arr)"/>
+        <path d="M540 165 H692" stroke="#aee1ff" stroke-width="1.5" stroke-dasharray="2 5" fill="none" marker-end="url(#arr)"/>
+        <path d="M540 195 C620 205 630 263 692 272" stroke="#aee1ff" stroke-width="1.5" stroke-dasharray="2 5" fill="none" marker-end="url(#arr)"/>
+        <!-- annotation / dimension line (anchored to the sidecar box, label kept clear of the domain rects) -->
+        <path d="M420 230 V300 H290" stroke="#ffd27a" stroke-width="1" fill="none"/>
+        <text x="20" y="304" fill="#ffd27a" font-size="11">每个请求都有记录 — 一个代理，一条审计轨迹</text>
+      </g>
+    </svg>
+    <div class="notes">架构示意图以纯内联 SVG 绘制：虚线组件框、带箭头的冰蓝连接线，一条琥珀色标注作为尺寸线。图的要点：沙箱通往守护进程三个界面只有一条路径。</div>
+  </section>
+
+  <!-- 5 · layout: two-column + spec table -->
+  <section class="slide" data-title="设计规则">
+    <p class="kicker">// 图 01 · 受威胁的不变量</p>
+    <h2 class="h2">例外方案会打破的四条规则</h2>
+    <div class="grid g2 mt-l">
+      <div>
+        <p class="lede">今天所有面向守护进程的能力都遵守四条不变量。一扇直连后门会同时打破全部四条，而不只是某个团队所要求的那一条。</p>
+        <ul class="check mt-m">
+          <li>sidecar 是唯一进出的代理 — agent 代码不得直连守护进程套接字</li>
+          <li>所有守护进程数据路径都源自同一个解析后的 RUNTIME_DATA_DIR</li>
+          <li>sidecar 进程标记只包含五个字段 — app、mode、namespace、ipc、source</li>
+          <li>应用的业务逻辑绝不直接导入另一个应用的私有内部实现</li>
+        </ul>
+      </div>
+      <div class="card card-soft">
+        <table class="spec-table">
+          <tr><td>已提出的例外</td><td><b>3 个插件团队</b> — 过去两个冲刺内</td></tr>
+          <tr><td>声称的延迟</td><td><b>~40ms/call</b> — 从未被独立测量</td></tr>
+          <tr><td>获批后的审计覆盖</td><td><b>0%</b> — 直连调用绕过 sidecar 日志</td></tr>
+          <tr><td>回滚成本</td><td><b>~3 weeks</b> — 每个团队都要重写完整 IPC 路径</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="notes">双栏版式：左侧是不变量清单，右侧是虚线规格表，量化所请求例外的代价——读起来像真实图纸上的材料表。</div>
+  </section>
+
+  <!-- 6 · layout: section-divider -->
+  <section class="slide" data-title="图 02 · 选项">
+    <span class="section-num">02</span>
+    <p class="eyebrow">图二</p>
+    <h2 class="h2">两条路，<br>只有一条达标</h2>
+    <div class="divider-accent mt-m"></div>
+    <div class="notes">第二个分隔页。同样的施工线数字手法 — 引出待评审的两个选项。</div>
+  </section>
+
+  <!-- 7 · layout: kpi-grid -->
+  <section class="slide" data-title="仅走 sidecar，评分">
+    <p class="kicker">// 图 02 · 仅走 sidecar IPC，对照现状评分</p>
+    <h2 class="h2">仅走 sidecar 到底让我们付出什么</h2>
+    <div class="grid g4 mt-l anim-stagger-list">
+      <div class="card kpi"><div class="num annot">+2ms</div><div class="lbl">每次调用因 sidecar 校验增加的延迟</div></div>
+      <div class="card kpi"><div class="num">100%</div><div class="lbl">的守护进程调用由同一条审计轨迹覆盖</div></div>
+      <div class="card kpi"><div class="num">1</div><div class="lbl">攻击面 — 一个 IPC 套接字，而非 N 个直连套接字</div></div>
+      <div class="card kpi"><div class="num">0</div><div class="lbl">如今被应用代码导入的守护进程内部实现</div></div>
+    </div>
+    <div class="notes">KPI 网格：强制执行仅走 sidecar IPC 的四项实测代价与收益。琥珀色数字是真实代价 — 2ms — 对照三项近乎全胜的收益。</div>
+  </section>
+
+  <!-- 8 · layout: chart-bar (hatched CSS bars — no chart library) -->
+  <section class="slide" data-title="例外方案的风险">
+    <p class="kicker">// 图 02 · 授予守护进程直连的代价，按 0-100 评分</p>
+    <h2 class="h2">风险集中在哪里</h2>
+    <div class="bar-chart">
+      <div class="bar hot" style="height:88%"><em>92</em><span>影响范围</span></div>
+      <div class="bar" style="height:74%"><em>78</em><span>审计缺口</span></div>
+      <div class="bar" style="height:58%"><em>61</em><span>回滚风险</span></div>
+      <div class="bar" style="height:14%"><em>12</em><span>节省的延迟</span></div>
+    </div>
+    <p class="dim mt-l" style="margin-top:60px">直连换来约 12 分的延迟收益，却付出 70+ 分的 <span class="annot">审计与影响范围风险</span>。这项例外不达标。</p>
+    <div class="notes">柱状图用斜线填充的 CSS 柱重建。琥珀色斜线柱是得分最差的维度 — 影响范围 — 对照这项例外实际能换来的微小延迟收益。</div>
+  </section>
+
+  <!-- 9 · layout: section-divider + process-steps combined sheet -->
+  <section class="slide" data-title="图 03 · 推广">
+    <p class="kicker">// 图 03 · 建议，分四个阶段推广</p>
+    <h2 class="h2">一个冲刺内把规则落地</h2>
+    <div class="grid g4 mt-l steps anim-stagger-list">
+      <div class="card"><h4 class="h4">冻结</h4><p class="dim">本次评审后不再合入新的守护进程直连例外。现有三个继续观察。</p></div>
+      <div class="card"><h4 class="h4">迁移</h4><p class="dim">在本冲刺内把三个例外请求全部改走 sidecar 代理。</p></div>
+      <div class="card"><h4 class="h4">强制</h4><p class="dim">CI 关卡会让任何在 sidecar 边界之外导入守护进程内部实现的 PR 失败。</p></div>
+      <div class="card"><h4 class="h4">度量</h4><p class="dim">审计覆盖看板按周跟踪一个季度；在下次评审时回报。</p></div>
+    </div>
+    <div class="notes">流程步骤带方括号 [01]–[04] 计数，像图纸上的详图标注。这就是建议：冻结、迁移、用 CI 强制、再完整度量一个季度。</div>
+  </section>
+
+  <!-- 10 · layout: comparison -->
+  <section class="slide" data-title="方案对比">
+    <p class="kicker">// 图 03 · 修订单差异</p>
+    <h2 class="h2">直连对比仅走 sidecar IPC</h2>
+    <div class="grid g2 mt-l">
+      <div class="card card-soft">
+        <p class="eyebrow" style="color:var(--bad)">方案 A — 批准例外</p>
+        <h3 class="h3">直连守护进程</h3>
+        <ul class="check"><li>绕过 sidecar 的唯一审计轨迹</li><li>三个独立套接字，三个独立影响范围</li><li>若回退，每个团队约需 3 周拆解</li></ul>
+      </div>
+      <div class="card card-accent">
+        <p class="eyebrow" style="color:var(--good)">方案 B — 本建议</p>
+        <h3 class="h3">仅走 sidecar IPC</h3>
+        <ul class="check"><li>一个代理、一条审计轨迹，每次调用都有记录</li><li>+2ms 实测代价，没有团队撞到真正的天花板</li><li>CI 关卡让规则今后自我执行</li></ul>
+      </div>
+    </div>
+    <div class="notes">对比：三个团队要求的例外对比现行规则。语义化的好/坏标记保持在锁定调色板内 — 珊瑚色与薄荷色读作红线批注。</div>
+  </section>
+
+  <!-- 11 · layout: big-quote + thanks -->
+  <section class="slide center" data-title="签批">
+    <p class="quote anim-fade-up">「一个代理，<br>一条审计轨迹，<span class="annot">没有例外。</span>」</p>
+    <p class="eyebrow mt-l">— 本次评审要求的不可逆一步</p>
+    <div class="row wrap mt-l" style="gap:8px;justify-content:center">
+      <span class="pill pill-accent">签批：仅走 sidecar IPC，没有例外</span>
+      <span class="pill">CI 关卡下个冲刺上线</span>
+      <span class="pill">审计覆盖评审 — 每季度</span>
+    </div>
+    <div class="notes">收尾页兼作签批区块：不变量以引言呈现，诉求盖上琥珀色胶囊章。这是全场每个职能都必须带着共识离开的那个决定。</div>
+  </section>
+
+</div>
+
+<div class="deck-footer"><span>hps-true-blueprint · MIT · 改编自 lewislulu/html-ppt-skill</span><span id="counter">1 / 11</span></div>
+<div class="progress-bar"><span id="bar"></span></div>
+
+<script>
+(function () {
+  var deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('counter');
+  var bar = document.getElementById('bar');
+  var active = 0;
+  var lastKeyEvent = null;
+
+  function clamp(i) { return Math.max(0, Math.min(slides.length - 1, i)); }
+
+  function paint(i) {
+    counter.textContent = (i + 1) + ' / ' + slides.length;
+    bar.style.width = (((i + 1) / slides.length) * 100) + '%';
+  }
+
+  // Hash routing: #/N (1-based). replaceState keeps back-button clean and
+  // never throws inside a srcdoc iframe thanks to the try/catch.
+  function setHash(i) {
+    try { history.replaceState(null, '', '#/' + (i + 1)); } catch (_) { /* sandboxed */ }
+  }
+  function fromHash() {
+    var m = (location.hash || '').match(/^#\/(\d+)/);
+    return m ? clamp(parseInt(m[1], 10) - 1) : 0;
+  }
+
+  function go(i, instant) {
+    active = clamp(i);
+    deck.scrollTo({ left: active * deck.clientWidth, behavior: instant ? 'auto' : 'smooth' });
+    paint(active);
+    setHash(active);
+  }
+
+  function syncFromScroll() {
+    var i = Math.round(deck.scrollLeft / deck.clientWidth);
+    if (i !== active && i >= 0 && i < slides.length) { active = i; paint(i); setHash(i); }
+  }
+
+  function onKey(e) {
+    if (e === lastKeyEvent) return; // dedupe: same Event passes both listeners
+    lastKeyEvent = e;
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(active + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(active - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+  }
+
+  // Listen on both window and document in capture phase so keys work no
+  // matter which element holds focus inside a host iframe.
+  window.addEventListener('keydown', onKey, true);
+  document.addEventListener('keydown', onKey, true);
+  deck.addEventListener('scroll', function () { window.requestAnimationFrame(syncFromScroll); }, { passive: true });
+  window.addEventListener('hashchange', function () { go(fromHash()); });
+  window.addEventListener('resize', function () { go(active, true); });
+
+  // Auto-focus so arrow keys work without a click.
+  document.body.setAttribute('tabindex', '-1');
+  document.body.style.outline = 'none';
+  function focusDeck() {
+    try { window.focus(); document.body.focus({ preventScroll: true }); } catch (_) { /* sandboxed */ }
+  }
+  document.addEventListener('mousedown', focusDeck);
+  window.addEventListener('load', focusDeck);
+
+  go(fromHash(), true);
+  paint(active);
+  focusDeck();
+})();
+</script>
+
+</body>
+</html>

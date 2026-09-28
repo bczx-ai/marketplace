@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Filebase — 尊重你带宽的同步</title>
+  <style>
+    :root {
+      --bg: #fafaf9; --fg: #1c1b1a; --muted: #6b6964; --border: #e6e4e0;
+      --accent: #c96442; --surface: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 -apple-system, system-ui, sans-serif; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+    .logo { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+    nav a { color: var(--fg); text-decoration: none; margin-left: 22px; font-size: 14px; }
+    button { font: inherit; cursor: pointer; padding: 11px 20px; border-radius: 8px; font-weight: 500; }
+    .btn-primary { background: var(--accent); color: white; border: 1px solid var(--accent); }
+    .btn-secondary { background: transparent; color: var(--fg); border: 1px solid var(--border); }
+    .btn-link { background: transparent; border: none; color: var(--accent); padding: 11px 0; font-weight: 500; cursor: pointer; }
+    section { padding: 80px 0; }
+    .hero { padding: 100px 0; }
+    .hero h1 { font-size: clamp(44px, 6vw, 76px); line-height: 1.05; letter-spacing: -0.02em; max-width: 17ch; margin: 0 0 22px; }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 56ch; margin: 0 0 36px; }
+    .hero .cta { display: flex; gap: 12px; }
+    .features { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    @media (max-width: 800px) { .feature-grid { grid-template-columns: 1fr; } }
+    .feature h3 { font-size: 18px; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .feature .num { font-family: ui-monospace, monospace; color: var(--accent); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; display: block; }
+    .feature p { margin: 0; color: var(--muted); font-size: 14.5px; }
+    .proof { text-align: center; }
+    .proof h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0 0 28px; }
+    .logos { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; opacity: 0.6; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+    .pricing h2 { text-align: center; font-size: 36px; margin: 0 0 12px; letter-spacing: -0.02em; }
+    .pricing .lede { text-align: center; color: var(--muted); margin: 0 0 48px; }
+    .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 800px) { .tiers { grid-template-columns: 1fr; } }
+    .tier { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; }
+    .tier.featured { border-color: var(--accent); position: relative; }
+    .tier.featured::before { content: 'Recommended'; position: absolute; top: -12px; left: 24px; background: var(--accent); color: white; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; }
+    .tier h3 { margin: 0 0 8px; font-size: 18px; }
+    .tier .price { font-size: 40px; letter-spacing: -0.02em; margin: 6px 0 16px; }
+    .tier .price small { font-size: 14px; color: var(--muted); font-weight: 400; }
+    .tier ul { list-style: none; padding: 0; margin: 16px 0 24px; color: var(--muted); font-size: 14px; }
+    .tier ul li { padding: 5px 0; border-top: 1px solid var(--border); }
+    .tier ul li:first-child { border-top: none; }
+    .closing { background: var(--accent); color: white; text-align: center; }
+    .closing h2 { font-size: 38px; letter-spacing: -0.02em; margin: 0 0 14px; }
+    .closing p { opacity: 0.85; margin: 0 0 28px; }
+    .closing button { background: white; color: var(--accent); border: none; }
+    footer { padding: 28px 0; color: var(--muted); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header data-od-id="topnav">
+      <span class="logo">◰ Filebase</span>
+      <nav>
+        <a href="#features">功能</a>
+        <a href="#pricing">定价</a>
+        <a href="#docs">文档</a>
+        <button class="btn-secondary" style="margin-left: 12px;">登录</button>
+      </nav>
+    </header>
+    <section class="hero" data-od-id="hero">
+      <h1>不吞你带宽的文件同步。</h1>
+      <p>块级增量、端到端加密，以及不会因为你处理视频就惩罚你的定价方式。</p>
+      <div class="cta">
+        <button class="btn-primary">获取 Filebase</button>
+        <button class="btn-link">阅读白皮书 →</button>
+      </div>
+    </section>
+  </div>
+
+  <section class="features" id="features" data-od-id="features">
+    <div class="wrap feature-grid">
+      <div class="feature">
+        <span class="num">01</span>
+        <h3>块级差分</h3>
+        <p>编辑一个 4 GB 的 Final Cut 项目？我们只同步你改动的那 200 KB，而不是整个文件。</p>
+      </div>
+      <div class="feature">
+        <span class="num">02</span>
+        <h3>端到端加密</h3>
+        <p>文件在离开你的笔记本之前就已加密。我们读不到，执法部门也读不到 —— 这是设计使然。</p>
+      </div>
+      <div class="feature">
+        <span class="num">03</span>
+        <h3>诚实的定价</h3>
+        <p>一口价，存储不限量。没有「合理使用」条款，也不会在 90% 时限速。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof wrap" data-od-id="proof">
+    <h2>这些团队都在用</h2>
+    <div class="logos"><span>Anthropic</span><span>Stripe</span><span>Linear</span><span>Vercel</span><span>Cursor</span></div>
+  </section>
+
+  <section class="pricing wrap" id="pricing" data-od-id="pricing">
+    <h2>定价</h2>
+    <p class="lede">选一个档位。随时切换或取消。</p>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Solo</h3>
+        <div class="price">$8<small>/月</small></div>
+        <p style="color: var(--muted); margin: 0;">适合个人。</p>
+        <ul>
+          <li>1 TB 存储</li>
+          <li>块级同步</li>
+          <li>邮件支持</li>
+        </ul>
+        <button class="btn-secondary" style="width: 100%;">选择 Solo</button>
+      </div>
+      <div class="tier featured">
+        <h3>Team</h3>
+        <div class="price">$14<small>/席/月</small></div>
+        <p style="color: var(--muted); margin: 0;">适合最多 50 人的团队。</p>
+        <ul>
+          <li>5 TB 共享存储池</li>
+          <li>共享文件夹与角色</li>
+          <li>优先支持</li>
+          <li>审计日志</li>
+        </ul>
+        <button class="btn-primary" style="width: 100%;">选择 Team</button>
+      </div>
+      <div class="tier">
+        <h3>Enterprise</h3>
+        <div class="price">定制</div>
+        <p style="color: var(--muted); margin: 0;">SSO、本地部署密钥、SLA。</p>
+        <ul>
+          <li>存储不限量</li>
+          <li>SAML / SCIM</li>
+          <li>专属支持</li>
+        </ul>
+        <button class="btn-secondary" style="width: 100%;">联系销售</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" data-od-id="closing">
+    <div class="wrap">
+      <h2>少同步，多交付。</h2>
+      <p>14 天免费试用，无需信用卡。</p>
+      <button>获取 Filebase</button>
+    </div>
+  </section>
+
+  <footer class="wrap" data-od-id="footer">© Filebase · 隐私 · 条款 · 状态</footer>
+</body>
+</html>

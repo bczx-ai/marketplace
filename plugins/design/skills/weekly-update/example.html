@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>像数据驱动的运营负责人一样开指标站会 — 数据、KPI 与财务</title>
+<style>
+  :root {
+    --bg: #0e0d12;
+    --paper: #19171f;
+    --paper-2: #221f2a;
+    --ink: #f4f0e6;
+    --muted: #a09aaf;
+    --line: #2c2935;
+    --accent: #ffcc4d;
+    --accent-2: #b388ff;
+    --display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--display); }
+  body { overflow: hidden; }
+  .deck {
+    display: flex;
+    width: 100vw; height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .deck::-webkit-scrollbar { display: none; }
+  .slide {
+    flex: 0 0 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 56px 80px;
+    scroll-snap-align: start;
+    position: relative;
+  }
+  .slide-inner { width: 100%; max-width: 1100px; }
+  .crumb {
+    position: absolute; top: 24px; left: 32px;
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .pageno {
+    position: absolute; bottom: 24px; right: 32px;
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+  }
+  .nav {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 5;
+  }
+  .nav .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2);
+    cursor: pointer;
+  }
+  .nav .dot.active { background: var(--accent); }
+
+  /* Cover */
+  .cover { display: flex; flex-direction: column; gap: 28px; }
+  .cover .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); align-self: flex-start; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .cover .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .cover h1 { font-size: clamp(56px, 8vw, 110px); margin: 0; line-height: 0.96; letter-spacing: -0.03em; font-weight: 800; }
+  .cover h1 em { font-style: normal; color: var(--accent); }
+  .cover .meta { display: flex; gap: 36px; color: var(--muted); font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Headline */
+  .headline { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .headline-num { font-size: clamp(120px, 18vw, 220px); line-height: 0.9; letter-spacing: -0.04em; font-weight: 800; color: var(--accent); }
+  .headline-num small { display: block; font-size: 18px; color: var(--muted); font-weight: 400; letter-spacing: 0; margin-top: 12px; font-family: var(--mono); text-transform: uppercase; }
+  .headline-text h2 { font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 18px; font-weight: 700; }
+  .headline-text p { color: var(--muted); font-size: 18px; max-width: 36ch; line-height: 1.5; }
+
+  /* Section title */
+  .section-title { font-size: clamp(32px, 4vw, 56px); margin: 0 0 36px; line-height: 1.05; letter-spacing: -0.02em; font-weight: 700; }
+  .section-title em { font-style: normal; color: var(--accent); }
+
+  /* Lists of items */
+  .item-list { display: flex; flex-direction: column; gap: 14px; }
+  .item { display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center; padding: 22px 26px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; }
+  .item-num { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .item-title { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .item-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .av-row { display: flex; }
+  .av { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--paper); margin-left: -8px; font-size: 11px; font-weight: 700; color: var(--bg); display: inline-flex; align-items: center; justify-content: center; background: var(--accent); }
+  .av:first-child { margin-left: 0; }
+  .av-2 { background: var(--accent-2); color: white; }
+  .av-3 { background: #ff6f91; color: white; }
+
+  /* Blocked */
+  .blocked-block { padding: 36px 40px; background: linear-gradient(135deg, rgba(255,111,145,0.18), rgba(255,204,77,0.08)); border: 1px solid rgba(255,111,145,0.4); border-radius: 18px; }
+  .blocked-block h3 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .blocked-block p { color: var(--muted); margin: 0 0 18px; font-size: 16px; }
+  .blocked-ask { display: inline-flex; padding: 10px 22px; background: var(--accent); color: var(--bg); border-radius: 999px; font-weight: 600; font-size: 14px; }
+
+  /* Charts */
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .chart { padding: 28px; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; }
+  .chart h4 { margin: 0 0 4px; font-size: 14px; font-weight: 600; }
+  .chart .sub { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .chart svg { width: 100%; height: 220px; display: block; margin-top: 16px; }
+  .big-num { font-size: 72px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--accent); margin-top: 16px; }
+  .delta { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-top: 8px; }
+  .delta.warn { color: #ff6f91; }
+
+  /* Asks */
+  .asks { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .ask { padding: 28px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; display: flex; flex-direction: column; gap: 14px; }
+  .ask .who { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+  .ask h3 { font-size: 22px; line-height: 1.25; margin: 0; letter-spacing: -0.01em; }
+  .ask p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+
+  /* Closer */
+  .closer { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+  .closer h2 { font-size: clamp(44px, 6vw, 84px); margin: 0; line-height: 1.05; letter-spacing: -0.025em; font-weight: 800; }
+  .closer h2 em { font-style: normal; color: var(--accent); }
+  .closer p { color: var(--muted); font-size: 18px; max-width: 56ch; }
+  .closer .signature { display: flex; align-items: center; gap: 14px; padding-top: 24px; border-top: 1px solid var(--line); width: 100%; }
+  .closer .signature .av { width: 44px; height: 44px; font-size: 16px; }
+  .closer .signature strong { display: block; font-size: 16px; }
+  .closer .signature span { color: var(--muted); font-size: 13px; }
+
+  @media (max-width: 760px) {
+    .slide { padding: 48px 28px; }
+    .headline { grid-template-columns: 1fr; }
+    .chart-grid, .asks { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1. Cover -->
+  <section class="slide">
+    <span class="crumb">数据、KPI 与财务 · 站会</span>
+    <div class="slide-inner cover">
+      <div class="badge"><span class="dot"></span>第 28 周 · 7 月 6 日 → 10 日</div>
+      <h1>一个数字，<em>一个决策</em>.</h1>
+      <div class="meta">
+        <span>作者 · 运营与增长分析</span>
+        <span>读者 · 运营与增长管理层</span>
+        <span>5 分钟阅读</span>
+      </div>
+    </div>
+    <span class="pageno">01 / 08</span>
+  </section>
+
+  <!-- 2. Headline number -->
+  <section class="slide">
+    <span class="crumb">结论速览</span>
+    <div class="slide-inner headline">
+      <div class="headline-num">41%<small>注册 → 首次渲染转化率，周环比 −6pp</small></div>
+      <div class="headline-text">
+        <h2>star 数在涨，单位经济模型却在退。</h2>
+        <p>GitHub star 周环比增长 1.3%，达到 68.4K，但注册到首次渲染的转化率从 47% 跌至 41% —— 这是该环节连续第三周下滑。</p>
+      </div>
+    </div>
+    <span class="pageno">02 / 08</span>
+  </section>
+
+  <!-- 3. Metric proof -->
+  <section class="slide">
+    <span class="crumb">指标佐证</span>
+    <div class="slide-inner">
+      <h2 class="section-title">证据，<em>逐条来看</em>.</h2>
+      <div class="item-list">
+        <div class="item"><span class="item-num">01</span><span class="item-title">周活跃构建者 —— 14,220 次会话，周环比 +4%</span><span class="item-meta">核心 · 激活</span></div>
+        <div class="item"><span class="item-num">02</span><span class="item-title">注册 → 首次渲染转化率 —— 41%，周环比 −6pp</span><span class="item-meta">漏斗 · 下滑</span></div>
+        <div class="item"><span class="item-num">03</span><span class="item-title">BYOK 智能体连接 —— 21 个智能体共关联 9,800 个密钥，+2%</span><span class="item-meta">智能体 · 持平</span></div>
+        <div class="item"><span class="item-num">04</span><span class="item-title">插件安装 —— 累计 214,000 次，本周 +11,400</span><span class="item-meta">分发</span></div>
+      </div>
+    </div>
+    <span class="pageno">03 / 08</span>
+  </section>
+
+  <!-- 4. Driver tree -->
+  <section class="slide">
+    <span class="crumb">驱动因素树</span>
+    <div class="slide-inner">
+      <h2 class="section-title">转化率为何 <em>下滑</em>.</h2>
+      <div class="item-list">
+        <div class="item"><span class="item-num">01</span><span class="item-title">默认智能体超时把 p95 渲染延迟从 8.1 秒推高到 14.4 秒</span><div class="av-row"><span class="av">OD</span></div></div>
+        <div class="item"><span class="item-num">02</span><span class="item-title">61% 的下滑集中在 Safari 桌面端、基于 React 的模板</span><div class="av-row"><span class="av av-2">MR</span><span class="av">SL</span></div></div>
+        <div class="item"><span class="item-num">03</span><span class="item-title">新的 od-reframe 流程在渲染前多加了一步确认</span><div class="av-row"><span class="av av-2">CA</span></div></div>
+        <div class="item"><span class="item-num">04</span><span class="item-title">其余部分 —— 智能体选择、BYOK 设置、插件发现 —— 周环比持平</span><div class="av-row"><span class="av av-3">PB</span></div></div>
+      </div>
+    </div>
+    <span class="pageno">04 / 08</span>
+  </section>
+
+  <!-- 5. The anomaly -->
+  <section class="slide">
+    <span class="crumb">异常点</span>
+    <div class="slide-inner">
+      <h2 class="section-title">一件事打破了 <em>规律</em>.</h2>
+      <div class="blocked-block">
+        <h3>Safari 桌面端的首次渲染延迟几乎翻倍。</h3>
+        <p>本周其他渠道都保持稳定或有所改善。只有 Safari 桌面端的 p95 从 8.1 秒跳到 14.4 秒，并造成了近三分之二的转化率下滑。这逼着我们做选择：回滚 <code style="font-family: var(--mono);">od-reframe</code> 确认步骤，还是在周五封版前上线 Safari 专用的渲染路径。</p>
+        <span class="blocked-ask">需做决策：周四 18:00 前回滚或修补</span>
+      </div>
+    </div>
+    <span class="pageno">05 / 08</span>
+  </section>
+
+  <!-- 6. Forecast -->
+  <section class="slide">
+    <span class="crumb">预测</span>
+    <div class="slide-inner">
+      <h2 class="section-title">如果到<em>周五仍不修复</em>.</h2>
+      <div class="chart-grid">
+        <div class="chart">
+          <h4>首次渲染转化率 · 近 4 周</h4>
+          <div class="sub">越高越好</div>
+          <svg viewBox="0 0 600 220" preserveAspectRatio="none">
+            <defs><linearGradient id="lg1" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffcc4d" stop-opacity="0.4"/><stop offset="100%" stop-color="#ffcc4d" stop-opacity="0"/></linearGradient></defs>
+            <polygon fill="url(#lg1)" points="20,210 20,60 110,72 200,90 290,108 380,124 470,148 560,164 580,164 580,210" />
+            <polyline fill="none" stroke="#ffcc4d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              points="20,60 110,72 200,90 290,108 380,124 470,148 560,164" />
+            <circle cx="560" cy="164" r="5" fill="#ffcc4d"/>
+          </svg>
+          <div class="big-num">41%</div>
+          <div class="delta">▼ 本周 −6pp，若不解决，月底将降至 33%</div>
+        </div>
+        <div class="chart">
+          <h4>p95 渲染延迟 · Safari 桌面端</h4>
+          <div class="sub">越低越好</div>
+          <svg viewBox="0 0 600 220" preserveAspectRatio="none">
+            <defs><linearGradient id="lg2" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#b388ff" stop-opacity="0.4"/><stop offset="100%" stop-color="#b388ff" stop-opacity="0"/></linearGradient></defs>
+            <polygon fill="url(#lg2)" points="20,210 20,160 110,150 200,140 290,124 380,108 470,80 560,52 580,52 580,210" />
+            <polyline fill="none" stroke="#b388ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"
+              points="20,160 110,150 200,140 290,124 380,108 470,80 560,52" />
+            <circle cx="560" cy="52" r="5" fill="#b388ff"/>
+          </svg>
+          <div class="big-num" style="color: #b388ff;">14.4s</div>
+          <div class="delta">▲ 周环比 +78%，已突破 12 秒渲染 SLA</div>
+        </div>
+      </div>
+    </div>
+    <span class="pageno">06 / 08</span>
+  </section>
+
+  <!-- 7. Recommended move -->
+  <section class="slide">
+    <span class="crumb">建议动作</span>
+    <div class="slide-inner">
+      <h2 class="section-title">唯一的决策，<em>以及由谁负责</em>.</h2>
+      <div class="asks">
+        <div class="ask">
+          <div class="who"><span class="av av-2">EN</span>工程</div>
+          <h3>周四下班前上线 Safari 专用兜底渲染路径。</h3>
+          <p>绕过造成 14.4 秒 p95 的超时路径，且不触碰下滑中的另外 39%。</p>
+        </div>
+        <div class="ask">
+          <div class="who"><span class="av av-3">PM</span>产品</div>
+          <h3>在重测之前，先撤掉 od-reframe 多出的确认步骤。</h3>
+          <p>当初加它是为了清晰，不是为了速度 —— Safari 修复上线后重跑 A/B。</p>
+        </div>
+        <div class="ask">
+          <div class="who"><span class="av">GR</span>增长</div>
+          <h3>在转化率回升到 45% 以上之前，付费获客支出保持不变。</h3>
+          <p>往一个正在流失 6pp 的漏斗环节里灌更多流量，没有意义。</p>
+        </div>
+        <div class="ask">
+          <div class="who"><span class="av av-2">DA</span>数据</div>
+          <h3>今后把 Safari 桌面端从漏斗看板中单独拆出。</h3>
+          <p>这个异常在混合均值里藏了两周 —— 不能再有下次。</p>
+        </div>
+      </div>
+    </div>
+    <span class="pageno">07 / 08</span>
+  </section>
+
+  <!-- 8. Decision -->
+  <section class="slide">
+    <span class="crumb">决策</span>
+    <div class="slide-inner closer">
+      <h2>上线 <em>兜底方案</em>，而不是增加支出。</h2>
+      <p>数据只说了一件事：在我们再花一美元把用户拉进更慢的漏斗之前，先修好渲染路径。工程负责周四的补丁，增长在转化率恢复前保持支出不变，数据把 Safari 拆出来，免得它再次藏起来。</p>
+      <div class="signature">
+        <span class="av">OD</span>
+        <div><strong>分析与运营</strong><span>每周指标站会 · 见 #growth-metrics</span></div>
+      </div>
+    </div>
+    <span class="pageno">08 / 08</span>
+  </section>
+</div>
+
+<div class="nav" id="nav"></div>
+
+<script>
+  const deck = document.getElementById('deck');
+  const slides = deck.querySelectorAll('.slide');
+  const nav = document.getElementById('nav');
+  slides.forEach((_, i) => {
+    const d = document.createElement('span');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => deck.scrollTo({ left: window.innerWidth * i, behavior: 'smooth' }));
+    nav.appendChild(d);
+  });
+  function activeIndex() {
+    return Math.round(deck.scrollLeft / window.innerWidth);
+  }
+  deck.addEventListener('scroll', () => {
+    const idx = activeIndex();
+    nav.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  }, { passive: true });
+  document.addEventListener('keydown', (e) => {
+    const idx = activeIndex();
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      const next = Math.min(slides.length - 1, idx + 1);
+      deck.scrollTo({ left: window.innerWidth * next, behavior: 'smooth' });
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      const prev = Math.max(0, idx - 1);
+      deck.scrollTo({ left: window.innerWidth * prev, behavior: 'smooth' });
+    }
+  });
+</script>
+
+</body>
+</html>

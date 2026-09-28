@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>像资深监管者一样做职场安全合规审查 — 政府与政策</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Stardos+Stencil:wght@400;700&family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="assets/deck-stage.js"></script>
+<style>
+  :root {
+    --bone:    #E2DCC9;
+    --black:   #000000;
+    --ink:     #0A0A0A;
+    --paper:   #F4EFE0;
+    --sienna:  #A06A3C;
+    --magenta: #C73B7A;
+    --orange:  #EE7A2E;
+    --teal:    #2D7E73;
+    --blue:    #3F73B7;
+    --mustard: #D8A93B;
+    --olive:   #6F7A2E;
+  }
+  html, body { margin:0; padding:0; background:#1a1a1a; }
+  body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: var(--ink); }
+  deck-stage { background: #1a1a1a; }
+
+  section.slide { background: var(--bone); color: var(--ink); overflow: hidden; position: relative; }
+  section.slide.dark { background: var(--black); color: var(--bone); }
+
+  /* ---------- chrome ---------- */
+  .top {
+    position: absolute; top: 48px; left: 64px; right: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "Barlow Condensed", "Helvetica Neue", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .top .meta { display: flex; gap: 64px; font-size: 24px; font-weight: 600; letter-spacing: .06em; opacity: .85; }
+  section.slide.dark .top { color: var(--bone); }
+
+  .footer {
+    position: absolute; left: 64px; right: 64px; bottom: 36px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600; font-size: 22px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: .75;
+  }
+  section.slide.dark .footer { color: var(--bone); }
+
+  /* ---------- shared tablet card ---------- */
+  .tablet { border-radius: 26px; padding: 38px 32px 32px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .tablet .num {
+    font-family: "Stardos Stencil", "Bowlby One", serif;
+    font-weight: 700;
+    line-height: .9;
+    color: var(--ink);
+    font-size: 220px;
+    letter-spacing: -.02em;
+  }
+  .tablet h3 {
+    font-family: "Stardos Stencil", serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    margin-top: auto;
+    margin-bottom: 14px;
+  }
+  .tablet p {
+    font-family: "Inter", sans-serif;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .tablet.dark { color: var(--bone); }
+  .tablet.dark h3 { color: var(--bone); }
+  .tablet.dark p  { color: var(--bone); opacity: .9; }
+
+  /* =========== 01 COVER =========== */
+  .s-cover { padding: 0; }
+  .s-cover .stage {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 48px 64px;
+  }
+  .s-cover .super {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800; font-size: 28px; letter-spacing: .12em;
+    text-transform: uppercase; opacity: .8;
+  }
+  .s-cover h1 {
+    font-family: "Stardos Stencil", serif;
+    font-weight: 700;
+    font-size: 220px;
+    line-height: .82;
+    letter-spacing: -.015em;
+    text-transform: uppercase;
+    color: var(--ink);
+    align-self: end;
+    margin: 0;
+  }
+  .s-cover h1 em { font-style: normal; color: var(--magenta); }
+  .s-cover .row {
+    display: flex; align-items: end; justify-content: space-between;
+    margin-top: 24px;
+  }
+  .s-cover .row .lockup { display: flex; align-items: center; gap: 18px; }
+  .s-cover .row .mark {
+    width: 56px; height: 56px; border-radius: 14px; background: var(--orange);
+  }
+  .s-cover .row .who {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+    font-size: 30px; text-transform: uppercase; letter-spacing: .04em;
+  }
+  .s-cover .row .who small {
+    display: block; font-size: 22px; font-weight: 500; letter-spacing: .08em; opacity: .65;
+  }
+  .s-cover .row .date {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 36px; text-transform: uppercase;
+  }
+  .s-cover .shape {
+    position: absolute; right: 56px; top: 64px;
+    width: 320px; height: 380px;
+    color: var(--teal);
+  }
+
+  /* =========== 02 AGENDA (organic shapes on black) =========== */
+  .s-agenda { padding: 0; }
+  .s-agenda .grid {
+    position: absolute;
+    left: 64px; right: 64px; top: 200px; bottom: 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .s-agenda .item { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 36px 18px 36px; }
+  .s-agenda .item svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .s-agenda .item .n {
+    position: relative; z-index: 2;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+    font-size: 32px; letter-spacing: .06em; color: var(--ink);
+  }
+  .s-agenda .item .lab {
+    position: relative; z-index: 2;
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 32px; line-height: 1.05; text-align: center;
+    text-transform: uppercase; color: var(--ink);
+  }
+
+  /* =========== 03 PRINCIPLES (the source slide) =========== */
+  .s-princ { padding: 0; }
+  .s-princ .row {
+    position: absolute;
+    left: 64px; right: 64px; top: 160px; bottom: 70px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .s-princ .card { border-radius: 26px; padding: 36px 30px 32px; display: flex; flex-direction: column; min-height: 0; }
+  .s-princ .card.c1 { background: var(--sienna); }
+  .s-princ .card.c2 { background: var(--magenta); }
+  .s-princ .card.c3 { background: var(--orange); }
+  .s-princ .card.c4 { background: var(--teal); }
+  .s-princ .card .n {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 240px; line-height: .85; letter-spacing: -.02em;
+    color: var(--ink);
+  }
+  .s-princ .card h3 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 30px; line-height: 1.05;
+    text-transform: uppercase; letter-spacing: .02em;
+    margin: auto 0 14px; color: var(--ink);
+  }
+  .s-princ .card p {
+    font-size: 22px; line-height: 1.4; color: var(--ink);
+  }
+  .s-princ .card.c4 h3, .s-princ .card.c4 p { color: var(--bone); }
+
+  /* =========== 04 SECTION DIVIDER =========== */
+  .s-sec { padding: 0; }
+  .s-sec .num {
+    position: absolute; left: 64px; top: 110px;
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 540px; line-height: .8; color: var(--orange);
+  }
+  .s-sec .label {
+    position: absolute; right: 64px; top: 220px;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+    font-size: 24px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--bone); opacity: .7;
+    text-align: right;
+  }
+  .s-sec h2 {
+    position: absolute;
+    right: 64px; bottom: 130px; left: 360px;
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 120px; line-height: .92; text-transform: uppercase;
+    letter-spacing: -.005em;
+    color: var(--bone);
+    text-align: right;
+  }
+  .s-sec h2 em { font-style: normal; color: var(--orange); }
+
+  /* =========== 05 CONSULT (text-dense action title) =========== */
+  .s-consult .head {
+    position: absolute; left: 64px; right: 64px; top: 130px;
+    background: var(--mustard);
+    border-radius: 22px;
+    padding: 24px 32px;
+    display: flex; align-items: center; gap: 28px;
+  }
+  .s-consult .head .tag {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+    font-size: 24px; letter-spacing: .12em; text-transform: uppercase;
+    flex-shrink: 0; padding-right: 28px;
+    border-right: 2px solid var(--ink);
+  }
+  .s-consult .head h2 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 34px; line-height: 1.15; text-transform: uppercase; letter-spacing: -.005em;
+  }
+  .s-consult .grid {
+    position: absolute; left: 64px; right: 64px; top: 290px; bottom: 80px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .s-consult .col {
+    border-radius: 22px; padding: 28px 28px;
+    display: flex; flex-direction: column; gap: 14px; min-height: 0;
+  }
+  .s-consult .col.a { background: var(--paper); }
+  .s-consult .col.b { background: var(--orange); }
+  .s-consult .col.c { background: var(--paper); }
+  .s-consult .col h3 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 28px; text-transform: uppercase; letter-spacing: .02em;
+    border-bottom: 2px solid var(--ink); padding-bottom: 12px;
+  }
+  .s-consult .col .meta {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 32px; line-height: 1.1;
+  }
+  .s-consult .col p { font-size: 20px; line-height: 1.45; }
+  .s-consult .col ul { margin: 0; padding-left: 22px; font-size: 20px; line-height: 1.45; }
+  .s-consult .col ul li { margin-bottom: 8px; }
+  .s-consult .col ul li strong { font-weight: 700; }
+  .s-consult .col .src {
+    margin-top: auto;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+    font-size: 18px; letter-spacing: .12em; text-transform: uppercase;
+    border-top: 1px dashed rgba(10,10,10,.35); padding-top: 12px; opacity: .75;
+  }
+
+  /* =========== 06 CHART =========== */
+  .s-chart { padding: 0; }
+  /* Bottom bumped from 110 to 150 so the legend can never collide with
+     the absolutely-positioned .footer (which sits at bottom: 36 with
+     ~24px text height). Also: h2 size now caps by viewport height too. */
+  .s-chart .left {
+    position: absolute; left: 64px; top: 200px; bottom: 150px; width: 540px;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .s-chart .left h2 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: min(110px, 12vh); line-height: .92; text-transform: uppercase; letter-spacing: -.01em;
+    color: var(--bone);
+  }
+  .s-chart .left h2 em { font-style: normal; color: var(--orange); }
+  .s-chart .left p { font-size: 22px; line-height: 1.5; color: var(--bone); opacity: .85; }
+  .s-chart .left .legend {
+    margin-top: auto; display: flex; flex-direction: column; gap: 10px;
+  }
+  .s-chart .left .legend .li {
+    display: flex; align-items: center; gap: 14px;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+    font-size: 22px; letter-spacing: .06em; text-transform: uppercase; color: var(--bone);
+  }
+  .s-chart .left .legend .li i { width: 32px; height: 6px; }
+  .s-chart .right {
+    position: absolute; right: 64px; top: 200px; bottom: 130px; left: 680px;
+    background: var(--paper); border-radius: 22px;
+    padding: 32px 32px 28px 80px;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .s-chart .right .yhead {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+    font-size: 18px; letter-spacing: .12em; text-transform: uppercase;
+    margin-bottom: 8px; opacity: .7;
+  }
+  .s-chart .plot { flex: 1; min-height: 0; position: relative;
+    border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .s-chart .plot .gline { position: absolute; left: 0; right: 0; border-top: 1px dashed rgba(10,10,10,.18); }
+  .s-chart .plot .yticks {
+    position: absolute; left: -52px; top: 0; bottom: 0;
+    display: flex; flex-direction: column; justify-content: space-between;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 18px;
+  }
+  .s-chart .plot svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+  .s-chart .right .xticks { display: flex; justify-content: space-between; padding-top: 10px;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 18px; letter-spacing: .06em; }
+
+  /* =========== 07 PROCESS DIAGRAM =========== */
+  .s-process .head {
+    position: absolute; left: 64px; right: 64px; top: 130px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;
+  }
+  .s-process .head h2 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 92px; line-height: .92; text-transform: uppercase; letter-spacing: -.01em;
+  }
+  .s-process .head h2 em { font-style: normal; color: var(--magenta); }
+  .s-process .head .sub {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 22px; letter-spacing: .06em; text-transform: uppercase;
+    max-width: 38ch; line-height: 1.5; opacity: .8; margin-top: 12px;
+  }
+  .s-process .flow {
+    position: absolute; left: 64px; right: 64px; top: 470px; bottom: 200px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px;
+  }
+  .s-process .node {
+    border-radius: 22px; padding: 24px 22px 22px;
+    display: flex; flex-direction: column; gap: 8px; position: relative;
+  }
+  .s-process .node.n1 { background: var(--sienna); color: var(--ink); }
+  .s-process .node.n2 { background: var(--magenta); color: var(--ink); }
+  .s-process .node.n3 { background: var(--orange); color: var(--ink); }
+  .s-process .node.n4 { background: var(--teal); color: var(--bone); }
+  .s-process .node.n5 { background: var(--blue); color: var(--bone); }
+  .s-process .node .n {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 64px; line-height: .9;
+  }
+  .s-process .node h3 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 28px; line-height: 1.05; text-transform: uppercase; letter-spacing: .02em;
+  }
+  .s-process .node p { font-size: 18px; line-height: 1.4; }
+  .s-process .node .arr {
+    position: absolute; right: -16px; top: 40%;
+    width: 32px; height: 32px; z-index: 2;
+  }
+  .s-process .node.n5 .arr { display: none; }
+  .s-process .timeline {
+    position: absolute; left: 64px; right: 64px; bottom: 110px; height: 50px;
+    background: var(--paper); border-radius: 14px;
+    padding: 0 28px; display: flex; align-items: center; justify-content: space-between;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+    font-size: 20px; letter-spacing: .08em; text-transform: uppercase;
+  }
+
+  /* =========== 08 COMPARISON MATRIX =========== */
+  .s-matrix .head {
+    position: absolute; left: 64px; right: 64px; top: 130px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;
+  }
+  .s-matrix .head h2 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 92px; line-height: .92; text-transform: uppercase; letter-spacing: -.01em;
+  }
+  .s-matrix .head h2 em { font-style: normal; color: var(--teal); }
+  .s-matrix .head .sub {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 22px; letter-spacing: .06em; text-transform: uppercase;
+    max-width: 38ch; line-height: 1.5; opacity: .8; margin-top: 12px;
+  }
+  .s-matrix .table {
+    position: absolute; left: 64px; right: 64px; top: 460px; bottom: 110px;
+    background: var(--paper); border-radius: 22px;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr; overflow: hidden;
+  }
+  .s-matrix .cell {
+    padding: 18px 22px; display: flex; align-items: center;
+    font-size: 22px; line-height: 1.35;
+    border-bottom: 1.5px solid rgba(10,10,10,.35);
+    border-right: 1.5px solid rgba(10,10,10,.35);
+  }
+  .s-matrix .cell:nth-child(4n) { border-right: 0; }
+  .s-matrix .cell.last { border-bottom: 0; }
+  .s-matrix .cell.head-row {
+    background: var(--ink); color: var(--bone);
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 24px; text-transform: uppercase; letter-spacing: .02em;
+  }
+  .s-matrix .cell.row-label {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 26px; text-transform: uppercase; letter-spacing: .01em;
+  }
+  .s-matrix .pill {
+    display: inline-block; border-radius: 999px;
+    padding: 6px 16px; font-weight: 700;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 18px; letter-spacing: .08em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .s-matrix .pill.yes  { background: var(--teal); color: var(--bone); }
+  .s-matrix .pill.part { background: var(--mustard); color: var(--ink); }
+  .s-matrix .pill.no   { background: var(--magenta); color: var(--bone); }
+  .s-matrix .pill.note { background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink); }
+
+  /* =========== 09 STATS / NUMBERS =========== */
+  .s-stats .head {
+    position: absolute; left: 64px; right: 64px; top: 130px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;
+  }
+  .s-stats .head h2 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 92px; line-height: .92; text-transform: uppercase; letter-spacing: -.01em;
+    color: var(--bone);
+  }
+  .s-stats .head h2 em { font-style: normal; color: var(--orange); }
+  .s-stats .head .sub {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 22px; letter-spacing: .06em; text-transform: uppercase;
+    max-width: 36ch; line-height: 1.5; opacity: .85; color: var(--bone); margin-top: 12px;
+  }
+  .s-stats .grid {
+    position: absolute; left: 64px; right: 64px; top: 470px; bottom: 110px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .s-stats .stat {
+    border-radius: 22px; padding: 32px 30px;
+    display: flex; flex-direction: column; gap: 14px;
+    color: var(--ink);
+  }
+  .s-stats .stat.s1 { background: var(--orange); }
+  .s-stats .stat.s2 { background: var(--mustard); }
+  .s-stats .stat.s3 { background: var(--bone); }
+  .s-stats .stat .big {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 160px; line-height: .85; letter-spacing: -.02em;
+  }
+  .s-stats .stat .big small {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+    font-size: 40px; vertical-align: top; margin-left: 6px;
+  }
+  .s-stats .stat h3 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 26px; text-transform: uppercase; letter-spacing: .02em;
+    margin-top: auto;
+  }
+  .s-stats .stat p { font-size: 20px; line-height: 1.4; }
+
+  /* =========== 10 QUOTE =========== */
+  .s-quote { padding: 0; }
+  .s-quote .panel {
+    position: absolute; left: 64px; right: 64px; top: 130px; bottom: 110px;
+    background: var(--magenta);
+    border-radius: 26px;
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .s-quote .panel .qmark {
+    font-family: "Bowlby One", "Stardos Stencil", serif; font-weight: 700;
+    font-size: 320px; line-height: .8; color: var(--ink);
+  }
+  .s-quote .panel blockquote {
+    margin: 0;
+    font-family: "Stardos Stencil", serif; font-weight: 400;
+    font-size: 60px; line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -.005em;
+  }
+  .s-quote .panel .who {
+    margin-top: 32px;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+    font-size: 26px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .s-quote .panel .who small {
+    display: block; font-weight: 600; font-size: 22px; opacity: .7; margin-top: 4px;
+  }
+
+  /* =========== 11 CTA =========== */
+  .s-cta { padding: 0; }
+  .s-cta .stage {
+    position: absolute; inset: 0;
+    padding: 130px 64px 100px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .s-cta .pane {
+    border-radius: 26px; padding: 40px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .s-cta .pane.l { background: var(--teal); color: var(--bone); justify-content: space-between; }
+  .s-cta .pane.r { background: var(--orange); color: var(--ink); }
+  .s-cta .pane.l h2 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 130px; line-height: .9; text-transform: uppercase; letter-spacing: -.015em;
+  }
+  .s-cta .pane.l h2 em { font-style: normal; color: var(--orange); }
+  .s-cta .pane.l p { font-size: 22px; line-height: 1.5; opacity: .9; max-width: 32ch; }
+  .s-cta .pane.r h3 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 36px; line-height: 1; text-transform: uppercase; letter-spacing: .02em;
+  }
+  .s-cta .pane.r .step { display: grid; grid-template-columns: 60px 1fr; gap: 14px; align-items: start; }
+  .s-cta .pane.r .step .n {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 56px; line-height: .9;
+  }
+  .s-cta .pane.r .step h4 {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+    font-size: 26px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px;
+  }
+  .s-cta .pane.r .step p { font-size: 20px; line-height: 1.4; }
+
+  /* =========== 12 DESIGN SYSTEM =========== */
+  .s-system .wrap {
+    position: absolute; left: 64px; right: 64px; top: 130px; bottom: 80px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+  }
+  .s-system .card {
+    border-radius: 22px; padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    background: var(--paper);
+  }
+  .s-system .card h3 {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 28px; text-transform: uppercase; letter-spacing: .02em;
+    border-bottom: 2px solid var(--ink); padding-bottom: 10px;
+  }
+  .s-system .card .row { display: flex; align-items: center; gap: 14px; }
+  .s-system .swatch { width: 48px; height: 48px; border-radius: 10px; border: 1.5px solid var(--ink); }
+  .s-system .row .label {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+    font-size: 22px; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .s-system .row .label small {
+    display: block; font-weight: 500; opacity: .65; letter-spacing: .04em;
+  }
+  .s-system .typespec {
+    display: flex; align-items: baseline; gap: 14px;
+    border-bottom: 1px dashed rgba(10,10,10,.3); padding-bottom: 12px;
+  }
+  .s-system .typespec .name {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 36px; text-transform: uppercase; flex-shrink: 0;
+  }
+  .s-system .typespec .name.barlow {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+  }
+  .s-system .typespec .name.inter {
+    font-family: "Inter", sans-serif; font-weight: 600; text-transform: none; font-size: 28px;
+  }
+  .s-system .typespec .desc {
+    font-size: 18px; opacity: .75;
+  }
+  .s-system ul { margin: 0; padding-left: 20px; font-size: 18px; line-height: 1.45; }
+  .s-system ul li { margin-bottom: 6px; }
+  .s-system .principle {
+    font-family: "Stardos Stencil", serif; font-weight: 700;
+    font-size: 30px; line-height: 1.05; text-transform: uppercase;
+    color: var(--magenta);
+  }
+</style>
+</head>
+<body>
+
+<deck-stage>
+
+  <!-- ============ 01 COVER ============ -->
+  <section class="slide s-cover" data-label="01 Cover" data-om-validate="false">
+    <div class="stage">
+      <div>
+        <div class="super">政府与政策 · 合规审查</div>
+      </div>
+      <div>
+        <h1>合规，<br/><em>强制执行。</em></h1>
+        <div class="row">
+          <div class="lockup">
+            <div class="mark"></div>
+            <div class="who">职场安全局
+              <small>合规与执法司</small>
+            </div>
+          </div>
+          <div class="date">Case WS-2026-0417</div>
+        </div>
+      </div>
+    </div>
+    <svg class="shape" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M50 0 C 80 0, 100 20, 100 40 C 100 60, 80 60, 50 60 C 20 60, 0 60, 0 80 C 0 100, 20 120, 50 120 C 80 120, 100 100, 100 80" fill="currentColor"/>
+    </svg>
+  </section>
+
+  <!-- ============ 02 AGENDA (organic shapes) ============ -->
+  <section class="slide s-agenda dark" data-label="02 Agenda" data-om-validate="false">
+    <div class="top">
+      <span>审查议程</span>
+      <span class="meta"><span>Meridian Fabrication Works</span><span>Case WS-2026-0417</span></span>
+    </div>
+    <div class="grid">
+      <div class="item">
+        <!-- figure-8 / peanut -->
+        <svg viewBox="0 0 100 250" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M50 0 C 90 0, 100 30, 100 65 C 100 95, 70 110, 50 125 C 30 140, 0 155, 0 185 C 0 220, 10 250, 50 250 C 90 250, 100 220, 100 185 C 100 155, 70 140, 50 125 C 30 110, 0 95, 0 65 C 0 30, 10 0, 50 0 Z" fill="#EE7A2E"/>
+        </svg>
+        <span class="n">01</span>
+        <span class="lab">背景<br/>与范围</span>
+      </div>
+      <div class="item">
+        <!-- octagon -->
+        <svg viewBox="0 0 100 250" preserveAspectRatio="none" aria-hidden="true">
+          <polygon points="30,0 70,0 100,40 100,210 70,250 30,250 0,210 0,40" fill="#2D7E73"/>
+        </svg>
+        <span class="n">02</span>
+        <span class="lab">危险<br/>记录</span>
+      </div>
+      <div class="item">
+        <!-- hourglass / bowtie -->
+        <svg viewBox="0 0 100 250" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 0 L100 0 L100 30 Q 50 125 100 220 L100 250 L0 250 L0 220 Q 50 125 0 30 Z" fill="#3F73B7"/>
+        </svg>
+        <span class="n">03</span>
+        <span class="lab">证据<br/>与发现</span>
+      </div>
+      <div class="item">
+        <!-- pinched X -->
+        <svg viewBox="0 0 100 250" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 0 Q 20 0 35 20 Q 50 40 65 20 Q 80 0 100 0 L100 90 Q 70 125 100 160 L100 250 Q 80 250 65 230 Q 50 210 35 230 Q 20 250 0 250 L0 160 Q 30 125 0 90 Z" fill="#A06A3C"/>
+        </svg>
+        <span class="n">04</span>
+        <span class="lab">纠正<br/>指令</span>
+      </div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>02 / 11</span></div>
+  </section>
+
+  <!-- ============ 03 PRINCIPLES ============ -->
+  <section class="slide s-princ" data-label="03 Review Standards" data-om-validate="false">
+    <div class="top">
+      <span>审查标准</span>
+      <span class="meta"><span>职场安全局</span><span>方法</span></span>
+    </div>
+    <div class="row">
+      <div class="card c1">
+        <div class="n">1</div>
+        <h3>独立<br/>证据</h3>
+        <p>结论建立在检查员日志、维护记录与宣誓证词之上 —— 绝不只凭工厂的自述。</p>
+      </div>
+      <div class="card c2">
+        <div class="n">2</div>
+        <h3>完整<br/>证据链</h3>
+        <p>每份证物都带时间戳，并从最初的事故报告到最终处罚决定书逐一交叉引用。</p>
+      </div>
+      <div class="card c3">
+        <div class="n">3</div>
+        <h3>相称的<br/>补救</h3>
+        <p>指令与危害相称：先上工程控制，只有在控制无法奏效时才停产。</p>
+      </div>
+      <div class="card c4">
+        <div class="n">4</div>
+        <h3>公共<br/>问责</h3>
+        <p>本次审查及其纠正指令，在送达当日即成为公开合规记录的一部分。</p>
+      </div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>03 / 11</span></div>
+  </section>
+
+  <!-- ============ 04 SECTION DIVIDER ============ -->
+  <section class="slide s-sec dark" data-label="04 Section · Why This Review" data-om-validate="false">
+    <div class="top">
+      <span>为何进行本次审查</span>
+      <span class="meta"><span>第二节</span></span>
+    </div>
+    <div class="num">02</div>
+    <div class="label">公共<br/>需要</div>
+    <h2>九起事故，<br/>一种本可避免的<br/><em>模式。</em></h2>
+    <div class="footer"><span>职场安全局</span><span>04 / 11</span></div>
+  </section>
+
+  <!-- ============ 05 CONSULT (text-dense) ============ -->
+  <section class="slide s-consult" data-label="05 Findings &amp; Mandate" data-om-validate="false">
+    <div class="top">
+      <span>发现</span>
+      <span class="meta"><span>职场安全局</span><span>Case WS-2026-0417</span></span>
+    </div>
+    <div class="head">
+      <div class="tag">行动标题 · 05</div>
+      <h2>3 号线冲压机上被绕过的联锁装置，造成了今年 62% 的应报伤害 —— 该指令将在 90 天内补上这个缺口。</h2>
+    </div>
+    <div class="grid">
+      <div class="col a">
+        <h3>我们发现了什么</h3>
+        <p><strong>九起应报事故</strong> 发生在十四个月内，含三起损失工时伤害，以及一起需要手术的手部挤压伤。</p>
+        <ul>
+          <li><strong>根因</strong> —— 62% 的事故可追溯到为加快 3 号线换装而被绕过的防护联锁。</li>
+          <li><strong>41 场访谈</strong> —— 一线工人与主管都证实，交接班时使防护失效是长期做法。</li>
+          <li><strong>维护日志</strong> —— 六个月内联锁越权被记录了十九次，却从未上报。</li>
+        </ul>
+        <div class="src">检查期 · 2026 年 1–10 月</div>
+      </div>
+      <div class="col b">
+        <h3>为何重要</h3>
+        <div class="meta">迄今 $2.3M 的停工与索赔风险敞口。</div>
+        <p>对那三位失去手指功能的工人来说，手部挤压伤不是一个统计数字 —— 它也不是一次性事件；它正是联锁被绕过、而冲压机仍按计划继续循环时会造成的后果。</p>
+        <p>联锁每多失效一周，3 号线的六台冲压机与约 340 名工人就继续承担同样的风险敞口。</p>
+        <div class="src">州职场安全局</div>
+      </div>
+      <div class="col c">
+        <h3>纠正指令</h3>
+        <ul>
+          <li><strong>改造全部六台冲压机</strong> —— 防篡改联锁，经第三方审计核验。负责方：工厂工程部。期限：第 60 天。</li>
+          <li><strong>培训 340 名一线工人</strong> —— 进入车间前必须取得上锁挂牌认证。负责方：EHS。期限：第 30 天。</li>
+          <li><strong>独立核验</strong> —— 3 号线恢复全速换装之前须经第三方审计。负责方：BWS。期限：第 90 天。</li>
+        </ul>
+        <div class="src">本指令自送达本命令起生效</div>
+      </div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>05 / 11</span></div>
+  </section>
+
+  <!-- ============ 06 CHART ============ -->
+  <section class="slide s-chart dark" data-label="06 Incident Trend" data-om-validate="false">
+    <div class="top">
+      <span>应报事故，按月</span>
+      <span class="meta"><span>证据</span><span>Case WS-2026-0417</span></span>
+    </div>
+    <div class="left">
+      <h2>曲线只在<br/>3 号线<br/><em>之后才弯折。</em></h2>
+      <p>十四个月内九起应报事故，集中在 3 号线的冲压机上。九月下达的临时防护令，是唯一一段计数真正下降的时期。</p>
+      <div class="legend">
+        <div class="li"><i style="background:var(--bone); opacity:.5"></i> 全厂事故（基线）</div>
+        <div class="li"><i style="background:var(--mustard)"></i> 3 号线冲压机</div>
+        <div class="li"><i style="background:var(--orange)"></i> 3 号线，联锁确认被绕过</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="yhead">应报事故，按月（滚动）</div>
+      <div class="plot">
+        <div class="yticks">
+          <span>8</span><span>6</span><span>4</span><span>2</span><span>0</span>
+        </div>
+        <div class="gline" style="top:0%"></div>
+        <div class="gline" style="top:25%"></div>
+        <div class="gline" style="top:50%"></div>
+        <div class="gline" style="top:75%"></div>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="#0a0a0a" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2,1.5"
+            points="0,98 16,96 32,95 48,94 64,93 80,92 100,91" />
+          <polyline fill="none" stroke="#D8A93B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+            points="0,98 16,88 32,77 48,66 64,57 80,50 100,46" />
+          <polyline fill="none" stroke="#EE7A2E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+            points="0,98 16,82 32,63 48,45 64,29 80,18 100,10" />
+        </svg>
+      </div>
+      <div class="xticks">
+        <span>1 月</span><span>2 月</span><span>3 月</span><span>4 月</span><span>5 月</span><span>6 月</span><span>9 月</span>
+      </div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>06 / 11</span></div>
+  </section>
+
+  <!-- ============ 07 PROCESS ============ -->
+  <section class="slide s-process" data-label="07 Process" data-om-validate="false">
+    <div class="top">
+      <span>纠正行动流程</span>
+      <span class="meta"><span>Case WS-2026-0417</span><span>执法</span></span>
+    </div>
+    <div class="head">
+      <h2>从 <em>处罚决定书</em><br/>到认证通过，<br/>共五步。</h2>
+      <div class="sub">纠正指令遵循固定的执法顺序 —— 每家处于有效处罚之下的工厂都要走过同样的五个检查点。</div>
+    </div>
+    <div class="flow">
+      <div class="node n1">
+        <div class="n">1</div>
+        <h3>开具</h3>
+        <p>就联锁被绕过一事开具正式处罚决定书；通知在 24 小时内张贴于 3 号线。</p>
+        <svg class="arr" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 16 H26 M20 9 L26 16 L20 23"/></svg>
+      </div>
+      <div class="node n2">
+        <div class="n">2</div>
+        <h3>纠正</h3>
+        <p>工厂工程部按指令的防篡改规格改造防护与联锁。</p>
+        <svg class="arr" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 16 H26 M20 9 L26 16 L20 23"/></svg>
+      </div>
+      <div class="node n3">
+        <div class="n">3</div>
+        <h3>再培训</h3>
+        <p>3 号线全部 340 名工人重新取得上锁挂牌认证后，方可恢复进车间。</p>
+        <svg class="arr" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 16 H26 M20 9 L26 16 L20 23"/></svg>
+      </div>
+      <div class="node n4">
+        <div class="n">4</div>
+        <h3>核验</h3>
+        <p>独立第三方审计师对照指令检查每台已改造的冲压机。</p>
+        <svg class="arr" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 16 H26 M20 9 L26 16 L20 23"/></svg>
+      </div>
+      <div class="node n5">
+        <div class="n">5</div>
+        <h3>认证</h3>
+        <p>本局结案，并认证该厂可按标准速度换装。</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <span>第 0 天 · 开具</span>
+      <span>第 30 天 · 纠正</span>
+      <span>第 45 天 · 再培训</span>
+      <span>第 75 天 · 核验</span>
+      <span>第 90 天 · 认证</span>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>07 / 11</span></div>
+  </section>
+
+  <!-- ============ 08 COMPARISON MATRIX ============ -->
+  <section class="slide s-matrix" data-label="08 Comparison" data-om-validate="false">
+    <div class="top">
+      <span>政策选项并排对比</span>
+      <span class="meta"><span>Case WS-2026-0417</span><span>决定</span></span>
+    </div>
+    <div class="head">
+      <h2>每个<br/><em>选项</em> 站不站得住<br/>。</h2>
+      <div class="sub">按决定本案的四个杠杆打分：风险实际下降有多快、工厂的成本，以及劳动力会怎样。</div>
+    </div>
+    <div class="table">
+      <div class="cell head-row">杠杆</div>
+      <div class="cell head-row">全面停产</div>
+      <div class="cell head-row">分阶段改造（推荐）</div>
+      <div class="cell head-row">维持现状 + 罚款</div>
+
+      <div class="cell row-label">达标时间</div>
+      <div class="cell"><span class="pill part">停工 45 天</span></div>
+      <div class="cell"><span class="pill yes">90 天，不停工</span></div>
+      <div class="cell"><span class="pill no">无限期</span></div>
+
+      <div class="cell row-label">工厂成本</div>
+      <div class="cell"><span class="pill no">$4.8M 产量损失</span></div>
+      <div class="cell"><span class="pill yes">$620K 改造费</span></div>
+      <div class="cell"><span class="pill part">仅罚款，且反复发生</span></div>
+
+      <div class="cell row-label">伤害风险下降</div>
+      <div class="cell"><span class="pill yes">完全、立即</span></div>
+      <div class="cell"><span class="pill yes">完全、分阶段</span></div>
+      <div class="cell"><span class="pill no">无</span></div>
+
+      <div class="cell row-label last">劳动力影响</div>
+      <div class="cell last"><span class="pill no">340 名工人停工</span></div>
+      <div class="cell last"><span class="pill yes">不裁员</span></div>
+      <div class="cell last"><span class="pill note">不变</span></div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>08 / 11</span></div>
+  </section>
+
+  <!-- ============ 09 STATS ============ -->
+  <section class="slide s-stats dark" data-label="09 In Numbers" data-om-validate="false">
+    <div class="top">
+      <span>用数字说话</span>
+      <span class="meta"><span>证据</span><span>Case WS-2026-0417</span></span>
+    </div>
+    <div class="head">
+      <h2>这份记录，<br/><em>用数字说话。</em></h2>
+      <div class="sub">三个数字支撑这项指令。其中任何一个在 90 天内没有变化，本案就将重启。</div>
+    </div>
+    <div class="grid">
+      <div class="stat s1">
+        <div class="big">9</div>
+        <h3>应报<br/>事故</h3>
+        <p>十四个月，3 号线冲压机，全部可追溯到被绕过的联锁。</p>
+      </div>
+      <div class="stat s2">
+        <div class="big">62<small>%</small></div>
+        <h3>追溯到<br/>一个原因</h3>
+        <p>为加快换装而绕过防护联锁 —— 已由维护日志与访谈证实。</p>
+      </div>
+      <div class="stat s3">
+        <div class="big">340</div>
+        <h3>工人<br/>在 3 号线</h3>
+        <p>在改造与再培训获认证完成之前，他们每一个人都承担着这一风险敞口。</p>
+      </div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>09 / 11</span></div>
+  </section>
+
+  <!-- ============ 10 QUOTE ============ -->
+  <section class="slide s-quote" data-label="10 Inspector Voice" data-om-validate="false">
+    <div class="top">
+      <span>证词</span>
+      <span class="meta"><span>证据</span><span>Case WS-2026-0417</span></span>
+    </div>
+    <div class="panel">
+      <div class="qmark">"</div>
+      <div>
+        <blockquote>我记录过十九次越权。我上面没有人愿意签那份修复的变更单 —— 防护失效时冲压机更快，而「更快」才是被考核的东西。</blockquote>
+        <div class="who">车间安全技术员
+          <small>3 号线，Meridian Fabrication Works —— 2026 年 10 月作证</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>10 / 11</span></div>
+  </section>
+
+  <!-- ============ 11 CTA ============ -->
+  <section class="slide s-cta" data-label="11 Decision" data-om-validate="false">
+    <div class="top">
+      <span>决定</span>
+      <span class="meta"><span>Case WS-2026-0417</span><span>命令</span></span>
+    </div>
+    <div class="stage">
+      <div class="pane l">
+        <div class="super" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: .14em; text-transform: uppercase; opacity: .8;">职场安全局</div>
+        <h2>指令<br/>开始<br/><em>生效。</em></h2>
+        <p>分阶段改造、全员再培训、独立核验。不停产、不裁员 —— 也不再有任何以牺牲防护为代价的换装。</p>
+      </div>
+      <div class="pane r">
+        <h3>接下来会发生什么</h3>
+        <div class="step">
+          <div class="n">1</div>
+          <div>
+            <h4>处罚决定书今日开具</h4>
+            <p>正式处罚决定书张贴于 3 号线；生产在临时防护令下继续。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div>
+            <h4>第 30 天 —— 再培训完成</h4>
+            <p>3 号线全部 340 名工人在恢复进车间之前重新取得上锁挂牌认证。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div>
+            <h4>第 90 天 —— 核验通过后结案</h4>
+            <p>独立审计认证全部六台冲压机；本局对 Case WS-2026-0417 结案。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>职场安全局</span><span>11 / 11</span></div>
+  </section>
+
+  <!-- ============ 12 DESIGN SYSTEM ============ -->
+</deck-stage>
+
+</body>
+</html>
