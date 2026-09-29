@@ -1,5 +1,6 @@
 ---
 name: fal-restore
+zh_description: "通过 fal.ai 修复图片画质，包括去模糊、降噪、人脸修复和旧文档修复。"
 description: |
   Restore and fix image quality — deblur, denoise, fix faces, and restore old documents using fal.ai's hosted restoration models.
 triggers:

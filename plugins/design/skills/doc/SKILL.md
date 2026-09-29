@@ -1,5 +1,6 @@
 ---
 name: doc
+zh_description: "读取、创建和编辑 .docx 文档，保持原有格式与版式。"
 description: |
   Read, create, and edit .docx documents with formatting and layout fidelity via OpenAI's document skill.
 triggers:

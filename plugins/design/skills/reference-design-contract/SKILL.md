@@ -1,5 +1,6 @@
 ---
 name: reference-design-contract
+zh_description: "把截图、链接、产品说明等零散参考整理成 DESIGN.md 和实现交接说明，适合在原型、幻灯片或改版之前使用。"
 zh_name: "参考转设计合约"
 en_name: "Reference Design Contract"
 description: |

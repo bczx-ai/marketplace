@@ -1,13 +1,12 @@
 ---
 name: fs-electric-studio
+zh_description: "B2B SaaS 销售提案幻灯片，面向采购决策人讲清痛点、价值、投资回报和落地计划。"
 en_name: "Write a B2B SaaS Sales Proposal like a Tier-1 Enterprise AE"
 zh_name: "像一线企业客户 AE 一样写 B2B SaaS 销售提案"
 description: |
   Open Design as an enterprise design platform: a buyer-forwardable proposal for a design-org's economic buyer — pain, value, ROI, rollout. Built as a decision-grade B2B sales deck for economic buyer, design VP, procurement.
 en_description: |
   Open Design as an enterprise design platform: a buyer-forwardable proposal for a design-org's economic buyer — pain, value, ROI, rollout. Built as a decision-grade B2B sales deck for economic buyer, design VP, procurement.
-zh_description: |
-  像一线企业客户 AE 一样写 B2B SaaS 销售提案——一份可商业交付的B2B 销售 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "b2b-sales"
   - "b2b-saas-sales-proposal"

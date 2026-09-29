@@ -1,5 +1,6 @@
 ---
 name: artifacts-builder
+zh_description: "用 React、Tailwind CSS 和 shadcn/ui 构建多组件的复杂 HTML 页面产物。"
 description: |
   Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui).
 triggers:

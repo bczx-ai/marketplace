@@ -1,5 +1,6 @@
 ---
 name: pr-feedback-quality-gate
+zh_description: "跟踪 PR 评审意见，解决评论和合并冲突，验证修复后再提交或推送。"
 description: |
   Safely track pull request feedback, resolve review comments or merge conflicts, validate fixes, and use a read-only cross-review before committing or pushing follow-up changes.
 triggers:

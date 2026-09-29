@@ -1,5 +1,6 @@
 ---
 name: marketing-psychology
+zh_description: "把心理学与行为科学原理用在文案和设计上，优化开场钩子、表达框架和价格呈现。"
 description: |
   Apply psychological principles and behavioral science to copy and design. Useful for tightening hooks, framing, and pricing presentation.
 triggers:

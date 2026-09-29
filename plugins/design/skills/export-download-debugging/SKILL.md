@@ -1,5 +1,6 @@
 ---
 name: export-download-debugging
+zh_description: "排查并修复浏览器、预览或 Electron 中的导出与下载故障，例如另存为失败、0 KB 文件。"
 description: |
   Diagnose and fix browser, preview, or Electron export/download failures, especially image export issues involving Save As, Blob/Data URLs, the File System Access API, createWritable failures, and 0 KB files.
 triggers:

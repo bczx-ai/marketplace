@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-daisy-days
+zh_description: "清新花卉风格的客户上手培训幻灯片，讲清首次见效路径和留存习惯。"
 en_name: "Write a Customer Onboarding Workshop like a Field Enablement Director"
 zh_name: "像客户成功赋能总监一样写客户上手工作坊"
 description: |
   A customer-success workshop onboarding users to a project-management app — the first-value path and the habits that retain. Built as a decision-grade professional training deck for new customers, CS team.
 en_description: |
   A customer-success workshop onboarding users to a project-management app — the first-value path and the habits that retain. Built as a decision-grade professional training deck for new customers, CS team.
-zh_description: |
-  像客户成功赋能总监一样写客户上手工作坊——一份可商业交付的培训交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "professional-training"
   - "employee-onboarding-deck"

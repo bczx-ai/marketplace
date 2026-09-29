@@ -1,13 +1,12 @@
 ---
 name: html-ppt
+zh_description: "咨询交付幻灯片，把诊断结论和分析框架整理成客户可以执行的行动方案。"
 en_name: "Brief AI in Your Industry like a Tier-1 Consulting AI Vertical Lead"
 zh_name: "像一线咨询 AI 行业负责人一样讲清行业 AI"
 description: |
   For consulting delivery work: turn diagnosis, frameworks, and project work into a client-adoptable action plan. Built around the core query "consulting-final-deck", with engagement manager judgment, buyer-ready proof, and this outcome: accept the recommendation and commit owners to the roadmap.
 en_description: |
   For consulting delivery work: turn diagnosis, frameworks, and project work into a client-adoptable action plan. Built around the core query "consulting-final-deck", with engagement manager judgment, buyer-ready proof, and this outcome: accept the recommendation and commit owners to the roadmap.
-zh_description: |
-  咨询/客户交付场景：围绕 core query「consulting-final-deck」把粗糙材料整理成“像一线咨询 AI 行业负责人一样讲清行业 AI”这类可购买、可复用的专业 Deck；突出受众、决策目标、证据链、风险取舍和评审标准。
 tags:
   - "consulting"
   - "consulting-final-deck"

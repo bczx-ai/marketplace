@@ -1,13 +1,12 @@
 ---
 name: hps-memphis-pop
+zh_description: "孟菲斯波普风格的流行文化回顾演讲幻灯片，适合主题分享和故事型演讲。"
 en_name: "Turn a Pop-Culture Retrospective into a Talk like an Editorial Curator"
 zh_name: "像内容策展人一样做流行文化回顾演讲"
 description: |
   A pop-culture retrospective on how 1980s design language shaped today's apps — the scenes, the turning point, and the takeaway. Built as a decision-grade story deck for talk audience, design community.
 en_description: |
   A pop-culture retrospective on how 1980s design language shaped today's apps — the scenes, the turning point, and the takeaway. Built as a decision-grade story deck for talk audience, design community.
-zh_description: |
-  像内容策展人一样做流行文化回顾演讲——一份可商业交付的生活故事 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "life"
   - "travel-photo-essay-deck"

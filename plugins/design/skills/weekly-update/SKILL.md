@@ -1,13 +1,12 @@
 ---
 name: weekly-update
+zh_description: "每周指标例会幻灯片，呈现本周数据、异常项和需要做的决定。"
 en_name: "Run a Metrics Standup like a Data-Driven Ops Lead"
 zh_name: "像数据驱动的运营负责人一样开指标站会"
 description: |
   Open Design's weekly metrics standup: this week's numbers, the one anomaly, and the single decision it forces. Built as a decision-grade data & finance deck for ops & growth team.
 en_description: |
   Open Design's weekly metrics standup: this week's numbers, the one anomaly, and the single decision it forces. Built as a decision-grade data & finance deck for ops & growth team.
-zh_description: |
-  像数据驱动的运营负责人一样开指标站会——一份可商业交付的数据财务 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "data-finance"
   - "product-analytics-deck"

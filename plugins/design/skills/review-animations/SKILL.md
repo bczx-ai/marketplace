@@ -1,5 +1,6 @@
 ---
 name: review-animations
+zh_description: "按 Emil Kowalski 的设计工程标准严格审查动画和动效代码。"
 description: |
   Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned.
 triggers:

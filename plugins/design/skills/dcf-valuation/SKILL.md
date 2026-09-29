@@ -1,5 +1,6 @@
 ---
 name: dcf-valuation
+zh_description: "对上市公司做现金流折现估值和内在价值分析，给出合理价值区间与目标价。"
 description: |
   Discounted cash flow valuation and intrinsic value analysis for public
   companies. Use when the brief asks for DCF, fair value, intrinsic value,

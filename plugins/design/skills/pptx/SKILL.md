@@ -1,5 +1,6 @@
 ---
 name: pptx
+zh_description: "读取、生成和调整 PowerPoint 幻灯片、版式与模板，适合管理层汇报、培训材料和产品评审。"
 description: |
   Read, generate, and adjust PowerPoint slides, layouts, and templates. Useful for executive decks, training material, and product reviews.
 triggers:

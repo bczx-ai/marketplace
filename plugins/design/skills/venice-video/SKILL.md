@@ -1,5 +1,6 @@
 ---
 name: venice-video
+zh_description: "通过 Venice.ai 生成视频和转写视频内容。"
 description: |
   Video generation and transcription workflows via the Venice.ai API.
 triggers:

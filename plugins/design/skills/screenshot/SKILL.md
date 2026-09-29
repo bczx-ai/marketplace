@@ -1,5 +1,6 @@
 ---
 name: screenshot
+zh_description: "截取桌面、应用窗口或指定区域，适合营销截图、设计评审和问题报告。"
 description: |
   Capture desktop, app windows, or pixel regions across OS platforms. Useful for marketing screenshots, design reviews, and bug reports.
 triggers:

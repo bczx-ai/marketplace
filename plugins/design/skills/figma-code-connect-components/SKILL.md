@@ -1,5 +1,6 @@
 ---
 name: figma-code-connect-components
+zh_description: "用 Code Connect 把 Figma 组件和代码组件关联起来，让设计系统的更新同步到代码。"
 description: |
   Connect Figma design components to code components using Code Connect so design-system updates flow into the codebase automatically.
 triggers:

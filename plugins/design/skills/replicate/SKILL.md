@@ -1,5 +1,6 @@
 ---
 name: replicate
+zh_description: "通过 Replicate 查找、对比和运行 AI 模型，适合经常切换模型的图像、音频和视频生成流程。"
 description: |
   Discover, compare, and run AI models using Replicate's API. Strong fit for image, audio, and video generation pipelines that swap models frequently.
 triggers:

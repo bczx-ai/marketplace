@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-retro-zine
+zh_description: "复古杂志风格的街区影像故事幻灯片。"
 en_name: "Make a Neighborhood Zine Story like an Indie Photo Editor"
 zh_name: "像独立图片编辑一样做街区 zine 故事"
 description: |
   A neighborhood zine on the disappearing corner shops — portraits, voices, and what a block loses when they close. Built as a decision-grade story deck for community, local readers.
 en_description: |
   A neighborhood zine on the disappearing corner shops — portraits, voices, and what a block loses when they close. Built as a decision-grade story deck for community, local readers.
-zh_description: |
-  像独立图片编辑一样做街区 zine 故事——一份可商业交付的生活故事 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "life"
   - "travel-photo-essay-deck"

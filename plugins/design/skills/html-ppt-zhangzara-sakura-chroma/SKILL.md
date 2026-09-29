@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-sakura-chroma
+zh_description: "樱花色调的旅行影像故事幻灯片。"
 en_name: "Turn a Cherry-Blossom Trip into a Photo Essay like a Travel Editorial Director"
 zh_name: "像旅行内容总监一样把樱花之旅做成影像散文"
 description: |
   A cherry-blossom-season travel photo essay through Kyoto — the arrival, the peak bloom, and the moment that made the trip. Built as a decision-grade story deck for friends, travel readers.
 en_description: |
   A cherry-blossom-season travel photo essay through Kyoto — the arrival, the peak bloom, and the moment that made the trip. Built as a decision-grade story deck for friends, travel readers.
-zh_description: |
-  像旅行内容总监一样把樱花之旅做成影像散文——一份可商业交付的生活故事 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "life"
   - "travel-photo-essay-deck"

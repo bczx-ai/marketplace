@@ -1,5 +1,6 @@
 ---
 name: image-poster
+zh_description: "生成单张海报、主视觉和编辑类插画，默认使用 gpt-image-2，也可切换其他图像模型。"
 description: |
   Single-image generation skill for posters, key art, and editorial
   illustrations. Defaults to gpt-image-2 but is provider-agnostic — the

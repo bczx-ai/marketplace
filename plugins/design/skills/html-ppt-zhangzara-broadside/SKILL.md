@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-broadside
+zh_description: "报刊风格的产品发布公告幻灯片，包含标题、核心卖点和行动号召。"
 en_name: "Write a Product-Launch Announcement like a PR & Comms Director"
 zh_name: "像公关传播总监一样写产品发布公告"
 description: |
   Open Design's product-launch announcement and press narrative — the headline, the proof points, and the call to action. Built as a decision-grade marketing & GTM deck for press, community, prospects.
 en_description: |
   Open Design's product-launch announcement and press narrative — the headline, the proof points, and the call to action. Built as a decision-grade marketing & GTM deck for press, community, prospects.
-zh_description: |
-  像公关传播总监一样写产品发布公告——一份可商业交付的市场增长 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "marketing-gtm"
   - "annual-marketing-plan"

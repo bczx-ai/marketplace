@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-neo-grid-bold
+zh_description: "粗网格风格的设计师作品集幻灯片，适合面试时讲解案例和设计判断。"
 en_name: "Build a Designer Portfolio Narrative like a Hiring Bar-Raiser"
 zh_name: "像招聘 Bar Raiser 一样搭设计作品集叙事"
 description: |
   A designer's portfolio narrative for a senior interview — three case studies, the craft, and the judgment behind each. Built as a decision-grade career deck for hiring panel.
 en_description: |
   A designer's portfolio narrative for a senior interview — three case studies, the craft, and the judgment behind each. Built as a decision-grade career deck for hiring panel.
-zh_description: |
-  像招聘 Bar Raiser 一样搭设计作品集叙事——一份可商业交付的职业发展 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "career"
   - "year-end-self-review-deck"

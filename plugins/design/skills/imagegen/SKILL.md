@@ -1,5 +1,6 @@
 ---
 name: imagegen
+zh_description: "调用 OpenAI 图像接口生成和编辑项目素材，包括界面样稿、图标、插画和社交卡片。"
 description: |
   Generate and edit images using OpenAI's Image API for project assets — UI mockups, icons, illustrations, social cards, and visual references.
 triggers:

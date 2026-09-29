@@ -1,5 +1,6 @@
 ---
 name: design-loop
+zh_description: "Brain Design 设计任务的总流程：先读取项目设计规范，再生成单文件 HTML，并逐条处理待解决的反馈。"
 description: |
   Brain Design 设计任务总纲：接到「设计 / 生成 / 修改 HTML 页面、幻灯片、
   海报、原型等视觉产物」的请求时，先读项目内 `.brain/design/design.md` 并

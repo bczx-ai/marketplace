@@ -1,13 +1,12 @@
 ---
 name: huashu-sparkline-arc
+zh_description: "迷你折线图风格的收入驱动分析幻灯片，呈现关键杠杆和收入预测。"
 en_name: "Write a Revenue-Driver Story like a Board-Level Finance Partner"
 zh_name: "像董事会级财务伙伴一样写收入驱动分析"
 description: |
   Open Design's revenue-driver narrative: what actually moves ARR, the leverage points, and the forecast. Built as a decision-grade data & finance deck for board, finance leadership.
 en_description: |
   Open Design's revenue-driver narrative: what actually moves ARR, the leverage points, and the forecast. Built as a decision-grade data & finance deck for board, finance leadership.
-zh_description: |
-  像董事会级财务伙伴一样写收入驱动分析——一份可商业交付的数据财务 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "data-finance"
   - "product-analytics-deck"

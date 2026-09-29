@@ -1,5 +1,6 @@
 ---
 name: ad-creative
+zh_description: "批量生成和迭代广告创意，包括标题、描述与正文，适用于信息流和搜索广告。"
 description: |
   Generate and iterate ad creative including headlines, descriptions, and primary text. Useful for paid social and search ad iteration.
 triggers:

@@ -1,5 +1,6 @@
 ---
 name: frontend-slides
+zh_description: "生成动效丰富的 HTML 演示文稿，并提供风格预览，适合线上演讲和交互式简报。"
 description: |
   Generate animation-rich HTML presentations with visual style previews. Useful for online keynotes, embedded talks, and interactive briefs.
 triggers:

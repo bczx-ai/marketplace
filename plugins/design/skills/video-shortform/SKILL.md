@@ -1,5 +1,6 @@
 ---
 name: video-shortform
+zh_description: "生成 3 到 10 秒的短视频，适合产品亮相、动态预告和氛围循环。"
 description: |
   Short-form video generation skill — 3-10 second clips for product
   reveals, motion teasers, ambient loops. Defaults to Seedance 2 but

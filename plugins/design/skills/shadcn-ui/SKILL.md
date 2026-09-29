@@ -1,5 +1,6 @@
 ---
 name: shadcn-ui
+zh_description: "用 shadcn/ui 构建结构清晰、符合无障碍要求的界面组件。"
 description: |
   Build UI components with shadcn/ui. Pairs with the Stitch design loop to ship structured, accessible components quickly.
 triggers:

@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-scatterbrain
+zh_description: "拼贴风格的毕业设计展示幻灯片，讲清设计任务、过程和成果。"
 en_name: "Pitch a Graduation Design Project like a Portfolio-Ready Design Student"
 zh_name: "像作品集出众的设计学生一样讲毕业设计"
 description: |
   A design-school graduation project: a civic wayfinding system for a transit hub — the brief, the process, and the outcome. Built as a decision-grade coursework defense deck for crit panel, faculty.
 en_description: |
   A design-school graduation project: a civic wayfinding system for a transit hub — the brief, the process, and the outcome. Built as a decision-grade coursework defense deck for crit panel, faculty.
-zh_description: |
-  像作品集出众的设计学生一样讲毕业设计——一份可商业交付的课业答辩 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "student-coursework"
   - "senior-capstone-defense-deck"

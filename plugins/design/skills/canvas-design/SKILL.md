@@ -1,5 +1,6 @@
 ---
 name: canvas-design
+zh_description: "依据设计原则创作 PNG 或 PDF 格式的视觉作品，适合海报、插画和静态画面。"
 description: |
   Create beautiful visual art in PNG and PDF documents using design philosophy and aesthetic principles for posters, illustrations, and static pieces.
 triggers:

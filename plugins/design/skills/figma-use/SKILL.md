@@ -1,5 +1,6 @@
 ---
 name: figma-use
+zh_description: "运行 Figma 插件脚本，读写画布、变量和设计系统，是其他 Figma 技能的前置技能。"
 description: |
   Run Figma Plugin API scripts for canvas writes, inspections, variables, and design-system work. Prerequisite for every other Figma skill in this catalogue.
 triggers:

@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-coral
+zh_description: "珊瑚色风格的社区增长方案幻灯片，包含增长循环、内容排期和转化测算。"
 en_name: "Plan a Community-Growth Campaign like a Head of Growth"
 zh_name: "像增长负责人一样规划社区增长战役"
 description: |
   Open Design's community-growth campaign across GitHub, Discord, and X: the loops, the content calendar, and the pipeline math. Built as a decision-grade marketing & GTM deck for growth team, community lead.
 en_description: |
   Open Design's community-growth campaign across GitHub, Discord, and X: the loops, the content calendar, and the pipeline math. Built as a decision-grade marketing & GTM deck for growth team, community lead.
-zh_description: |
-  像增长负责人一样规划社区增长战役——一份可商业交付的市场增长 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "marketing-gtm"
   - "annual-marketing-plan"

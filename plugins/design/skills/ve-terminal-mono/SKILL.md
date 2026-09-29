@@ -1,13 +1,12 @@
 ---
 name: ve-terminal-mono
+zh_description: "终端等宽字体风格的命令行工作流教学幻灯片。"
 en_name: "Teach an AI CLI Workflow like a Developer-Tools Educator"
 zh_name: "像开发者工具讲师一样教 AI CLI 工作流"
 description: |
   Open Design from the CLI: driving the full design workflow with the `od` command — scripted, composable, agent-ready. Built as a decision-grade AI literacy deck for developers, power users.
 en_description: |
   Open Design from the CLI: driving the full design workflow with the `od` command — scripted, composable, agent-ready. Built as a decision-grade AI literacy deck for developers, power users.
-zh_description: |
-  像开发者工具讲师一样教 AI CLI 工作流——一份可商业交付的AI 素养 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "ai-literacy"
   - "enterprise-ai-copilot-rollout-brief"

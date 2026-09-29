@@ -1,13 +1,12 @@
 ---
 name: ib-pitch-book
+zh_description: "投行风格的投资推介材料，包含市场格局、竞争壁垒、单位经济和融资诉求。"
 en_name: "Write an Investor Pitch Book like a Growth-Equity Analyst"
 zh_name: "像成长股权分析师一样写投资 Pitch Book"
 description: |
   Open Design's investor pitch book: market map, moat, unit economics, and the ask — analyst-grade and diligence-ready. Built as a decision-grade fundraising pitch deck for growth-equity investors.
 en_description: |
   Open Design's investor pitch book: market map, moat, unit economics, and the ask — analyst-grade and diligence-ready. Built as a decision-grade fundraising pitch deck for growth-equity investors.
-zh_description: |
-  像成长股权分析师一样写投资 Pitch Book——一份可商业交付的融资路演 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "fundraising-pitch"
   - "series-a-pitch-deck"

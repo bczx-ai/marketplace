@@ -1,5 +1,6 @@
 ---
 name: ecommerce-image-workflow
+zh_description: "基于真实商品照片，生成忠于原物的电商主图、卖点图和场景图。"
 en_name: "Ecommerce Image Workflow"
 description: |
   Reference-product ecommerce image workflow for generating a compact set

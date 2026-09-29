@@ -1,5 +1,6 @@
 ---
 name: nanobanana-ppt
+zh_description: "分析文档内容并配合 AI 生成的风格化图片，输出结构化的 PPT。"
 description: |
   AI-powered PPT generation with document analysis and styled images via the NanoBanana stack. Combines image generation with structured deck output.
 triggers:

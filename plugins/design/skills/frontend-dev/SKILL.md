@@ -1,5 +1,6 @@
 ---
 name: frontend-dev
+zh_description: "制作带电影级动效、AI 生成素材和生成艺术的前端页面，适合首屏和展示型网站。"
 description: |
   Full-stack frontend with cinematic animations, AI-generated media via MiniMax API, and generative art. Useful for hero pages and showcase sites.
 triggers:

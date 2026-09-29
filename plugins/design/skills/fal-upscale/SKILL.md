@@ -1,5 +1,6 @@
 ---
 name: fal-upscale
+zh_description: "通过 fal.ai 的超分辨率模型提升图片和视频的清晰度。"
 description: |
   Upscale and enhance image and video resolution using AI super-resolution models hosted on fal.ai.
 triggers:

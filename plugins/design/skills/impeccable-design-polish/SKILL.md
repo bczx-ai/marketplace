@@ -1,5 +1,6 @@
 ---
 name: impeccable-design-polish
+zh_description: "在网页或 HTML 产物完成后做设计审查与打磨，补充动效并做上线前的加固。"
 description: |
   Follow-up design polish skill inspired by Impeccable. Use after a web or HTML artifact exists to audit, critique, polish, animate, harden, and prepare the page for a live/share pass.
 triggers:

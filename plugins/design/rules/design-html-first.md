@@ -1,5 +1,5 @@
 ---
-description: Design 产物优先 HTML-first 工作流
+description: 设计产物先生成可预览的 HTML，确认后再导出 PDF 或 PPTX
 ---
 
 # Brain Design HTML-first

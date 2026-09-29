@@ -1,13 +1,12 @@
 ---
 name: html-ppt-testing-safety-alert
+zh_description: "数据治理汇报幻灯片，讲清数据风险、管控框架、责任划分和需要审批的事项。"
 en_name: "Brief a Health-System Board on Data Governance like a Chief Compliance Officer"
 zh_name: "像首席合规官一样向医院董事会汇报数据治理"
 description: |
   A hospital data-governance briefing: patient-data risk, the control framework, accountability, and the approval the board must give. Built as a decision-grade policy briefing deck for health-system board, regulators.
 en_description: |
   A hospital data-governance briefing: patient-data risk, the control framework, accountability, and the approval the board must give. Built as a decision-grade policy briefing deck for health-system board, regulators.
-zh_description: |
-  像首席合规官一样向医院董事会汇报数据治理——一份可商业交付的政策简报 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "government-policy"
   - "policy-briefing-deck"

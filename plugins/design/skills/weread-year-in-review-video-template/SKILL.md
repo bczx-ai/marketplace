@@ -1,5 +1,6 @@
 ---
 name: weread-year-in-review-video-template
+zh_description: "竖版年度阅读报告视频模板，适合读书笔记回顾和可分享的年度总结。"
 description: |
   WeRead-inspired HyperFrames video template for vertical annual reading reports,
   personal reading dashboards, book-note recaps, and shareable year-in-review

@@ -1,13 +1,12 @@
 ---
 name: huashu-luxe-whitespace
+zh_description: "留白奢华风格的市场进入方案幻灯片，包含细分市场、定位、渠道和分阶段计划。"
 en_name: "Write a Luxury Market-Entry Deck like a Premium-Sector Strategy Partner"
 zh_name: "像高端领域战略合伙人一样写奢侈品进入市场方案"
 description: |
   A market-entry study for a luxury skincare brand entering Asia — segmentation, positioning, channel, and the phased plan. Built as a decision-grade consulting deck for client leadership.
 en_description: |
   A market-entry study for a luxury skincare brand entering Asia — segmentation, positioning, channel, and the phased plan. Built as a decision-grade consulting deck for client leadership.
-zh_description: |
-  像高端领域战略合伙人一样写奢侈品进入市场方案——一份可商业交付的咨询交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "consulting"
   - "consulting-final-deck"

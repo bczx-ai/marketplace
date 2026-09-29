@@ -1,5 +1,6 @@
 ---
 name: swiss-user-research-video-template
+zh_description: "暖纸色调的瑞士风用户研究叙事模板，适合高品质的研究汇报和故事型展示。"
 description: |
   Swiss-style user-research narrative template in warm-paper editorial aesthetics.
   Use when users ask for a premium research deck or story-first live artifact with

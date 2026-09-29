@@ -1,5 +1,6 @@
 ---
 name: screenshots-marketing
+zh_description: "用 Playwright 生成营销截图，适合落地页首屏、应用商店截图和更新日志配图。"
 description: |
   Generate marketing screenshots with Playwright. Useful for landing-page hero shots, App Store screenshots, and changelog visuals.
 triggers:

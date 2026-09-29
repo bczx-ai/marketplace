@@ -1,5 +1,6 @@
 ---
 name: ai-music-album
+zh_description: "覆盖 AI 音乐专辑的完整制作流程，包括概念、歌词、曲目编排与导出。"
 description: |
   Full-lifecycle AI music album production — concept, lyric drafting, track sequencing, and export. Useful for indie album experiments and brand soundtracks.
 triggers:

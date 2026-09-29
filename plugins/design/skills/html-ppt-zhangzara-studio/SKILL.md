@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-studio
+zh_description: "工作室风格的作品集与报价幻灯片，展示代表作品、服务流程和报价方案。"
 en_name: "Build a Studio Portfolio & Rate Deck like a Creative Studio Owner"
 zh_name: "像创意工作室主理人一样做作品与报价稿"
 description: |
   A photography studio's portfolio-and-rate deck — the signature work, the process, and the packages that win the brief. Built as a decision-grade design craft deck for prospective clients.
 en_description: |
   A photography studio's portfolio-and-rate deck — the signature work, the process, and the packages that win the brief. Built as a decision-grade design craft deck for prospective clients.
-zh_description: |
-  像创意工作室主理人一样做作品与报价稿——一份可商业交付的设计打磨 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "design-craft"
   - "board-upgrade-deck-rescue"

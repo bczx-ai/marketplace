@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-mat
+zh_description: "咨询报告风格的利润改善方案幻灯片，包含核心结论、驱动因素树、优先级和路线图。"
 en_name: "Write a Margin-Recovery Final Deck like a McKinsey Engagement Manager"
 zh_name: "像麦肯锡项目经理一样写利润率修复终稿"
 description: |
   A margin-recovery diagnosis for a regional grocery chain — the governing thought, the driver tree, the priorities, and the roadmap. Built as a decision-grade consulting deck for client sponsor, steering committee.
 en_description: |
   A margin-recovery diagnosis for a regional grocery chain — the governing thought, the driver tree, the priorities, and the roadmap. Built as a decision-grade consulting deck for client sponsor, steering committee.
-zh_description: |
-  像麦肯锡项目经理一样写利润率修复终稿——一份可商业交付的咨询交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "consulting"
   - "consulting-final-deck"

@@ -1,13 +1,12 @@
 ---
 name: html-ppt-presenter-mode
+zh_description: "带演讲者模式的现场演示幻灯片，适合产品实操演示和技术分享。"
 en_name: "Run a Live AI Product Demo like a Founding DevRel Lead"
 zh_name: "像创始 DevRel 一样做现场 AI 演示"
 description: |
   Open Design live demo: from a one-line prompt to runnable design in a single session — the flow, live. Built as a decision-grade AI literacy deck for developers, prospects, community.
 en_description: |
   Open Design live demo: from a one-line prompt to runnable design in a single session — the flow, live. Built as a decision-grade AI literacy deck for developers, prospects, community.
-zh_description: |
-  像创始 DevRel 一样做现场 AI 演示——一份可商业交付的AI 素养 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "ai-literacy"
   - "enterprise-ai-copilot-rollout-brief"

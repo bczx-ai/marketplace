@@ -1,5 +1,6 @@
 ---
 name: gsap-plugins
+zh_description: "GSAP 官方插件用法，包括 ScrollSmoother、Flip、Draggable、SplitText 等。"
 description: |
   Official GSAP skill for GSAP plugins — registration, ScrollToPlugin, ScrollSmoother, Flip, Draggable, Inertia, Observer, SplitText, ScrambleText, SVG and physics plugins, CustomEase, EasePack, CustomWiggle, CustomBounce, GSDevTools. Use when the user asks about a GSAP plugin, scroll-to, flip animations, draggable, SVG drawing, or plugin registration.
 triggers:

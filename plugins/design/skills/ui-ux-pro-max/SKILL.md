@@ -1,5 +1,6 @@
 ---
 name: ui-ux-pro-max
+zh_description: "UI/UX Pro Max 的目录入口，完整的模板、数据和检索流程未随包提供。"
 description: |
   Catalog-only UI/UX Pro Max entry. The full upstream templates, data, and search workflow are not bundled in Open Design.
 triggers:

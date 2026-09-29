@@ -1,5 +1,6 @@
 ---
 name: figma-create-new-file
+zh_description: "新建空白的 Figma 设计文件或 FigJam 白板。"
 description: |
   Create a new blank Figma Design or FigJam file. Useful as the first step in scripted design-system or workshop workflows.
 triggers:

@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-pin-and-paper
+zh_description: "图钉便签风格的田野调查答辩幻灯片，呈现调查设计、数据、贡献和局限。"
 en_name: "Turn a Field-Study Capstone into a Defense Deck like a Star Biology Major"
 zh_name: "像明星生物学生一样做田野调查答辩"
 description: |
   A field-biology capstone on urban pollinator decline — the survey design, the data, the contribution, and the caveats. Built as a decision-grade coursework defense deck for faculty reviewers.
 en_description: |
   A field-biology capstone on urban pollinator decline — the survey design, the data, the contribution, and the caveats. Built as a decision-grade coursework defense deck for faculty reviewers.
-zh_description: |
-  像明星生物学生一样做田野调查答辩——一份可商业交付的课业答辩 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "student-coursework"
   - "senior-capstone-defense-deck"

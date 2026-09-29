@@ -1,5 +1,6 @@
 ---
 name: fal-generate
+zh_description: "通过 fal.ai 调用 Flux、SDXL 等模型生成图片和视频。"
 description: |
   Generate images and videos using fal.ai AI models. Production-grade catalogue covering Flux, SDXL, ideogram, and other community-hosted endpoints.
 triggers:

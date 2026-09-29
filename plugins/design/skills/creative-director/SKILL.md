@@ -1,5 +1,6 @@
 ---
 name: creative-director
+zh_description: "AI 创意总监：运用 20 余种创意方法论，从需求简报一路推进到创意提案，并按国际奖项标准自评。"
 description: |
   AI creative director with recursive self-assessment: 20+ methodologies (SIT, TRIZ, Bisociation, SCAMPER, Synectics), 3-axis evaluation calibrated against Cannes/D&AD/HumanKind, 5-phase process from brief to presentation.
 triggers:

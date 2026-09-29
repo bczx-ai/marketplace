@@ -1,5 +1,6 @@
 ---
 name: design-review
+zh_description: "对界面做视觉审查并直接修复，每项修改附改前改后截图，适合上线前打磨。"
 description: |
   Designer Who Codes: visual audit then fixes with atomic commits and before/after screenshots. Useful for tightening shipped UI before launch.
 triggers:

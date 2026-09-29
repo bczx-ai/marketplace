@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-cobalt-grid
+zh_description: "钴蓝网格风格的续约与扩容提案幻灯片，用使用数据证明价值和投资回报。"
 en_name: "Write a Renewal & Expansion Business Case like an Account Director"
 zh_name: "像客户总监一样写续约与扩容论证"
 description: |
   Open Design renewal + seat-expansion business case for a growing customer: realized value, usage proof, and the expansion ROI. Built as a decision-grade B2B sales deck for champion, finance approver.
 en_description: |
   Open Design renewal + seat-expansion business case for a growing customer: realized value, usage proof, and the expansion ROI. Built as a decision-grade B2B sales deck for champion, finance approver.
-zh_description: |
-  像客户总监一样写续约与扩容论证——一份可商业交付的B2B 销售 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "b2b-sales"
   - "b2b-saas-sales-proposal"

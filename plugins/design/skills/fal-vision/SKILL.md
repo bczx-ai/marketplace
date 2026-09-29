@@ -1,5 +1,6 @@
 ---
 name: fal-vision
+zh_description: "通过 fal.ai 分析图片，支持物体分割、检测、文字识别、描述和视觉问答。"
 description: |
   Analyze images — segment objects, detect, run OCR, describe, and answer visual questions via fal.ai vision models.
 triggers:

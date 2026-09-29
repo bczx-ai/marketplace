@@ -1,5 +1,6 @@
 ---
 name: brand-guidelines
+zh_description: "以 Anthropic 官方品牌色与字体为参考，为设计产物建立统一的视觉规范。"
 description: |
   Apply Anthropic's official brand colors and typography to artifacts for consistent visual identity and professional design standards. A reference for shaping your own.
 triggers:

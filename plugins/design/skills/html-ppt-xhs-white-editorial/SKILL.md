@@ -1,13 +1,12 @@
 ---
 name: html-ppt-xhs-white-editorial
+zh_description: "小红书白底编辑风格的晋升材料幻灯片，呈现职责范围、关键成果和影响力。"
 en_name: "Write a Staff-Engineer Promotion Case like a Calibration-Committee Insider"
 zh_name: "像晋升评审内部人一样写 Staff 工程师晋升材料"
 description: |
   A staff-engineer promotion packet — scope, the proof moments, the artifacts, and the impact that clears the bar. Built as a decision-grade career deck for manager, calibration committee.
 en_description: |
   A staff-engineer promotion packet — scope, the proof moments, the artifacts, and the impact that clears the bar. Built as a decision-grade career deck for manager, calibration committee.
-zh_description: |
-  像晋升评审内部人一样写 Staff 工程师晋升材料——一份可商业交付的职业发展 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "career"
   - "year-end-self-review-deck"

@@ -1,5 +1,6 @@
 ---
 name: figma-generate-library
+zh_description: "根据代码库在 Figma 中搭建或更新设计系统组件库，与线上组件保持一致。"
 description: |
   Build or update a professional-grade design system library in Figma from a codebase. Useful for keeping the Figma source of truth in sync with shipped components.
 triggers:

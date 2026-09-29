@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-vellum
+zh_description: "羊皮纸风格的人文学术讲座幻灯片，呈现史料、论点和证据。"
 en_name: "Deliver a Humanities Research Lecture like a Tenured Art Historian"
 zh_name: "像终身教授一样做人文研究讲座"
 description: |
   A humanities lecture: how Renaissance linear perspective reshaped early cartography — sources, argument, and evidence. Built as a decision-grade academic research deck for faculty, graduate seminar.
 en_description: |
   A humanities lecture: how Renaissance linear perspective reshaped early cartography — sources, argument, and evidence. Built as a decision-grade academic research deck for faculty, graduate seminar.
-zh_description: |
-  像终身教授一样做人文研究讲座——一份可商业交付的学术研究 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "academic-research"
   - "academic-review-deck"

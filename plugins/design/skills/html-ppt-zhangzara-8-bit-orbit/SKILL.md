@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-8-bit-orbit
+zh_description: "8 位像素风格的个人爱好故事幻灯片。"
 en_name: "Turn a Hobby into a Story Deck like a Passion-Project Storyteller"
 zh_name: "像热爱驱动的讲述者一样把爱好做成故事"
 description: |
   A gamer's journey building a retro-arcade collection — the obsession, the hunt, and what the machines came to mean. Built as a decision-grade story deck for friends, hobby community.
 en_description: |
   A gamer's journey building a retro-arcade collection — the obsession, the hunt, and what the machines came to mean. Built as a decision-grade story deck for friends, hobby community.
-zh_description: |
-  像热爱驱动的讲述者一样把爱好做成故事——一份可商业交付的生活故事 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "life"
   - "travel-photo-essay-deck"

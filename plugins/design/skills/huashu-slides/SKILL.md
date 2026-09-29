@@ -1,13 +1,12 @@
 ---
 name: huashu-slides
+zh_description: "职业转型故事幻灯片，讲清经历脉络、能力证明和下一份工作的理由。"
 en_name: "Tell a Career-Pivot Story like an Executive-Presence Coach"
 zh_name: "像高管形象教练一样讲职业转型故事"
 description: |
   A career-pivot story from consultant to product leader — the arc, the proof, and why the next role is the right bet. Built as a decision-grade career deck for hiring manager, mentors.
 en_description: |
   A career-pivot story from consultant to product leader — the arc, the proof, and why the next role is the right bet. Built as a decision-grade career deck for hiring manager, mentors.
-zh_description: |
-  像高管形象教练一样讲职业转型故事——一份可商业交付的职业发展 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "career"
   - "year-end-self-review-deck"

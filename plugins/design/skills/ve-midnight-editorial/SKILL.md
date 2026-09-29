@@ -1,13 +1,12 @@
 ---
 name: ve-midnight-editorial
+zh_description: "午夜编辑风格的财务复盘幻灯片，呈现资金可用期、支出和可持续计划。"
 en_name: "Present a Financial Review like a Startup CFO"
 zh_name: "像创业公司 CFO 一样做财务复盘"
 description: |
   Open Design's financial review: runway, burn, and the sustainability plan that keeps the project independent. Built as a decision-grade data & finance deck for board, leadership.
 en_description: |
   Open Design's financial review: runway, burn, and the sustainability plan that keeps the project independent. Built as a decision-grade data & finance deck for board, leadership.
-zh_description: |
-  像创业公司 CFO 一样做财务复盘——一份可商业交付的数据财务 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "data-finance"
   - "product-analytics-deck"

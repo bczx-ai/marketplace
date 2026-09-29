@@ -1,5 +1,6 @@
 ---
 name: full-output-enforcement
+zh_description: "要求完整输出代码和内容，不留占位，在长度受限时规范地分段输出。"
 description: |
   Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly. Apply to any task requiring exhaustive, unabridged output.
 triggers:

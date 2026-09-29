@@ -1,13 +1,12 @@
 ---
 name: fs-notebook-tabs
+zh_description: "计算机专业毕业答辩幻灯片，涵盖问题、方法、评估和答辩问答。"
 en_name: "Defend a CS Capstone like a Top Thesis Advisor"
 zh_name: "像顶级导师一样答辩计算机毕业项目"
 description: |
   A computer-science capstone: an on-device ML keyboard that predicts next words privately — problem, method, evaluation, and defense answers. Built as a decision-grade coursework defense deck for professor, defense committee.
 en_description: |
   A computer-science capstone: an on-device ML keyboard that predicts next words privately — problem, method, evaluation, and defense answers. Built as a decision-grade coursework defense deck for professor, defense committee.
-zh_description: |
-  像顶级导师一样答辩计算机毕业项目——一份可商业交付的课业答辩 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "student-coursework"
   - "senior-capstone-defense-deck"

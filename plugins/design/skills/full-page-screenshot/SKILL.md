@@ -1,5 +1,6 @@
 ---
 name: full-page-screenshot
+zh_description: "通过 Chrome DevTools 协议截取网页全页长图，适合作品集、案例和审查报告。"
 description: |
   Capture full-page screenshots of web pages via Chrome DevTools Protocol with zero dependencies. Useful for portfolios, case studies, and audit reports.
 triggers:

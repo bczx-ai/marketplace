@@ -1,5 +1,6 @@
 ---
 name: fal-kling-o3
+zh_description: "通过 fal.ai 调用可灵 O3 模型生成图片和视频。"
 description: |
   Generate images and videos with Kling O3 — Kling's most powerful model family — via fal.ai.
 triggers:

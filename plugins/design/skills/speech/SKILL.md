@@ -1,5 +1,6 @@
 ---
 name: speech
+zh_description: "调用 OpenAI 接口把文字转成语音，适合讲解视频、课程音频和配音。"
 description: |
   Generate spoken audio from text using OpenAI's API with built-in voices. Useful for narrated explainers, lecture audio, and quick voiceover tracks.
 triggers:

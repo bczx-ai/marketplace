@@ -1,5 +1,6 @@
 ---
 name: gif-sticker-maker
+zh_description: "把照片转成潮玩风格的 GIF 动态表情，适合个性化聊天表情和头像。"
 description: |
   Convert photos into animated GIF stickers in Funko Pop / Pop Mart style via the MiniMax API. Useful for personalized chat stickers and avatar packs.
 triggers:

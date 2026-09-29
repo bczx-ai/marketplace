@@ -1,5 +1,6 @@
 ---
 name: frontend-skill
+zh_description: "以克制的构图制作视觉出众的落地页、网站和应用界面。"
 description: |
   Create visually strong landing pages, websites, and app UIs with restrained composition. OpenAI's production frontend playbook.
 triggers:

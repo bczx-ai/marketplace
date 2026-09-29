@@ -1,5 +1,6 @@
 ---
 name: youtube-clipper
+zh_description: "自动剪辑 YouTube 视频：拉取素材、截取精彩片段、添加字幕并导出。"
 description: |
   YouTube clip generation and editing with automated workflows — pull source video, slice highlights, add captions, and export.
 triggers:

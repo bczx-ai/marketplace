@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-blue-professional
+zh_description: "蓝色商务风格的季度经营回顾幻灯片，呈现进展、停滞项和资源调整建议。"
 en_name: "Present a Quarterly Business Review like a Chief of Staff"
 zh_name: "像幕僚长一样做季度经营回顾"
 description: |
   Open Design's QBR for the executive committee: what moved, what stalled, and the resource reallocation ask. Built as a decision-grade corporate strategy deck for executive committee.
 en_description: |
   Open Design's QBR for the executive committee: what moved, what stalled, and the resource reallocation ask. Built as a decision-grade corporate strategy deck for executive committee.
-zh_description: |
-  像幕僚长一样做季度经营回顾——一份可商业交付的企业战略 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "corporate-strategy"
   - "board-pre-read-deck"

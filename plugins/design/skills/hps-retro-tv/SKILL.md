@@ -1,13 +1,12 @@
 ---
 name: hps-retro-tv
+zh_description: "复古电视风格的家族影像故事幻灯片，按年代讲述家庭历史。"
 en_name: "Turn Home Movies into a Family-History Story like a Documentary Editor"
 zh_name: "像纪录片剪辑师一样把家庭影像做成家族史"
 description: |
   A family history told through five decades of home movies — the opening question, the eras, and what the footage reveals. Built as a decision-grade story deck for family, close friends.
 en_description: |
   A family history told through five decades of home movies — the opening question, the eras, and what the footage reveals. Built as a decision-grade story deck for family, close friends.
-zh_description: |
-  像纪录片剪辑师一样把家庭影像做成家族史——一份可商业交付的生活故事 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "life"
   - "travel-photo-essay-deck"

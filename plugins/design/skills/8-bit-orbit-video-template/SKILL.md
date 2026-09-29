@@ -1,5 +1,6 @@
 ---
 name: 8-bit-orbit-video-template
+zh_description: "复古像素风格的 HyperFrames 视频模板，适合制作多场景、带转场的像素动效短片。"
 description: |
   Hyperframes-based video template for retro pixel deck motion design.
   Use when users want a high-fidelity, multi-scene HTML-to-video composition

@@ -1,5 +1,6 @@
 ---
 name: theme-factory
+zh_description: "为幻灯片、文档、报告和落地页套用专业的字体与配色主题，内置 10 套主题。"
 description: |
   Apply professional font and color themes to artifacts including slides, docs, reports, and HTML landing pages. Ships 10 pre-set themes.
 triggers:

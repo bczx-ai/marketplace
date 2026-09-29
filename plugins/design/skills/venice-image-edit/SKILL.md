@@ -1,5 +1,6 @@
 ---
 name: venice-image-edit
+zh_description: "通过 Venice.ai 编辑图片，支持超分和去背景。"
 description: |
   Image edits, upscaling, and background removal via the Venice.ai API.
 triggers:

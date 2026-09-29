@@ -1,5 +1,6 @@
 ---
 name: sora
+zh_description: "通过 OpenAI Sora 生成、改编和管理短视频片段，适合电影感镜头和概念视频。"
 description: |
   Generate, remix, and manage short video clips via OpenAI's Sora API. Useful for cinematic shots, b-roll, and rapid concept video iteration.
 triggers:

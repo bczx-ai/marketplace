@@ -1,5 +1,6 @@
 ---
 name: high-end-visual-design
+zh_description: "高端设计工作室的视觉规范，明确字体、间距、阴影、卡片结构和动效，避免界面显得廉价。"
 description: |
   Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.
 triggers:

@@ -1,5 +1,6 @@
 ---
 name: industrial-brutalist-ui
+zh_description: "粗野主义界面风格：瑞士版式结合终端美学，刚性网格与强烈字号对比，适合数据密集的看板和作品集。"
 description: |
   Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints.
 triggers:

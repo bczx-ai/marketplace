@@ -1,5 +1,6 @@
 ---
 name: redesign-existing-projects
+zh_description: "把现有网站和应用升级到高品质设计：先审查现状、找出模板化问题，再在不破坏功能的前提下改进。"
 description: |
   Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS.
 triggers:

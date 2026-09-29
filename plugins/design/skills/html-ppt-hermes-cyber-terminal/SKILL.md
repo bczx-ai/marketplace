@@ -1,13 +1,12 @@
 ---
 name: html-ppt-hermes-cyber-terminal
+zh_description: "赛博终端风格的技术选型分享幻灯片，适合讲解模型选型、成本与质量权衡。"
 en_name: "Run a BYOK Model-Choice Session like an Applied-AI Engineer"
 zh_name: "像应用 AI 工程师一样讲 BYOK 选型"
 description: |
   Open Design + BYOK: choosing and wiring your own model, hands-on — cost, quality, and the routing decision. Built as a decision-grade AI literacy deck for engineers, IT, applied-AI teams.
 en_description: |
   Open Design + BYOK: choosing and wiring your own model, hands-on — cost, quality, and the routing decision. Built as a decision-grade AI literacy deck for engineers, IT, applied-AI teams.
-zh_description: |
-  像应用 AI 工程师一样讲 BYOK 选型——一份可商业交付的AI 素养 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "ai-literacy"
   - "enterprise-ai-copilot-rollout-brief"

@@ -1,5 +1,6 @@
 ---
 name: enhance-prompt
+zh_description: "用设计规格和 UI/UX 术语改写提示词，让视觉产出的要求更明确。"
 description: |
   Improve prompts with design specs and UI/UX vocabulary. Useful for design-to-code workflows and clarifying requests for visual output.
 triggers:

@@ -1,5 +1,6 @@
 ---
 name: venice-image-generate
+zh_description: "通过 Venice.ai 生成图片，支持多种风格。"
 description: |
   Image generation endpoints and available styles via the Venice.ai API.
 triggers:

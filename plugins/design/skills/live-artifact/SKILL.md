@@ -1,5 +1,6 @@
 ---
 name: live-artifact
+zh_description: "基于连接器或本地数据创建可刷新、可追溯的设计产物，适合实时看板和定期报告。"
 description: |
   Create refreshable, auditable Open Design artifacts backed by connector or local data.
   Trigger when the user asks for live dashboards, refreshable reports, synced views, or reusable data-backed artifacts.

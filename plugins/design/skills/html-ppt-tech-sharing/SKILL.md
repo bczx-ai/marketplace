@@ -1,13 +1,12 @@
 ---
 name: html-ppt-tech-sharing
+zh_description: "技术分享幻灯片，适合深入讲解系统原理和工程实现。"
 en_name: "Give an Engineering Tech Talk like a Staff Developer-Advocate"
 zh_name: "像 Staff DevRel 一样做工程分享"
 description: |
   Open Design internals: how the agent stream, sandbox, and artifacts work — an engineering deep-dive talk. Built as a decision-grade AI literacy deck for engineers, dev community.
 en_description: |
   Open Design internals: how the agent stream, sandbox, and artifacts work — an engineering deep-dive talk. Built as a decision-grade AI literacy deck for engineers, dev community.
-zh_description: |
-  像 Staff DevRel 一样做工程分享——一份可商业交付的AI 素养 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "ai-literacy"
   - "enterprise-ai-copilot-rollout-brief"

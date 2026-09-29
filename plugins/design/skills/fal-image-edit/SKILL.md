@@ -1,5 +1,6 @@
 ---
 name: fal-image-edit
+zh_description: "通过 fal.ai 编辑图片，支持风格迁移、抠图、移除物体和局部重绘。"
 description: |
   AI-powered image editing with style transfer, background removal, object removal, and inpainting via fal.ai hosted models.
 triggers:

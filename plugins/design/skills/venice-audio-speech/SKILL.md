@@ -1,5 +1,6 @@
 ---
 name: venice-audio-speech
+zh_description: "通过 Venice.ai 把文字转成语音，支持多种音色、格式和流式输出。"
 description: |
   Text-to-speech models, voices, formats, and streaming via Venice.ai. Useful for narration, voiceover, and conversational agent voices.
 triggers:

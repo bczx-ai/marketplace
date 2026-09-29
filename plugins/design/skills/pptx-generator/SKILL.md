@@ -1,5 +1,6 @@
 ---
 name: pptx-generator
+zh_description: "用 PptxGenJS 从零创建和编辑 PowerPoint 演示文稿。"
 description: |
   Create and edit PowerPoint presentations from scratch with PptxGenJS — MiniMax's production-tested deck pipeline.
 triggers:

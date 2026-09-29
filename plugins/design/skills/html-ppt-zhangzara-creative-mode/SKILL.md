@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-creative-mode
+zh_description: "品牌视觉识别系统发布幻灯片，展示 Logo、色彩、字体和使用规范。"
 en_name: "Present a Visual-Identity System like a Lead Brand Designer"
 zh_name: "像主创品牌设计师一样发布视觉识别系统"
 description: |
   A brand visual-identity system reveal for an outdoor label — logo, color, type, and the rules that keep it consistent. Built as a decision-grade design craft deck for brand team, client.
 en_description: |
   A brand visual-identity system reveal for an outdoor label — logo, color, type, and the rules that keep it consistent. Built as a decision-grade design craft deck for brand team, client.
-zh_description: |
-  像主创品牌设计师一样发布视觉识别系统——一份可商业交付的设计打磨 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "design-craft"
   - "board-upgrade-deck-rescue"

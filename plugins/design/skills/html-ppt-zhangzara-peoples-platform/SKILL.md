@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-peoples-platform
+zh_description: "公共事务风格的投资提案幻灯片，讲清需求、方案、风险控制和审批事项。"
 en_name: "Make a Public-Transit Funding Case like a Transportation Policy Lead"
 zh_name: "像交通政策负责人一样做公共交通投资论证"
 description: |
   A public-transit funding proposal for a city council — ridership need, the plan, the risk controls, and the ask. Built as a decision-grade policy briefing deck for city council, public board.
 en_description: |
   A public-transit funding proposal for a city council — ridership need, the plan, the risk controls, and the ask. Built as a decision-grade policy briefing deck for city council, public board.
-zh_description: |
-  像交通政策负责人一样做公共交通投资论证——一份可商业交付的政策简报 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "government-policy"
   - "policy-briefing-deck"

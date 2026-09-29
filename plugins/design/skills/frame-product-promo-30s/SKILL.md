@@ -1,9 +1,9 @@
 ---
 name: video-template-frame-product-promo-30s
+zh_description: "30 秒产品宣传视频模板，适合新品发布和功能亮点展示。"
 zh_name: "产品宣传片 30 秒帧"
 en_name: "Product Promo · 30s"
-description: Use this plugin when the user wants a "Product Promo · 30s" HyperFrames motion video — Multi-scene 30-second product promo: problem-type intro, brand reveal, benefits flowchart, product surfaces, value pillars, foundation, CTA outro. Forked from Nate Herk's hyperframes-student-kit (linear-promo-30s); brand-specific copy + assets replaced with generic placeholders.
-zh_description: "多场景 30 秒产品宣传片——问题式开场、品牌揭示、卖点流程图、产品界面、价值支柱、底座、行动号召收尾；派生自 Nate Herk 的 hyperframes-student-kit（linear-promo-30s），品牌专属文案与素材已替换为通用占位"
+description: "Use this plugin when the user wants a \"Product Promo · 30s\" HyperFrames motion video — Multi-scene 30-second product promo: problem-type intro, brand reveal, benefits flowchart, product surfaces, value pillars, foundation, CTA outro. Forked from Nate Herk's hyperframes-student-kit (linear-promo-30s); brand-specific copy + assets replaced with generic placeholders."
 zh_tags:
   - "产品宣传"
   - "30 秒"

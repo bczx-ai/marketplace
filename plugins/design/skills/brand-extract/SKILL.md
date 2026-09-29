@@ -1,5 +1,6 @@
 ---
 name: brand-extract
+zh_description: "在内置浏览器中打开网站，提取品牌色、字体、Logo 等信息，整理成品牌套件。"
 description: |
   Extract a complete Brand Kit from a live website by driving the in-app
   browser. Use when a brand-extraction project opens with a site in the Browser

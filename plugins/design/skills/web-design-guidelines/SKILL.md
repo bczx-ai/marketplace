@@ -1,5 +1,6 @@
 ---
 name: web-design-guidelines
+zh_description: "按 Vercel 的界面规范审查 UI 代码，覆盖布局、字体、配色、动效和无障碍。"
 description: |
   Review UI code for Web Interface Guidelines compliance by the Vercel engineering team. Covers layout, typography, color, motion, and accessibility for product UI.
 triggers:

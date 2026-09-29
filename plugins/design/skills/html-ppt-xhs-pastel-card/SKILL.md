@@ -1,13 +1,12 @@
 ---
 name: html-ppt-xhs-pastel-card
+zh_description: "小红书粉彩卡片风格的个人故事演讲幻灯片。"
 en_name: "Write a Personal Manifesto Talk like a Narrative Podcast Producer"
 zh_name: "像叙事播客制作人一样写个人宣言演讲"
 description: |
   A personal manifesto: a year of saying yes — the premise, the scenes, the turn, and the meaning that lands. Built as a decision-grade story deck for community, talk audience.
 en_description: |
   A personal manifesto: a year of saying yes — the premise, the scenes, the turn, and the meaning that lands. Built as a decision-grade story deck for community, talk audience.
-zh_description: |
-  像叙事播客制作人一样写个人宣言演讲——一份可商业交付的生活故事 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "life"
   - "travel-photo-essay-deck"
