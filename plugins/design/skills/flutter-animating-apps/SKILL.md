@@ -1,5 +1,6 @@
 ---
 name: flutter-animating-apps
+zh_description: "在 Flutter 应用中实现动画、转场和动效。"
 description: |
   Implement animated effects, transitions, and motion in Flutter apps. Useful for native iOS/Android motion design.
 triggers:

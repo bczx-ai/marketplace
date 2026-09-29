@@ -1,5 +1,6 @@
 ---
 name: threejs
+zh_description: "用 Three.js 在浏览器中制作 3D 元素和交互体验，包括场景、材质、控制和后期处理。"
 description: |
   Three.js skills for creating 3D elements and interactive experiences in the browser — scenes, materials, controls, and post-processing.
 triggers:

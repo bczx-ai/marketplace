@@ -1,5 +1,6 @@
 ---
 name: slides
+zh_description: "用 PptxGenJS 创建和编辑 .pptx 演示文稿，适合销售提案、项目启动和设计系统展示。"
 description: |
   Create and edit .pptx presentation decks with PptxGenJS. Useful for sales decks, kickoff briefs, and design-system showcases.
 triggers:

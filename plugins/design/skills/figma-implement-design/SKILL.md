@@ -1,5 +1,6 @@
 ---
 name: figma-implement-design
+zh_description: "把 Figma 设计稿按 1:1 还原为可上线的前端代码。"
 description: |
   Translate Figma designs into production-ready code with 1:1 visual fidelity. Useful for handing off Figma frames straight to a frontend agent.
 triggers:

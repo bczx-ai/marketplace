@@ -1,5 +1,6 @@
 ---
 name: shader-dev
+zh_description: "GLSL 着色器技法，包括光线步进、流体模拟、粒子系统和程序化生成，适合首屏视觉和动态静帧。"
 description: |
   GLSL shader techniques for ray marching, fluid simulation, particle systems, and procedural generation. Useful for hero visuals and motion stills.
 triggers:

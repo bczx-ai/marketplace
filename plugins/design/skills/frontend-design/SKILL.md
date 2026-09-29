@@ -1,5 +1,6 @@
 ---
 name: frontend-design
+zh_description: "打造风格鲜明、可直接上线的前端界面，适合网站、落地页、看板和应用页面。"
 description: |
   Create distinctive, production-grade frontend interfaces with strong visual direction, polished typography, considered layout, and working HTML/CSS/JS or framework code. Use for websites, landing pages, dashboards, React components, application screens, and UI beautification.
 triggers:

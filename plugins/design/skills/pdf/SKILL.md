@@ -1,5 +1,6 @@
 ---
 name: pdf
+zh_description: "提取 PDF 文字、创建 PDF 并处理表单，适合新闻稿、品牌单页和可打印的交付物。"
 description: |
   Extract text, create PDFs, and handle forms. Useful for press releases, branded one-pagers, and printable design deliverables.
 triggers:

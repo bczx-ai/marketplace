@@ -1,13 +1,12 @@
 ---
 name: html-ppt-pitch-deck
+zh_description: "路演日融资幻灯片，依次展示亮点、增长数据、竞争壁垒和融资计划。"
 en_name: "Write a Demo Day Pitch like a Top Accelerator Partner"
 zh_name: "像顶级加速器合伙人一样写 Demo Day 路演"
 description: |
   Open Design's demo-day pitch: hook, traction, moat, and the raise — built to make a partner sit up by page three. Built as a decision-grade fundraising pitch deck for accelerator partners, angels.
 en_description: |
   Open Design's demo-day pitch: hook, traction, moat, and the raise — built to make a partner sit up by page three. Built as a decision-grade fundraising pitch deck for accelerator partners, angels.
-zh_description: |
-  像顶级加速器合伙人一样写 Demo Day 路演——一份可商业交付的融资路演 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "fundraising-pitch"
   - "series-a-pitch-deck"

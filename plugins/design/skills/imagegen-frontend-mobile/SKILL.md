@@ -1,5 +1,6 @@
 ---
 name: imagegen-frontend-mobile
+zh_description: "生成高品质的移动应用界面概念图和多屏流程，适用于 iOS、Android 和跨平台应用。"
 description: |
   Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows. Designed for iOS, Android, and cross-platform mobile products. Prioritizes clean hierarchy, comfortably readable text, strong multi-screen consistency, controlled color palettes, non-generic creative direction, textured surfaces, image-led composition, tasteful custom iconography, and clean phone mockup framing. By default, screens should be shown inside a subtle premium iPhone or similar phone mockup with a visible frame, while the main focus stays on the app content itself. This skill generates images only. It does not write code.
 triggers:

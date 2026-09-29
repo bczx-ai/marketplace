@@ -1,5 +1,6 @@
 ---
 name: minimax-docx
+zh_description: "用 OpenXML SDK 创建和编辑专业 Word 文档，适合品牌报告、方案书和基于模板的写作。"
 description: |
   Professional DOCX document creation and editing using OpenXML SDK. Useful for branded reports, polished proposals, and template-based authoring.
 triggers:

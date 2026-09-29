@@ -1,5 +1,6 @@
 ---
 name: hatch-pet
+zh_description: "根据角色图、截图或参考图制作 Codex 动态宠物精灵图，并完成修复、校验、预览和打包。"
 description: Create, repair, validate, preview, and package Codex-compatible animated pet spritesheets from character art, screenshots, generated images, or visual references. Use when a user wants to hatch a Codex pet, create a custom animated pet, or build a built-in pet asset with an 8x9 atlas, transparent unused cells, row-by-row animation prompts, QA contact sheets, preview videos, and pet.json packaging. This skill composes the installed $imagegen system skill for visual generation and uses bundled scripts for deterministic spritesheet assembly.
 triggers:
   - "hatch a pet"

@@ -1,13 +1,12 @@
 ---
 name: magazine-web-ppt
+zh_description: "市场与增长规划幻灯片，把发布、活动和品牌计划与增长目标对应起来，适合年度营销规划。"
 en_name: "Write a Brand-to-Revenue Story like a Growth Strategy Lead"
 zh_name: "像增长策略负责人一样写品牌到收入故事"
 description: |
   For marketing and gtm work: bind launches, campaigns, events, and brand plans to growth and pipeline outcomes. Built around the core query "annual-marketing-plan", with GTM strategy lead judgment, buyer-ready proof, and this outcome: approve launch plan, campaign budget, or GTM motion.
 en_description: |
   For marketing and gtm work: bind launches, campaigns, events, and brand plans to growth and pipeline outcomes. Built around the core query "annual-marketing-plan", with GTM strategy lead judgment, buyer-ready proof, and this outcome: approve launch plan, campaign budget, or GTM motion.
-zh_description: |
-  市场/增长/GTM场景：围绕 core query「annual-marketing-plan」把粗糙材料整理成“像增长策略负责人一样写品牌到收入故事”这类可购买、可复用的专业 Deck；突出受众、决策目标、证据链、风险取舍和评审标准。
 tags:
   - "marketing-gtm"
   - "annual-marketing-plan"

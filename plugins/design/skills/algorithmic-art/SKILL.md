@@ -1,5 +1,6 @@
 ---
 name: algorithmic-art
+zh_description: "用 p5.js 生成可复现的算法艺术，适合程序化海报、静帧和艺术画面探索。"
 description: |
   Create generative art using p5.js with seeded randomness so every render is reproducible. Useful for procedural posters, motion-style stills, and artistic frame studies.
 triggers:

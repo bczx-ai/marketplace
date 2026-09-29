@@ -1,5 +1,6 @@
 ---
 name: brainstorming
+zh_description: "通过结构化提问和多方案对比，把粗略想法发展成完整的设计方案，适合概念初期。"
 description: |
   Transform rough ideas into fully-formed designs through structured questioning and alternative exploration. Useful early in concept work.
 triggers:

@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-monochrome
+zh_description: "黑白极简风格的科研基金申请幻灯片，讲清假设、方法、里程碑和风险。"
 en_name: "Write a Grant Committee Brief like a Funded Principal Investigator"
 zh_name: "像拿到资助的 PI 一样写基金评审简报"
 description: |
   A grant proposal on CRISPR base-editing for sickle-cell disease — the hypothesis, the approach, the milestones, and the risk. Built as a decision-grade academic research deck for grant review committee.
 en_description: |
   A grant proposal on CRISPR base-editing for sickle-cell disease — the hypothesis, the approach, the milestones, and the risk. Built as a decision-grade academic research deck for grant review committee.
-zh_description: |
-  像拿到资助的 PI 一样写基金评审简报——一份可商业交付的学术研究 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "academic-research"
   - "academic-review-deck"

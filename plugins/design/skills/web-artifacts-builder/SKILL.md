@@ -1,5 +1,6 @@
 ---
 name: web-artifacts-builder
+zh_description: "用 React 和 Tailwind 构建复杂、可嵌入的 HTML 页面产物。"
 description: |
   Build complex claude.ai HTML artifacts with React and Tailwind. Anthropic's reference workflow for shipping rich, embeddable artifacts.
 triggers:

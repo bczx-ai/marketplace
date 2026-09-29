@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-biennale-yellow
+zh_description: "黄色双年展风格的艺术策展幻灯片，包含策展主题、展厅、作品和参观动线。"
 en_name: "Curate an Art Biennale Deck like a Museum Exhibition Director"
 zh_name: "像美术馆策展总监一样做双年展策展稿"
 description: |
   A curatorial deck for a contemporary art biennale — the thesis, the rooms, the works, and the visitor journey. Built as a decision-grade design craft deck for museum board, curators.
 en_description: |
   A curatorial deck for a contemporary art biennale — the thesis, the rooms, the works, and the visitor journey. Built as a decision-grade design craft deck for museum board, curators.
-zh_description: |
-  像美术馆策展总监一样做双年展策展稿——一份可商业交付的设计打磨 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "design-craft"
   - "board-upgrade-deck-rescue"

@@ -1,13 +1,12 @@
 ---
 name: huashu-keynote-black
+zh_description: "黑底发布会风格的全员大会幻灯片，回顾年度成果、明确三项重点和各团队职责。"
 en_name: "Run an All-Hands Town Hall like a World-Class Founder-CEO"
 zh_name: "像世界级创始人 CEO 一样开全员大会"
 description: |
   Open Design's all-hands: the year in review, the three priorities, and what every team owns next quarter. Built as a decision-grade corporate strategy deck for whole company.
 en_description: |
   Open Design's all-hands: the year in review, the three priorities, and what every team owns next quarter. Built as a decision-grade corporate strategy deck for whole company.
-zh_description: |
-  像世界级创始人 CEO 一样开全员大会——一份可商业交付的企业战略 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "corporate-strategy"
   - "board-pre-read-deck"

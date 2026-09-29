@@ -1,5 +1,6 @@
 ---
 name: writing-guidelines
+zh_description: "按写作规范审查文档，检查文风、语气和措辞。"
 description: |
   Review docs/prose for Writing Guidelines compliance. Use when asked to "review my docs", "check writing style", "audit prose", "review docs voice and tone", or "check this page against the writing handbook".
 triggers:

@@ -1,5 +1,6 @@
 ---
 name: competitive-ads-extractor
+zh_description: "从广告库提取并分析竞品广告，了解对方的信息表达和创意手法。"
 description: |
   Extract and analyze competitors' ads from ad libraries to understand messaging and creative approaches that resonate.
 triggers:

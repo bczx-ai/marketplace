@@ -1,13 +1,12 @@
 ---
 name: hps-true-blueprint
+zh_description: "蓝图风格的工程架构讲解幻灯片，展示系统结构图和关键约束。"
 en_name: "Present an Engineering Blueprint like a Principal Architect"
 zh_name: "像首席架构师一样讲工程蓝图"
 description: |
   Open Design's engineering blueprint: how the sandbox, sidecar, and daemon fit — the system diagram and the invariants. Built as a decision-grade product management deck for engineering org.
 en_description: |
   Open Design's engineering blueprint: how the sandbox, sidecar, and daemon fit — the system diagram and the invariants. Built as a decision-grade product management deck for engineering org.
-zh_description: |
-  像首席架构师一样讲工程蓝图——一份可商业交付的产品管理 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "product-management"
   - "pm-feature-business-case-deck"

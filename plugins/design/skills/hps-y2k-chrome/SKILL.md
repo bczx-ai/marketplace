@@ -1,13 +1,12 @@
 ---
 name: hps-y2k-chrome
+zh_description: "Y2K 金属风格的 KPI 决策简报幻灯片，讲清增长驱动因素和下一步要改善的指标。"
 en_name: "Write a KPI Decision Brief like a CFO-Ready Analytics Lead"
 zh_name: "像能让 CFO 读懂的分析负责人一样写 KPI 决策简报"
 description: |
   Open Design's KPI decision brief: activation and retention drivers, what's working, and the one metric to move next. Built as a decision-grade data & finance deck for CRO, RevOps, leadership.
 en_description: |
   Open Design's KPI decision brief: activation and retention drivers, what's working, and the one metric to move next. Built as a decision-grade data & finance deck for CRO, RevOps, leadership.
-zh_description: |
-  像能让 CFO 读懂的分析负责人一样写 KPI 决策简报——一份可商业交付的数据财务 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "data-finance"
   - "product-analytics-deck"

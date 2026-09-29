@@ -1,13 +1,12 @@
 ---
 name: simple-deck
+zh_description: "简洁风格的经营复盘幻灯片，呈现增长、支出和可持续发展路径。"
 en_name: "Write an Operating Review like a Disciplined COO"
 zh_name: "像克制的 COO 一样写经营复盘"
 description: |
   Open Design's operating review: growth, burn, and the concrete path to sustainability without losing the open ethos. Built as a decision-grade corporate strategy deck for leadership team.
 en_description: |
   Open Design's operating review: growth, burn, and the concrete path to sustainability without losing the open ethos. Built as a decision-grade corporate strategy deck for leadership team.
-zh_description: |
-  像克制的 COO 一样写经营复盘——一份可商业交付的企业战略 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "corporate-strategy"
   - "board-pre-read-deck"

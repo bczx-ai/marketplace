@@ -1,5 +1,6 @@
 ---
 name: slack-gif-creator
+zh_description: "制作适配 Slack 的 GIF 动图，自动检查尺寸限制。"
 description: |
   Create animated GIFs optimized for Slack with validators for size constraints and composable animation primitives.
 triggers:

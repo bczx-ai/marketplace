@@ -1,5 +1,6 @@
 ---
 name: minimax-pdf
+zh_description: "用设计令牌体系和 15 种封面样式生成、填写和重排 PDF，适合品牌手册、电子指南和报告。"
 description: |
   Generate, fill, and reformat PDFs with a token-based design system and 15 cover styles. Useful for branded PDFs, e-guides, and reports.
 triggers:

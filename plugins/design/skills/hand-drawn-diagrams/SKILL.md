@@ -1,5 +1,6 @@
 ---
 name: hand-drawn-diagrams
+zh_description: "根据描述生成手绘风格的 Excalidraw 图示，支持 SVG 动画、在线编辑链接和 PNG 导出。"
 description: |
   Generate hand-drawn Excalidraw diagrams from a prompt — animated SVG, hosted edit link, and PNG export. Works with Claude Code, Codex, Gemini CLI, and any agent supporting standard skill paths.
 triggers:

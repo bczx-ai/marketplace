@@ -1,5 +1,6 @@
 ---
 name: video-downloader
+zh_description: "从 YouTube 等平台下载视频，支持多种格式和清晰度。"
 description: |
   Download videos from YouTube and other platforms for offline viewing, editing, or archival with support for various formats and quality options.
 triggers:

@@ -1,5 +1,6 @@
 ---
 name: figma-create-design-system-rules
+zh_description: "为 Figma 转代码流程生成项目专属的设计系统规则，统一设计令牌、命名和检查规则。"
 description: |
   Generate project-specific design system rules for Figma-to-code workflows. Useful for capturing tokens, naming, and lint rules in one source.
 triggers:

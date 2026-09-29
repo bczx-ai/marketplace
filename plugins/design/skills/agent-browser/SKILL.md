@@ -1,5 +1,6 @@
 ---
 name: agent-browser
+zh_description: "通过命令行驱动浏览器，完成页面访问、表单填写、点击、截图和数据提取等自动化操作。"
 description: |
   Browser automation CLI for AI agents. Use when the user needs to inspect,
   test, or automate browser behavior: navigating pages, filling forms,

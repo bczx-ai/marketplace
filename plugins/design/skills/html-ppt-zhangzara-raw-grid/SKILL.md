@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-raw-grid
+zh_description: "粗野网格风格的海报系列案例幻灯片，讲解创意概念、视觉系统和多尺寸延展。"
 en_name: "Present a Poster-Series Case Study like a Festival Art Director"
 zh_name: "像音乐节艺术总监一样讲海报系列案例"
 description: |
   A brutalist poster-series case study for a music festival — the concept, the system, and how it scaled across formats. Built as a decision-grade design craft deck for design peers, client.
 en_description: |
   A brutalist poster-series case study for a music festival — the concept, the system, and how it scaled across formats. Built as a decision-grade design craft deck for design peers, client.
-zh_description: |
-  像音乐节艺术总监一样讲海报系列案例——一份可商业交付的设计打磨 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "design-craft"
   - "board-upgrade-deck-rescue"

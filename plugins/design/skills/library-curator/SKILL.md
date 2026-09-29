@@ -1,5 +1,6 @@
 ---
 name: library-curator
+zh_description: "在素材库中搜索此前上传或截取的素材，并在任务进行中直接用到当前项目。"
 description: |
   Search the OD Library (the global asset registry) and apply matching assets
   into the current project mid-task. Use when the user asks to reuse an image

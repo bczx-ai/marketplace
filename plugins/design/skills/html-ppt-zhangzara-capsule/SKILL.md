@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-capsule
+zh_description: "胶囊卡片风格的年终述职幻灯片，用事实呈现职责、成果、成长和诉求。"
 en_name: "Write a Year-End Self-Review like a Promotion-Committee Insider"
 zh_name: "像晋升委员会内部人一样写年终述职"
 description: |
   A year-end self-review for a product manager — the role, the outcomes, the learning, and the ask, all evidence-backed. Built as a decision-grade career deck for manager, review committee.
 en_description: |
   A year-end self-review for a product manager — the role, the outcomes, the learning, and the ask, all evidence-backed. Built as a decision-grade career deck for manager, review committee.
-zh_description: |
-  像晋升委员会内部人一样写年终述职——一份可商业交付的职业发展 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "career"
   - "year-end-self-review-deck"

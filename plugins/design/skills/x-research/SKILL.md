@@ -1,5 +1,6 @@
 ---
 name: x-research
+zh_description: "调研 X（Twitter）上关于市场、公司、产品或社区的公开讨论和舆论倾向。"
 description: |
   X/Twitter public sentiment research for recent market, company, product, or
   community discourse. Use when the brief asks what people are saying on X,

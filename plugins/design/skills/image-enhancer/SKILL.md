@@ -1,5 +1,6 @@
 ---
 name: image-enhancer
+zh_description: "提升图片和截图的分辨率、锐度和清晰度，适合演示文稿和文档配图。"
 description: |
   Improve image and screenshot quality by enhancing resolution, sharpness, and clarity for professional presentations and documentation.
 triggers:

@@ -1,5 +1,6 @@
 ---
 name: wpds
+zh_description: "应用 WordPress 官方设计令牌、字体和组件规范来制作主题和网站。"
 description: |
   WordPress Design System. Apply WordPress's official design tokens, typography, and component patterns to themes and sites.
 triggers:

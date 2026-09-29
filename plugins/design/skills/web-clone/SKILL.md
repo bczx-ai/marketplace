@@ -1,5 +1,6 @@
 ---
 name: web-clone
+zh_description: "复刻已有网站：先取得源码，再判断技术路线、拆解结构、搭建工程并替换为自己的内容。"
 en_name: Website Clone
 zh_name: 网站复刻
 description: >

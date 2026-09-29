@@ -1,13 +1,12 @@
 ---
 name: fs-emerald-editorial
+zh_description: "品牌发布叙事幻灯片，包含市场时机、品牌故事和转化证据。"
 en_name: "Write a Brand-Launch Narrative like a Growth Strategy Lead"
 zh_name: "像增长策略负责人一样写品牌发布叙事"
 description: |
   Open Design's 'design on your desk' brand-launch narrative: the market moment, the story, and the proof that converts. Built as a decision-grade marketing & GTM deck for marketing team, press.
 en_description: |
   Open Design's 'design on your desk' brand-launch narrative: the market moment, the story, and the proof that converts. Built as a decision-grade marketing & GTM deck for marketing team, press.
-zh_description: |
-  像增长策略负责人一样写品牌发布叙事——一份可商业交付的市场增长 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "marketing-gtm"
   - "annual-marketing-plan"

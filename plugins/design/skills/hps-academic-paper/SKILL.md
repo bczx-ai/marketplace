@@ -1,13 +1,12 @@
 ---
 name: hps-academic-paper
+zh_description: "学术综述报告幻灯片，梳理领域全貌、研究空白、证据和待解问题。"
 en_name: "Write an Academic Review Deck like a Top-Journal Survey Author"
 zh_name: "像顶刊综述作者一样写学术报告"
 description: |
   A review deck on compositional generalization in large language models — the field map, the gap, the evidence, and open questions. Built as a decision-grade academic research deck for PI, lab group, reviewers.
 en_description: |
   A review deck on compositional generalization in large language models — the field map, the gap, the evidence, and open questions. Built as a decision-grade academic research deck for PI, lab group, reviewers.
-zh_description: |
-  像顶刊综述作者一样写学术报告——一份可商业交付的学术研究 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "academic-research"
   - "academic-review-deck"

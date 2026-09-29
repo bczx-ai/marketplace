@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-grove
+zh_description: "自然绿色风格的公共政策简报幻灯片，讲清公共需求、证据、方案和资金决策。"
 en_name: "Write an Urban Green-Space Policy Brief like a City Sustainability Director"
 zh_name: "像城市可持续总监一样写城市绿地政策简报"
 description: |
   A municipal urban-tree-canopy policy proposal — the public need, the evidence, the options, and the funding decision. Built as a decision-grade policy briefing deck for city council, agency reviewers.
 en_description: |
   A municipal urban-tree-canopy policy proposal — the public need, the evidence, the options, and the funding decision. Built as a decision-grade policy briefing deck for city council, agency reviewers.
-zh_description: |
-  像城市可持续总监一样写城市绿地政策简报——一份可商业交付的政策简报 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "government-policy"
   - "policy-briefing-deck"

@@ -1,5 +1,6 @@
 ---
 name: fal-video-edit
+zh_description: "通过 fal.ai 编辑已有视频，支持风格重绘、超分、去背景和添加音频。"
 description: |
   Edit existing videos using AI — remix style, upscale, remove background, and add audio via fal.ai's hosted video models.
 triggers:

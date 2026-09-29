@@ -1,13 +1,12 @@
 ---
 name: fs-editorial-forest
+zh_description: "杂志风年度报告幻灯片，包含版式体系、图片节奏和数据跨页。"
 en_name: "Art-Direct an Annual Report like a Magazine Creative Director"
 zh_name: "像杂志创意总监一样艺术指导年度报告"
 description: |
   Art-directing a fashion house's annual report — the editorial system, the photography rhythm, and the data spreads. Built as a decision-grade design craft deck for brand stakeholders, exec audience.
 en_description: |
   Art-directing a fashion house's annual report — the editorial system, the photography rhythm, and the data spreads. Built as a decision-grade design craft deck for brand stakeholders, exec audience.
-zh_description: |
-  像杂志创意总监一样艺术指导年度报告——一份可商业交付的设计打磨 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "design-craft"
   - "board-upgrade-deck-rescue"

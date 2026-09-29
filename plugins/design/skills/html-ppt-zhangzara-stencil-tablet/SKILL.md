@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-stencil-tablet
+zh_description: "模板字风格的合规审查幻灯片，呈现检查发现、证据链和整改要求。"
 en_name: "Present a Workplace-Safety Compliance Review like a Senior Regulator"
 zh_name: "像资深监管者一样做工作场所安全合规评审"
 description: |
   A workplace-safety compliance review for a manufacturing regulator — findings, the evidence chain, and the corrective mandate. Built as a decision-grade policy briefing deck for regulator, plant leadership.
 en_description: |
   A workplace-safety compliance review for a manufacturing regulator — findings, the evidence chain, and the corrective mandate. Built as a decision-grade policy briefing deck for regulator, plant leadership.
-zh_description: |
-  像资深监管者一样做工作场所安全合规评审——一份可商业交付的政策简报 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "government-policy"
   - "policy-briefing-deck"

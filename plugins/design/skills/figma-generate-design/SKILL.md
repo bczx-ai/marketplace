@@ -1,5 +1,6 @@
 ---
 name: figma-generate-design
+zh_description: "根据代码或文字描述，用设计系统组件在 Figma 中生成或更新页面。"
 description: |
   Build or update screens in Figma from code or description using design system components. Translate app pages into Figma using design tokens.
 triggers:

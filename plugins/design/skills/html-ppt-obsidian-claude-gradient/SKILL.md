@@ -1,13 +1,12 @@
 ---
 name: html-ppt-obsidian-claude-gradient
+zh_description: "渐变风格的企业 AI 落地简报幻灯片，讲清应用场景、风险控制、投资回报和推广计划。"
 en_name: "Write an Enterprise AI Adoption Brief like a Transformation Lead"
 zh_name: "像企业 AI 转型负责人一样写落地简报"
 description: |
   Open Design's enterprise AI-adoption brief: local-first agents at work, the risk controls, the ROI, and the rollout plan. Built as a decision-grade AI literacy deck for leadership, IT, security.
 en_description: |
   Open Design's enterprise AI-adoption brief: local-first agents at work, the risk controls, the ROI, and the rollout plan. Built as a decision-grade AI literacy deck for leadership, IT, security.
-zh_description: |
-  像企业 AI 转型负责人一样写落地简报——一份可商业交付的AI 素养 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "ai-literacy"
   - "enterprise-ai-copilot-rollout-brief"

@@ -1,5 +1,6 @@
 ---
 name: last30days
+zh_description: "调研近 30 天社区和社交媒体上的讨论趋势、口碑与反响。"
 description: |
   Recent community and social trend research over the last 30 days. Use when
   the brief asks what people are saying now, recent sentiment, community

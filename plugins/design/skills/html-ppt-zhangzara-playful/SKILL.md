@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-playful
+zh_description: "活泼风格的门店销售培训课件，包含销售流程、角色演练和日常习惯。"
 en_name: "Run a Sales-Floor Training like a Top Retail Coach"
 zh_name: "像顶级零售教练一样做门店销售培训"
 description: |
   A retail sales-floor training on consultative selling — the flow, the role-plays, and the daily habit that lifts conversion. Built as a decision-grade professional training deck for store associates, floor managers.
 en_description: |
   A retail sales-floor training on consultative selling — the flow, the role-plays, and the daily habit that lifts conversion. Built as a decision-grade professional training deck for store associates, floor managers.
-zh_description: |
-  像顶级零售教练一样做门店销售培训——一份可商业交付的培训交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "professional-training"
   - "employee-onboarding-deck"

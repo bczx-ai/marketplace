@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-long-table
+zh_description: "长表格风格的单位经济模型幻灯片，呈现假设、敏感性分析和规模化逻辑。"
 en_name: "Present a Unit-Economics Model like an FP&A Partner"
 zh_name: "像 FP&A 伙伴一样讲清单位经济模型"
 description: |
   Open Design's unit-economics and BYOK cost model: the assumptions, the sensitivity, and why it scales. Built as a decision-grade data & finance deck for CFO, investors.
 en_description: |
   Open Design's unit-economics and BYOK cost model: the assumptions, the sensitivity, and why it scales. Built as a decision-grade data & finance deck for CFO, investors.
-zh_description: |
-  像 FP&A 伙伴一样讲清单位经济模型——一份可商业交付的数据财务 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "data-finance"
   - "product-analytics-deck"

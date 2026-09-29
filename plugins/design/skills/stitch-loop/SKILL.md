@@ -1,5 +1,6 @@
 ---
 name: stitch-loop
+zh_description: "设计到代码的迭代循环：评审、调整、交付，不断缩小设计稿与实现之间的差距。"
 description: |
   Iterative design-to-code feedback loop. Critique → adjust → ship cycle for tightening visual fidelity between brief and built UI.
 triggers:

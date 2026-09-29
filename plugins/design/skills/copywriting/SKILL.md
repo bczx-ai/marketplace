@@ -1,5 +1,6 @@
 ---
 name: copywriting
+zh_description: "撰写和改写落地页、首页与广告的营销文案，适合产品发布期间使用。"
 description: |
   Write and rewrite marketing copy for landing pages, homepages, and ads. Useful as a copy chief partner during launches.
 triggers:

@@ -1,5 +1,6 @@
 ---
 name: fal-tryon
+zh_description: "通过 fal.ai 实现虚拟试衣，适合电商、穿搭画册和造型实验。"
 description: |
   Virtual try-on — see how clothes look on a person via fal.ai's hosted try-on models. Useful for ecommerce, lookbooks, and styling experiments.
 triggers:

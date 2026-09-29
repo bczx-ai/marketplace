@@ -1,13 +1,12 @@
 ---
 name: huashu-takram-soft-tech
+zh_description: "柔和科技风格的采购与安全说明幻灯片，便于采购委员会内部转发审批。"
 en_name: "Build a Buyer-Committee Leave-Behind like an Enterprise Sales Lead"
 zh_name: "像企业销售负责人一样写买方委员会转发稿"
 description: |
   Open Design procurement & security leave-behind: the one-pager-plus a buying committee can forward and approve internally. Built as a decision-grade B2B sales deck for buying committee, security, procurement.
 en_description: |
   Open Design procurement & security leave-behind: the one-pager-plus a buying committee can forward and approve internally. Built as a decision-grade B2B sales deck for buying committee, security, procurement.
-zh_description: |
-  像企业销售负责人一样写买方委员会转发稿——一份可商业交付的B2B 销售 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "b2b-sales"
   - "b2b-saas-sales-proposal"

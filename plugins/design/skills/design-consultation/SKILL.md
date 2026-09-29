@@ -1,5 +1,6 @@
 ---
 name: design-consultation
+zh_description: "从零搭建完整的设计系统，并配套真实的产品样机，适合项目启动和品牌初创阶段。"
 description: |
   Build a complete design system from scratch with creative risks and realistic product mockups. Useful for kickoff workshops and brand-from-zero work.
 triggers:

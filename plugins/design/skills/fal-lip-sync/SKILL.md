@@ -1,5 +1,6 @@
 ---
 name: fal-lip-sync
+zh_description: "通过 fal.ai 制作数字人口播和口型同步视频，适合讲解视频和多语言配音预览。"
 description: |
   Create talking head videos and lip sync audio to video via fal.ai. Useful for explainer avatars, multilingual dubbing previews, and social cuts.
 triggers:

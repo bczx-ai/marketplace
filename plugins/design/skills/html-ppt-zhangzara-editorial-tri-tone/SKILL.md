@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-editorial-tri-tone
+zh_description: "三色编辑风格的杂志视觉系统幻灯片，展示网格、配色和版式组件。"
 en_name: "Build an Editorial Design System like a Magazine Art Director"
 zh_name: "像杂志艺术总监一样搭建编辑设计系统"
 description: |
   A type-and-color system for a culture magazine relaunch — the grid, the tri-tone palette, and the layout kit. Built as a decision-grade design craft deck for editorial & design team.
 en_description: |
   A type-and-color system for a culture magazine relaunch — the grid, the tri-tone palette, and the layout kit. Built as a decision-grade design craft deck for editorial & design team.
-zh_description: |
-  像杂志艺术总监一样搭建编辑设计系统——一份可商业交付的设计打磨 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "design-craft"
   - "board-upgrade-deck-rescue"

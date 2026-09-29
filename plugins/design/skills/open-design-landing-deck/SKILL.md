@@ -1,13 +1,12 @@
 ---
 name: open-design-landing-deck
+zh_description: "品牌故事幻灯片，面向合作伙伴和媒体讲清品牌由来、理念和方向。"
 en_name: "Write a Brand-Story Deck like a Founder Storyteller"
 zh_name: "像会讲故事的创始人一样写品牌故事稿"
 description: |
   Open Design's brand-story deck for partners and press: why it exists, what it believes, and where design is going. Built as a decision-grade marketing & GTM deck for partners, press, community.
 en_description: |
   Open Design's brand-story deck for partners and press: why it exists, what it believes, and where design is going. Built as a decision-grade marketing & GTM deck for partners, press, community.
-zh_description: |
-  像会讲故事的创始人一样写品牌故事稿——一份可商业交付的市场增长 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "marketing-gtm"
   - "annual-marketing-plan"

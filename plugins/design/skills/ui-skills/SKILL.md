@@ -1,5 +1,6 @@
 ---
 name: ui-skills
+zh_description: "构建界面时遵循的一组设计约束，让大量零散界面保持一致。"
 description: |
   Opinionated, evolving constraints to guide agents when building interfaces. Useful for keeping output coherent across many small UI pieces.
 triggers:

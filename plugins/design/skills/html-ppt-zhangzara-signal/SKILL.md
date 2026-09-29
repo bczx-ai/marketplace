@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-signal
+zh_description: "信号风格的战略决策备忘幻灯片，列出选项、风险和最终建议。"
 en_name: "Write a Strategy Decision Memo like a Corp-Dev Lead"
 zh_name: "像战略发展负责人一样写战略决策备忘"
 description: |
   Open Design's strategy memo: should it monetize the plugin registry now or hold — options, risks, and the recommendation. Built as a decision-grade corporate strategy deck for CEO, strategy team.
 en_description: |
   Open Design's strategy memo: should it monetize the plugin registry now or hold — options, risks, and the recommendation. Built as a decision-grade corporate strategy deck for CEO, strategy team.
-zh_description: |
-  像战略发展负责人一样写战略决策备忘——一份可商业交付的企业战略 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "corporate-strategy"
   - "board-pre-read-deck"

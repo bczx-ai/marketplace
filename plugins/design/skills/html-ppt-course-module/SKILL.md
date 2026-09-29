@@ -1,13 +1,12 @@
 ---
 name: html-ppt-course-module
+zh_description: "新员工入职培训课件，包含行为要求、练习、考核和主管跟进。"
 en_name: "Build a New-Hire Onboarding Module like a Top Enablement Lead"
 zh_name: "像顶级赋能负责人一样做新人培训模块"
 description: |
   A first-30-days onboarding module for new hospitality hires — the behaviors, the practice, the checks, and the manager follow-up. Built as a decision-grade professional training deck for new hires, managers.
 en_description: |
   A first-30-days onboarding module for new hospitality hires — the behaviors, the practice, the checks, and the manager follow-up. Built as a decision-grade professional training deck for new hires, managers.
-zh_description: |
-  像顶级赋能负责人一样做新人培训模块——一份可商业交付的培训交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "professional-training"
   - "employee-onboarding-deck"

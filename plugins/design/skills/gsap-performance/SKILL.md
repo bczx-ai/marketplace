@@ -1,5 +1,6 @@
 ---
 name: gsap-performance
+zh_description: "优化 GSAP 动画性能，减少卡顿，保持稳定 60 帧。"
 description: |
   Official GSAP skill for performance — prefer transforms, avoid layout thrashing, will-change, batching. Use when optimizing GSAP animations, reducing jank, or when the user asks about animation performance, FPS, or smooth 60fps.
 triggers:

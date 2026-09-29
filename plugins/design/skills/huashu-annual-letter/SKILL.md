@@ -1,13 +1,12 @@
 ---
 name: huashu-annual-letter
+zh_description: "年度公开信幻灯片，讲述一年的经历、收获和下一步方向。"
 en_name: "Write an Annual Founder's Letter like a Mission-Driven CEO"
 zh_name: "像使命驱动的 CEO 一样写年度公开信"
 description: |
   Open Design's annual letter to its community: the year's story, what it learned, and where it's going next. Built as a decision-grade corporate strategy deck for community, contributors, investors.
 en_description: |
   Open Design's annual letter to its community: the year's story, what it learned, and where it's going next. Built as a decision-grade corporate strategy deck for community, contributors, investors.
-zh_description: |
-  像使命驱动的 CEO 一样写年度公开信——一份可商业交付的企业战略 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "corporate-strategy"
   - "board-pre-read-deck"

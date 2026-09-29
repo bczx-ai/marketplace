@@ -1,5 +1,6 @@
 ---
 name: docx
+zh_description: "创建、编辑和分析 Word 文档，支持修订、批注与格式，适合设计需求文档和交付稿。"
 description: |
   Create, edit, and analyze Word documents with tracked changes, comments, and formatting. Useful for design briefs, copy docs, and review-ready deliverables.
 triggers:

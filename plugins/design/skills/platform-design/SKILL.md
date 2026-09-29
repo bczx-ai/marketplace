@@ -1,5 +1,6 @@
 ---
 name: platform-design
+zh_description: "汇集 Apple HIG、Material Design 3 和 WCAG 2.2 的 300 余条设计规则，适合跨平台应用。"
 description: |
   300+ design rules from Apple HIG, Material Design 3, and WCAG 2.2 for cross-platform apps. Useful when shipping a single design across iOS, Android, and the web.
 triggers:

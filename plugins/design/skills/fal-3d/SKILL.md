@@ -1,5 +1,6 @@
 ---
 name: fal-3d
+zh_description: "通过 fal.ai 由文字或图片生成 3D 模型，适合游戏素材、AR 预览和产品样机。"
 description: |
   Generate 3D models from text or images via fal.ai. Useful for game assets, AR previews, product mockups, and concept sculpting.
 triggers:

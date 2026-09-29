@@ -1,5 +1,6 @@
 ---
 name: minimalist-ui
+zh_description: "简洁的编辑式界面风格：暖色单色调、字体对比、扁平便当网格，不用渐变和重阴影。"
 description: |
   Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.
 triggers:

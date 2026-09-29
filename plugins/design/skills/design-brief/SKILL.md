@@ -1,5 +1,6 @@
 ---
 name: design-brief
+zh_description: "把结构化的设计需求简报解析成明确的设计规格，覆盖配色、字体、版式、氛围和约束。"
 description: |
   Parse a structured design brief written in I-Lang protocol format into a
   concrete design spec. Eliminates ambiguity from vague requests like

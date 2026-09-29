@@ -1,5 +1,6 @@
 ---
 name: fal-train
+zh_description: "在 fal.ai 上训练 LoRA 模型，生成符合特定品牌、角色或风格的图片。"
 description: |
   Train custom AI models (LoRA) on fal.ai for personalized image generation tailored to a brand, character, or style.
 triggers:

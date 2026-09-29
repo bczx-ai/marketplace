@@ -1,13 +1,12 @@
 ---
 name: fs-creative-voltage
+zh_description: "种子轮融资路演幻灯片，讲清入场时机、切入点和融资诉求。"
 en_name: "Write a Seed Pitch like a Top Pre-Seed Founder"
 zh_name: "像顶级 pre-seed 创始人一样写种子路演"
 description: |
   Open Design's seed pitch: the open, local alternative to closed AI design — why now, the wedge, and the ask. Built as a decision-grade fundraising pitch deck for pre-seed & seed VCs.
 en_description: |
   Open Design's seed pitch: the open, local alternative to closed AI design — why now, the wedge, and the ask. Built as a decision-grade fundraising pitch deck for pre-seed & seed VCs.
-zh_description: |
-  像顶级 pre-seed 创始人一样写种子路演——一份可商业交付的融资路演 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "fundraising-pitch"
   - "series-a-pitch-deck"

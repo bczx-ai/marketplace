@@ -1,5 +1,6 @@
 ---
 name: emil-design-eng
+zh_description: "Emil Kowalski 的界面打磨理念，涵盖组件设计、动画取舍和提升质感的细节。"
 description: |
   This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
 triggers:

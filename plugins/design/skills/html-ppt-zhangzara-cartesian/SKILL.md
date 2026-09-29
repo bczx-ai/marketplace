@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-cartesian
+zh_description: "坐标网格风格的论文答辩幻灯片，适合呈现研究设计、证据和局限。"
 en_name: "Present a Senior Thesis Defense like a Distinction-Grade Economics Student"
 zh_name: "像拿优等的经济学生一样做毕业论文答辩"
 description: |
   An economics senior thesis on the employment effects of local minimum-wage increases — identification strategy, evidence, and limitations. Built as a decision-grade coursework defense deck for thesis committee.
 en_description: |
   An economics senior thesis on the employment effects of local minimum-wage increases — identification strategy, evidence, and limitations. Built as a decision-grade coursework defense deck for thesis committee.
-zh_description: |
-  像拿优等的经济学生一样做毕业论文答辩——一份可商业交付的课业答辩 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "student-coursework"
   - "senior-capstone-defense-deck"

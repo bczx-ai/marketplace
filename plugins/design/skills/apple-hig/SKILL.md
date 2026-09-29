@@ -1,5 +1,6 @@
 ---
 name: apple-hig
+zh_description: "Apple 人机界面指南，涵盖 iOS、macOS、visionOS、watchOS 与 tvOS 的平台规范、组件和交互模式。"
 description: |
   Apple Human Interface Guidelines as 14 agent skills covering platforms, foundations, components, patterns, inputs, and technologies for iOS, macOS, visionOS, watchOS, and tvOS.
 triggers:

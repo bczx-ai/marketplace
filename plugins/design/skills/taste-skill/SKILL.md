@@ -1,5 +1,6 @@
 ---
 name: design-taste-frontend
+zh_description: "面向落地页、作品集和改版的前端设计技能，根据需求判断设计方向，避免模板化界面。"
 description: |
   Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check.
 triggers:

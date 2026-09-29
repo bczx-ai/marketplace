@@ -1,5 +1,6 @@
 ---
 name: plan-design-review
+zh_description: "资深设计师视角的评审：逐项按 0 到 10 分打分，说明满分标准，并指出 AI 味明显的问题。"
 description: |
   Senior Designer review: rates each design dimension 0-10, explains what a 10 looks like, and flags AI Slop signals. Useful as a gate before merging UI work.
 triggers:

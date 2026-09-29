@@ -1,5 +1,6 @@
 ---
 name: swiftui-design
+zh_description: "SwiftUI 界面设计规范，包含设计方向建议、品牌素材约定和五个维度的评审。"
 description: |
   SwiftUI 前端设计 skill — anti AI-slop rules, design direction advisor, brand asset protocol, and five-dimension review. Works with Claude Code, Cursor, Codex, and OpenCode.
 triggers:

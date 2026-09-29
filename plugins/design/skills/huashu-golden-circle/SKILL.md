@@ -1,13 +1,12 @@
 ---
 name: huashu-golden-circle
+zh_description: "黄金圈结构的品牌重塑战略幻灯片，从为什么、怎么做到做什么逐层展开。"
 en_name: "Present a Brand-Repositioning Strategy like a Top Consulting Principal"
 zh_name: "像顶级咨询董事一样讲品牌重塑战略"
 description: |
   A brand-repositioning strategy for a heritage coffee chain — why, how, what — the governing idea and the moves to prove it. Built as a decision-grade consulting deck for client CMO, board.
 en_description: |
   A brand-repositioning strategy for a heritage coffee chain — why, how, what — the governing idea and the moves to prove it. Built as a decision-grade consulting deck for client CMO, board.
-zh_description: |
-  像顶级咨询董事一样讲品牌重塑战略——一份可商业交付的咨询交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "consulting"
   - "consulting-final-deck"

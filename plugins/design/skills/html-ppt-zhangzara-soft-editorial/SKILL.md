@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-soft-editorial
+zh_description: "柔和编辑风格的数字化转型路线图幻灯片，包含现状诊断、分阶段举措和推进节奏。"
 en_name: "Deliver a Digital-Transformation Roadmap like a Big-Four Partner"
 zh_name: "像四大合伙人一样交付数字化转型路线图"
 description: |
   A digital-transformation roadmap for a legacy insurer — the diagnosis, the sequenced bets, and the operating rhythm to land them. Built as a decision-grade consulting deck for client executives.
 en_description: |
   A digital-transformation roadmap for a legacy insurer — the diagnosis, the sequenced bets, and the operating rhythm to land them. Built as a decision-grade consulting deck for client executives.
-zh_description: |
-  像四大合伙人一样交付数字化转型路线图——一份可商业交付的咨询交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "consulting"
   - "consulting-final-deck"

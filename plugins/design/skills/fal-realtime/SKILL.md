@@ -1,5 +1,6 @@
 ---
 name: fal-realtime
+zh_description: "通过 fal.ai 实时生成图片，适合情绪板探索和快速出多个草稿。"
 description: |
   Real-time and streaming AI image generation via fal.ai. Suited for moodboard exploration, draft variations, and rapid creative iteration.
 triggers:

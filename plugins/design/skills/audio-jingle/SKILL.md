@@ -1,5 +1,6 @@
 ---
 name: audio-jingle
+zh_description: "生成音乐、配音和音效，输出单个 MP3 或 WAV 文件，适合片头音乐、背景音与旁白。"
 description: |
   Audio generation skill — jingles, beds, voiceover, and sound effects.
   Routes music requests to Suno V5 / Udio / Lyria, speech to MiniMax

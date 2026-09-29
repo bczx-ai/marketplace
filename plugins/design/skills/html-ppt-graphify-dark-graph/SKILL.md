@@ -1,13 +1,12 @@
 ---
 name: html-ppt-graphify-dark-graph
+zh_description: "深色图谱风格的功能立项论证幻灯片，讲清用户痛点、备选方案、取舍和成功指标。"
 en_name: "Write a Feature Business Case like a Principal PM"
 zh_name: "像 Principal PM 一样写功能商业论证"
 description: |
   Open Design's feature business case for the plugin marketplace: the user pain, options, tradeoffs, and the measure of success. Built as a decision-grade product management deck for PM, eng, design, leadership.
 en_description: |
   Open Design's feature business case for the plugin marketplace: the user pain, options, tradeoffs, and the measure of success. Built as a decision-grade product management deck for PM, eng, design, leadership.
-zh_description: |
-  像 Principal PM 一样写功能商业论证——一份可商业交付的产品管理 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "product-management"
   - "pm-feature-business-case-deck"

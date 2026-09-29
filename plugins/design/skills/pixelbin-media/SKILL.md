@@ -1,5 +1,6 @@
 ---
 name: pixelbin-media
+zh_description: "通过 Pixelbin 的 85 个以上接口生成和编辑图片、视频，并制作网站页面。"
 description: |
   Generate and edit images and videos with an 85+ API portfolio and build visually appealing website pages via Pixelbin.
 triggers:

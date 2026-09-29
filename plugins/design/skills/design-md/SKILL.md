@@ -1,5 +1,6 @@
 ---
 name: design-md
+zh_description: "创建和维护 DESIGN.md，把设计方向、设计令牌和视觉规则集中在一份文件里。"
 description: |
   Create and manage DESIGN.md files. Useful for capturing design direction, tokens, and visual rules in a single source of truth.
 triggers:

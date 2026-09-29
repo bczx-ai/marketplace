@@ -1,13 +1,12 @@
 ---
 name: huashu-bento-insight
+zh_description: "便当网格风格的竞品对比方案幻灯片，从可控性、成本和锁定风险逐项比较。"
 en_name: "Write a Competitive Displacement Deck like a Top Sales Engineer"
 zh_name: "像顶级售前一样写竞品替换方案"
 description: |
   Open Design vs closed cloud design tools: a side-by-side displacement case on control, cost (BYOK), and lock-in. Built as a decision-grade B2B sales deck for evaluation committee.
 en_description: |
   Open Design vs closed cloud design tools: a side-by-side displacement case on control, cost (BYOK), and lock-in. Built as a decision-grade B2B sales deck for evaluation committee.
-zh_description: |
-  像顶级售前一样写竞品替换方案——一份可商业交付的B2B 销售 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "b2b-sales"
   - "b2b-saas-sales-proposal"

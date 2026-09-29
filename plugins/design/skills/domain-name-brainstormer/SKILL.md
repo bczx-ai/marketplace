@@ -1,5 +1,6 @@
 ---
 name: domain-name-brainstormer
+zh_description: "构思域名方案，并检查 .com、.io、.dev、.ai 等后缀的可注册情况。"
 description: |
   Generate creative domain name ideas and check availability across multiple TLDs including .com, .io, .dev, and .ai.
 triggers:

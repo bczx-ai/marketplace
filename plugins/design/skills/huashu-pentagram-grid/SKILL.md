@@ -1,13 +1,12 @@
 ---
 name: huashu-pentagram-grid
+zh_description: "网格版式的品牌定位与信息体系幻灯片，确定核心承诺、支柱和证据。"
 en_name: "Build a Positioning & Messaging System like a Brand Strategist"
 zh_name: "像品牌策略师一样搭建定位与信息体系"
 description: |
   Open Design's positioning & messaging system: the one-line promise, the pillars, and the proof — the source of truth for all copy. Built as a decision-grade marketing & GTM deck for brand & marketing team.
 en_description: |
   Open Design's positioning & messaging system: the one-line promise, the pillars, and the proof — the source of truth for all copy. Built as a decision-grade marketing & GTM deck for brand & marketing team.
-zh_description: |
-  像品牌策略师一样搭建定位与信息体系——一份可商业交付的市场增长 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "marketing-gtm"
   - "annual-marketing-plan"

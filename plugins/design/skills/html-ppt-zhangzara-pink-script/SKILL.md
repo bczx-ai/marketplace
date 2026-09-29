@@ -1,13 +1,12 @@
 ---
 name: html-ppt-zhangzara-pink-script
+zh_description: "粉色手写风格的纪念日影像故事幻灯片。"
 en_name: "Turn an Anniversary into a Photo Essay like a Wedding Storyteller"
 zh_name: "像婚礼讲述者一样把纪念日做成影像散文"
 description: |
   A wedding-anniversary tribute photo essay — a decade in scenes, the turning points, and the quiet meaning of staying. Built as a decision-grade story deck for couple, family, friends.
 en_description: |
   A wedding-anniversary tribute photo essay — a decade in scenes, the turning points, and the quiet meaning of staying. Built as a decision-grade story deck for couple, family, friends.
-zh_description: |
-  像婚礼讲述者一样把纪念日做成影像散文——一份可商业交付的生活故事 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "life"
   - "travel-photo-essay-deck"

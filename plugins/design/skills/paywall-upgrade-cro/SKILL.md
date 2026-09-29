@@ -1,5 +1,6 @@
 ---
 name: paywall-upgrade-cro
+zh_description: "设计和优化升级页、付费墙与增购弹窗，适合 SaaS 转化设计和定价实验。"
 description: |
   Design and optimize upgrade screens, paywalls, and upsell modals. Useful for SaaS conversion design and pricing-page experiments.
 triggers:

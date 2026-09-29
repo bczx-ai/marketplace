@@ -1,13 +1,12 @@
 ---
 name: hps-bauhaus
+zh_description: "包豪斯风格的设计基础课件，讲解网格、字体、色彩和配套练习。"
 en_name: "Teach Design Fundamentals like a World-Class Studio Mentor"
 zh_name: "像世界级工作室导师一样教设计基础"
 description: |
   A visual-design fundamentals course for new brand designers — grid, type, color, and the exercises that build the eye. Built as a decision-grade professional training deck for junior designers, new hires.
 en_description: |
   A visual-design fundamentals course for new brand designers — grid, type, color, and the exercises that build the eye. Built as a decision-grade professional training deck for junior designers, new hires.
-zh_description: |
-  像世界级工作室导师一样教设计基础——一份可商业交付的培训交付 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "professional-training"
   - "employee-onboarding-deck"

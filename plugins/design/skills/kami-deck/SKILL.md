@@ -1,13 +1,12 @@
 ---
 name: kami-deck
+zh_description: "纸质印刷风格的组会研究汇报幻灯片，呈现实验设计、结果、局限和下一步实验。"
 en_name: "Turn a Study into a Lab Meeting Deck like a Senior Postdoc"
 zh_name: "像资深博士后一样做组会研究汇报"
 description: |
   A lab-meeting deck on gut-microbiome links to sleep quality — the design, the results, the caveats, and the next experiment. Built as a decision-grade academic research deck for lab group, PI.
 en_description: |
   A lab-meeting deck on gut-microbiome links to sleep quality — the design, the results, the caveats, and the next experiment. Built as a decision-grade academic research deck for lab group, PI.
-zh_description: |
-  像资深博士后一样做组会研究汇报——一份可商业交付的学术研究 Deck，围绕真实主题、证据链与决策目标组织。
 tags:
   - "academic-research"
   - "academic-review-deck"

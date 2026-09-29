@@ -1,5 +1,6 @@
 ---
 name: imagen
+zh_description: "调用 Google Gemini 图像接口生成界面样稿、图标、插画和视觉素材。"
 description: |
   Generate images using Google Gemini's image generation API for UI mockups, icons, illustrations, and visual assets.
 triggers:

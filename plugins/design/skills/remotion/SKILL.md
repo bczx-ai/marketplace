@@ -1,5 +1,6 @@
 ---
 name: remotion
+zh_description: "用 React 以代码方式制作视频，适合品牌讲解片、社交短片和可复现的动态图形。"
 description: |
   Programmatic video creation with React. Useful for branded explainers, social cuts, dashboards-to-video, and reproducible motion graphics.
 triggers:
