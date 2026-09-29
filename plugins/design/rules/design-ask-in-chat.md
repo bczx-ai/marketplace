@@ -1,8 +1,8 @@
 ---
-description: Design 缺信息时默认自己假设，真要问就用 brain-visualize 在对话里问
+description: 信息不全时按常见情况补全并注明假设，需要确认时通过 brain-visualize 在对话中提问
 ---
 
-# Brain Design 缺信息怎么办
+# Brain Design 信息不全时的处理
 
 默认不问。用户在面板里填过的配置已经是该问的全部。
 
