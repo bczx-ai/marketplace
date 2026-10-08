@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "extensionId": "devcube.design",
-  "version": "0.4.96",
+  "version": "0.4.97",
   "publisher": "devcube",
   "runtimeKind": "trusted-node",
   "dist": {
     "type": "url",
-    "url": "https://download-app.aidevops.top/marketplace/extensions/devcube.design/0.4.96/devcube.design-0.4.96.brain-ext",
-    "size": 169870641,
-    "sha256": "e065c7fe5c2099a988ad54f0ee9863ed37b2602b9de5c0f383ea2b6dffe00ed0"
+    "url": "https://download-app.aidevops.top/marketplace/extensions/devcube.design/0.4.97/devcube.design-0.4.97.brain-ext",
+    "size": 94450223,
+    "sha256": "9693d1b64b0ca717dfec20b773a19bb013906b9e32d043e250d41ac204288424"
   }
 }
