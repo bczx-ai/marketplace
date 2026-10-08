@@ -1,6 +1,6 @@
 {
   "name": "design",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "用对话生成幻灯片、网页原型、海报等设计稿，在面板里预览、微调并导出。",
   "author": {
     "name": "DevCube"
@@ -8,7 +8,7 @@
   "interface": {
     "displayName": "Brain Design",
     "shortDescription": "用对话生成幻灯片、网页原型、海报等设计稿，在面板里预览、微调并导出。",
-    "longDescription": "Brain Design 是 Brain 里的设计工作台。从模板或设计系统出发新建设计，由 Agent 生成幻灯片、网页与应用原型、线框图、海报、数据报告等 HTML 设计稿；在设计面板中预览，直接微调文字与样式，标注修改意见后交回对话继续迭代，完成后导出 PDF 或 PPTX。插件附带 333 个设计技能，覆盖演示文稿、原型、品牌视觉、动效视频和数据可视化，另有 2 条设计规则，让 Agent 按统一流程产出设计。",
+    "longDescription": "Brain Design 是 Brain 里的设计工作台。从模板或设计系统出发新建设计，由 Agent 生成幻灯片、网页与应用原型、线框图、海报、数据报告等 HTML 设计稿；在设计面板中预览，直接微调文字与样式，标注修改意见后交回对话继续迭代，完成后导出 PDF 或 PPTX。插件附带 333 个设计技能，覆盖演示文稿、原型、品牌视觉、动效视频和数据可视化，另有 4 条设计规则，让 Agent 按统一流程产出设计、遵循设计系统并保留已有设计文件。",
     "developerName": "DevCube",
     "category": "设计多媒体",
     "logo": "./assets/icon.svg",
