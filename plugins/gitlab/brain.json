@@ -2,7 +2,7 @@
   "$schema": "https://brain.zhonganinfo.com/schemas/plugin-extension/v1.json",
   "schemaVersion": 1,
   "publisherId": "zainfo",
-  "releaseNotes": "GitLab 登录只验证当前填写的目标实例，不再受其它历史实例的失效状态影响。",
+  "releaseNotes": "修复 Brain 2.x 上安装 GitLab 插件提示「当前 Brain 版本不满足扩展要求」的问题。",
   "compatibility": { "brain": ">=1.1.2" },
   "components": {
     "extensions": [{ "path": "gitlab" }],
